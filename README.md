@@ -86,7 +86,17 @@ turnwise/
 ├── data/
 │   ├── examples/
 │   │   ├── annotations/
+│   │   │   ├── repair-001-ordinary.json
+│   │   │   ├── repair-002-missing.json
+│   │   │   ├── repair-003-negation.json
+│   │   │   ├── repair-004-corrections.json
+│   │   │   └── repair-005-distractors.json
 │   │   └── conversations/
+│   │       ├── repair-001-ordinary.json
+│   │       ├── repair-002-missing.json
+│   │       ├── repair-003-negation.json
+│   │       ├── repair-004-corrections.json
+│   │       └── repair-005-distractors.json
 │   └── manifests/
 ├── docs/
 │   ├── decisions/
@@ -107,6 +117,7 @@ turnwise/
 │   ├── integration/
 │   └── unit/
 │       ├── test_settings.py
+│   │   ├── test_synthetic_conversations.py
 │       └── test_task_definition.py
 │       └── test_settings.py
 ├── checkpoints/

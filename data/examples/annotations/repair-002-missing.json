@@ -1,0 +1,39 @@
+{
+  "conversation_id": "repair-002-missing",
+  "task_id": "repair_intake",
+  "task_version": "0.1.0",
+  "snapshots": [
+    {
+      "snapshot_id": "repair-002-s01",
+      "through_event_id": "repair-002-e01",
+      "values": {
+        "appliance": "Refrigerator",
+        "location": "Basement",
+        "active_leak": null,
+        "preferred_appointment": null,
+        "quote_required": null,
+        "spending_limit": null
+      },
+      "evidence": {
+        "appliance": [{"event_id": "repair-002-e01", "start_char": 4, "end_char": 16}],
+        "location": [{"event_id": "repair-002-e01", "start_char": 24, "end_char": 32}]
+      }
+    },
+    {
+      "snapshot_id": "repair-002-s02",
+      "through_event_id": "repair-002-e07",
+      "values": {
+        "appliance": "Refrigerator",
+        "location": "Basement",
+        "active_leak": null,
+        "preferred_appointment": null,
+        "quote_required": null,
+        "spending_limit": null
+      },
+      "evidence": {
+        "appliance": [{"event_id": "repair-002-e01", "start_char": 4, "end_char": 16}],
+        "location": [{"event_id": "repair-002-e01", "start_char": 24, "end_char": 32}]
+      }
+    }
+  ]
+}

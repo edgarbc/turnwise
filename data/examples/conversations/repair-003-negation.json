@@ -1,0 +1,79 @@
+{
+  "conversation_id": "repair-003-negation",
+  "task_id": "repair_intake",
+  "task_version": "0.1.0",
+  "events": [
+    {
+      "event_id": "repair-003-e01",
+      "speaker": "customer",
+      "start_ms": 0,
+      "end_ms": 9000,
+      "revision": 0,
+      "is_final": true,
+      "text": "My washing machine is in the utility closet, and water is actively dripping from the inlet hose right now. I put a towel down but it is getting wet."
+    },
+    {
+      "event_id": "repair-003-e02",
+      "speaker": "intake_agent",
+      "start_ms": 18000,
+      "end_ms": 26000,
+      "revision": 0,
+      "is_final": true,
+      "text": "If you can do so safely, you may shut off the nearby water valve. Are you able to reach it without moving the appliance?"
+    },
+    {
+      "event_id": "repair-003-e03",
+      "speaker": "customer",
+      "start_ms": 36000,
+      "end_ms": 45000,
+      "revision": 0,
+      "is_final": true,
+      "text": "I shut the supply valve. The floor is drying, and the hose is not leaking now, so there has been no new water since I turned it off."
+    },
+    {
+      "event_id": "repair-003-e04",
+      "speaker": "intake_agent",
+      "start_ms": 54000,
+      "end_ms": 62000,
+      "revision": 0,
+      "is_final": true,
+      "text": "When could someone come to inspect the hose? The office will confirm an exact appointment after checking the technician schedule."
+    },
+    {
+      "event_id": "repair-003-e05",
+      "speaker": "customer",
+      "start_ms": 72000,
+      "end_ms": 80000,
+      "revision": 0,
+      "is_final": true,
+      "text": "Saturday morning should work for me. If anything changes, I will call the office as soon as I know."
+    },
+    {
+      "event_id": "repair-003-e06",
+      "speaker": "intake_agent",
+      "start_ms": 90000,
+      "end_ms": 98000,
+      "revision": 0,
+      "is_final": true,
+      "text": "Would you like a quote before any repair begins, or are you comfortable deciding after the technician inspects it?"
+    },
+    {
+      "event_id": "repair-003-e07",
+      "speaker": "customer",
+      "start_ms": 108000,
+      "end_ms": 118000,
+      "revision": 0,
+      "is_final": true,
+      "text": "No quote is needed. Please call me before starting the repair so I can confirm after hearing what the technician finds."
+    },
+    {
+      "event_id": "repair-003-e08",
+      "speaker": "intake_agent",
+      "start_ms": 126000,
+      "end_ms": 134000,
+      "revision": 0,
+      "is_final": true,
+      "text": "I will note that the water has stopped for now and that you want a call before work begins."
+    }
+  ]
+}

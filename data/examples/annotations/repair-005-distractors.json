@@ -1,0 +1,44 @@
+{
+  "conversation_id": "repair-005-distractors",
+  "task_id": "repair_intake",
+  "task_version": "0.1.0",
+  "snapshots": [
+    {
+      "snapshot_id": "repair-005-s01",
+      "through_event_id": "repair-005-e03",
+      "values": {
+        "appliance": "Washing machine",
+        "location": "Laundry room",
+        "active_leak": false,
+        "preferred_appointment": "Saturday after lunch",
+        "quote_required": null,
+        "spending_limit": null
+      },
+      "evidence": {
+        "appliance": [{"event_id": "repair-005-e01", "start_char": 4, "end_char": 19}],
+        "location": [{"event_id": "repair-005-e01", "start_char": 27, "end_char": 39}],
+        "active_leak": [{"event_id": "repair-005-e01", "start_char": 97, "end_char": 114}],
+        "preferred_appointment": [{"event_id": "repair-005-e03", "start_char": 84, "end_char": 104}]
+      }
+    },
+    {
+      "snapshot_id": "repair-005-s02",
+      "through_event_id": "repair-005-e07",
+      "values": {
+        "appliance": "Washing machine",
+        "location": "Laundry room",
+        "active_leak": false,
+        "preferred_appointment": "Saturday after lunch",
+        "quote_required": true,
+        "spending_limit": null
+      },
+      "evidence": {
+        "appliance": [{"event_id": "repair-005-e01", "start_char": 4, "end_char": 19}],
+        "location": [{"event_id": "repair-005-e01", "start_char": 27, "end_char": 39}],
+        "active_leak": [{"event_id": "repair-005-e01", "start_char": 97, "end_char": 114}],
+        "preferred_appointment": [{"event_id": "repair-005-e07", "start_char": 53, "end_char": 95}],
+        "quote_required": [{"event_id": "repair-005-e05", "start_char": 12, "end_char": 49}]
+      }
+    }
+  ]
+}

@@ -8,6 +8,8 @@ This is the initial annotation reference for the repair-intake task. The rules b
 - Use two known speaker roles and approximately two to five minutes of audio per conversation.
 - Create a gold form for selected transcript prefixes, not only for the completed conversation.
 - Keep gold annotations separate from model inputs. A provider may see only the transcript prefix and task configuration available at that point.
+- Conversation fixtures are JSON event streams under `data/examples/conversations/`; matching gold files live under `data/examples/annotations/`.
+- Each gold file contains one or more snapshots identified by `through_event_id`. A snapshot includes all six field IDs, using `null` for unknown values, plus evidence only for known values.
 
 ## Fields
 
@@ -50,3 +52,5 @@ The final snapshot should record `appliance: "Washing machine"`, `location: "Lau
 - Were corrections applied only from the turn where they occurred?
 - Were unsupported details, including dates or spending limits, left unknown?
 - Does each annotation conform to the field IDs and value types in the canonical task file?
+- Does every evidence reference resolve to customer text at or before the snapshot's `through_event_id`?
+- Are conversation inputs free of gold values and annotation metadata?

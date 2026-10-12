@@ -1,0 +1,79 @@
+{
+  "conversation_id": "repair-002-missing",
+  "task_id": "repair_intake",
+  "task_version": "0.1.0",
+  "events": [
+    {
+      "event_id": "repair-002-e01",
+      "speaker": "customer",
+      "start_ms": 0,
+      "end_ms": 9000,
+      "revision": 0,
+      "is_final": true,
+      "text": "The refrigerator in the basement is making a loud hum, and the food compartment feels warmer than usual. I noticed it last night after putting groceries away."
+    },
+    {
+      "event_id": "repair-002-e02",
+      "speaker": "intake_agent",
+      "start_ms": 18000,
+      "end_ms": 26000,
+      "revision": 0,
+      "is_final": true,
+      "text": "Have you seen water leaking from the refrigerator or pooling on the floor? Please do not move it if that would be unsafe."
+    },
+    {
+      "event_id": "repair-002-e03",
+      "speaker": "customer",
+      "start_ms": 36000,
+      "end_ms": 45000,
+      "revision": 0,
+      "is_final": true,
+      "text": "I have not seen any water. I also have not checked behind it, so I cannot tell whether there is a leak near the hose."
+    },
+    {
+      "event_id": "repair-002-e04",
+      "speaker": "intake_agent",
+      "start_ms": 54000,
+      "end_ms": 62000,
+      "revision": 0,
+      "is_final": true,
+      "text": "Do you have a preferred time for a technician to visit? We can record a general window and follow up to confirm availability."
+    },
+    {
+      "event_id": "repair-002-e05",
+      "speaker": "customer",
+      "start_ms": 72000,
+      "end_ms": 80000,
+      "revision": 0,
+      "is_final": true,
+      "text": "I need to check my calendar before I can give you a time. I do not want to guess and then have to change the appointment later."
+    },
+    {
+      "event_id": "repair-002-e06",
+      "speaker": "intake_agent",
+      "start_ms": 90000,
+      "end_ms": 98000,
+      "revision": 0,
+      "is_final": true,
+      "text": "Would you like a quote before the technician arrives, and do you have a spending limit you want us to note?"
+    },
+    {
+      "event_id": "repair-002-e07",
+      "speaker": "customer",
+      "start_ms": 108000,
+      "end_ms": 118000,
+      "revision": 0,
+      "is_final": true,
+      "text": "I do not know what the repair will cost, and I have not decided whether I need a quote before the technician comes. I will discuss that after the inspection."
+    },
+    {
+      "event_id": "repair-002-e08",
+      "speaker": "intake_agent",
+      "start_ms": 126000,
+      "end_ms": 134000,
+      "revision": 0,
+      "is_final": true,
+      "text": "That is fine. I will leave the appointment, quote preference, and spending limit unanswered until you have more information."
+    }
+  ]
+}

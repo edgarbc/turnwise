@@ -1,0 +1,79 @@
+{
+  "conversation_id": "repair-004-corrections",
+  "task_id": "repair_intake",
+  "task_version": "0.1.0",
+  "events": [
+    {
+      "event_id": "repair-004-e01",
+      "speaker": "customer",
+      "start_ms": 0,
+      "end_ms": 9000,
+      "revision": 0,
+      "is_final": true,
+      "text": "The refrigerator is in the upstairs kitchen. The fresh-food compartment is warm even though the freezer is still cold, and it is not leaking."
+    },
+    {
+      "event_id": "repair-004-e02",
+      "speaker": "intake_agent",
+      "start_ms": 18000,
+      "end_ms": 26000,
+      "revision": 0,
+      "is_final": true,
+      "text": "When would you prefer a technician to visit? We can note a time window, but we cannot promise it until the schedule is checked."
+    },
+    {
+      "event_id": "repair-004-e03",
+      "speaker": "customer",
+      "start_ms": 36000,
+      "end_ms": 45000,
+      "revision": 0,
+      "is_final": true,
+      "text": "Friday morning would be best. I should be home then, and someone can let the technician into the house."
+    },
+    {
+      "event_id": "repair-004-e04",
+      "speaker": "intake_agent",
+      "start_ms": 54000,
+      "end_ms": 62000,
+      "revision": 0,
+      "is_final": true,
+      "text": "Would you like a quote before repair work starts, and is there a maximum amount you want us to keep in mind?"
+    },
+    {
+      "event_id": "repair-004-e05",
+      "speaker": "customer",
+      "start_ms": 72000,
+      "end_ms": 80000,
+      "revision": 0,
+      "is_final": true,
+      "text": "Please provide a quote first. My maximum for the repair is six hundred U.S. dollars, including the visit and any parts."
+    },
+    {
+      "event_id": "repair-004-e06",
+      "speaker": "intake_agent",
+      "start_ms": 90000,
+      "end_ms": 98000,
+      "revision": 0,
+      "is_final": true,
+      "text": "I have the upstairs kitchen and Friday morning. Let me confirm those details before I send the request to the service team."
+    },
+    {
+      "event_id": "repair-004-e07",
+      "speaker": "customer",
+      "start_ms": 108000,
+      "end_ms": 118000,
+      "revision": 0,
+      "is_final": true,
+      "text": "Correction: I had the location wrong. It is in the basement utility room, and Saturday afternoon is better than Friday morning."
+    },
+    {
+      "event_id": "repair-004-e08",
+      "speaker": "intake_agent",
+      "start_ms": 126000,
+      "end_ms": 134000,
+      "revision": 0,
+      "is_final": true,
+      "text": "Thanks for correcting that. I will update the location and appointment preference while keeping the quote request and spending maximum."
+    }
+  ]
+}

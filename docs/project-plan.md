@@ -71,7 +71,7 @@ Gold answers and future transcript turns must never enter provider inputs. Missi
 
 ## Intended repository layout
 
-Create these paths as the corresponding milestones begin; this list is a guide, not a requirement to add empty directories up front.
+The directory scaffold is created up front; add implementation files as their corresponding milestones begin. Empty directories contain `.gitkeep` markers so Git preserves the planned layout.
 
 | Path | Purpose |
 | --- | --- |

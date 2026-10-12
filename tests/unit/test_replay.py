@@ -4,6 +4,7 @@ from pathlib import Path
 import pytest
 
 from turnwise.contracts import (
+    DecisionInput,
     DecisionResult,
     EvidenceReference,
 )
@@ -210,6 +211,44 @@ def test_unknown_is_distinct_from_explicit_false() -> None:
 
     assert first_snapshot.values["active_leak"] is False
     assert first_snapshot.values["quote_required"] is None
+
+
+def test_replay_passes_only_prefix_local_candidates_to_provider() -> None:
+    fixture = load_conversation(FIXTURE_DIR / "repair-004-corrections.json")
+
+    class RecordingProvider:
+        name = "fixture"
+        model = "recording-test"
+
+        def __init__(self) -> None:
+            self.inputs: list[DecisionInput] = []
+
+        def decide(self, decision_input: DecisionInput) -> DecisionResult:
+            self.inputs.append(decision_input)
+            return DecisionResult({}, {}, provider=self.name, model=self.model)
+
+    provider = RecordingProvider()
+    replay_conversation(fixture, FIELD_IDS, provider)
+
+    before_correction = provider.inputs[5]
+    after_correction = provider.inputs[6]
+    before_appointment_candidates = {
+        candidate.text
+        for candidate in before_correction.candidates
+        if candidate.field_id == "preferred_appointment"
+    }
+    after_appointment_candidates = {
+        candidate.text
+        for candidate in after_correction.candidates
+        if candidate.field_id == "preferred_appointment"
+    }
+    assert "Friday morning" in before_appointment_candidates
+    assert "Saturday afternoon" not in before_appointment_candidates
+    assert "Saturday afternoon" in after_appointment_candidates
+    assert any(
+        candidate.text == "six hundred U.S. dollars"
+        for candidate in before_correction.candidates
+    )
 
 
 def test_fixture_provider_loads_scripted_json_responses(tmp_path: Path) -> None:

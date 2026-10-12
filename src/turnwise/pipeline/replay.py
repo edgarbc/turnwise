@@ -117,12 +117,18 @@ def replay_conversation(
     provider: DecisionProvider,
 ) -> tuple[FormSnapshot, ...]:
     """Run the provider against each event prefix and commit results in order."""
+    from turnwise.pipeline.candidates import extract_candidates
     from turnwise.pipeline.prefix import assemble_prefix
 
     committer = SnapshotCommitter(fixture.conversation_id, field_ids)
     snapshots: list[FormSnapshot] = []
     for event_position, event in enumerate(fixture.events):
-        decision_input = assemble_prefix(fixture, event.event_id)
+        prefix_events = fixture.events[: event_position + 1]
+        decision_input = assemble_prefix(
+            fixture,
+            event.event_id,
+            candidates=extract_candidates(prefix_events),
+        )
         result = provider.decide(decision_input)
         snapshot = committer.commit(
             decision_input,

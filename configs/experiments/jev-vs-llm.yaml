@@ -46,10 +46,15 @@ input:
   include_audio: false
   candidates:
     strategy: shared_candidate_extractor
+    implementation: turnwise.pipeline.candidates.extract_candidates
+    version: regex-en-v1
+    speaker_scope: customer_events_only
+    extraction_policy: return_all_matching_mentions_including_distractors
     fields:
       - preferred_appointment
       - spending_limit
     preserve_source_offsets: true
+    normalization: deterministic_code_after_provider_selection
     required_before_provider_comparison: true
 
 providers:

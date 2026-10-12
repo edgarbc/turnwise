@@ -34,6 +34,7 @@ Training begins after the Jev concept is tested. Both reference models remain in
 - [x] Implement fixture-based replay through the provider boundary.
 - [x] Verify future-turn exclusion, explicit absence versus unknown, and stale-response rejection.
 - [x] Implement offline dataset validation for conversation and annotation fixtures.
+- [x] Implement shared, offset-preserving candidate extraction for appointment and currency mentions.
 - [x] Define the pilot Jev-versus-OpenAI comparison config with pinned model and SDK versions.
 - [ ] Add Jev and structured-output LLM adapters.
 - [ ] Produce the first side-by-side report, then expand to 30 conversations.

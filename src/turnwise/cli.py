@@ -8,6 +8,8 @@ import yaml
 from turnwise.pipeline.prefix import load_conversation
 from turnwise.pipeline.replay import replay_conversation, write_replay_artifact
 from turnwise.providers.fixture import FixtureProvider
+from turnwise.providers.jev import JevProvider
+from turnwise.providers.structured_llm import StructuredLLMProvider
 from turnwise.dataset_validation import validate_dataset
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
@@ -55,7 +57,7 @@ def replay(
     provider: str = typer.Option(
         "fixture",
         "--provider",
-        help="Provider to use for the replay (currently: fixture).",
+        help="Provider to use: fixture, jev, or openai.",
     ),
     responses: Path | None = typer.Option(
         None,
@@ -63,9 +65,11 @@ def replay(
         help="Optional JSON script of fixture-provider responses.",
     ),
 ) -> None:
-    """Replay one conversation through the offline fixture provider."""
-    if provider != "fixture":
-        raise typer.BadParameter("only the fixture provider is implemented")
+    """Replay one conversation through the selected decision provider."""
+    if provider not in {"fixture", "jev", "openai"}:
+        raise typer.BadParameter("provider must be fixture, jev, or openai")
+    if responses is not None and provider != "fixture":
+        raise typer.BadParameter("--responses is only supported with --provider fixture")
     if not case.is_file():
         raise typer.BadParameter(f"conversation fixture not found: {case}")
     if responses is not None and not responses.is_file():
@@ -73,19 +77,33 @@ def replay(
 
     task = yaml.safe_load(TASK_PATH.read_text(encoding="utf-8"))["task"]
     fixture = load_conversation(case)
-    fixture_provider = (
-        FixtureProvider.from_json(responses)
-        if responses is not None
-        else FixtureProvider()
-    )
-    snapshots = replay_conversation(
-        fixture,
-        (field["id"] for field in task["fields"]),
-        fixture_provider,
-    )
-    artifact_path = write_replay_artifact(fixture, fixture_provider, snapshots)
+    try:
+        if provider == "fixture":
+            active_provider = (
+                FixtureProvider.from_json(responses)
+                if responses is not None
+                else FixtureProvider()
+            )
+        elif provider == "jev":
+            active_provider = JevProvider()
+        else:
+            active_provider = StructuredLLMProvider()
+    except ValueError as error:
+        raise typer.BadParameter(str(error)) from error
+
+    try:
+        snapshots = replay_conversation(
+            fixture,
+            (field["id"] for field in task["fields"]),
+            active_provider,
+        )
+        artifact_path = write_replay_artifact(fixture, active_provider, snapshots)
+    finally:
+        close = getattr(active_provider, "close", None)
+        if close is not None:
+            close()
     typer.echo(f"Replay complete: {artifact_path}")
-    if responses is None:
+    if provider == "fixture" and responses is None:
         typer.echo(
             "No response script supplied; the fixture provider made no field updates."
         )

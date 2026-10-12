@@ -35,6 +35,8 @@ def test_unknown_value_and_boolean_states_are_explicit() -> None:
 
 def test_exact_values_are_selected_then_normalized_in_code() -> None:
     assert TASK["value_extraction"]["candidate_selected_values"] == [
+        "appliance",
+        "location",
         "preferred_appointment",
         "spending_limit",
     ]

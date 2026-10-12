@@ -34,12 +34,12 @@ Training begins after the Jev concept is tested. Both reference models remain in
 - [x] Implement fixture-based replay through the provider boundary.
 - [x] Verify future-turn exclusion, explicit absence versus unknown, and stale-response rejection.
 - [x] Implement offline dataset validation for conversation and annotation fixtures.
-- [x] Implement shared, offset-preserving candidate extraction for appointment and currency mentions.
+- [x] Implement shared, offset-preserving candidate extraction for task fields with candidate-backed values.
 - [x] Define the pilot Jev-versus-OpenAI comparison config with pinned model and SDK versions.
-- [ ] Add Jev and structured-output LLM adapters.
+- [x] Add Jev and structured-output LLM adapters with offline mocked tests.
 - [ ] Produce the first side-by-side report, then expand to 30 conversations.
 
-The first cloud LLM adapter is planned for OpenAI. Select and pin the actual model and SDK during implementation. Keep provider credentials in environment variables outside version control.
+The pilot pins Jev `jev-1.13.0` and OpenAI `gpt-6.1-sol`; both SDK versions are pinned in project dependencies. Keep provider credentials in environment variables outside version control. Provider smoke tests should be explicitly invoked and request-limited.
 
 ## Tooling decisions
 

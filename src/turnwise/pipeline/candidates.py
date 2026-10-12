@@ -19,6 +19,53 @@ _APPOINTMENT_PATTERN = re.compile(
     rf"(?![A-Za-z])",
     re.IGNORECASE,
 )
+_APPLIANCE_PATTERN = re.compile(
+    r"(?<![A-Za-z])(?:washing\s+machine|refrigerator)(?![A-Za-z])",
+    re.IGNORECASE,
+)
+_LOCATION_PATTERN = re.compile(
+    r"\b(?:in|at)\s+(?:(?:the|our|my)\s+)?"
+    r"(?P<place>[A-Za-z][A-Za-z'-]*(?:\s+[A-Za-z][A-Za-z'-]*){0,4})",
+    re.IGNORECASE,
+)
+_LOCATION_STOP_WORDS = {
+    "a",
+    "and",
+    "are",
+    "because",
+    "but",
+    "has",
+    "have",
+    "is",
+    "makes",
+    "making",
+    "of",
+    "that",
+    "when",
+    "where",
+    "which",
+    "with",
+    "then",
+    "ten",
+    "eleven",
+    "twelve",
+    "one",
+    "two",
+    "three",
+    "four",
+    "five",
+    "six",
+    "seven",
+    "eight",
+    "nine",
+    "monday",
+    "tuesday",
+    "wednesday",
+    "thursday",
+    "friday",
+    "saturday",
+    "sunday",
+}
 
 _NUMBER_WORD = (
     r"zero|one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|"
@@ -63,6 +110,8 @@ def extract_candidates(
     events: Iterable[TranscriptEvent],
     *,
     candidate_fields: Iterable[str] = (
+        "appliance",
+        "location",
         "preferred_appointment",
         "spending_limit",
     ),
@@ -84,6 +133,32 @@ def extract_candidates(
     for event in event_sequence:
         if event.speaker != "customer":
             continue
+
+        if "appliance" in enabled_fields:
+            candidates.extend(
+                _candidate(event, "appliance", match.start(), match.end())
+                for match in _APPLIANCE_PATTERN.finditer(event.text)
+            )
+
+        if "location" in enabled_fields:
+            for match in _LOCATION_PATTERN.finditer(event.text):
+                place = match.group("place")
+                words = list(re.finditer(r"\S+", place))
+                stop_position = next(
+                    (
+                        word.start()
+                        for word in words
+                        if word.group().casefold() in _LOCATION_STOP_WORDS
+                    ),
+                    len(place),
+                )
+                normalized_place = place[:stop_position].rstrip(" ,;:")
+                if not normalized_place:
+                    continue
+                start = match.start("place")
+                candidates.append(
+                    _candidate(event, "location", start, start + len(normalized_place))
+                )
 
         if "preferred_appointment" in enabled_fields:
             candidates.extend(

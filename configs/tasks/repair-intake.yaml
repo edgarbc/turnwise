@@ -37,8 +37,15 @@ task:
 
   value_extraction:
     candidate_selected_values:
+      - appliance
+      - location
       - preferred_appointment
       - spending_limit
+    candidate_generation:
+      appliance_terms:
+        - washing machine
+        - refrigerator
+      location_pattern: prepositional_place_phrase
     return_candidate_id_for_these_values: true
     copy_source_text_and_normalize_in_code: true
 

@@ -15,7 +15,7 @@ def test_loads_jev_credentials_and_default_model_from_dotenv(
 
     provider = Settings.load(env_file).for_provider("jev")
 
-    assert provider.model == "jev-latest"
+    assert provider.model == "jev-1.13.0"
     assert provider.api_key == "jev-test-key"
 
 
@@ -39,7 +39,7 @@ def test_missing_credentials_name_the_required_variable() -> None:
 
 
 def test_openai_requires_an_explicit_model() -> None:
-    settings = Settings(openai_api_key="openai-test-key")
+    settings = Settings(openai_api_key="openai-test-key", openai_model=None)
 
     with pytest.raises(ValueError, match="OPENAI_MODEL"):
         settings.for_provider("openai")

@@ -4,6 +4,7 @@ import pytest
 
 from turnwise.contracts import TranscriptEvent
 from turnwise.pipeline.candidates import extract_candidates
+from turnwise.pipeline.normalization import normalize_candidate
 from turnwise.pipeline.prefix import assemble_prefix, load_conversation
 
 
@@ -106,3 +107,17 @@ def test_candidate_extraction_respects_the_assembled_prefix() -> None:
 
     assert "Friday morning" in {candidate.text for candidate in candidates}
     assert "Saturday afternoon" not in {candidate.text for candidate in candidates}
+
+
+def test_candidate_normalization_is_deterministic() -> None:
+    fixture = load_conversation(FIXTURE_DIR / "repair-001-ordinary.json")
+    candidates = extract_candidates(fixture.events)
+    by_text = {candidate.text: candidate for candidate in candidates}
+
+    assert normalize_candidate(by_text["washing machine"]) == "Washing machine"
+    assert normalize_candidate(by_text["laundry room"]) == "Laundry room"
+    assert normalize_candidate(by_text["Thursday morning"]) == "Thursday morning"
+    assert normalize_candidate(by_text["three hundred fifty U.S. dollars"]) == {
+        "amount": 350,
+        "currency": "USD",
+    }

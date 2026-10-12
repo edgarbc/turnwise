@@ -51,6 +51,8 @@ input:
     speaker_scope: customer_events_only
     extraction_policy: return_all_matching_mentions_including_distractors
     fields:
+      - appliance
+      - location
       - preferred_appointment
       - spending_limit
     preserve_source_offsets: true
@@ -69,8 +71,8 @@ providers:
       environment_variable: TYPESAFE_API_KEY
     request:
       api: system_one
-      state_format: transcript_events
-      question_mapping: one_question_per_task_field
+      state_format: transcript_prefix_and_shared_candidates
+      question_mapping: candidate_choices_boolean_choices_and_evidence_choices
 
   - id: openai
     sdk:
@@ -85,7 +87,9 @@ providers:
       api: responses
       output_format: json_schema
       strict: true
-      schema_source: task_definition
+      schema_source: task_definition_and_prefix_candidate_ids
+      choice_values_are_candidate_ids: true
+      evidence_references_are_customer_event_ids: true
       reasoning_effort: low
 
 execution:

@@ -38,7 +38,7 @@ uv run turnwise --help
 uv run pytest
 ```
 
-The CLI registers four commands. Offline dataset validation and fixture-based replay are implemented; `benchmark` and `report` remain scaffolds. Use each command's `--help` option to inspect its arguments:
+The CLI registers four commands. Offline dataset validation and replay with fixture, Jev, and OpenAI providers are implemented; `benchmark` and `report` remain scaffolds. Hosted replay makes paid API requests, so select `--provider jev` or `--provider openai` explicitly. Use each command's `--help` option to inspect its arguments:
 
 ```bash
 uv run turnwise validate --help
@@ -50,7 +50,7 @@ uv run turnwise report --help
 | Command | Arguments |
 | --- | --- |
 | `validate` | `--dataset PATH` (defaults to `data/examples`) |
-| `replay` | `--case PATH`, `--provider fixture`, optional `--responses PATH` |
+| `replay` | `--case PATH`, `--provider fixture|jev|openai`; fixture-only `--responses PATH` |
 | `benchmark` | `--config PATH` |
 | `report` | `--run PATH` |
 
@@ -73,6 +73,15 @@ uv run turnwise replay \
 
 Without `--responses`, the fixture provider makes no field updates. Each run writes snapshots and metadata to a unique `runs/<run-id>/replay.json`; transcript text and gold annotations are not copied into the artifact. Scripted provider responses are for pipeline checks only, not benchmark predictions or evidence of model quality.
 
+Hosted provider replay requires the corresponding key in `.env` and performs one request per transcript event prefix:
+
+```bash
+uv run turnwise replay --case data/examples/conversations/repair-001-ordinary.json --provider jev
+uv run turnwise replay --case data/examples/conversations/repair-001-ordinary.json --provider openai
+```
+
+The defaults match the pilot pins: Jev `jev-1.13.0` and OpenAI `gpt-6.1-sol`. Override them with `JEV_MODEL` or `OPENAI_MODEL` when deliberately changing the experiment.
+
 ## Provider credentials
 
 Copy `.env.example` to `.env` and add the credentials you use. `.env` is ignored by Git. Settings load `.env` without overriding variables already present in the process environment; secret values are excluded from settings representations.
@@ -81,7 +90,7 @@ Copy `.env.example` to `.env` and add the credentials you use. `.env` is ignored
 cp .env.example .env
 ```
 
-`TYPESAFE_API_KEY` is used for Jev, with `JEV_MODEL` defaulting to `jev-latest`. OpenAI uses `OPENAI_API_KEY`; set `OPENAI_MODEL` to the model selected for the comparison. Credentials are checked only when configuration for that provider is requested. The provider adapters and network calls are not implemented yet.
+`TYPESAFE_API_KEY` is used for Jev and `OPENAI_API_KEY` for OpenAI. Both provider SDK versions are pinned in `pyproject.toml`. Credentials are checked only when configuration for that provider is requested.
 
 The settings API returns the selected model and credential for a provider without exposing the key in object representations:
 
@@ -133,12 +142,16 @@ turnwise/
 │   ├── pipeline/
 │   │   ├── __init__.py
 │   │   ├── candidates.py
+│   │   ├── normalization.py
 │   │   ├── prefix.py
 │   │   └── replay.py
 │   ├── providers/
 │   │   ├── __init__.py
 │   │   ├── base.py
-│   │   └── fixture.py
+│   │   ├── fixture.py
+│   │   ├── jev.py
+│   │   ├── structured_llm.py
+│   │   └── task.py
 │   ├── training/
 │   ├── __init__.py
 │   ├── cli.py
@@ -151,6 +164,8 @@ turnwise/
 │       ├── test_dataset_validation.py
 │       ├── test_experiment_config.py
 │       ├── test_prefix_assembly.py
+│       ├── test_provider_adapters.py
+│       ├── test_replay.py
 │       ├── test_replay.py
 │       ├── test_settings.py
 │       ├── test_synthetic_conversations.py

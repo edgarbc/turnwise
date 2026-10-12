@@ -21,8 +21,8 @@ class ProviderConfig:
 class Settings:
     typesafe_api_key: str | None = field(default=None, repr=False)
     openai_api_key: str | None = field(default=None, repr=False)
-    jev_model: str = "jev-latest"
-    openai_model: str | None = None
+    jev_model: str = "jev-1.13.0"
+    openai_model: str | None = "gpt-6.1-sol"
 
     @classmethod
     def load(cls, env_file: str | Path = ".env") -> "Settings":
@@ -34,8 +34,8 @@ class Settings:
         return cls(
             typesafe_api_key=os.getenv("TYPESAFE_API_KEY") or None,
             openai_api_key=os.getenv("OPENAI_API_KEY") or None,
-            jev_model=os.getenv("JEV_MODEL", "jev-latest").strip() or "jev-latest",
-            openai_model=os.getenv("OPENAI_MODEL", "").strip() or None,
+            jev_model=os.getenv("JEV_MODEL", "jev-1.13.0").strip() or "jev-1.13.0",
+            openai_model=os.getenv("OPENAI_MODEL", "gpt-6.1-sol").strip() or None,
         )
 
     def for_provider(self, name: ProviderName) -> ProviderConfig:

@@ -101,6 +101,7 @@ This is the current scaffold. Empty directories are retained with `.gitkeep`; im
 turnwise/
 ├── configs/
 │   ├── experiments/
+│   │   └── jev-vs-llm.yaml
 │   └── tasks/
 │       └── repair-intake.yaml
 ├── data/
@@ -146,6 +147,7 @@ turnwise/
 │   ├── integration/
 │   └── unit/
 │       ├── test_dataset_validation.py
+│       ├── test_experiment_config.py
 │       ├── test_prefix_assembly.py
 │       ├── test_replay.py
 │       ├── test_settings.py

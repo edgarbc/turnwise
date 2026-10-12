@@ -1,0 +1,128 @@
+experiment:
+  id: jev-vs-llm
+  version: "0.1.0"
+  status: pilot
+  description: Compare Jev with an OpenAI model using the same repair-intake task and transcript prefixes.
+  pins_verified_on: "2026-10-12"
+  references:
+    jev_models: https://docs.typesafe.ai/models
+    typesafe_python_sdk: https://github.com/typesafe-ai/typesafe-sdk-python/releases/tag/v0.7.4
+    openai_models: https://developers.openai.com/api/docs/models
+    openai_structured_outputs: https://developers.openai.com/api/docs/guides/structured-outputs
+    openai_python_sdk: https://github.com/openai/openai-python/releases/tag/v3.29.0
+
+task:
+  path: configs/tasks/repair-intake.yaml
+  id: repair_intake
+  version: "0.1.0"
+
+dataset:
+  conversations_dir: data/examples/conversations
+  annotations_dir: data/examples/annotations
+  manifest_path: data/manifests/jev-vs-llm-pilot.json
+  purpose: development_pilot_only
+  require_human_review_before_benchmark: true
+  cases:
+    - repair-001-ordinary
+    - repair-002-missing
+    - repair-003-negation
+    - repair-004-corrections
+    - repair-005-distractors
+  prefixes:
+    source: annotated_snapshots
+    include_all_selected_prefixes: true
+  leakage_controls:
+    annotations_are_evaluation_only: true
+    exclude_annotations_from_provider_input: true
+    exclude_events_after_prefix_cutoff: true
+    keep_all_prefixes_of_conversation_in_same_split: true
+
+input:
+  task_semantics: from_task_definition
+  prefix_policy: assemble_through_snapshot_cutoff_inclusive
+  include_speaker_roles: true
+  include_event_ids: true
+  include_timestamps: false
+  include_audio: false
+  candidates:
+    strategy: shared_candidate_extractor
+    fields:
+      - preferred_appointment
+      - spending_limit
+    preserve_source_offsets: true
+    required_before_provider_comparison: true
+
+providers:
+  - id: jev
+    sdk:
+      package: typesafe-sdk
+      version: "0.7.4"
+    model:
+      id: jev-1.13.0
+      pin_type: versioned_release
+    authentication:
+      environment_variable: TYPESAFE_API_KEY
+    request:
+      api: system_one
+      state_format: transcript_events
+      question_mapping: one_question_per_task_field
+
+  - id: openai
+    sdk:
+      package: openai
+      version: "3.29.0"
+    model:
+      id: gpt-6.1-sol
+      pin_type: model_id
+    authentication:
+      environment_variable: OPENAI_API_KEY
+    request:
+      api: responses
+      output_format: json_schema
+      strict: true
+      schema_source: task_definition
+      reasoning_effort: low
+
+execution:
+  mode: sequential
+  provider_order:
+    - jev
+    - openai
+  repeat_runs: 1
+  retries:
+    policy: sdk_default
+    include_all_attempts_in_reporting: true
+  concurrency: 1
+
+measurements:
+  correctness:
+    - per_field_macro_f1
+    - exact_value_accuracy
+    - evidence_validity
+  output_validity:
+    - missing_fields
+    - invalid_values
+    - refusals
+    - provider_errors
+  responsiveness:
+    - request_latency_ms
+  resources:
+    - input_tokens
+    - output_tokens
+    - estimated_cost
+  uncertainty:
+    record_probability_outputs_when_available: true
+    do_not_treat_self_reported_confidence_as_calibrated: true
+
+artifacts:
+  output_dir: runs
+  persist_provider_inputs: false
+  persist_raw_provider_responses: false
+  persist_predictions: true
+  persist_measurements: true
+  include_task_and_experiment_versions: true
+
+limitations:
+  - Five synthetic conversations are a pipeline pilot, not a performance benchmark.
+  - The shared candidate extractor must be implemented before comparing exact-value fields.
+  - Model IDs and SDK versions are pinned here; update them only through a reviewed experiment revision.

@@ -1,10 +1,14 @@
 # Turnwise
 
+![Python 3.11+](https://img.shields.io/badge/Python-3.11%2B-3776AB?logo=python&logoColor=white)
+![uv](https://img.shields.io/badge/package%20manager-uv-6E9F18)
+![Status: Early implementation](https://img.shields.io/badge/status-early%20implementation-orange)
+
 *From conversation to structured decisions.*
 
 Turnwise is a research project about extracting reliable, reviewable information from conversations. It will compare decision models with schema-constrained LLMs, then explore whether a small local decision model can perform well on the same task.
 
-**Status: Planning.** The repository currently contains project documentation only. The application, CLI, datasets, and benchmark results are not implemented yet.
+**Status: Early implementation.** The uv-managed Python package and Typer CLI scaffold are in place. The CLI commands, datasets, provider integrations, and benchmark results are not implemented yet.
 
 ## Problem
 
@@ -23,6 +27,71 @@ The task and experimental limits matter: matching Jev on this defined task would
 - [Project plan](docs/project-plan.md): milestones, architecture, tooling, and intended repository layout.
 - [Annotation guide](docs/annotation-guide.md): field meanings and proposed rules for evidence, unknowns, negation, and corrections.
 - [Evaluation protocol](docs/evaluation-protocol.md): baselines, data splits, metrics, and comparison safeguards.
+
+## Command-line interface
+
+Install [uv](https://docs.astral.sh/uv/), then install the project and its dependencies from the repository root:
+
+```bash
+uv sync
+uv run turnwise --help
+```
+
+The CLI currently registers four commands. Their workflows are scaffolds and are not implemented yet; invoking one reports that status and exits with code 2. Use each command's `--help` option to inspect its arguments:
+
+```bash
+uv run turnwise validate --help
+uv run turnwise replay --help
+uv run turnwise benchmark --help
+uv run turnwise report --help
+```
+
+| Command | Arguments |
+| --- | --- |
+| `validate` | `--dataset PATH` (defaults to `data/examples`) |
+| `replay` | `--case PATH`, `--provider NAME` (defaults to `fixture`) |
+| `benchmark` | `--config PATH` |
+| `report` | `--run PATH` |
+
+## Repository structure
+
+This is the current scaffold. Empty directories are retained with `.gitkeep`; implementation files will be added as the milestones progress. The local `.venv/` is excluded from version control.
+
+```text
+turnwise/
+├── configs/
+│   ├── experiments/
+│   └── tasks/
+├── data/
+│   ├── examples/
+│   │   ├── annotations/
+│   │   └── conversations/
+│   └── manifests/
+├── docs/
+│   ├── decisions/
+│   ├── annotation-guide.md
+│   ├── evaluation-protocol.md
+│   └── project-plan.md
+├── src/turnwise/
+│   ├── app/
+│   ├── audio/
+│   ├── evaluation/
+│   ├── pipeline/
+│   ├── providers/
+│   ├── training/
+│   ├── __init__.py
+│   └── cli.py
+├── tests/
+│   ├── integration/
+│   └── unit/
+├── checkpoints/
+├── reports/
+├── runs/
+├── .gitignore
+├── pyproject.toml
+├── README.md
+└── uv.lock
+```
 
 ## References
 

@@ -1,0 +1,19 @@
+[build-system]
+requires = ["hatchling>=1.26"]
+build-backend = "hatchling.build"
+
+[project]
+name = "turnwise"
+version = "0.1.0"
+description = "Structured information extraction from conversations"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "typer>=0.12,<1.0",
+]
+
+[project.scripts]
+turnwise = "turnwise.cli:app"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/turnwise"]

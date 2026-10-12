@@ -1,0 +1,86 @@
+task:
+  id: repair_intake
+  version: "0.1.0"
+  language: en
+  description: Extract a reviewable household repair intake form from a conversation.
+
+  scope:
+    appliance_count: one
+    speaker_roles:
+      customer: Person requesting repair service.
+      intake_agent: Person gathering repair details.
+
+  output:
+    unknown_value: null
+    evidence:
+      required_for_known_values: true
+      reference:
+        event_id:
+          type: string
+          min_length: 1
+        start_char:
+          type: integer
+          minimum: 0
+        end_char:
+          type: integer
+          minimum: 0
+          exclusive: true
+        offset_unit: unicode_code_point
+        interval: half_open
+    temporal_policy:
+      use_only_current_transcript_prefix: true
+      apply_explicit_corrections_from_their_turn: true
+      preserve_superseded_values_in_revision_history: true
+    speaker_policy:
+      customer_statements_can_supply_values: true
+      agent_questions_are_not_evidence: true
+
+  value_extraction:
+    candidate_selected_values:
+      - preferred_appointment
+      - spending_limit
+    return_candidate_id_for_these_values: true
+    copy_source_text_and_normalize_in_code: true
+
+  fields:
+    - id: appliance
+      type: string
+      description: The single appliance for which service is requested.
+      normalization: Return a concise appliance name supported by the transcript.
+      unknown_when: No appliance is identified clearly.
+
+    - id: location
+      type: string
+      description: Where the appliance or reported problem is located.
+      normalization: Preserve the stated place name; do not infer a more specific location.
+      unknown_when: No location is stated clearly.
+
+    - id: active_leak
+      type: boolean
+      allowed_values: [true, false]
+      description: Whether water is leaking at the latest point in the visible conversation.
+      true_means: The customer explicitly indicates the leak is active now.
+      false_means: The customer explicitly indicates the leak has stopped or is not active now.
+      unknown_when: The current status is unstated, ambiguous, or conflicting.
+
+    - id: preferred_appointment
+      type: string
+      description: The customer's latest explicit appointment preference.
+      normalization: Preserve the candidate's source wording; do not infer a calendar date or time zone.
+      unknown_when: No appointment preference is stated.
+
+    - id: quote_required
+      type: boolean
+      allowed_values: [true, false]
+      description: Whether the customer requires a quote before work begins.
+      true_means: The customer explicitly requests a quote before work.
+      false_means: The customer explicitly says a quote is not required.
+      unknown_when: The quote requirement is not stated or is ambiguous.
+
+    - id: spending_limit
+      type: money
+      value_shape:
+        amount: decimal
+        currency: iso_4217_or_null
+      description: Explicit maximum amount the customer is willing to spend.
+      unknown_when: No spending maximum is stated; do not infer it from a requested quote.

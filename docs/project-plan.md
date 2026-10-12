@@ -27,7 +27,7 @@ Training begins after the Jev concept is tested. Both reference models remain in
 
 - [x] Initialize the Python package with uv and commit its lockfile.
 - [x] Add Typer and define the `turnwise` CLI entry point and `validate`, `replay`, `benchmark`, and `report` subcommands.
-- [ ] Define the six-field task and annotation rules.
+- [x] Define the six-field task and annotation rules in `configs/tasks/repair-intake.yaml` and `docs/annotation-guide.md`.
 - [ ] Create five conversations covering ordinary facts, missing facts, negation, corrections, and irrelevant candidate values.
 - [ ] Annotate the expected form after selected turns.
 - [ ] Implement shared contracts, prefix assembly, and fixture-based replay.

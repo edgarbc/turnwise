@@ -38,7 +38,7 @@ uv run turnwise --help
 uv run pytest
 ```
 
-The CLI registers four commands. Fixture-based replay is implemented; `validate`, `benchmark`, and `report` remain scaffolds. Use each command's `--help` option to inspect its arguments:
+The CLI registers four commands. Offline dataset validation and fixture-based replay are implemented; `benchmark` and `report` remain scaffolds. Use each command's `--help` option to inspect its arguments:
 
 ```bash
 uv run turnwise validate --help
@@ -53,6 +53,14 @@ uv run turnwise report --help
 | `replay` | `--case PATH`, `--provider fixture`, optional `--responses PATH` |
 | `benchmark` | `--config PATH` |
 | `report` | `--run PATH` |
+
+Validate the conversation and annotation files in the example dataset with:
+
+```bash
+uv run turnwise validate --dataset data/examples
+```
+
+Validation checks task/version consistency, conversation/annotation pairing, event ordering and speaker roles, complete field maps, prefix ordering, and evidence references and spans. Invalid data is reported with file paths and causes a nonzero exit status.
 
 Replay evaluates each transcript prefix in event order. The fixture provider is a deterministic offline test double; it does not infer values. Supply a separate response script to exercise form updates and corrections:
 
@@ -137,6 +145,7 @@ turnwise/
 ├── tests/
 │   ├── integration/
 │   └── unit/
+│       ├── test_dataset_validation.py
 │       ├── test_prefix_assembly.py
 │       ├── test_replay.py
 │       ├── test_settings.py

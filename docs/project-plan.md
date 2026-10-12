@@ -33,6 +33,7 @@ Training begins after the Jev concept is tested. Both reference models remain in
 - [x] Implement shared contracts and transcript-prefix assembly.
 - [x] Implement fixture-based replay through the provider boundary.
 - [x] Verify future-turn exclusion, explicit absence versus unknown, and stale-response rejection.
+- [x] Implement offline dataset validation for conversation and annotation fixtures.
 - [ ] Add Jev and structured-output LLM adapters.
 - [ ] Produce the first side-by-side report, then expand to 30 conversations.
 

@@ -8,6 +8,7 @@ import yaml
 from turnwise.pipeline.prefix import load_conversation
 from turnwise.pipeline.replay import replay_conversation, write_replay_artifact
 from turnwise.providers.fixture import FixtureProvider
+from turnwise.dataset_validation import validate_dataset
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 TASK_PATH = PROJECT_ROOT / "configs" / "tasks" / "repair-intake.yaml"
@@ -33,7 +34,19 @@ def validate(
     ),
 ) -> None:
     """Validate example conversations and annotations."""
-    _not_implemented("validate")
+    report = validate_dataset(dataset, TASK_PATH)
+    if report.is_valid:
+        typer.echo(
+            "Dataset valid: "
+            f"{report.conversations_checked} conversations, "
+            f"{report.snapshots_checked} snapshots checked."
+        )
+        return
+
+    for error in report.errors:
+        typer.echo(f"ERROR: {error}", err=True)
+    typer.echo(f"Dataset invalid: {len(report.errors)} error(s).", err=True)
+    raise typer.Exit(code=1)
 
 
 @app.command()

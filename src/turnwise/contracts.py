@@ -130,6 +130,7 @@ class FormSnapshot:
     snapshot_id: str
     through_event_id: str
     values: Mapping[str, Any]
+    evidence: Mapping[str, tuple[EvidenceReference, ...]] = field(default_factory=dict)
     accepted: bool = False
     revisions: tuple[FieldRevision, ...] = ()
 

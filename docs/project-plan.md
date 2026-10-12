@@ -31,8 +31,8 @@ Training begins after the Jev concept is tested. Both reference models remain in
 - [x] Create five conversations covering ordinary facts, missing facts, negation, corrections, and irrelevant candidate values.
 - [x] Annotate the expected form after selected turns.
 - [x] Implement shared contracts and transcript-prefix assembly.
-- [ ] Implement fixture-based replay through the provider boundary.
-- [ ] Verify future-turn exclusion, explicit absence versus unknown, and stale-response rejection.
+- [x] Implement fixture-based replay through the provider boundary.
+- [x] Verify future-turn exclusion, explicit absence versus unknown, and stale-response rejection.
 - [ ] Add Jev and structured-output LLM adapters.
 - [ ] Produce the first side-by-side report, then expand to 30 conversations.
 

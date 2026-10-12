@@ -38,7 +38,7 @@ uv run turnwise --help
 uv run pytest
 ```
 
-The CLI currently registers four commands. Their workflows are scaffolds and are not implemented yet; invoking one reports that status and exits with code 2. Use each command's `--help` option to inspect its arguments:
+The CLI registers four commands. Fixture-based replay is implemented; `validate`, `benchmark`, and `report` remain scaffolds. Use each command's `--help` option to inspect its arguments:
 
 ```bash
 uv run turnwise validate --help
@@ -50,9 +50,20 @@ uv run turnwise report --help
 | Command | Arguments |
 | --- | --- |
 | `validate` | `--dataset PATH` (defaults to `data/examples`) |
-| `replay` | `--case PATH`, `--provider NAME` (defaults to `fixture`) |
+| `replay` | `--case PATH`, `--provider fixture`, optional `--responses PATH` |
 | `benchmark` | `--config PATH` |
 | `report` | `--run PATH` |
+
+Replay evaluates each transcript prefix in event order. The fixture provider is a deterministic offline test double; it does not infer values. Supply a separate response script to exercise form updates and corrections:
+
+```bash
+uv run turnwise replay \
+  --case data/examples/conversations/repair-004-corrections.json \
+  --provider fixture \
+  --responses data/examples/provider-responses/repair-004-corrections.json
+```
+
+Without `--responses`, the fixture provider makes no field updates. Each run writes snapshots and metadata to a unique `runs/<run-id>/replay.json`; transcript text and gold annotations are not copied into the artifact. Scripted provider responses are for pipeline checks only, not benchmark predictions or evidence of model quality.
 
 ## Provider credentials
 
@@ -92,12 +103,14 @@ turnwise/
 │   │   │   ├── repair-003-negation.json
 │   │   │   ├── repair-004-corrections.json
 │   │   │   └── repair-005-distractors.json
-│   │   └── conversations/
-│   │       ├── repair-001-ordinary.json
-│   │       ├── repair-002-missing.json
-│   │       ├── repair-003-negation.json
-│   │       ├── repair-004-corrections.json
-│   │       └── repair-005-distractors.json
+│   │   ├── conversations/
+│   │   │   ├── repair-001-ordinary.json
+│   │   │   ├── repair-002-missing.json
+│   │   │   ├── repair-003-negation.json
+│   │   │   ├── repair-004-corrections.json
+│   │   │   └── repair-005-distractors.json
+│   │   └── provider-responses/
+│   │       └── repair-004-corrections.json
 │   └── manifests/
 ├── docs/
 │   ├── decisions/
@@ -110,8 +123,12 @@ turnwise/
 │   ├── evaluation/
 │   ├── pipeline/
 │   │   ├── __init__.py
-│   │   └── prefix.py
+│   │   ├── prefix.py
+│   │   └── replay.py
 │   ├── providers/
+│   │   ├── __init__.py
+│   │   ├── base.py
+│   │   └── fixture.py
 │   ├── training/
 │   ├── __init__.py
 │   ├── cli.py
@@ -121,6 +138,7 @@ turnwise/
 │   ├── integration/
 │   └── unit/
 │       ├── test_prefix_assembly.py
+│       ├── test_replay.py
 │       ├── test_settings.py
 │       ├── test_synthetic_conversations.py
 │       └── test_task_definition.py

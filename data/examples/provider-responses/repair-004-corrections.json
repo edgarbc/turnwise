@@ -1,0 +1,64 @@
+{
+  "model": "repair-intake-scripted-demo-v1",
+  "description": "Hand-scripted provider outputs for exercising replay only; not gold labels or benchmark predictions.",
+  "responses": [
+    {
+      "through_event_id": "repair-004-e01",
+      "values": {
+        "appliance": "Refrigerator",
+        "location": "Upstairs kitchen",
+        "active_leak": false
+      },
+      "evidence": {
+        "appliance": [
+          {"event_id": "repair-004-e01", "start_char": 4, "end_char": 16}
+        ],
+        "location": [
+          {"event_id": "repair-004-e01", "start_char": 27, "end_char": 43}
+        ],
+        "active_leak": [
+          {"event_id": "repair-004-e01", "start_char": 123, "end_char": 140}
+        ]
+      }
+    },
+    {
+      "through_event_id": "repair-004-e03",
+      "values": {"preferred_appointment": "Friday morning"},
+      "evidence": {
+        "preferred_appointment": [
+          {"event_id": "repair-004-e03", "start_char": 0, "end_char": 14}
+        ]
+      }
+    },
+    {
+      "through_event_id": "repair-004-e05",
+      "values": {
+        "quote_required": true,
+        "spending_limit": {"amount": 600, "currency": "USD"}
+      },
+      "evidence": {
+        "quote_required": [
+          {"event_id": "repair-004-e05", "start_char": 7, "end_char": 28}
+        ],
+        "spending_limit": [
+          {"event_id": "repair-004-e05", "start_char": 59, "end_char": 83}
+        ]
+      }
+    },
+    {
+      "through_event_id": "repair-004-e07",
+      "values": {
+        "location": "Basement utility room",
+        "preferred_appointment": "Saturday afternoon"
+      },
+      "evidence": {
+        "location": [
+          {"event_id": "repair-004-e07", "start_char": 51, "end_char": 72}
+        ],
+        "preferred_appointment": [
+          {"event_id": "repair-004-e07", "start_char": 78, "end_char": 96}
+        ]
+      }
+    }
+  ]
+}

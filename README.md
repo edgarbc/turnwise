@@ -35,6 +35,7 @@ Install [uv](https://docs.astral.sh/uv/), then install the project and its depen
 ```bash
 uv sync
 uv run turnwise --help
+uv run pytest
 ```
 
 The CLI currently registers four commands. Their workflows are scaffolds and are not implemented yet; invoking one reports that status and exits with code 2. Use each command's `--help` option to inspect its arguments:
@@ -117,7 +118,7 @@ turnwise/
 │   ├── integration/
 │   └── unit/
 │       ├── test_settings.py
-│   │   ├── test_synthetic_conversations.py
+│       ├── test_synthetic_conversations.py
 │       └── test_task_definition.py
 │       └── test_settings.py
 ├── checkpoints/

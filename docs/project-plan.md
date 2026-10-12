@@ -41,6 +41,7 @@ The first cloud LLM adapter is planned for OpenAI. Select and pin the actual mod
 
 - **uv** manages the Python environment, dependencies, lockfile, and project command execution. Commit `pyproject.toml` and `uv.lock`; exclude `.venv/` from Git.
 - **Typer** provides the `turnwise` CLI, with thin handlers that delegate model calls, data processing, and metrics to their respective modules.
+- **pytest** runs the offline test suite and is declared in the uv `dev` dependency group.
 - Keep GPU training dependencies separate from the core CLI and evaluation environment.
 
 ## Intended pipeline

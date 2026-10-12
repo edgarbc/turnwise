@@ -53,6 +53,26 @@ uv run turnwise report --help
 | `benchmark` | `--config PATH` |
 | `report` | `--run PATH` |
 
+## Provider credentials
+
+Copy `.env.example` to `.env` and add the credentials you use. `.env` is ignored by Git. Settings load `.env` without overriding variables already present in the process environment; secret values are excluded from settings representations.
+
+```bash
+cp .env.example .env
+```
+
+`TYPESAFE_API_KEY` is used for Jev, with `JEV_MODEL` defaulting to `jev-latest`. OpenAI uses `OPENAI_API_KEY`; set `OPENAI_MODEL` to the model selected for the comparison. Credentials are checked only when configuration for that provider is requested. The provider adapters and network calls are not implemented yet.
+
+The settings API returns the selected model and credential for a provider without exposing the key in object representations:
+
+```python
+from turnwise.settings import Settings
+
+settings = Settings.load()
+jev = settings.for_provider("jev")
+openai = settings.for_provider("openai")
+```
+
 ## Repository structure
 
 This is the current scaffold. Empty directories are retained with `.gitkeep`; implementation files will be added as the milestones progress. The local `.venv/` is excluded from version control.
@@ -80,13 +100,16 @@ turnwise/
 │   ├── providers/
 │   ├── training/
 │   ├── __init__.py
-│   └── cli.py
+│   ├── cli.py
+│   └── settings.py
 ├── tests/
 │   ├── integration/
 │   └── unit/
+│       └── test_settings.py
 ├── checkpoints/
 ├── reports/
 ├── runs/
+├── .env.example
 ├── .gitignore
 ├── pyproject.toml
 ├── README.md

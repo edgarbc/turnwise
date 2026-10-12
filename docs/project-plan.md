@@ -84,6 +84,7 @@ The directory scaffold is created up front; add implementation files as their co
 | `data/examples/annotations/` | Gold snapshots, stored separately from model inputs |
 | `data/manifests/` | Dataset provenance, hashes, and split membership |
 | `src/turnwise/` | Python package, contracts, and CLI |
+| `src/turnwise/settings.py` | Local environment loading and provider credentials/model settings |
 | `src/turnwise/providers/` | Fixture, Jev, structured-LLM, and later local adapters |
 | `src/turnwise/pipeline/` | Prefix assembly, candidate extraction, normalization, and form updates |
 | `src/turnwise/evaluation/` | Metrics, run manifests, comparisons, and error analysis |

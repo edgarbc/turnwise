@@ -9,6 +9,7 @@ description = "Structured information extraction from conversations"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
+    "python-dotenv>=1.0,<2.0",
     "typer>=0.12,<1.0",
 ]
 

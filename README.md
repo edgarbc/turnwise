@@ -62,7 +62,9 @@ uv run turnwise benchmark --config configs/experiments/jev-vs-llm.yaml
 uv run turnwise report --run runs/<run-id>
 ```
 
-The benchmark invokes Jev and OpenAI sequentially for every selected gold prefix, saves predictions and evaluator-only gold comparisons under `runs/<run-id>/evaluation.json`, and never supplies annotations to providers. Treat the current five synthetic conversations as a pipeline pilot, not evidence of comparative model quality. The report includes accuracy, per-field macro-F1, evidence validity, request latency, usage, refusals, and errors; estimated cost remains unavailable until pricing is added to the pinned experiment config.
+The benchmark invokes Jev and OpenAI sequentially for every selected gold prefix, saves predictions and evaluator-only gold comparisons under `runs/<run-id>/evaluation.json`, and never supplies annotations to providers. Treat the current five synthetic conversations as a pipeline pilot, not evidence of comparative model quality. The report includes accuracy, per-field macro-F1, evidence validity, p50/p95 request latency, input/output token totals, refusals, errors, and an estimated USD cost.
+
+Cost is estimated from SDK-reported tokens and standard short-context rates pinned in the experiment config: Jev input is `$0.042` per million tokens with free output; OpenAI `gpt-6.1-sol` input is `$2.00`, cached input `$0.10`, cache writes `$2.50`, and output `$10.00` per million tokens. The estimate is marked incomplete when usage is missing; taxes, account discounts, and any non-standard processing tier are excluded. See the pricing sources recorded in the config.
 
 The complete pilot contains 10 annotated prefixes and invokes two providers per prefix: up to 20 hosted requests before SDK retries. Use `--max-prefixes 1` or `2` to bound an initial smoke run. The command is explicit; ordinary `uv run pytest` and `turnwise validate` do not make hosted calls.
 

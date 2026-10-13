@@ -138,8 +138,15 @@ def test_runner_scores_typed_evidence_and_serializes_artifact(tmp_path: Path) ->
     artifact = json.loads(artifact_path.read_text())
     jev_summary = artifact["summary"]["jev"]
     jev_prediction = artifact["predictions"]["jev"][0]
+    openai_summary = artifact["summary"]["openai"]
     assert abs(jev_summary["evidence_validity"] - 1 / 3) < 1e-12
     assert abs(jev_summary["evidence_matches_gold_event"] - 1 / 3) < 1e-12
+    assert jev_summary["latency_ms"] == {"p50": 1.5, "p95": 1.5}
+    assert jev_summary["usage_totals"] == {"input_tokens": 3, "output_tokens": 2}
+    assert abs(jev_summary["estimated_cost"]["usd"] - 3 * 0.042 / 1_000_000) < 1e-15
+    assert jev_summary["estimated_cost"]["complete"] is True
+    assert abs(openai_summary["estimated_cost"]["usd"] - 26 / 1_000_000) < 1e-15
+    assert openai_summary["estimated_cost"]["complete"] is True
     assert jev_prediction["predicted_evidence"]["appliance"] == [
         {"event_id": "repair-001-e01", "start_char": 4, "end_char": 19}
     ]
@@ -303,6 +310,14 @@ def test_report_cli_summarizes_saved_evaluation_artifact(tmp_path: Path) -> None
                         "overall_accuracy": 0.75,
                         "evidence_validity": 1.0,
                         "provider_errors": 0,
+                        "latency_ms": {"p50": 25.0, "p95": 40.0},
+                        "usage_totals": {"input_tokens": 100, "output_tokens": 25},
+                        "estimated_cost": {
+                            "usd": 0.00045,
+                            "currency": "USD",
+                            "pricing_tier": "standard",
+                            "complete": True,
+                        },
                     }
                 },
             }
@@ -314,6 +329,9 @@ def test_report_cli_summarizes_saved_evaluation_artifact(tmp_path: Path) -> None
     assert result.exit_code == 0
     assert "Experiment: pilot-test (pilot)" in result.stdout
     assert "jev: macro-F1=0.500, accuracy=0.750" in result.stdout
+    assert "latency p50=25.0 ms, p95=40.0 ms" in result.stdout
+    assert "tokens in/out=100/25" in result.stdout
+    assert "estimated cost ~$0.000450 USD, standard pricing" in result.stdout
 
 
 if __name__ == "__main__":

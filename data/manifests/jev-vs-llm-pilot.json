@@ -12,7 +12,7 @@
     "id": "jev-vs-llm",
     "version": "0.1.0",
     "config_path": "configs/experiments/jev-vs-llm.yaml",
-    "sha256": "d4fcc91d1a662d3e563b258a5446373cd819503958af37d46c22493eb59bb5d0"
+    "sha256": "e11dd1a539c78b62457f6979f34f4184350f49409bf9a1f2709f3eafdd363312"
   },
   "split_policy": {
     "kind": "pilot_only",

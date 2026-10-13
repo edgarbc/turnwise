@@ -76,7 +76,9 @@ def _evidence_is_valid(
 
 
 def _score_provider_records(
-    records: list[dict[str, Any]], field_ids: tuple[str, ...]
+    records: list[dict[str, Any]],
+    field_ids: tuple[str, ...],
+    pricing: Mapping[str, Any] | None = None,
 ) -> dict[str, Any]:
     field_metrics: dict[str, Any] = {}
     all_gold: list[Any] = []
@@ -89,6 +91,8 @@ def _score_provider_records(
     refusal_count = 0
     latencies: list[float] = []
     total_usage: dict[str, int | float] = {}
+    estimated_cost_usd = 0.0
+    cost_estimate_available = pricing is not None
 
     for record in records:
         if record["error"] is not None:
@@ -99,6 +103,32 @@ def _score_provider_records(
         for key, value in record["usage"].items():
             if isinstance(value, (int, float)):
                 total_usage[key] = total_usage.get(key, 0) + value
+        if pricing is not None:
+            input_tokens = record["usage"].get("input_tokens")
+            output_tokens = record["usage"].get("output_tokens")
+            if not isinstance(input_tokens, (int, float)) or not isinstance(
+                output_tokens, (int, float)
+            ):
+                cost_estimate_available = False
+            else:
+                cached_tokens = record["usage"].get("cached_input_tokens", 0)
+                cache_write_tokens = record["usage"].get("cache_write_tokens", 0)
+                cached_tokens = cached_tokens if isinstance(cached_tokens, (int, float)) else 0
+                cache_write_tokens = (
+                    cache_write_tokens
+                    if isinstance(cache_write_tokens, (int, float))
+                    else 0
+                )
+                uncached_tokens = max(
+                    0, input_tokens - cached_tokens - cache_write_tokens
+                )
+                cost_per_million = (
+                    uncached_tokens * pricing["input"]
+                    + cached_tokens * (pricing.get("cached_input") or 0.0)
+                    + cache_write_tokens * (pricing.get("cache_write") or 0.0)
+                    + output_tokens * pricing["output"]
+                ) / 1_000_000
+                estimated_cost_usd += cost_per_million
         gold = record["gold_values"]
         predicted = record["predicted_values"]
         evidence = record["_predicted_evidence_refs"]
@@ -163,6 +193,13 @@ def _score_provider_records(
             "p95": sorted_latencies[p95_index] if sorted_latencies else None,
         },
         "usage_totals": total_usage,
+        "estimated_cost": {
+            "currency": pricing.get("currency", "USD") if pricing else None,
+            "usd": estimated_cost_usd if cost_estimate_available else None,
+            "pricing_tier": pricing.get("tier") if pricing else None,
+            "source": pricing.get("source") if pricing else None,
+            "complete": cost_estimate_available,
+        },
     }
 
 
@@ -448,7 +485,12 @@ def run_experiment(
             {key: value for key, value in record.items() if not key.startswith("_")}
             for record in records
         ]
-        provider_summaries[provider_id] = _score_provider_records(records, field_ids)
+        provider_spec = provider_specs[provider_id]
+        provider_summaries[provider_id] = _score_provider_records(
+            records,
+            field_ids,
+            pricing=provider_spec.get("pricing"),
+        )
 
     files = sorted(
         [

@@ -147,7 +147,14 @@ class FakeOpenAIResponses:
             model=request["model"],
             output=[],
             output_text=json.dumps(self.output),
-            usage=SimpleNamespace(input_tokens=29, output_tokens=11),
+            usage=SimpleNamespace(
+                input_tokens=29,
+                output_tokens=11,
+                input_tokens_details=SimpleNamespace(
+                    cached_tokens=4,
+                    cache_write_tokens=2,
+                ),
+            ),
         )
 
 
@@ -200,7 +207,12 @@ def test_openai_adapter_sends_strict_schema_and_maps_selected_candidates() -> No
     assert result.values["active_leak"] is True
     assert result.values["spending_limit"] == {"amount": 350, "currency": "USD"}
     assert result.evidence["preferred_appointment"][0].event_id == "repair-001-e05"
-    assert result.usage == {"input_tokens": 29, "output_tokens": 11}
+    assert result.usage == {
+        "input_tokens": 29,
+        "output_tokens": 11,
+        "cached_input_tokens": 4,
+        "cache_write_tokens": 2,
+    }
     sent_input = request["input"]
     assert "gold" not in sent_input.casefold()
     assert "repair-001-e07" in sent_input

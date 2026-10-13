@@ -24,6 +24,12 @@ def test_jev_vs_openai_experiment_is_pinned_and_pilot_only() -> None:
     assert providers["openai"]["model"]["id"] == "gpt-6.1-sol"
     assert providers["openai"]["sdk"]["version"] == "3.29.0"
     assert providers["openai"]["request"]["strict"] is True
+    assert providers["jev"]["pricing"]["input"] == 0.042
+    assert providers["jev"]["pricing"]["output_tokens_free"] is True
+    assert providers["openai"]["pricing"]["input"] == 2.0
+    assert providers["openai"]["pricing"]["cached_input"] == 0.1
+    assert providers["openai"]["pricing"]["cache_write"] == 2.5
+    assert providers["openai"]["pricing"]["output"] == 10.0
     assert config["dataset"]["purpose"] == "development_pilot_only"
     assert config["dataset"]["leakage_controls"]["exclude_annotations_from_provider_input"]
     assert config["input"]["candidates"]["required_before_provider_comparison"]

@@ -268,6 +268,14 @@ class StructuredLLMProvider:
                 usage["input_tokens"] = response.usage.input_tokens
             if response.usage.output_tokens is not None:
                 usage["output_tokens"] = response.usage.output_tokens
+            input_details = getattr(response.usage, "input_tokens_details", None)
+            if input_details is not None:
+                cached_tokens = getattr(input_details, "cached_tokens", None)
+                cache_write_tokens = getattr(input_details, "cache_write_tokens", None)
+                if cached_tokens is not None:
+                    usage["cached_input_tokens"] = cached_tokens
+                if cache_write_tokens is not None:
+                    usage["cache_write_tokens"] = cache_write_tokens
             return DecisionResult(
                 values=values,
                 evidence=evidence,

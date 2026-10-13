@@ -67,6 +67,17 @@ providers:
     model:
       id: jev-1.13.0
       pin_type: versioned_release
+    pricing:
+      source: https://docs.typesafe.ai/models
+      verified_on: "2026-10-12"
+      tier: standard
+      currency: USD
+      unit: per_1m_tokens
+      input: 0.042
+      cached_input: null
+      cache_write: null
+      output: 0.0
+      output_tokens_free: true
     authentication:
       environment_variable: TYPESAFE_API_KEY
     request:
@@ -81,6 +92,17 @@ providers:
     model:
       id: gpt-6.1-sol
       pin_type: model_id
+    pricing:
+      source: https://developers.openai.com/api/docs/models/gpt-6.1-sol
+      verified_on: "2026-10-12"
+      tier: standard
+      context_tier: short_context
+      currency: USD
+      unit: per_1m_tokens
+      input: 2.0
+      cached_input: 0.1
+      cache_write: 2.5
+      output: 10.0
     authentication:
       environment_variable: OPENAI_API_KEY
     request:
@@ -117,8 +139,16 @@ measurements:
     - request_latency_ms
   resources:
     - input_tokens
+    - cached_input_tokens
+    - cache_write_tokens
     - output_tokens
-    - estimated_cost
+    - estimated_standard_tier_cost_usd
+  pricing_assumptions:
+    currency: USD
+    unit: per_1m_tokens
+    rates_pinned_per_provider: true
+    exclude_tax_and_account_level_discounts: true
+    use_reported_cached_token_counts_when_available: true
   uncertainty:
     record_probability_outputs_when_available: true
     do_not_treat_self_reported_confidence_as_calibrated: true

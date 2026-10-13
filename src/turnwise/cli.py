@@ -149,9 +149,30 @@ def report(
     typer.echo(f"Prefixes: {artifact['dataset']['prefix_count']}")
     for provider_id in artifact["provider_order"]:
         summary = artifact["summary"][provider_id]
+        latency = summary.get("latency_ms", {})
+        usage = summary.get("usage_totals", {})
+        cost = summary.get("estimated_cost", {})
+        p50 = latency.get("p50")
+        p95 = latency.get("p95")
+        latency_text = (
+            f"p50={p50:.1f} ms, p95={p95:.1f} ms"
+            if isinstance(p50, (int, float)) and isinstance(p95, (int, float))
+            else "unavailable"
+        )
+        input_tokens = usage.get("input_tokens", 0)
+        output_tokens = usage.get("output_tokens", 0)
+        if cost.get("usd") is None:
+            cost_text = "unavailable"
+        else:
+            cost_text = f"~${cost['usd']:.6f} {cost.get('currency', 'USD')}"
+            if not cost.get("complete", True):
+                cost_text += " (partial; some usage unreported)"
+            if cost.get("pricing_tier"):
+                cost_text += f", {cost['pricing_tier']} pricing"
         typer.echo(
             f"{provider_id}: macro-F1={summary['overall_macro_f1']:.3f}, "
             f"accuracy={summary['overall_accuracy']:.3f}, "
             f"evidence-validity={summary['evidence_validity']}, "
-            f"errors={summary['provider_errors']}"
+            f"latency {latency_text}, tokens in/out={input_tokens}/{output_tokens}, "
+            f"estimated cost {cost_text}, errors={summary['provider_errors']}"
         )

@@ -36,7 +36,9 @@ Evaluate clean transcripts, ASR transcripts of the same recordings, and the comp
 | Streaming | Correction accuracy, unjustified changes, and stale-response commits |
 | Responsiveness | p50/p95 latency, cold start, and end-to-end audio delay |
 | Uncertainty | Error versus accepted coverage; calibration where probability outputs support it |
-| Resources | Memory, total conversation cost, training effort, and annotation effort |
+| Resources | Input/output tokens, estimated API cost, memory, training effort, and annotation effort |
+
+The pilot report estimates cost from actual SDK usage and the standard-tier, short-context per-million-token rates pinned in the experiment config. It accounts for cached input and cache writes when the OpenAI API reports those counts. It is an estimate, not a billing statement: retries are recorded in aggregate usage when available, and taxes, discounts, and non-standard service tiers are excluded.
 
 Include failures and retries in the report. Cached replay is not a latency measurement. Report per-field results and uncertainty intervals.
 

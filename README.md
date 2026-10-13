@@ -68,7 +68,73 @@ Cost is estimated from SDK-reported tokens and standard short-context rates pinn
 
 The complete pilot contains 10 annotated prefixes and invokes two providers per prefix: up to 20 hosted requests before SDK retries. Use `--max-prefixes 1` or `2` to bound an initial smoke run. The command is explicit; ordinary `uv run pytest` and `turnwise validate` do not make hosted calls.
 
-Hosted evaluation is currently blocked because the pilot annotations have not been human-approved. Review the five conversation/snapshot pairs using the [annotation guide](docs/annotation-guide.md); only after approval should the manifest record `human_review.status: approved`, the reviewer's identity, and a timestamp. The runner verifies the manifest hashes and review status before constructing provider clients.
+Hosted evaluation requires human-approved gold annotations. Approval and reviewer metadata are recorded in `data/manifests/jev-vs-llm-pilot.json`; the runner verifies that manifest and its hashes before constructing provider clients.
+
+### Jev request
+
+The Jev adapter uses TypeSafe's **System One decision API**, not text generation. It sends the current transcript prefix and shared candidates as `state`, then asks typed `Choice` questions. Candidate-backed fields select a candidate ID. Boolean fields select a value and supporting customer event together, so Jev cannot return a known boolean with unknown evidence.
+
+The request shape is:
+
+```python
+from typesafe_sdk import Choice, TypeSafeClient
+
+with TypeSafeClient(api_key=settings.typesafe_api_key, model="jev-1.13.0") as client:
+  response = client.system_one(
+    state={
+      "conversation_id": decision_input.conversation_id,
+      "task_id": decision_input.task_id,
+      "task_version": decision_input.task_version,
+      "transcript_prefix": [
+        {"event_id": event.event_id, "speaker": event.speaker, "text": event.text}
+        for event in decision_input.transcript
+      ],
+      "candidates": [
+        {"candidate_id": item.candidate_id, "field_id": item.field_id, "text": item.text}
+        for item in decision_input.candidates
+      ],
+    },
+    questions={
+      "value__appliance": Choice(
+        instructions="Select the candidate that answers the appliance field. Select __unknown__ if none does.",
+        criteria={candidate_id: candidate_text, "__unknown__": "No supported appliance."},
+      ),
+      "value__active_leak": Choice(
+        instructions="Choose true or false together with the customer event that supports it; otherwise choose __unknown__.",
+        criteria={
+          "true::event-id": "The leak is active now. Supporting customer statement: ...",
+          "false::event-id": "The leak has stopped. Supporting customer statement: ...",
+          "__unknown__": "The current leak state is unknown.",
+        },
+      ),
+    },
+    model="jev-1.13.0",
+  )
+```
+
+The adapter builds corresponding questions for all six fields. For a selected candidate, code copies the candidate's original source span and normalizes it; the model does not generate the final date, location, appliance string, or amount.
+
+### GPT-6.1 Sol prompt
+
+OpenAI uses the Responses API in **strict JSON Schema mode**. The schema is constructed from the task definition and the candidate IDs/events visible in that prefix. The exact `instructions` text sent by the adapter is:
+
+```text
+Extract the current repair-intake form from only the supplied transcript prefix. Use only customer statements as evidence; an intake-agent question is not evidence. For candidate-backed fields, choose a supplied candidate ID or null; do not invent a value; the candidate itself provides its evidence span. For active_leak and quote_required return true, false, or __unknown__, and return a customer event ID supporting each known boolean value. Use null evidence for unknowns. Do not use events after the supplied prefix.
+
+Fields:
+- appliance: The single appliance for which service is requested. True: not applicable False: not applicable Unknown: No appliance is identified clearly.
+- location: Where the appliance or reported problem is located. True: not applicable False: not applicable Unknown: No location is stated clearly.
+- active_leak: Whether water is leaking at the latest point in the visible conversation. True: The customer explicitly indicates the leak is active now. False: The customer explicitly indicates the leak has stopped or is not active now. Unknown: The current status is unstated, ambiguous, or conflicting.
+- preferred_appointment: The customer's latest explicit appointment preference. True: not applicable False: not applicable Unknown: No appointment preference is stated.
+- quote_required: Whether the customer requires a quote before work begins. True: The customer explicitly requests a quote before work. False: The customer explicitly says a quote is not required. Unknown: The quote requirement is not stated or is ambiguous.
+- spending_limit: Explicit maximum amount the customer is willing to spend. True: not applicable False: not applicable Unknown: No spending maximum is stated; do not infer it from a requested quote.
+```
+
+The request uses `model="gpt-6.1-sol"`, `reasoning.effort="low"`, `store=False`, and `text.format={"type":"json_schema","strict":true,...}`. Candidate selections and boolean evidence are then validated and normalized locally.
+
+### Next comparison
+
+The current pilot compares Jev with GPT-6.1 Sol. Next, add a smaller, lower-cost model such as **GPT-6 Luna** as another structured-output baseline, pin its model/SDK settings, and run it on the same prefixes before drawing broader conclusions.
 
 Validate the conversation and annotation files in the example dataset with:
 

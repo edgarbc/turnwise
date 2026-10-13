@@ -16,13 +16,19 @@ ROOT = Path(__file__).resolve().parents[2]
 FIXTURE_PATH = ROOT / "data" / "examples" / "conversations" / "repair-001-ordinary.json"
 
 
-def _decision_input():
-    fixture = load_conversation(FIXTURE_PATH)
-    last_event_id = fixture.events[-1].event_id
+def _decision_input(
+    fixture_path: Path = FIXTURE_PATH,
+    through_event_id: str | None = None,
+):
+    fixture = load_conversation(fixture_path)
+    last_event_id = through_event_id or fixture.events[-1].event_id
+    end_position = next(
+        index for index, event in enumerate(fixture.events) if event.event_id == last_event_id
+    )
     prefix = assemble_prefix(
         fixture,
         last_event_id,
-        candidates=extract_candidates(fixture.events),
+        candidates=extract_candidates(fixture.events[: end_position + 1]),
     )
     return prefix
 
@@ -62,13 +68,11 @@ def _jev_selections(decision_input) -> dict[str, str]:
             decision_input, "appliance", "washing machine"
         ),
         "value__location": _candidate_id(decision_input, "location", "laundry room"),
-        "value__active_leak": "true",
-        "evidence__active_leak": "repair-001-e01",
+        "value__active_leak": "true::repair-001-e01",
         "value__preferred_appointment": _candidate_id(
             decision_input, "preferred_appointment", "Thursday morning"
         ),
-        "value__quote_required": "true",
-        "evidence__quote_required": "repair-001-e07",
+        "value__quote_required": "true::repair-001-e07",
         "value__spending_limit": _candidate_id(
             decision_input, "spending_limit", "three hundred fifty U.S. dollars"
         ),
@@ -90,6 +94,10 @@ def test_jev_adapter_builds_shared_candidate_choices_and_maps_result() -> None:
     assert client.call is not None
     assert client.call["model"] == "jev-test"
     assert "gold" not in json.dumps(client.call["state"]).casefold()
+    assert "evidence__active_leak" not in client.call["questions"]
+    active_options = client.call["questions"]["value__active_leak"].criteria
+    assert "true::repair-001-e01" in active_options
+    assert "false::repair-001-e01" in active_options
     assert result.error is None
     assert result.values == {
         "appliance": "Washing machine",
@@ -110,8 +118,6 @@ def test_jev_adapter_returns_unknown_without_evidence() -> None:
     selections = _jev_selections(decision_input)
     selections["value__active_leak"] = "__unknown__"
     selections["value__quote_required"] = "__unknown__"
-    selections["evidence__active_leak"] = "__unknown__"
-    selections["evidence__quote_required"] = "__unknown__"
     result = JevProvider(Settings(), client=FakeJevClient(selections), model="jev-test").decide(
         decision_input
     )
@@ -121,6 +127,38 @@ def test_jev_adapter_returns_unknown_without_evidence() -> None:
     assert result.values["quote_required"] is None
     assert "active_leak" not in result.evidence
     assert "quote_required" not in result.evidence
+
+
+def test_jev_known_boolean_always_carries_its_evidence_on_problem_prefixes() -> None:
+    regression_prefixes = [
+        ("repair-004-corrections.json", "repair-004-e05", "repair-004-e01"),
+        ("repair-005-distractors.json", "repair-005-e07", "repair-005-e01"),
+    ]
+    for fixture_name, cutoff_event_id, evidence_event_id in regression_prefixes:
+        decision_input = _decision_input(
+            FIXTURE_PATH.with_name(fixture_name),
+            cutoff_event_id,
+        )
+        selections = {
+            f"value__{field_id}": "__unknown__"
+            for field_id in (
+                "appliance",
+                "location",
+                "preferred_appointment",
+                "spending_limit",
+            )
+        }
+        selections["value__active_leak"] = f"false::{evidence_event_id}"
+        selections["value__quote_required"] = "__unknown__"
+        result = JevProvider(
+            Settings(),
+            client=FakeJevClient(selections),
+            model="jev-test",
+        ).decide(decision_input)
+
+        assert result.error is None
+        assert result.values["active_leak"] is False
+        assert result.evidence["active_leak"][0].event_id == evidence_event_id
 
 
 def test_jev_adapter_rejects_selection_of_unknown_candidate() -> None:

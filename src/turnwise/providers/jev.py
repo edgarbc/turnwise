@@ -94,30 +94,31 @@ class JevProvider:
                 question_fields[question_id] = field_id
             else:
                 question_id = f"value__{field_id}"
-                questions[question_id] = Choice(
-                    instructions=f"Determine the current value of {field_id!r}.",
-                    criteria={
-                        "true": field.get("true_means", "Explicitly true."),
-                        "false": field.get("false_means", "Explicitly false."),
-                        UNKNOWN_CHOICE: field.get("unknown_when", "Unknown or unstated."),
-                    },
+                evidence_criteria: dict[str, str] = {}
+                for event in customer_events:
+                    for boolean_value in ("true", "false"):
+                        option_id = f"{boolean_value}::{event.event_id}"
+                        outcome_description = field.get(
+                            "true_means" if boolean_value == "true" else "false_means",
+                            f"The field is explicitly {boolean_value}.",
+                        )
+                        evidence_criteria[option_id] = (
+                            f"{outcome_description} Supporting customer statement: "
+                            f"{event.text}"
+                        )
+                evidence_criteria[UNKNOWN_CHOICE] = field.get(
+                    "unknown_when", "Unknown or unstated."
                 )
-                question_fields[question_id] = field_id
-                evidence_id = f"evidence__{field_id}"
-                evidence_criteria = {
-                    event.event_id: event.text for event in customer_events
-                }
-                if not evidence_criteria:
-                    evidence_criteria[UNKNOWN_CHOICE] = "No customer statements are available."
-                else:
-                    evidence_criteria[UNKNOWN_CHOICE] = "No customer event supports a known value."
-                questions[evidence_id] = Choice(
+                questions[question_id] = Choice(
                     instructions=(
-                        "Select the customer event that most directly supports this field, "
-                        "or select unknown when the field is unknown."
+                        f"Determine the current value of {field_id!r} using the supplied "
+                        "customer statements. Select a true/false option together with the "
+                        "customer event that supports it. Select unknown if no statement "
+                        "supports either known value."
                     ),
                     criteria=evidence_criteria,
                 )
+                question_fields[question_id] = field_id
 
         state = {
             "conversation_id": decision_input.conversation_id,
@@ -185,32 +186,39 @@ class JevProvider:
                         ),
                     )
                 else:
-                    if selected not in {"true", "false"}:
+                    if selected == UNKNOWN_CHOICE:
+                        values[field_id] = None
+                        continue
+                    boolean_value, separator, evidence_event_id = selected.partition("::")
+                    if not separator or boolean_value not in {"true", "false"}:
                         raise ValueError(
-                            f"Jev returned invalid boolean state {selected!r}"
+                            f"Jev returned invalid boolean/evidence choice {selected!r}"
                         )
-                    values[field_id] = selected == "true"
-                    evidence_event_id = choices[f"evidence__{field_id}"].choice
-                    if evidence_event_id != UNKNOWN_CHOICE:
-                        event = next(
-                            (
-                                event
-                                for event in customer_events
-                                if event.event_id == evidence_event_id
-                            ),
-                            None,
-                        )
-                        if event is None:
-                            raise ValueError(
-                                f"Jev returned invalid evidence event {evidence_event_id!r}"
-                            )
-                        evidence[field_id] = (
-                            EvidenceReference(event.event_id, 0, len(event.text)),
-                        )
-                    else:
+                    event = next(
+                        (
+                            event
+                            for event in customer_events
+                            if event.event_id == evidence_event_id
+                        ),
+                        None,
+                    )
+                    if event is None:
                         raise ValueError(
-                            f"Jev returned a known value without evidence for {field_id!r}"
+                            f"Jev returned invalid evidence event {evidence_event_id!r}"
                         )
+                    values[field_id] = boolean_value == "true"
+                    evidence[field_id] = (
+                        EvidenceReference(event.event_id, 0, len(event.text)),
+                    )
+                    probability_totals = {"true": 0.0, "false": 0.0, UNKNOWN_CHOICE: 0.0}
+                    for option, probability in answer.probabilities.items():
+                        if option == UNKNOWN_CHOICE:
+                            probability_totals[UNKNOWN_CHOICE] += probability
+                        else:
+                            option_value, option_separator, _ = option.partition("::")
+                            if option_separator and option_value in {"true", "false"}:
+                                probability_totals[option_value] += probability
+                    probabilities[field_id] = probability_totals
 
             usage = {}
             if response.usage.input_tokens is not None:

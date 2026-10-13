@@ -37,7 +37,8 @@ Training begins after the Jev concept is tested. Both reference models remain in
 - [x] Implement shared, offset-preserving candidate extraction for task fields with candidate-backed values.
 - [x] Define the pilot Jev-versus-OpenAI comparison config with pinned model and SDK versions.
 - [x] Add Jev and structured-output LLM adapters with offline mocked tests.
-- [ ] Produce the first side-by-side report, then expand to 30 conversations.
+- [x] Implement the sequential pilot evaluation runner and run/report CLI commands.
+- [ ] Run the first side-by-side report with explicitly authorized provider calls, then expand to 30 conversations.
 
 The pilot pins Jev `jev-1.13.0` and OpenAI `gpt-6.1-sol`; both SDK versions are pinned in project dependencies. Keep provider credentials in environment variables outside version control. Provider smoke tests should be explicitly invoked and request-limited.
 

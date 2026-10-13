@@ -38,7 +38,7 @@ uv run turnwise --help
 uv run pytest
 ```
 
-The CLI registers four commands. Offline dataset validation and replay with fixture, Jev, and OpenAI providers are implemented; `benchmark` and `report` remain scaffolds. Hosted replay makes paid API requests, so select `--provider jev` or `--provider openai` explicitly. Use each command's `--help` option to inspect its arguments:
+The CLI registers four commands. Offline dataset validation, replay, pilot evaluation, and report summaries are implemented. Hosted replay and benchmark commands make paid API requests; select them explicitly. Use each command's `--help` option to inspect its arguments:
 
 ```bash
 uv run turnwise validate --help
@@ -53,6 +53,18 @@ uv run turnwise report --help
 | `replay` | `--case PATH`, `--provider fixture|jev|openai`; fixture-only `--responses PATH` |
 | `benchmark` | `--config PATH` |
 | `report` | `--run PATH` |
+
+Run a bounded two-prefix smoke comparison or the full five-case pilot:
+
+```bash
+uv run turnwise benchmark --config configs/experiments/jev-vs-llm.yaml --max-prefixes 2
+uv run turnwise benchmark --config configs/experiments/jev-vs-llm.yaml
+uv run turnwise report --run runs/<run-id>
+```
+
+The benchmark invokes Jev and OpenAI sequentially for every selected gold prefix, saves predictions and evaluator-only gold comparisons under `runs/<run-id>/evaluation.json`, and never supplies annotations to providers. Treat the current five synthetic conversations as a pipeline pilot, not evidence of comparative model quality. The report includes accuracy, per-field macro-F1, evidence validity, request latency, usage, refusals, and errors; estimated cost remains unavailable until pricing is added to the pinned experiment config.
+
+The complete pilot contains 10 annotated prefixes and invokes two providers per prefix: up to 20 hosted requests before SDK retries. Use `--max-prefixes 1` or `2` to bound an initial smoke run. The command is explicit; ordinary `uv run pytest` and `turnwise validate` do not make hosted calls.
 
 Validate the conversation and annotation files in the example dataset with:
 
@@ -139,6 +151,7 @@ turnwise/
 │   ├── app/
 │   ├── audio/
 │   ├── evaluation/
+│   │   └── runner.py
 │   ├── pipeline/
 │   │   ├── __init__.py
 │   │   ├── candidates.py
@@ -163,6 +176,7 @@ turnwise/
 │       ├── test_candidate_extraction.py
 │       ├── test_dataset_validation.py
 │       ├── test_experiment_config.py
+│       ├── test_evaluation_runner.py
 │       ├── test_prefix_assembly.py
 │       ├── test_provider_adapters.py
 │       ├── test_replay.py

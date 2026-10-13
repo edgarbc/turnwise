@@ -40,6 +40,8 @@ Evaluate clean transcripts, ASR transcripts of the same recordings, and the comp
 
 Include failures and retries in the report. Cached replay is not a latency measurement. Report per-field results and uncertainty intervals.
 
+The current evaluation runner scores each annotated prefix independently. Its evidence-validity measure checks that returned spans point to customer text inside the visible prefix; the pilot additionally records whether the evidence event matches the human annotation. Neither measure alone establishes semantic entailment. The five-case pilot is for exercising the evaluation workflow, not for drawing model-quality conclusions or uncertainty intervals suitable for publication.
+
 ## Provisional local-model goals
 
 The initial targets are macro-F1 within two percentage points of Jev and coverage within five points at the same accepted-error limit. Confirm these margins before local tuning; they are planning targets, not achieved results.

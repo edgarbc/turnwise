@@ -1,5 +1,6 @@
 """Command-line interface for Turnwise."""
 
+import json
 from pathlib import Path
 
 import typer
@@ -11,6 +12,7 @@ from turnwise.providers.fixture import FixtureProvider
 from turnwise.providers.jev import JevProvider
 from turnwise.providers.structured_llm import StructuredLLMProvider
 from turnwise.dataset_validation import validate_dataset
+from turnwise.evaluation.runner import run_experiment
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 TASK_PATH = PROJECT_ROOT / "configs" / "tasks" / "repair-intake.yaml"
@@ -112,14 +114,44 @@ def replay(
 @app.command()
 def benchmark(
     config: Path = typer.Option(..., "--config", help="Benchmark configuration."),
+    max_prefixes: int | None = typer.Option(
+        None,
+        "--max-prefixes",
+        min=1,
+        help="Optional positive limit for a bounded pilot run.",
+    ),
 ) -> None:
-    """Run a configured provider benchmark."""
-    _not_implemented("benchmark")
+    """Run the configured provider comparison and save evaluation results."""
+    if not config.is_file():
+        raise typer.BadParameter(f"experiment config not found: {config}")
+    try:
+        artifact_path = run_experiment(config, max_prefixes=max_prefixes)
+    except (OSError, ValueError, yaml.YAMLError) as error:
+        raise typer.BadParameter(str(error)) from error
+    typer.echo(f"Evaluation complete: {artifact_path}")
 
 
 @app.command()
 def report(
     run: Path = typer.Option(..., "--run", help="Run directory to report on."),
 ) -> None:
-    """Generate a report for a completed run."""
-    _not_implemented("report")
+    """Summarize a completed evaluation artifact."""
+    artifact_path = run / "evaluation.json" if run.is_dir() else run
+    if not artifact_path.is_file():
+        raise typer.BadParameter(f"evaluation artifact not found: {artifact_path}")
+    try:
+        artifact = json.loads(artifact_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as error:
+        raise typer.BadParameter(f"cannot read evaluation artifact: {error}") from error
+
+    typer.echo(f"Experiment: {artifact['experiment']['id']} ({artifact['experiment']['status']})")
+    typer.echo(f"Run: {artifact['run_id']}")
+    typer.echo(f"Prefixes: {artifact['dataset']['prefix_count']}")
+    for provider_id in artifact["provider_order"]:
+        summary = artifact["summary"][provider_id]
+        typer.echo(
+            f"{provider_id}: macro-F1={summary['overall_macro_f1']:.3f}, "
+            f"accuracy={summary['overall_accuracy']:.3f}, "
+            f"evidence-validity={summary['evidence_validity']}, "
+            f"errors={summary['provider_errors']}"
+        )

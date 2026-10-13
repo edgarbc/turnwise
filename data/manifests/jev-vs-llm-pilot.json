@@ -92,9 +92,9 @@
   },
   "human_review": {
     "required_before_hosted_benchmark": true,
-    "status": "pending",
-    "reviewed_by": null,
-    "reviewed_at": null,
+    "status": "approved",
+    "reviewed_by": "edgar",
+    "reviewed_at": "2026-10-12",
     "notes": "Machine checks do not count as human review. Review each gold snapshot against its transcript prefix before hosted evaluation."
   }
 }

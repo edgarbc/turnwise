@@ -4,7 +4,7 @@ from typing import Any
 
 import yaml
 
-from turnwise.contracts import DecisionInput, DecisionResult
+from turnwise.contracts import DecisionInput, DecisionResult, EvidenceReference
 from turnwise.evaluation.runner import (
     _load_and_validate_manifest,
     _macro_f1,
@@ -19,10 +19,19 @@ CONFIG_PATH = ROOT / "configs" / "experiments" / "jev-vs-llm.yaml"
 
 
 class RecordingProvider:
-    def __init__(self, name: str, *, fail: bool = False) -> None:
+    def __init__(
+        self,
+        name: str,
+        *,
+        fail: bool = False,
+        values: dict[str, Any] | None = None,
+        evidence: dict[str, tuple[EvidenceReference, ...]] | None = None,
+    ) -> None:
         self.name = name
         self.model = f"{name}-test"
         self.fail = fail
+        self.values = values
+        self.evidence = evidence or {}
         self.inputs: list[DecisionInput] = []
         self.closed = False
 
@@ -31,7 +40,7 @@ class RecordingProvider:
         if self.fail:
             raise RuntimeError("mock provider failure")
         return DecisionResult(
-            values={field: None for field in (
+            values=self.values or {field: None for field in (
                 "appliance",
                 "location",
                 "active_leak",
@@ -39,7 +48,7 @@ class RecordingProvider:
                 "quote_required",
                 "spending_limit",
             )},
-            evidence={},
+            evidence=self.evidence,
             provider=self.name,
             model=self.model,
             elapsed_ms=1.5,
@@ -101,6 +110,41 @@ def test_runner_records_provider_failures_and_continues(tmp_path: Path) -> None:
     assert artifact["summary"]["openai"]["provider_errors"] == 0
 
 
+def test_runner_scores_typed_evidence_and_serializes_artifact(tmp_path: Path) -> None:
+    jev = RecordingProvider(
+        "jev",
+        values={
+            "appliance": "Washing machine",
+            "location": None,
+            "active_leak": None,
+            "preferred_appointment": None,
+            "quote_required": None,
+            "spending_limit": None,
+        },
+        evidence={
+            "appliance": (EvidenceReference("repair-001-e01", 4, 19),),
+        },
+    )
+    openai = RecordingProvider("openai")
+
+    artifact_path = run_experiment(
+        CONFIG_PATH,
+        provider_factories={"jev": lambda: jev, "openai": lambda: openai},
+        output_root=tmp_path,
+        max_prefixes=1,
+        allow_unreviewed_pilot=True,
+    )
+
+    artifact = json.loads(artifact_path.read_text())
+    jev_summary = artifact["summary"]["jev"]
+    jev_prediction = artifact["predictions"]["jev"][0]
+    assert abs(jev_summary["evidence_validity"] - 1 / 3) < 1e-12
+    assert abs(jev_summary["evidence_matches_gold_event"] - 1 / 3) < 1e-12
+    assert jev_prediction["predicted_evidence"]["appliance"] == [
+        {"event_id": "repair-001-e01", "start_char": 4, "end_char": 19}
+    ]
+
+
 def test_runner_records_provider_initialization_failure(tmp_path: Path) -> None:
     openai = RecordingProvider("openai")
 
@@ -123,32 +167,48 @@ def test_runner_records_provider_initialization_failure(tmp_path: Path) -> None:
     assert artifact["predictions"]["openai"][0]["error"] is None
 
 
-def test_pending_human_review_blocks_provider_construction(tmp_path: Path) -> None:
+def test_approved_manifest_allows_mock_providers(tmp_path: Path) -> None:
     factory_calls: list[str] = []
 
-    def should_not_initialize(provider_id: str):
-        def factory():
+    def factory(provider_id: str):
+        def create():
             factory_calls.append(provider_id)
             return RecordingProvider(provider_id)
 
-        return factory
+        return create
+
+    artifact_path = run_experiment(
+        CONFIG_PATH,
+        provider_factories={"jev": factory("jev"), "openai": factory("openai")},
+        output_root=tmp_path,
+        max_prefixes=1,
+    )
+
+    assert artifact_path.is_file()
+    assert factory_calls == ["jev", "openai"]
+
+
+def test_pending_manifest_fails_review_gate(tmp_path: Path) -> None:
+    config = yaml.safe_load(CONFIG_PATH.read_text())
+    manifest_path = ROOT / config["dataset"]["manifest_path"]
+    manifest = json.loads(manifest_path.read_text())
+    manifest["human_review"]["status"] = "pending"
+    pending_manifest = tmp_path / "pending-manifest.json"
+    pending_manifest.write_text(json.dumps(manifest))
 
     try:
-        run_experiment(
-            CONFIG_PATH,
-            provider_factories={
-                "jev": should_not_initialize("jev"),
-                "openai": should_not_initialize("openai"),
-            },
-            output_root=tmp_path,
-            max_prefixes=1,
+        _load_and_validate_manifest(
+            pending_manifest,
+            experiment_path=CONFIG_PATH,
+            project_root=ROOT,
+            config=config,
+            allow_unreviewed_pilot=False,
+            task_path=ROOT / config["task"]["path"],
         )
     except ValueError as error:
         assert "human_review must have" in str(error)
     else:
         raise AssertionError("pending human review should block evaluation")
-
-    assert factory_calls == []
 
 
 def test_manifest_hash_mismatch_is_rejected(tmp_path: Path) -> None:
@@ -179,6 +239,8 @@ def test_approval_without_reviewer_and_timestamp_is_rejected(tmp_path: Path) -> 
     manifest_path = ROOT / config["dataset"]["manifest_path"]
     manifest = json.loads(manifest_path.read_text())
     manifest["human_review"]["status"] = "approved"
+    manifest["human_review"]["reviewed_by"] = None
+    manifest["human_review"]["reviewed_at"] = None
     altered_manifest_path = tmp_path / "manifest.json"
     altered_manifest_path.write_text(json.dumps(manifest))
 

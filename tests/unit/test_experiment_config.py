@@ -42,13 +42,17 @@ def test_all_pilot_cases_exist_as_conversation_and_annotation_pairs() -> None:
         assert (annotations_dir / f"{case_id}.json").is_file()
 
 
-def test_manifest_hashes_match_and_review_is_explicitly_pending() -> None:
+def test_manifest_hashes_match_and_review_status_is_explicit() -> None:
     config = yaml.safe_load(CONFIG_PATH.read_text())
     manifest_path = ROOT / config["dataset"]["manifest_path"]
     manifest = json.loads(manifest_path.read_text())
 
     assert manifest["human_review"]["required_before_hosted_benchmark"] is True
-    assert manifest["human_review"]["status"] == "pending"
+    review = manifest["human_review"]
+    assert review["status"] in {"pending", "approved"}
+    if review["status"] == "approved":
+        assert review["reviewed_by"]
+        assert review["reviewed_at"]
     assert manifest["totals"] == {"conversation_count": 5, "snapshot_count": 10}
     for path_key, digest_key in (
         ("path", "sha256"),
@@ -66,7 +70,16 @@ def test_manifest_hashes_match_and_review_is_explicitly_pending() -> None:
             assert hashlib.sha256(source_path.read_bytes()).hexdigest() == case[digest_key]
 
 
-def test_benchmark_cli_blocks_until_gold_review_is_approved() -> None:
+def test_benchmark_cli_formats_review_gate_errors_without_running_providers(
+    monkeypatch,
+) -> None:
+    def reject_pending_review(*args, **kwargs):
+        raise ValueError(
+            "hosted evaluation blocked: dataset manifest human_review must have "
+            "status='approved', reviewed_by, and reviewed_at before benchmarking"
+        )
+
+    monkeypatch.setattr("turnwise.cli.run_experiment", reject_pending_review)
     result = CliRunner().invoke(
         app,
         ["benchmark", "--config", str(CONFIG_PATH), "--max-prefixes", "1"],

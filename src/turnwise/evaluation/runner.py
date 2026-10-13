@@ -101,7 +101,7 @@ def _score_provider_records(
                 total_usage[key] = total_usage.get(key, 0) + value
         gold = record["gold_values"]
         predicted = record["predicted_values"]
-        evidence = record["predicted_evidence"]
+        evidence = record["_predicted_evidence_refs"]
         gold_evidence = record["gold_evidence"]
         decision_input = record["_decision_input"]
         for field_id in field_ids:
@@ -205,6 +205,10 @@ def _record_result(
         "gold_values": snapshot["values"],
         "gold_evidence": snapshot.get("evidence", {}),
         "_decision_input": decision_input,
+        "_predicted_evidence_refs": {
+            field_id: tuple(references)
+            for field_id, references in (result.evidence.items() if result else [])
+        },
     }
 
 

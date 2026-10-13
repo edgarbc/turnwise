@@ -29,7 +29,8 @@ Training begins after the Jev concept is tested. Both reference models remain in
 - [x] Add Typer and define the `turnwise` CLI entry point and `validate`, `replay`, `benchmark`, and `report` subcommands.
 - [x] Define the six-field task and annotation rules in `configs/tasks/repair-intake.yaml` and `docs/annotation-guide.md`.
 - [x] Create five conversations covering ordinary facts, missing facts, negation, corrections, and irrelevant candidate values.
-- [x] Annotate the expected form after selected turns.
+- [x] Draft prefix-level gold annotations for the five pilot conversations.
+- [ ] Human-review and approve the pilot gold annotations in `data/manifests/jev-vs-llm-pilot.json` before hosted benchmarking.
 - [x] Implement shared contracts and transcript-prefix assembly.
 - [x] Implement fixture-based replay through the provider boundary.
 - [x] Verify future-turn exclusion, explicit absence versus unknown, and stale-response rejection.
@@ -38,6 +39,7 @@ Training begins after the Jev concept is tested. Both reference models remain in
 - [x] Define the pilot Jev-versus-OpenAI comparison config with pinned model and SDK versions.
 - [x] Add Jev and structured-output LLM adapters with offline mocked tests.
 - [x] Implement the sequential pilot evaluation runner and run/report CLI commands.
+- [x] Add a hash-pinned pilot manifest and block hosted evaluation until human review is recorded.
 - [ ] Run the first side-by-side report with explicitly authorized provider calls, then expand to 30 conversations.
 
 The pilot pins Jev `jev-1.13.0` and OpenAI `gpt-6.1-sol`; both SDK versions are pinned in project dependencies. Keep provider credentials in environment variables outside version control. Provider smoke tests should be explicitly invoked and request-limited.

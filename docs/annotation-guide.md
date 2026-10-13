@@ -1,6 +1,6 @@
 # Annotation Guide
 
-This is the initial annotation reference for the repair-intake task. The rules below are proposed conventions to validate during the first implementation milestone, not a completed annotation standard.
+This is the annotation reference for the repair-intake pilot. The five synthetic conversations and prefix snapshots pass machine validation, but their human review is still pending; do not treat them as benchmark-approved gold until a reviewer records approval, identity, and timestamp in `data/manifests/jev-vs-llm-pilot.json`.
 
 ## Scope
 
@@ -26,7 +26,7 @@ The canonical machine-readable definition is [`configs/tasks/repair-intake.yaml`
 
 For boolean fields, `true` and `false` are both known answers; `null` means unknown. For `spending_limit`, a known value contains an amount and an ISO 4217 currency code when stated. An unstated currency remains null rather than being inferred.
 
-## Proposed annotation rules
+## Annotation rules
 
 - **Unknown is not absent.** Use unknown when the conversation provides no answer. Use an explicit negative or absent state only when the speaker supports it.
 - **Use only available evidence.** Annotate each prefix from information spoken by that point. Do not use future turns to resolve an earlier snapshot.

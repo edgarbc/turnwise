@@ -2,8 +2,14 @@ import json
 from pathlib import Path
 from typing import Any
 
+import yaml
+
 from turnwise.contracts import DecisionInput, DecisionResult
-from turnwise.evaluation.runner import _macro_f1, run_experiment
+from turnwise.evaluation.runner import (
+    _load_and_validate_manifest,
+    _macro_f1,
+    run_experiment,
+)
 from turnwise.cli import app
 from typer.testing import CliRunner
 
@@ -54,6 +60,7 @@ def test_runner_uses_identical_prefix_inputs_and_keeps_gold_out_of_providers(
         provider_factories={"jev": lambda: jev, "openai": lambda: openai},
         output_root=tmp_path,
         max_prefixes=2,
+        allow_unreviewed_pilot=True,
     )
 
     artifact = json.loads(artifact_path.read_text())
@@ -81,6 +88,7 @@ def test_runner_records_provider_failures_and_continues(tmp_path: Path) -> None:
         provider_factories={"jev": lambda: jev, "openai": lambda: openai},
         output_root=tmp_path,
         max_prefixes=1,
+        allow_unreviewed_pilot=True,
     )
 
     artifact = json.loads(artifact_path.read_text())
@@ -107,11 +115,87 @@ def test_runner_records_provider_initialization_failure(tmp_path: Path) -> None:
         },
         output_root=tmp_path,
         max_prefixes=1,
+        allow_unreviewed_pilot=True,
     )
 
     artifact = json.loads(artifact_path.read_text())
     assert "mock initialization failure" in artifact["predictions"]["jev"][0]["error"]
     assert artifact["predictions"]["openai"][0]["error"] is None
+
+
+def test_pending_human_review_blocks_provider_construction(tmp_path: Path) -> None:
+    factory_calls: list[str] = []
+
+    def should_not_initialize(provider_id: str):
+        def factory():
+            factory_calls.append(provider_id)
+            return RecordingProvider(provider_id)
+
+        return factory
+
+    try:
+        run_experiment(
+            CONFIG_PATH,
+            provider_factories={
+                "jev": should_not_initialize("jev"),
+                "openai": should_not_initialize("openai"),
+            },
+            output_root=tmp_path,
+            max_prefixes=1,
+        )
+    except ValueError as error:
+        assert "human_review must have" in str(error)
+    else:
+        raise AssertionError("pending human review should block evaluation")
+
+    assert factory_calls == []
+
+
+def test_manifest_hash_mismatch_is_rejected(tmp_path: Path) -> None:
+    config = yaml.safe_load(CONFIG_PATH.read_text())
+    manifest_path = ROOT / config["dataset"]["manifest_path"]
+    manifest = json.loads(manifest_path.read_text())
+    manifest["cases"][0]["conversation_sha256"] = "0" * 64
+    altered_manifest_path = tmp_path / "manifest.json"
+    altered_manifest_path.write_text(json.dumps(manifest))
+
+    try:
+        _load_and_validate_manifest(
+            altered_manifest_path,
+            experiment_path=CONFIG_PATH,
+            project_root=ROOT,
+            config=config,
+            allow_unreviewed_pilot=True,
+            task_path=ROOT / config["task"]["path"],
+        )
+    except ValueError as error:
+        assert "manifest hash mismatch" in str(error)
+    else:
+        raise AssertionError("manifest hash mismatch should fail closed")
+
+
+def test_approval_without_reviewer_and_timestamp_is_rejected(tmp_path: Path) -> None:
+    config = yaml.safe_load(CONFIG_PATH.read_text())
+    manifest_path = ROOT / config["dataset"]["manifest_path"]
+    manifest = json.loads(manifest_path.read_text())
+    manifest["human_review"]["status"] = "approved"
+    altered_manifest_path = tmp_path / "manifest.json"
+    altered_manifest_path.write_text(json.dumps(manifest))
+
+    try:
+        _load_and_validate_manifest(
+            altered_manifest_path,
+            experiment_path=CONFIG_PATH,
+            project_root=ROOT,
+            config=config,
+            allow_unreviewed_pilot=False,
+            task_path=ROOT / config["task"]["path"],
+        )
+    except ValueError as error:
+        assert "reviewed_by" in str(error)
+        assert "reviewed_at" in str(error)
+    else:
+        raise AssertionError("approval metadata is required")
 
 
 def test_macro_f1_uses_per_class_f1() -> None:

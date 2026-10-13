@@ -208,12 +208,111 @@ def _record_result(
     }
 
 
+def _load_and_validate_manifest(
+    manifest_path: Path,
+    *,
+    experiment_path: Path,
+    project_root: Path,
+    config: Mapping[str, Any],
+    allow_unreviewed_pilot: bool,
+    task_path: Path,
+) -> Mapping[str, Any]:
+    try:
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as error:
+        raise ValueError(f"cannot read dataset manifest {manifest_path}: {error}") from error
+
+    experiment = config["experiment"]
+    task = config["task"]
+    dataset = config["dataset"]
+    if manifest.get("experiment", {}).get("id") != experiment["id"]:
+        raise ValueError("dataset manifest experiment ID does not match config")
+    if manifest.get("experiment", {}).get("version") != experiment["version"]:
+        raise ValueError("dataset manifest experiment version does not match config")
+    if manifest.get("task", {}).get("id") != task["id"]:
+        raise ValueError("dataset manifest task ID does not match config")
+    if manifest.get("task", {}).get("version") != task["version"]:
+        raise ValueError("dataset manifest task version does not match config")
+    if manifest.get("purpose") != dataset["purpose"]:
+        raise ValueError("dataset manifest purpose does not match experiment config")
+
+    manifest_cases = manifest.get("cases")
+    if not isinstance(manifest_cases, list):
+        raise ValueError("dataset manifest cases must be a list")
+    case_ids = [case.get("case_id") for case in manifest_cases if isinstance(case, dict)]
+    if len(case_ids) != len(manifest_cases) or set(case_ids) != set(dataset["cases"]):
+        raise ValueError("dataset manifest cases do not match experiment config")
+    if len(case_ids) != len(set(case_ids)):
+        raise ValueError("dataset manifest contains duplicate case IDs")
+    if any(case.get("split") != "pilot" for case in manifest_cases):
+        raise ValueError("all cases in this pilot config must belong to the pilot split")
+
+    expected_hashes: list[tuple[str, str]] = []
+    task_record = manifest.get("task", {})
+    expected_hashes.append((task_record.get("path", ""), task_record.get("sha256", "")))
+    experiment_record = manifest.get("experiment", {})
+    expected_hashes.append(
+        (experiment_record.get("config_path", ""), experiment_record.get("sha256", ""))
+    )
+    for case in manifest_cases:
+        expected_hashes.extend(
+            [
+                (case.get("conversation_path", ""), case.get("conversation_sha256", "")),
+                (case.get("annotation_path", ""), case.get("annotation_sha256", "")),
+            ]
+        )
+    for relative_path, expected_digest in expected_hashes:
+        if not relative_path or not expected_digest:
+            raise ValueError("dataset manifest is missing a source path or SHA-256 digest")
+        source_path = Path(relative_path)
+        source_path = source_path if source_path.is_absolute() else project_root / source_path
+        try:
+            actual_digest = hashlib.sha256(source_path.read_bytes()).hexdigest()
+        except OSError as error:
+            raise ValueError(f"manifest source file unavailable: {relative_path}") from error
+        if actual_digest != expected_digest:
+            raise ValueError(f"manifest hash mismatch for {relative_path}")
+
+    try:
+        actual_config_path = experiment_path.resolve().relative_to(project_root.resolve()).as_posix()
+    except ValueError:
+        actual_config_path = experiment_path.resolve().as_posix()
+    if experiment_record.get("config_path") != actual_config_path:
+        raise ValueError("dataset manifest experiment config path does not match config")
+    try:
+        actual_task_path = task_path.resolve().relative_to(project_root.resolve()).as_posix()
+    except ValueError:
+        actual_task_path = task_path.resolve().as_posix()
+    if task_record.get("path") != actual_task_path:
+        raise ValueError("dataset manifest task path does not match config")
+
+    review = manifest.get("human_review", {})
+    review_approved = (
+        review.get("status") == "approved"
+        and isinstance(review.get("reviewed_by"), str)
+        and bool(review["reviewed_by"].strip())
+        and isinstance(review.get("reviewed_at"), str)
+        and bool(review["reviewed_at"].strip())
+    )
+    if (
+        dataset.get("require_human_review_before_benchmark", False)
+        and not review_approved
+        and not allow_unreviewed_pilot
+    ):
+        raise ValueError(
+            "hosted evaluation blocked: dataset manifest human_review must have "
+            "status='approved', reviewed_by, and reviewed_at before benchmarking"
+        )
+    return manifest
+
+
 def run_experiment(
     config_path: str | Path,
     *,
     provider_factories: Mapping[str, ProviderFactory] | None = None,
     output_root: str | Path | None = None,
     max_prefixes: int | None = None,
+    allow_unreviewed_pilot: bool = False,
 ) -> Path:
     """Run configured providers over annotated prefixes and write a pilot report.
 
@@ -235,12 +334,21 @@ def run_experiment(
         return candidate if candidate.is_absolute() else base_directory / candidate
 
     task_path = resolve_config_path(task_config["path"])
+    manifest_path = resolve_config_path(dataset_config["manifest_path"])
     dataset_root = resolve_config_path(dataset_config["conversations_dir"]).parent
     conversations_dir = resolve_config_path(dataset_config["conversations_dir"])
     annotations_dir = resolve_config_path(dataset_config["annotations_dir"])
     validation = validate_dataset(dataset_root, task_path)
     if not validation.is_valid:
         raise ValueError("dataset validation failed: " + "; ".join(validation.errors))
+    manifest = _load_and_validate_manifest(
+        manifest_path,
+        experiment_path=experiment_path,
+        project_root=project_root,
+        config=config,
+        allow_unreviewed_pilot=allow_unreviewed_pilot,
+        task_path=task_path,
+    )
     task = yaml.safe_load(task_path.read_text(encoding="utf-8"))["task"]
     field_ids = tuple(field["id"] for field in task["fields"])
 
@@ -378,6 +486,8 @@ def run_experiment(
             "purpose": dataset_config["purpose"],
             "cases": dataset_config["cases"],
             "prefix_count": expected_prefix_count,
+            "manifest_path": dataset_config["manifest_path"],
+            "manifest_review_status": manifest.get("human_review", {}).get("status"),
             "file_sha256": hashes,
         },
         "code_revision": code_revision,

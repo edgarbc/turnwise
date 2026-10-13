@@ -1,6 +1,11 @@
+import hashlib
+import json
 from pathlib import Path
 
 import yaml
+from typer.testing import CliRunner
+
+from turnwise.cli import app
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -35,3 +40,37 @@ def test_all_pilot_cases_exist_as_conversation_and_annotation_pairs() -> None:
     for case_id in cases:
         assert (conversations_dir / f"{case_id}.json").is_file()
         assert (annotations_dir / f"{case_id}.json").is_file()
+
+
+def test_manifest_hashes_match_and_review_is_explicitly_pending() -> None:
+    config = yaml.safe_load(CONFIG_PATH.read_text())
+    manifest_path = ROOT / config["dataset"]["manifest_path"]
+    manifest = json.loads(manifest_path.read_text())
+
+    assert manifest["human_review"]["required_before_hosted_benchmark"] is True
+    assert manifest["human_review"]["status"] == "pending"
+    assert manifest["totals"] == {"conversation_count": 5, "snapshot_count": 10}
+    for path_key, digest_key in (
+        ("path", "sha256"),
+        ("config_path", "sha256"),
+    ):
+        record = manifest["task"] if path_key == "path" else manifest["experiment"]
+        source_path = ROOT / record[path_key]
+        assert hashlib.sha256(source_path.read_bytes()).hexdigest() == record[digest_key]
+    for case in manifest["cases"]:
+        for path_key, digest_key in (
+            ("conversation_path", "conversation_sha256"),
+            ("annotation_path", "annotation_sha256"),
+        ):
+            source_path = ROOT / case[path_key]
+            assert hashlib.sha256(source_path.read_bytes()).hexdigest() == case[digest_key]
+
+
+def test_benchmark_cli_blocks_until_gold_review_is_approved() -> None:
+    result = CliRunner().invoke(
+        app,
+        ["benchmark", "--config", str(CONFIG_PATH), "--max-prefixes", "1"],
+    )
+
+    assert result.exit_code == 2
+    assert "hosted evaluation blocked" in result.output

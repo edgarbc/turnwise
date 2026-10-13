@@ -66,6 +66,8 @@ The benchmark invokes Jev and OpenAI sequentially for every selected gold prefix
 
 The complete pilot contains 10 annotated prefixes and invokes two providers per prefix: up to 20 hosted requests before SDK retries. Use `--max-prefixes 1` or `2` to bound an initial smoke run. The command is explicit; ordinary `uv run pytest` and `turnwise validate` do not make hosted calls.
 
+Hosted evaluation is currently blocked because the pilot annotations have not been human-approved. Review the five conversation/snapshot pairs using the [annotation guide](docs/annotation-guide.md); only after approval should the manifest record `human_review.status: approved`, the reviewer's identity, and a timestamp. The runner verifies the manifest hashes and review status before constructing provider clients.
+
 Validate the conversation and annotation files in the example dataset with:
 
 ```bash
@@ -142,6 +144,7 @@ turnwise/
 │   │   └── provider-responses/
 │   │       └── repair-004-corrections.json
 │   └── manifests/
+│       └── jev-vs-llm-pilot.json
 ├── docs/
 │   ├── decisions/
 │   ├── annotation-guide.md

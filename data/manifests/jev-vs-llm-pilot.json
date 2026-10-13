@@ -1,0 +1,100 @@
+{
+  "manifest_version": "1.0.0",
+  "dataset_id": "repair-intake-synthetic-pilot",
+  "purpose": "development_pilot_only",
+  "task": {
+    "id": "repair_intake",
+    "version": "0.1.0",
+    "path": "configs/tasks/repair-intake.yaml",
+    "sha256": "2bcfeac17ccd30d85c640394b930bfd9db4a4dc7b1b67f049483ab79b9284db3"
+  },
+  "experiment": {
+    "id": "jev-vs-llm",
+    "version": "0.1.0",
+    "config_path": "configs/experiments/jev-vs-llm.yaml",
+    "sha256": "d4fcc91d1a662d3e563b258a5446373cd819503958af37d46c22493eb59bb5d0"
+  },
+  "split_policy": {
+    "kind": "pilot_only",
+    "benchmark_split": "pilot",
+    "training_split": null,
+    "validation_split": null,
+    "test_split": null,
+    "grouping_unit": "source_conversation_and_all_prefixes"
+  },
+  "cases": [
+    {
+      "case_id": "repair-001-ordinary",
+      "split": "pilot",
+      "conversation_path": "data/examples/conversations/repair-001-ordinary.json",
+      "conversation_sha256": "6171bdde4edc79a8512c9a379147cc26745c3655b5b9fc7880f857d136cad383",
+      "annotation_path": "data/examples/annotations/repair-001-ordinary.json",
+      "annotation_sha256": "11d2736aa1efebbae9b79f6c75c21683dc3f51ad7ced4ac4f9955dc0210dc475",
+      "snapshot_count": 2
+    },
+    {
+      "case_id": "repair-002-missing",
+      "split": "pilot",
+      "conversation_path": "data/examples/conversations/repair-002-missing.json",
+      "conversation_sha256": "b076176f99c22ec525bb852ee745969e6353c55a57fd890b0dc5ed909e3a8796",
+      "annotation_path": "data/examples/annotations/repair-002-missing.json",
+      "annotation_sha256": "a4b3727e130f324146d6500a97697fd1ef62cd40953af69e4f438ffa5dd481c4",
+      "snapshot_count": 2
+    },
+    {
+      "case_id": "repair-003-negation",
+      "split": "pilot",
+      "conversation_path": "data/examples/conversations/repair-003-negation.json",
+      "conversation_sha256": "7794b85f81250b5bfbf875aea99b51d19b21bd2b3cc017457b3486e13b15b74c",
+      "annotation_path": "data/examples/annotations/repair-003-negation.json",
+      "annotation_sha256": "56ac89e11ebc213fb068e810dfb2c14c76283f920b5352917c632051825908e2",
+      "snapshot_count": 2
+    },
+    {
+      "case_id": "repair-004-corrections",
+      "split": "pilot",
+      "conversation_path": "data/examples/conversations/repair-004-corrections.json",
+      "conversation_sha256": "07d7d1105cb4b339168b3c20e6d70ea21799ddebcec15a6d3b459453b7c5d0f7",
+      "annotation_path": "data/examples/annotations/repair-004-corrections.json",
+      "annotation_sha256": "bef8d03f56604b663f787156bfe715dc9bf9388cc026fcdcd82697e99e23e34a",
+      "snapshot_count": 2
+    },
+    {
+      "case_id": "repair-005-distractors",
+      "split": "pilot",
+      "conversation_path": "data/examples/conversations/repair-005-distractors.json",
+      "conversation_sha256": "a7b8a55aed844af8e80879dd0aa339b686e25254971d89437d3890c252693cae",
+      "annotation_path": "data/examples/annotations/repair-005-distractors.json",
+      "annotation_sha256": "7d565cee6f1944b8c883d5d79b77279ca8b7fc12c5122ca6b85c39325a86c155",
+      "snapshot_count": 2
+    }
+  ],
+  "totals": {
+    "conversation_count": 5,
+    "snapshot_count": 10
+  },
+  "provenance": {
+    "content_type": "synthetic_english_transcripts",
+    "external_source_material": false,
+    "license_review_required": false
+  },
+  "machine_validation": {
+    "status": "passed",
+    "validated_on": "2026-10-12",
+    "checks": [
+      "task_and_dataset_version_consistency",
+      "conversation_annotation_pairing",
+      "prefix_ordering",
+      "speaker_roles",
+      "field_types_and_unknown_values",
+      "evidence_customer_speaker_and_source_offsets"
+    ]
+  },
+  "human_review": {
+    "required_before_hosted_benchmark": true,
+    "status": "pending",
+    "reviewed_by": null,
+    "reviewed_at": null,
+    "notes": "Machine checks do not count as human review. Review each gold snapshot against its transcript prefix before hosted evaluation."
+  }
+}

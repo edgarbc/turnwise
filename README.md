@@ -64,11 +64,17 @@ uv run turnwise report --run runs/<run-id>
 
 The benchmark invokes Jev and OpenAI sequentially for every selected gold prefix, saves predictions and evaluator-only gold comparisons under `runs/<run-id>/evaluation.json`, and never supplies annotations to providers. The expanded corpus has 30 synthetic conversations and 35 selected prefixes; results are still pilot evidence, not a representative performance claim. The report includes accuracy, per-field macro-F1, evidence validity, p50/p95 request latency, input/output token totals, refusals, errors, and an estimated USD cost.
 
+### Latest pilot results
+
+![Jev and OpenAI benchmark results for the 30-conversation, 35-prefix synthetic pilot](reports/jev-vs-llm-pilot-20261014.svg)
+
+For run `20261014T035502398257Z-8196c207`, both providers scored 100% on accuracy, macro-F1, and evidence validity. Evidence-event match was 99.4% for Jev and 100% for OpenAI. Jev's p50 latency was 92 ms versus 3,219 ms for OpenAI; estimated run cost was $0.0024 versus $0.1000. These are pilot observations on synthetic data, not a representative performance claim.
+
 Cost is estimated from SDK-reported tokens and standard short-context rates pinned in the experiment config: Jev input is `$0.042` per million tokens with free output; OpenAI `gpt-6.1-sol` input is `$2.00`, cached input `$0.10`, cache writes `$2.50`, and output `$10.00` per million tokens. The estimate is marked incomplete when usage is missing; taxes, account discounts, and any non-standard processing tier are excluded. See the pricing sources recorded in the config.
 
 The full expanded pilot contains 35 annotated prefixes and invokes two providers per prefix: up to 70 hosted requests before SDK retries. Use `--max-prefixes 1` or `2` to bound a smoke run. The command is explicit; ordinary `uv run pytest` and `turnwise validate` do not make hosted calls.
 
-Hosted evaluation requires every gold case to be human-approved. Cases 001-005 were reviewed; cases 006-030 are pending review. Review the additions using the [annotation guide](docs/annotation-guide.md), then update each case status and overall reviewer metadata. The runner verifies the manifest and source hashes before constructing providers.
+Hosted evaluation requires every gold case to be human-approved. The manifest records all 30 cases and 35 snapshots as approved, along with reviewer metadata. The runner verifies the manifest and source hashes before constructing providers.
 
 ### Jev request
 

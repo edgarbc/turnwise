@@ -350,6 +350,6 @@
     "status": "approved",
     "reviewed_by": "edgar",
     "reviewed_at": "2026-10-13",
-    "notes": "Cases 001-005 were previously reviewed. Cases 006-030 require human review before hosted evaluation; approve the complete manifest after reviewing all snapshots."
+    "notes": "All 30 cases and 35 snapshots were human-reviewed and approved."
   }
 }

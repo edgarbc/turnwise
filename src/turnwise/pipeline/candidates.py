@@ -19,13 +19,45 @@ _APPOINTMENT_PATTERN = re.compile(
     rf"(?![A-Za-z])",
     re.IGNORECASE,
 )
+_APPLIANCE_TERMS = (
+    "washer-dryer combo",
+    "mini-split air conditioner",
+    "built-in dishwasher",
+    "portable dishwasher",
+    "electric dryer",
+    "gas oven",
+    "chest freezer",
+    "upright freezer",
+    "washing machine",
+    "water heater",
+    "water softener",
+    "air conditioner",
+    "garbage disposal",
+    "dishwasher",
+    "oven",
+    "refrigerator",
+    "microwave",
+    "freezer",
+    "furnace",
+    "sump pump",
+    "range",
+    "cooktop",
+    "boiler",
+    "dehumidifier",
+    "wine cooler",
+    "ice maker",
+    "clothes dryer",
+    "dryer",
+)
 _APPLIANCE_PATTERN = re.compile(
-    r"(?<![A-Za-z])(?:washing\s+machine|refrigerator)(?![A-Za-z])",
+    r"(?<![A-Za-z])(?:"
+    + "|".join(re.escape(term) for term in _APPLIANCE_TERMS)
+    + r")(?![A-Za-z])",
     re.IGNORECASE,
 )
 _LOCATION_PATTERN = re.compile(
-    r"\b(?:in|at)\s+(?:(?:the|our|my)\s+)?"
-    r"(?P<place>[A-Za-z][A-Za-z'-]*(?:\s+[A-Za-z][A-Za-z'-]*){0,4})",
+    r"(?=\b(?:in|at)\s+(?:(?:the|our|my)\s+)?"
+    r"(?P<place>[A-Za-z][A-Za-z'-]*(?:\s+[A-Za-z][A-Za-z'-]*){0,4}))",
     re.IGNORECASE,
 )
 _LOCATION_STOP_WORDS = {
@@ -141,6 +173,10 @@ def extract_candidates(
             )
 
         if "location" in enabled_fields:
+            appliance_spans = [
+                (match.start(), match.end())
+                for match in _APPLIANCE_PATTERN.finditer(event.text)
+            ]
             for match in _LOCATION_PATTERN.finditer(event.text):
                 place = match.group("place")
                 words = list(re.finditer(r"\S+", place))
@@ -156,8 +192,11 @@ def extract_candidates(
                 if not normalized_place:
                     continue
                 start = match.start("place")
+                end = start + len(normalized_place)
+                if any(start < appliance_end and end > appliance_start for appliance_start, appliance_end in appliance_spans):
+                    continue
                 candidates.append(
-                    _candidate(event, "location", start, start + len(normalized_place))
+                    _candidate(event, "location", start, end)
                 )
 
         if "preferred_appointment" in enabled_fields:

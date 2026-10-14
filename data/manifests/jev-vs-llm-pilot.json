@@ -1,6 +1,6 @@
 {
   "manifest_version": "1.0.0",
-  "dataset_id": "repair-intake-synthetic-pilot",
+  "dataset_id": "repair-intake-synthetic-pilot-30",
   "purpose": "development_pilot_only",
   "task": {
     "id": "repair_intake",
@@ -12,7 +12,7 @@
     "id": "jev-vs-llm",
     "version": "0.1.0",
     "config_path": "configs/experiments/jev-vs-llm.yaml",
-    "sha256": "e11dd1a539c78b62457f6979f34f4184350f49409bf9a1f2709f3eafdd363312"
+    "sha256": "75e40674358f9edf9ec368a41f79f334f61635e92834f3ab214177997c879207"
   },
   "split_policy": {
     "kind": "pilot_only",
@@ -30,7 +30,8 @@
       "conversation_sha256": "6171bdde4edc79a8512c9a379147cc26745c3655b5b9fc7880f857d136cad383",
       "annotation_path": "data/examples/annotations/repair-001-ordinary.json",
       "annotation_sha256": "11d2736aa1efebbae9b79f6c75c21683dc3f51ad7ced4ac4f9955dc0210dc475",
-      "snapshot_count": 2
+      "snapshot_count": 2,
+      "human_review_status": "approved"
     },
     {
       "case_id": "repair-002-missing",
@@ -39,7 +40,8 @@
       "conversation_sha256": "b076176f99c22ec525bb852ee745969e6353c55a57fd890b0dc5ed909e3a8796",
       "annotation_path": "data/examples/annotations/repair-002-missing.json",
       "annotation_sha256": "a4b3727e130f324146d6500a97697fd1ef62cd40953af69e4f438ffa5dd481c4",
-      "snapshot_count": 2
+      "snapshot_count": 2,
+      "human_review_status": "approved"
     },
     {
       "case_id": "repair-003-negation",
@@ -48,7 +50,8 @@
       "conversation_sha256": "7794b85f81250b5bfbf875aea99b51d19b21bd2b3cc017457b3486e13b15b74c",
       "annotation_path": "data/examples/annotations/repair-003-negation.json",
       "annotation_sha256": "56ac89e11ebc213fb068e810dfb2c14c76283f920b5352917c632051825908e2",
-      "snapshot_count": 2
+      "snapshot_count": 2,
+      "human_review_status": "approved"
     },
     {
       "case_id": "repair-004-corrections",
@@ -57,7 +60,8 @@
       "conversation_sha256": "07d7d1105cb4b339168b3c20e6d70ea21799ddebcec15a6d3b459453b7c5d0f7",
       "annotation_path": "data/examples/annotations/repair-004-corrections.json",
       "annotation_sha256": "bef8d03f56604b663f787156bfe715dc9bf9388cc026fcdcd82697e99e23e34a",
-      "snapshot_count": 2
+      "snapshot_count": 2,
+      "human_review_status": "approved"
     },
     {
       "case_id": "repair-005-distractors",
@@ -66,12 +70,263 @@
       "conversation_sha256": "a7b8a55aed844af8e80879dd0aa339b686e25254971d89437d3890c252693cae",
       "annotation_path": "data/examples/annotations/repair-005-distractors.json",
       "annotation_sha256": "7d565cee6f1944b8c883d5d79b77279ca8b7fc12c5122ca6b85c39325a86c155",
-      "snapshot_count": 2
+      "snapshot_count": 2,
+      "human_review_status": "approved"
+    },
+    {
+      "case_id": "repair-006-dishwasher",
+      "split": "pilot",
+      "conversation_path": "data/examples/conversations/repair-006-dishwasher.json",
+      "conversation_sha256": "4fab6c72033623d309604837416268290f265db6672431a3f31779fcf0456121",
+      "annotation_path": "data/examples/annotations/repair-006-dishwasher.json",
+      "annotation_sha256": "fd5cc94d6f3792cfc7f9e706e10966893419eab2adc7b2f356e1f9dbd4685461",
+      "snapshot_count": 1,
+      "human_review_status": "pending"
+    },
+    {
+      "case_id": "repair-007-dryer",
+      "split": "pilot",
+      "conversation_path": "data/examples/conversations/repair-007-dryer.json",
+      "conversation_sha256": "075c251244a11f475e9cb3bb3094918e3f07d01cb6bcab4cdec2571beac97cf0",
+      "annotation_path": "data/examples/annotations/repair-007-dryer.json",
+      "annotation_sha256": "f7527e56161379d5eff7b87fe27368f28ffd17443dd8366f89ec98aa410150ae",
+      "snapshot_count": 1,
+      "human_review_status": "pending"
+    },
+    {
+      "case_id": "repair-008-oven",
+      "split": "pilot",
+      "conversation_path": "data/examples/conversations/repair-008-oven.json",
+      "conversation_sha256": "9dfd5751ca6bebca1400db0b75ab8a1965fc6d70d8d607577632e10353299cae",
+      "annotation_path": "data/examples/annotations/repair-008-oven.json",
+      "annotation_sha256": "49eea161ae09978a62f97cb557d6b365307668234f7cae3c490301d8718acad0",
+      "snapshot_count": 1,
+      "human_review_status": "pending"
+    },
+    {
+      "case_id": "repair-009-freezer",
+      "split": "pilot",
+      "conversation_path": "data/examples/conversations/repair-009-freezer.json",
+      "conversation_sha256": "31c2e8bf1005b8ff99ef64defa31a28cefc3b808e4a24b378cce83db107c8b52",
+      "annotation_path": "data/examples/annotations/repair-009-freezer.json",
+      "annotation_sha256": "76e771b16ae515e3e297fc616208a3c6087ba80f4d35d27b2881a7a3e3d8727b",
+      "snapshot_count": 1,
+      "human_review_status": "pending"
+    },
+    {
+      "case_id": "repair-010-microwave",
+      "split": "pilot",
+      "conversation_path": "data/examples/conversations/repair-010-microwave.json",
+      "conversation_sha256": "873c34664b781318f21a94cd3c765cfc3e0cda9151376bdfbab0f8ee5d3ceb74",
+      "annotation_path": "data/examples/annotations/repair-010-microwave.json",
+      "annotation_sha256": "e0c992e86331acf23e53bb3ee4c051e68f3a4606c25f2b7f3b7502afb314163d",
+      "snapshot_count": 1,
+      "human_review_status": "pending"
+    },
+    {
+      "case_id": "repair-011-water-heater",
+      "split": "pilot",
+      "conversation_path": "data/examples/conversations/repair-011-water-heater.json",
+      "conversation_sha256": "5910736505f88ad9b5d5b78c6ecfda5e736c1053b720d9b06a9b7456faab7cac",
+      "annotation_path": "data/examples/annotations/repair-011-water-heater.json",
+      "annotation_sha256": "0d024c6ad1d8f8ad0781ce9bbe6fdef01b44fd0775c2352c30c04d9086bff147",
+      "snapshot_count": 1,
+      "human_review_status": "pending"
+    },
+    {
+      "case_id": "repair-012-furnace",
+      "split": "pilot",
+      "conversation_path": "data/examples/conversations/repair-012-furnace.json",
+      "conversation_sha256": "2619930d417f1c48b82829665d60bda64b80696510e4110f2148ed89873d65b9",
+      "annotation_path": "data/examples/annotations/repair-012-furnace.json",
+      "annotation_sha256": "2478a78edd6a04ee6a7da7aadb2b1b45ecd109f8ecd5364ac1bd0ba3a2166816",
+      "snapshot_count": 1,
+      "human_review_status": "pending"
+    },
+    {
+      "case_id": "repair-013-air-conditioner",
+      "split": "pilot",
+      "conversation_path": "data/examples/conversations/repair-013-air-conditioner.json",
+      "conversation_sha256": "6f8bbddb00613663fa29d8771ccf43aca43273cf4f44d5477c3c738f6c0e8930",
+      "annotation_path": "data/examples/annotations/repair-013-air-conditioner.json",
+      "annotation_sha256": "7bec811a92de5d59997b7481f0da1f0f319b0046adbb2516bac10c2ee14caee5",
+      "snapshot_count": 1,
+      "human_review_status": "pending"
+    },
+    {
+      "case_id": "repair-014-disposal",
+      "split": "pilot",
+      "conversation_path": "data/examples/conversations/repair-014-disposal.json",
+      "conversation_sha256": "f36aeadc9e907729025cefa9fa5bf188c1e13669fe2969056a4a2f87c02f302d",
+      "annotation_path": "data/examples/annotations/repair-014-disposal.json",
+      "annotation_sha256": "79e174271c679125a5b30a5f9b2497477f51f57c55221826b3a6bd53bdd4337f",
+      "snapshot_count": 1,
+      "human_review_status": "pending"
+    },
+    {
+      "case_id": "repair-015-sump-pump",
+      "split": "pilot",
+      "conversation_path": "data/examples/conversations/repair-015-sump-pump.json",
+      "conversation_sha256": "4055ac56a405e5cd74437822e10702db5f83209c2ecb6e0afe2e9f51e2e971b3",
+      "annotation_path": "data/examples/annotations/repair-015-sump-pump.json",
+      "annotation_sha256": "6d63a018bc9dbf5790e55482efff2d9e39f416a3cc5fa06d4fbbb254704f92ea",
+      "snapshot_count": 1,
+      "human_review_status": "pending"
+    },
+    {
+      "case_id": "repair-016-range",
+      "split": "pilot",
+      "conversation_path": "data/examples/conversations/repair-016-range.json",
+      "conversation_sha256": "d5048cffd9d7289a984275bcd28dada07b6ac1cfe13237750f16353859806e5a",
+      "annotation_path": "data/examples/annotations/repair-016-range.json",
+      "annotation_sha256": "e9df070b15cf0e6204afaafce1822578b36a0af580b9c238bf0c22371665b7b8",
+      "snapshot_count": 1,
+      "human_review_status": "pending"
+    },
+    {
+      "case_id": "repair-017-cooktop",
+      "split": "pilot",
+      "conversation_path": "data/examples/conversations/repair-017-cooktop.json",
+      "conversation_sha256": "e1010d6f4a2b2ddc7c8b0eec3221af1e6cabbb55a9f1fb789adc1ff3cfd91d0a",
+      "annotation_path": "data/examples/annotations/repair-017-cooktop.json",
+      "annotation_sha256": "0e717f51bd5f8e2a0a998dcbf1fd4e6709d59633320929ef5ca9fb0fdfdd6b9d",
+      "snapshot_count": 1,
+      "human_review_status": "pending"
+    },
+    {
+      "case_id": "repair-018-chest-freezer",
+      "split": "pilot",
+      "conversation_path": "data/examples/conversations/repair-018-chest-freezer.json",
+      "conversation_sha256": "3f7584360cad2fe8e5690e38974d094b04550e66a7b8bb6d064a06ab0dbf65de",
+      "annotation_path": "data/examples/annotations/repair-018-chest-freezer.json",
+      "annotation_sha256": "d24f79d9102fbea4d59b54c228614b8917dde43496844d72eff5a90ccf80e827",
+      "snapshot_count": 1,
+      "human_review_status": "pending"
+    },
+    {
+      "case_id": "repair-019-dehumidifier",
+      "split": "pilot",
+      "conversation_path": "data/examples/conversations/repair-019-dehumidifier.json",
+      "conversation_sha256": "4f8b4ead0d8158c3354adcd3d3818de7c7822c11e5334c79e6ee165da56bcf3a",
+      "annotation_path": "data/examples/annotations/repair-019-dehumidifier.json",
+      "annotation_sha256": "61a724b539bd297998b7045cb56d9524e513964c7e9ef7cf3beb0f6ff792d032",
+      "snapshot_count": 1,
+      "human_review_status": "pending"
+    },
+    {
+      "case_id": "repair-020-boiler",
+      "split": "pilot",
+      "conversation_path": "data/examples/conversations/repair-020-boiler.json",
+      "conversation_sha256": "07b33fe44277d61eba2dbd4852154d63450aca87f9968d891ae18e1bb7d22816",
+      "annotation_path": "data/examples/annotations/repair-020-boiler.json",
+      "annotation_sha256": "06989b60b2e124d49ff28c0d8a164e48fb8205d07295d95197971f5822397b60",
+      "snapshot_count": 1,
+      "human_review_status": "pending"
+    },
+    {
+      "case_id": "repair-021-wine-cooler",
+      "split": "pilot",
+      "conversation_path": "data/examples/conversations/repair-021-wine-cooler.json",
+      "conversation_sha256": "64b4538adbe453e9719416b442c657ceb5213ec2a273ab0feb51b91aa3f53b8f",
+      "annotation_path": "data/examples/annotations/repair-021-wine-cooler.json",
+      "annotation_sha256": "b434055bbe470ede3c876606af7f6d955d74ca9ac2b3a0cedd1e1da1291f865a",
+      "snapshot_count": 1,
+      "human_review_status": "pending"
+    },
+    {
+      "case_id": "repair-022-ice-maker",
+      "split": "pilot",
+      "conversation_path": "data/examples/conversations/repair-022-ice-maker.json",
+      "conversation_sha256": "fc5481ccd29ec54678d0328590182058c0c55b2c1eccd49e1ea1ef00a4da94e3",
+      "annotation_path": "data/examples/annotations/repair-022-ice-maker.json",
+      "annotation_sha256": "4d7e7b28ef7b835ef7737e5034f2fba3038b61350d57fe7bb256d42e4eef1dbb",
+      "snapshot_count": 1,
+      "human_review_status": "pending"
+    },
+    {
+      "case_id": "repair-023-washer-dryer",
+      "split": "pilot",
+      "conversation_path": "data/examples/conversations/repair-023-washer-dryer.json",
+      "conversation_sha256": "eebb6ea71ae42d187a4396682c96b9d9fa32eef541275a0809ce98b8b22c70cf",
+      "annotation_path": "data/examples/annotations/repair-023-washer-dryer.json",
+      "annotation_sha256": "69498f2d11ab19952582a050521eceb6ab5d6162178404cb683d8cde97d7bb6d",
+      "snapshot_count": 1,
+      "human_review_status": "pending"
+    },
+    {
+      "case_id": "repair-024-mini-split",
+      "split": "pilot",
+      "conversation_path": "data/examples/conversations/repair-024-mini-split.json",
+      "conversation_sha256": "9d881b2d021afa305f1802960e1a4ae6f0d6936e1a8170e1190600ad695991b9",
+      "annotation_path": "data/examples/annotations/repair-024-mini-split.json",
+      "annotation_sha256": "2d4652d803e0aed7ef3c38cdf0d575ef5bc5fb0d92c4fe3f0ead16eae3da934b",
+      "snapshot_count": 1,
+      "human_review_status": "pending"
+    },
+    {
+      "case_id": "repair-025-upright-freezer",
+      "split": "pilot",
+      "conversation_path": "data/examples/conversations/repair-025-upright-freezer.json",
+      "conversation_sha256": "ef278a14f93d3d761fb313116d4b0d38150ca639943710491552b82a4c422832",
+      "annotation_path": "data/examples/annotations/repair-025-upright-freezer.json",
+      "annotation_sha256": "58c6206499befc21fc91a443ac2841b25e275d72f8a30461cc5a42f2c63b306d",
+      "snapshot_count": 1,
+      "human_review_status": "pending"
+    },
+    {
+      "case_id": "repair-026-built-in-dishwasher",
+      "split": "pilot",
+      "conversation_path": "data/examples/conversations/repair-026-built-in-dishwasher.json",
+      "conversation_sha256": "5e53637900f03a282332922607355f5a967a4c92e6555e80b5270f2ff00b8d3a",
+      "annotation_path": "data/examples/annotations/repair-026-built-in-dishwasher.json",
+      "annotation_sha256": "82dbb13fe1c73d841790c7de1c479347d65f9da15fb0e9bb63d1f86549b5ff48",
+      "snapshot_count": 1,
+      "human_review_status": "pending"
+    },
+    {
+      "case_id": "repair-027-portable-dishwasher",
+      "split": "pilot",
+      "conversation_path": "data/examples/conversations/repair-027-portable-dishwasher.json",
+      "conversation_sha256": "902ddf682f29569e98ac4b90ce95e6c78716895c491272f27413cd9cbf37863e",
+      "annotation_path": "data/examples/annotations/repair-027-portable-dishwasher.json",
+      "annotation_sha256": "00709d1096daeb143d9d33312587f2222eb65dfc455c1d37127144dd70e354bc",
+      "snapshot_count": 1,
+      "human_review_status": "pending"
+    },
+    {
+      "case_id": "repair-028-electric-dryer",
+      "split": "pilot",
+      "conversation_path": "data/examples/conversations/repair-028-electric-dryer.json",
+      "conversation_sha256": "08926e67a5ce53ccc44a377f32144376dd74f33489bdebd36ead5c0e005e1fb1",
+      "annotation_path": "data/examples/annotations/repair-028-electric-dryer.json",
+      "annotation_sha256": "18112773c7520dfbecaa7f0347ca23481ceb284b66a4a0b327667e5061b7e549",
+      "snapshot_count": 1,
+      "human_review_status": "pending"
+    },
+    {
+      "case_id": "repair-029-gas-oven",
+      "split": "pilot",
+      "conversation_path": "data/examples/conversations/repair-029-gas-oven.json",
+      "conversation_sha256": "7beb7d7614695e6421e8304d43dfc246d86ab24a894a0b8d62c3bdc5629a2d62",
+      "annotation_path": "data/examples/annotations/repair-029-gas-oven.json",
+      "annotation_sha256": "a1cd707a08b52aae46d606e0b6d5d487fd71660d7068c833886633934cb7d4fb",
+      "snapshot_count": 1,
+      "human_review_status": "pending"
+    },
+    {
+      "case_id": "repair-030-water-softener",
+      "split": "pilot",
+      "conversation_path": "data/examples/conversations/repair-030-water-softener.json",
+      "conversation_sha256": "1b8a0ca772c3f9b82cc114f688ab056d96900bef3a6e7da7dd8743ef57a694f0",
+      "annotation_path": "data/examples/annotations/repair-030-water-softener.json",
+      "annotation_sha256": "79447285e406cb99c8a660510d3bccfe2f2bf8daab806a1e3c49206746365a9a",
+      "snapshot_count": 1,
+      "human_review_status": "pending"
     }
   ],
   "totals": {
-    "conversation_count": 5,
-    "snapshot_count": 10
+    "conversation_count": 30,
+    "snapshot_count": 35
   },
   "provenance": {
     "content_type": "synthetic_english_transcripts",
@@ -80,7 +335,7 @@
   },
   "machine_validation": {
     "status": "passed",
-    "validated_on": "2026-10-12",
+    "validated_on": "2026-10-13",
     "checks": [
       "task_and_dataset_version_consistency",
       "conversation_annotation_pairing",
@@ -92,9 +347,9 @@
   },
   "human_review": {
     "required_before_hosted_benchmark": true,
-    "status": "approved",
-    "reviewed_by": "edgar",
-    "reviewed_at": "2026-10-12",
-    "notes": "Machine checks do not count as human review. Review each gold snapshot against its transcript prefix before hosted evaluation."
+    "status": "pending",
+    "reviewed_by": null,
+    "reviewed_at": null,
+    "notes": "Cases 001-005 were previously reviewed. Cases 006-030 require human review before hosted evaluation; approve the complete manifest after reviewing all snapshots."
   }
 }

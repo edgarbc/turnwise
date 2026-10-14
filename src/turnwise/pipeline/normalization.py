@@ -46,7 +46,17 @@ _NUMBER_WORDS = {
 
 def _currency_code(value: str) -> str | None:
     normalized = value.casefold().replace(" ", "")
-    if normalized in {"usd", "us$", "$", "u.s.dollars", "u.s.dollar", "usdollars", "usdollar"}:
+    if normalized in {
+        "usd",
+        "us$",
+        "$",
+        "dollars",
+        "dollar",
+        "u.s.dollars",
+        "u.s.dollar",
+        "usdollars",
+        "usdollar",
+    }:
         return "USD"
     if normalized in {"gbp", "pounds", "pound"}:
         return "GBP"

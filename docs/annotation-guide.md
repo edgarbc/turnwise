@@ -1,6 +1,6 @@
 # Annotation Guide
 
-This is the annotation reference for the repair-intake pilot. The five synthetic conversations and prefix snapshots pass machine validation, but their human review is still pending; do not treat them as benchmark-approved gold until a reviewer records approval, identity, and timestamp in `data/manifests/jev-vs-llm-pilot.json`.
+This is the annotation reference for the repair-intake pilot. The 30 synthetic conversations and 35 prefix snapshots pass machine validation. Cases 001-005 were previously reviewed; the expanded annotations for cases 006-030 still need human review. Do not run a hosted comparison until the full manifest records approval, reviewer identity, and timestamp in `data/manifests/jev-vs-llm-pilot.json`.
 
 ## Scope
 

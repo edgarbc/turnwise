@@ -1,0 +1,6 @@
+{
+  "conversation_id": "repair-012-furnace",
+  "task_id": "repair_intake",
+  "task_version": "0.1.0",
+  "events": [{"event_id":"repair-012-e01","speaker":"customer","start_ms":0,"end_ms":9000,"revision":0,"is_final":true,"text":"Please service the furnace in the attic. I cannot tell if water is leaking right now. Sunday morning works for me. I want a quote before any work. My maximum is one thousand two hundred dollars."}]
+}

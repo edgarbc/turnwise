@@ -334,6 +334,7 @@ def _load_and_validate_manifest(
         and bool(review["reviewed_by"].strip())
         and isinstance(review.get("reviewed_at"), str)
         and bool(review["reviewed_at"].strip())
+        and all(case.get("human_review_status") == "approved" for case in manifest_cases)
     )
     if (
         dataset.get("require_human_review_before_benchmark", False)

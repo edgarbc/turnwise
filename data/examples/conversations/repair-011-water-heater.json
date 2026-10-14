@@ -1,0 +1,6 @@
+{
+  "conversation_id": "repair-011-water-heater",
+  "task_id": "repair_intake",
+  "task_version": "0.1.0",
+  "events": [{"event_id":"repair-011-e01","speaker":"customer","start_ms":0,"end_ms":9000,"revision":0,"is_final":true,"text":"Please service the water heater in the utility closet. There is no water leaking now. Thursday morning works for me. I do not need a quote before work. My spending limit is $900."}]
+}

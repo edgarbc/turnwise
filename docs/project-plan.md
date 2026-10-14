@@ -28,9 +28,10 @@ Training begins after the Jev concept is tested. Both reference models remain in
 - [x] Initialize the Python package with uv and commit its lockfile.
 - [x] Add Typer and define the `turnwise` CLI entry point and `validate`, `replay`, `benchmark`, and `report` subcommands.
 - [x] Define the six-field task and annotation rules in `configs/tasks/repair-intake.yaml` and `docs/annotation-guide.md`.
-- [x] Create five conversations covering ordinary facts, missing facts, negation, corrections, and irrelevant candidate values.
-- [x] Draft prefix-level gold annotations for the five pilot conversations.
-- [x] Human-review and approve the pilot gold annotations in `data/manifests/jev-vs-llm-pilot.json` before hosted benchmarking.
+- [x] Create 30 synthetic conversations covering ordinary facts, missing facts, negation, corrections, ambiguity, conflicts, and distractor values.
+- [x] Draft prefix-level gold annotations for all 30 conversations.
+- [x] Human-review and approve gold annotations for cases 001-005.
+- [ ] Human-review gold annotations for cases 006-030 and update the dataset manifest.
 - [x] Implement shared contracts and transcript-prefix assembly.
 - [x] Implement fixture-based replay through the provider boundary.
 - [x] Verify future-turn exclusion, explicit absence versus unknown, and stale-response rejection.
@@ -40,9 +41,10 @@ Training begins after the Jev concept is tested. Both reference models remain in
 - [x] Add Jev and structured-output LLM adapters with offline mocked tests.
 - [x] Implement the sequential pilot evaluation runner and run/report CLI commands.
 - [x] Add a hash-pinned pilot manifest and block hosted evaluation until human review is recorded.
-- [x] Run the first side-by-side pilot report with explicitly authorized provider calls.
+- [x] Run the initial five-conversation side-by-side pilot report with explicitly authorized provider calls.
+- [x] Run an expanded 30-conversation comparison once; Jev evidence mapping was subsequently fixed, so rerun after new annotations are reviewed.
 - [ ] Add a smaller, lower-cost OpenAI baseline such as GPT-6 Luna and compare it on the same prefixes.
-- [ ] Expand the reviewed dataset to 30 conversations before making broader performance claims.
+- [ ] Rerun the side-by-side report on all 30 conversations after annotation review and Jev evidence fix.
 
 The pilot pins Jev `jev-1.13.0` and OpenAI `gpt-6.1-sol`; both SDK versions are pinned in project dependencies. Keep provider credentials in environment variables outside version control. Provider smoke tests should be explicitly invoked and request-limited.
 

@@ -42,7 +42,7 @@ def test_all_pilot_cases_exist_as_conversation_and_annotation_pairs() -> None:
     conversations_dir = ROOT / config["dataset"]["conversations_dir"]
     annotations_dir = ROOT / config["dataset"]["annotations_dir"]
 
-    assert len(cases) == 5
+    assert len(cases) == 30
     for case_id in cases:
         assert (conversations_dir / f"{case_id}.json").is_file()
         assert (annotations_dir / f"{case_id}.json").is_file()
@@ -59,7 +59,16 @@ def test_manifest_hashes_match_and_review_status_is_explicit() -> None:
     if review["status"] == "approved":
         assert review["reviewed_by"]
         assert review["reviewed_at"]
-    assert manifest["totals"] == {"conversation_count": 5, "snapshot_count": 10}
+        assert all(case["human_review_status"] == "approved" for case in manifest["cases"])
+    else:
+        assert {case["human_review_status"] for case in manifest["cases"]} == {
+            "approved",
+            "pending",
+        }
+    assert manifest["totals"]["conversation_count"] == len(config["dataset"]["cases"])
+    assert manifest["totals"]["snapshot_count"] == sum(
+        case["snapshot_count"] for case in manifest["cases"]
+    )
     for path_key, digest_key in (
         ("path", "sha256"),
         ("config_path", "sha256"),

@@ -189,6 +189,7 @@ def test_approved_manifest_allows_mock_providers(tmp_path: Path) -> None:
         provider_factories={"jev": factory("jev"), "openai": factory("openai")},
         output_root=tmp_path,
         max_prefixes=1,
+        allow_unreviewed_pilot=True,
     )
 
     assert artifact_path.is_file()

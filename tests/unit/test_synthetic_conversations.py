@@ -8,6 +8,7 @@ import yaml
 ROOT = Path(__file__).resolve().parents[2]
 CONVERSATION_DIR = ROOT / "data" / "examples" / "conversations"
 ANNOTATION_DIR = ROOT / "data" / "examples" / "annotations"
+EXPERIMENT_PATH = ROOT / "configs" / "experiments" / "jev-vs-llm.yaml"
 
 
 TASK_PATH = ROOT / "configs" / "tasks" / "repair-intake.yaml"
@@ -17,10 +18,11 @@ SPEAKER_ROLES = set(TASK["scope"]["speaker_roles"])
 CONVERSATION_FILES = sorted(CONVERSATION_DIR.glob("*.json"))
 
 
-def test_five_conversation_fixtures_have_separate_gold_files() -> None:
+def test_configured_conversation_fixtures_have_separate_gold_files() -> None:
+    expected_case_ids = yaml.safe_load(EXPERIMENT_PATH.read_text())["dataset"]["cases"]
     annotation_files = sorted(ANNOTATION_DIR.glob("*.json"))
 
-    assert len(CONVERSATION_FILES) == 5
+    assert [path.stem for path in CONVERSATION_FILES] == expected_case_ids
     assert [path.stem for path in CONVERSATION_FILES] == [
         path.stem for path in annotation_files
     ]

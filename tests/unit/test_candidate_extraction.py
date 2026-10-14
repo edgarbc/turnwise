@@ -99,6 +99,33 @@ def test_extractor_ignores_candidate_mentions_from_intake_agent() -> None:
     assert extract_candidates((event,)) == ()
 
 
+def test_location_candidate_does_not_overlap_a_multiword_appliance() -> None:
+    fixture = load_conversation(
+        FIXTURE_DIR.parent / "conversations" / "repair-026-built-in-dishwasher.json"
+    )
+
+    candidates = extract_candidates(fixture.events)
+
+    assert {candidate.text for candidate in candidates if candidate.field_id == "appliance"} == {
+        "built-in dishwasher"
+    }
+    assert {candidate.text for candidate in candidates if candidate.field_id == "location"} == {
+        "scullery"
+    }
+
+
+def test_water_softener_is_a_supported_appliance_candidate() -> None:
+    fixture = load_conversation(
+        FIXTURE_DIR.parent / "conversations" / "repair-030-water-softener.json"
+    )
+
+    candidates = extract_candidates(fixture.events)
+
+    assert "water softener" in {
+        candidate.text for candidate in candidates if candidate.field_id == "appliance"
+    }
+
+
 def test_candidate_extraction_respects_the_assembled_prefix() -> None:
     fixture = load_conversation(FIXTURE_DIR / "repair-004-corrections.json")
     decision_input = assemble_prefix(fixture, "repair-004-e06")

@@ -16,8 +16,8 @@ def test_checked_in_example_dataset_is_valid() -> None:
     report = validate_dataset(EXAMPLE_DATASET)
 
     assert report.is_valid
-    assert report.conversations_checked == 5
-    assert report.snapshots_checked == 10
+    assert report.conversations_checked == 30
+    assert report.snapshots_checked == 35
     assert report.errors == ()
 
 
@@ -40,7 +40,7 @@ def test_validate_cli_returns_success_for_valid_dataset() -> None:
     result = CliRunner().invoke(app, ["validate", "--dataset", str(EXAMPLE_DATASET)])
 
     assert result.exit_code == 0
-    assert "5 conversations, 10 snapshots checked" in result.stdout
+    assert "30 conversations, 35 snapshots checked" in result.stdout
 
 
 def test_validate_cli_returns_failure_for_invalid_dataset(tmp_path: Path) -> None:

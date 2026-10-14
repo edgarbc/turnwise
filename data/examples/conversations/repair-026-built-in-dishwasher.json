@@ -1,0 +1,6 @@
+{
+  "conversation_id": "repair-026-built-in-dishwasher",
+  "task_id": "repair_intake",
+  "task_version": "0.1.0",
+  "events": [{"event_id":"repair-026-e01","speaker":"customer","start_ms":0,"end_ms":9000,"revision":0,"is_final":true,"text":"Please service the built-in dishwasher in the scullery. Water is leaking now. Thursday morning works for me. I have not decided whether I need a quote. My maximum is $525."}]
+}

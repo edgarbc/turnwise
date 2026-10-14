@@ -8,7 +8,7 @@
 
 Turnwise is a research project about extracting reliable, reviewable information from conversations. It will compare decision models with schema-constrained LLMs, then explore whether a small local decision model can perform well on the same task.
 
-**Status: Early implementation.** The uv-managed Python package and Typer CLI scaffold are in place. The CLI commands, datasets, provider integrations, and benchmark results are not implemented yet.
+**Status: Early implementation.** The uv-managed package, CLI, synthetic pilot dataset, offline validator, replay pipeline, and Jev/OpenAI adapters are implemented. The expanded 30-case gold set is still under review; results remain pilot-only.
 
 ## Problem
 
@@ -54,7 +54,7 @@ uv run turnwise report --help
 | `benchmark` | `--config PATH` |
 | `report` | `--run PATH` |
 
-Run a bounded two-prefix smoke comparison or the full five-case pilot:
+Run a bounded smoke comparison or the full 30-case, 35-prefix pilot after all annotations are reviewed:
 
 ```bash
 uv run turnwise benchmark --config configs/experiments/jev-vs-llm.yaml --max-prefixes 2
@@ -62,13 +62,13 @@ uv run turnwise benchmark --config configs/experiments/jev-vs-llm.yaml
 uv run turnwise report --run runs/<run-id>
 ```
 
-The benchmark invokes Jev and OpenAI sequentially for every selected gold prefix, saves predictions and evaluator-only gold comparisons under `runs/<run-id>/evaluation.json`, and never supplies annotations to providers. Treat the current five synthetic conversations as a pipeline pilot, not evidence of comparative model quality. The report includes accuracy, per-field macro-F1, evidence validity, p50/p95 request latency, input/output token totals, refusals, errors, and an estimated USD cost.
+The benchmark invokes Jev and OpenAI sequentially for every selected gold prefix, saves predictions and evaluator-only gold comparisons under `runs/<run-id>/evaluation.json`, and never supplies annotations to providers. The expanded corpus has 30 synthetic conversations and 35 selected prefixes; results are still pilot evidence, not a representative performance claim. The report includes accuracy, per-field macro-F1, evidence validity, p50/p95 request latency, input/output token totals, refusals, errors, and an estimated USD cost.
 
 Cost is estimated from SDK-reported tokens and standard short-context rates pinned in the experiment config: Jev input is `$0.042` per million tokens with free output; OpenAI `gpt-6.1-sol` input is `$2.00`, cached input `$0.10`, cache writes `$2.50`, and output `$10.00` per million tokens. The estimate is marked incomplete when usage is missing; taxes, account discounts, and any non-standard processing tier are excluded. See the pricing sources recorded in the config.
 
-The complete pilot contains 10 annotated prefixes and invokes two providers per prefix: up to 20 hosted requests before SDK retries. Use `--max-prefixes 1` or `2` to bound an initial smoke run. The command is explicit; ordinary `uv run pytest` and `turnwise validate` do not make hosted calls.
+The full expanded pilot contains 35 annotated prefixes and invokes two providers per prefix: up to 70 hosted requests before SDK retries. Use `--max-prefixes 1` or `2` to bound a smoke run. The command is explicit; ordinary `uv run pytest` and `turnwise validate` do not make hosted calls.
 
-Hosted evaluation requires human-approved gold annotations. Approval and reviewer metadata are recorded in `data/manifests/jev-vs-llm-pilot.json`; the runner verifies that manifest and its hashes before constructing provider clients.
+Hosted evaluation requires every gold case to be human-approved. Cases 001-005 were reviewed; cases 006-030 are pending review. Review the additions using the [annotation guide](docs/annotation-guide.md), then update each case status and overall reviewer metadata. The runner verifies the manifest and source hashes before constructing providers.
 
 ### Jev request
 
@@ -197,18 +197,9 @@ turnwise/
 │       └── repair-intake.yaml
 ├── data/
 │   ├── examples/
-│   │   ├── annotations/
-│   │   │   ├── repair-001-ordinary.json
-│   │   │   ├── repair-002-missing.json
-│   │   │   ├── repair-003-negation.json
-│   │   │   ├── repair-004-corrections.json
-│   │   │   └── repair-005-distractors.json
+│   │   │   └── repair-001..repair-030 gold files
 │   │   ├── conversations/
-│   │   │   ├── repair-001-ordinary.json
-│   │   │   ├── repair-002-missing.json
-│   │   │   ├── repair-003-negation.json
-│   │   │   ├── repair-004-corrections.json
-│   │   │   └── repair-005-distractors.json
+│   │   │   └── repair-001..repair-030 transcript files
 │   │   └── provider-responses/
 │   │       └── repair-004-corrections.json
 │   └── manifests/
@@ -250,7 +241,6 @@ turnwise/
 │       ├── test_evaluation_runner.py
 │       ├── test_prefix_assembly.py
 │       ├── test_provider_adapters.py
-│       ├── test_replay.py
 │       ├── test_replay.py
 │       ├── test_settings.py
 │       ├── test_synthetic_conversations.py

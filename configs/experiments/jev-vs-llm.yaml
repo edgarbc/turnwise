@@ -2,7 +2,7 @@ experiment:
   id: jev-vs-llm
   version: "0.1.0"
   status: pilot
-  description: Compare Jev with an OpenAI model using the same repair-intake task and transcript prefixes.
+  description: Pilot comparison of Jev and OpenAI over 30 synthetic repair-intake conversations and annotated prefixes.
   pins_verified_on: "2026-10-12"
   references:
     jev_models: https://docs.typesafe.ai/models
@@ -28,6 +28,31 @@ dataset:
     - repair-003-negation
     - repair-004-corrections
     - repair-005-distractors
+    - repair-006-dishwasher
+    - repair-007-dryer
+    - repair-008-oven
+    - repair-009-freezer
+    - repair-010-microwave
+    - repair-011-water-heater
+    - repair-012-furnace
+    - repair-013-air-conditioner
+    - repair-014-disposal
+    - repair-015-sump-pump
+    - repair-016-range
+    - repair-017-cooktop
+    - repair-018-chest-freezer
+    - repair-019-dehumidifier
+    - repair-020-boiler
+    - repair-021-wine-cooler
+    - repair-022-ice-maker
+    - repair-023-washer-dryer
+    - repair-024-mini-split
+    - repair-025-upright-freezer
+    - repair-026-built-in-dishwasher
+    - repair-027-portable-dishwasher
+    - repair-028-electric-dryer
+    - repair-029-gas-oven
+    - repair-030-water-softener
   prefixes:
     source: annotated_snapshots
     include_all_selected_prefixes: true
@@ -47,7 +72,7 @@ input:
   candidates:
     strategy: shared_candidate_extractor
     implementation: turnwise.pipeline.candidates.extract_candidates
-    version: regex-en-v1
+    version: regex-en-v2
     speaker_scope: customer_events_only
     extraction_policy: return_all_matching_mentions_including_distractors
     fields:
@@ -162,6 +187,6 @@ artifacts:
   include_task_and_experiment_versions: true
 
 limitations:
-  - Five synthetic conversations are a pipeline pilot, not a performance benchmark.
+  - Thirty synthetic conversations are an expanded pilot, not a representative performance benchmark.
   - The shared candidate extractor must be implemented before comparing exact-value fields.
   - Model IDs and SDK versions are pinned here; update them only through a reviewed experiment revision.

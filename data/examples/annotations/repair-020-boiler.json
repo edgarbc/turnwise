@@ -1,1 +1,66 @@
-{"conversation_id":"repair-020-boiler","task_id":"repair_intake","task_version":"0.1.0","snapshots":[{"snapshot_id":"repair-020-s01","through_event_id":"repair-020-e01","values":{"appliance":"Boiler","location":"Mechanical room","active_leak":false,"preferred_appointment":"Friday morning","quote_required":true,"spending_limit":{"amount":1500,"currency":"USD"}},"evidence":{"appliance":[{"event_id":"repair-020-e01","start_char":19,"end_char":25}],"location":[{"event_id":"repair-020-e01","start_char":33,"end_char":48}],"active_leak":[{"event_id":"repair-020-e01","start_char":50,"end_char":79}],"preferred_appointment":[{"event_id":"repair-020-e01","start_char":81,"end_char":95}],"quote_required":[{"event_id":"repair-020-e01","start_char":110,"end_char":139}],"spending_limit":[{"event_id":"repair-020-e01","start_char":153,"end_char":176}]}}]}
+{
+  "conversation_id": "repair-020-boiler",
+  "task_id": "repair_intake",
+  "task_version": "0.1.0",
+  "snapshots": [
+    {
+      "snapshot_id": "repair-020-s01",
+      "through_event_id": "repair-020-e01",
+      "values": {
+        "appliance": "Boiler",
+        "location": "Mechanical room",
+        "active_leak": false,
+        "preferred_appointment": "Friday morning",
+        "quote_required": true,
+        "spending_limit": {
+          "amount": 1500,
+          "currency": "USD"
+        }
+      },
+      "evidence": {
+        "appliance": [
+          {
+            "event_id": "repair-020-e01",
+            "start_char": 19,
+            "end_char": 25
+          }
+        ],
+        "location": [
+          {
+            "event_id": "repair-020-e01",
+            "start_char": 33,
+            "end_char": 48
+          }
+        ],
+        "active_leak": [
+          {
+            "event_id": "repair-020-e01",
+            "start_char": 50,
+            "end_char": 79
+          }
+        ],
+        "preferred_appointment": [
+          {
+            "event_id": "repair-020-e01",
+            "start_char": 81,
+            "end_char": 95
+          }
+        ],
+        "quote_required": [
+          {
+            "event_id": "repair-020-e01",
+            "start_char": 110,
+            "end_char": 139
+          }
+        ],
+        "spending_limit": [
+          {
+            "event_id": "repair-020-e01",
+            "start_char": 153,
+            "end_char": 176
+          }
+        ]
+      }
+    }
+  ]
+}

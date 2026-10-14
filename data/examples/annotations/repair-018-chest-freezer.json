@@ -1,1 +1,42 @@
-{"conversation_id":"repair-018-chest-freezer","task_id":"repair_intake","task_version":"0.1.0","snapshots":[{"snapshot_id":"repair-018-s01","through_event_id":"repair-018-e01","values":{"appliance":"Chest freezer","location":"Garage","active_leak":null,"preferred_appointment":null,"quote_required":true,"spending_limit":null},"evidence":{"appliance":[{"event_id":"repair-018-e01","start_char":19,"end_char":32}],"location":[{"event_id":"repair-018-e01","start_char":40,"end_char":46}],"quote_required":[{"event_id":"repair-018-e01","start_char":143,"end_char":177}]}}]}
+{
+  "conversation_id": "repair-018-chest-freezer",
+  "task_id": "repair_intake",
+  "task_version": "0.1.0",
+  "snapshots": [
+    {
+      "snapshot_id": "repair-018-s01",
+      "through_event_id": "repair-018-e01",
+      "values": {
+        "appliance": "Chest freezer",
+        "location": "Garage",
+        "active_leak": null,
+        "preferred_appointment": null,
+        "quote_required": true,
+        "spending_limit": null
+      },
+      "evidence": {
+        "appliance": [
+          {
+            "event_id": "repair-018-e01",
+            "start_char": 19,
+            "end_char": 32
+          }
+        ],
+        "location": [
+          {
+            "event_id": "repair-018-e01",
+            "start_char": 40,
+            "end_char": 46
+          }
+        ],
+        "quote_required": [
+          {
+            "event_id": "repair-018-e01",
+            "start_char": 143,
+            "end_char": 177
+          }
+        ]
+      }
+    }
+  ]
+}

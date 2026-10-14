@@ -1,1 +1,59 @@
-{"conversation_id":"repair-026-built-in-dishwasher","task_id":"repair_intake","task_version":"0.1.0","snapshots":[{"snapshot_id":"repair-026-s01","through_event_id":"repair-026-e01","values":{"appliance":"Built-in dishwasher","location":"Scullery","active_leak":true,"preferred_appointment":"Thursday morning","quote_required":null,"spending_limit":{"amount":525,"currency":"USD"}},"evidence":{"appliance":[{"event_id":"repair-026-e01","start_char":19,"end_char":38}],"location":[{"event_id":"repair-026-e01","start_char":46,"end_char":54}],"active_leak":[{"event_id":"repair-026-e01","start_char":56,"end_char":76}],"preferred_appointment":[{"event_id":"repair-026-e01","start_char":78,"end_char":94}],"spending_limit":[{"event_id":"repair-026-e01","start_char":166,"end_char":170}]}}]}
+{
+  "conversation_id": "repair-026-built-in-dishwasher",
+  "task_id": "repair_intake",
+  "task_version": "0.1.0",
+  "snapshots": [
+    {
+      "snapshot_id": "repair-026-s01",
+      "through_event_id": "repair-026-e01",
+      "values": {
+        "appliance": "Built-in dishwasher",
+        "location": "Scullery",
+        "active_leak": true,
+        "preferred_appointment": "Thursday morning",
+        "quote_required": null,
+        "spending_limit": {
+          "amount": 525,
+          "currency": "USD"
+        }
+      },
+      "evidence": {
+        "appliance": [
+          {
+            "event_id": "repair-026-e01",
+            "start_char": 19,
+            "end_char": 38
+          }
+        ],
+        "location": [
+          {
+            "event_id": "repair-026-e01",
+            "start_char": 46,
+            "end_char": 54
+          }
+        ],
+        "active_leak": [
+          {
+            "event_id": "repair-026-e01",
+            "start_char": 56,
+            "end_char": 76
+          }
+        ],
+        "preferred_appointment": [
+          {
+            "event_id": "repair-026-e01",
+            "start_char": 78,
+            "end_char": 94
+          }
+        ],
+        "spending_limit": [
+          {
+            "event_id": "repair-026-e01",
+            "start_char": 166,
+            "end_char": 170
+          }
+        ]
+      }
+    }
+  ]
+}

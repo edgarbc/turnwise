@@ -15,9 +15,27 @@
         "spending_limit": null
       },
       "evidence": {
-        "appliance": [{"event_id": "repair-003-e01", "start_char": 3, "end_char": 18}],
-        "location": [{"event_id": "repair-003-e01", "start_char": 29, "end_char": 43}],
-        "active_leak": [{"event_id": "repair-003-e01", "start_char": 58, "end_char": 105}]
+        "appliance": [
+          {
+            "event_id": "repair-003-e01",
+            "start_char": 3,
+            "end_char": 18
+          }
+        ],
+        "location": [
+          {
+            "event_id": "repair-003-e01",
+            "start_char": 29,
+            "end_char": 43
+          }
+        ],
+        "active_leak": [
+          {
+            "event_id": "repair-003-e01",
+            "start_char": 58,
+            "end_char": 105
+          }
+        ]
       }
     },
     {
@@ -32,11 +50,41 @@
         "spending_limit": null
       },
       "evidence": {
-        "appliance": [{"event_id": "repair-003-e01", "start_char": 3, "end_char": 18}],
-        "location": [{"event_id": "repair-003-e01", "start_char": 29, "end_char": 43}],
-        "active_leak": [{"event_id": "repair-003-e03", "start_char": 54, "end_char": 77}],
-        "preferred_appointment": [{"event_id": "repair-003-e05", "start_char": 0, "end_char": 16}],
-        "quote_required": [{"event_id": "repair-003-e07", "start_char": 0, "end_char": 18}]
+        "appliance": [
+          {
+            "event_id": "repair-003-e01",
+            "start_char": 3,
+            "end_char": 18
+          }
+        ],
+        "location": [
+          {
+            "event_id": "repair-003-e01",
+            "start_char": 29,
+            "end_char": 43
+          }
+        ],
+        "active_leak": [
+          {
+            "event_id": "repair-003-e03",
+            "start_char": 54,
+            "end_char": 77
+          }
+        ],
+        "preferred_appointment": [
+          {
+            "event_id": "repair-003-e05",
+            "start_char": 0,
+            "end_char": 16
+          }
+        ],
+        "quote_required": [
+          {
+            "event_id": "repair-003-e07",
+            "start_char": 0,
+            "end_char": 18
+          }
+        ]
       }
     }
   ]

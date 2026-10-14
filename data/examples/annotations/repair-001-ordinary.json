@@ -15,9 +15,27 @@
         "spending_limit": null
       },
       "evidence": {
-        "appliance": [{"event_id": "repair-001-e01", "start_char": 4, "end_char": 19}],
-        "location": [{"event_id": "repair-001-e01", "start_char": 27, "end_char": 39}],
-        "active_leak": [{"event_id": "repair-001-e01", "start_char": 86, "end_char": 104}]
+        "appliance": [
+          {
+            "event_id": "repair-001-e01",
+            "start_char": 4,
+            "end_char": 19
+          }
+        ],
+        "location": [
+          {
+            "event_id": "repair-001-e01",
+            "start_char": 27,
+            "end_char": 39
+          }
+        ],
+        "active_leak": [
+          {
+            "event_id": "repair-001-e01",
+            "start_char": 86,
+            "end_char": 104
+          }
+        ]
       }
     },
     {
@@ -29,15 +47,54 @@
         "active_leak": true,
         "preferred_appointment": "Thursday morning",
         "quote_required": true,
-        "spending_limit": {"amount": 350, "currency": "USD"}
+        "spending_limit": {
+          "amount": 350,
+          "currency": "USD"
+        }
       },
       "evidence": {
-        "appliance": [{"event_id": "repair-001-e01", "start_char": 4, "end_char": 19}],
-        "location": [{"event_id": "repair-001-e01", "start_char": 27, "end_char": 39}],
-        "active_leak": [{"event_id": "repair-001-e01", "start_char": 86, "end_char": 104}],
-        "preferred_appointment": [{"event_id": "repair-001-e05", "start_char": 0, "end_char": 16}],
-        "quote_required": [{"event_id": "repair-001-e07", "start_char": 12, "end_char": 50}],
-        "spending_limit": [{"event_id": "repair-001-e07", "start_char": 70, "end_char": 102}]
+        "appliance": [
+          {
+            "event_id": "repair-001-e01",
+            "start_char": 4,
+            "end_char": 19
+          }
+        ],
+        "location": [
+          {
+            "event_id": "repair-001-e01",
+            "start_char": 27,
+            "end_char": 39
+          }
+        ],
+        "active_leak": [
+          {
+            "event_id": "repair-001-e01",
+            "start_char": 86,
+            "end_char": 104
+          }
+        ],
+        "preferred_appointment": [
+          {
+            "event_id": "repair-001-e05",
+            "start_char": 0,
+            "end_char": 16
+          }
+        ],
+        "quote_required": [
+          {
+            "event_id": "repair-001-e07",
+            "start_char": 12,
+            "end_char": 50
+          }
+        ],
+        "spending_limit": [
+          {
+            "event_id": "repair-001-e07",
+            "start_char": 70,
+            "end_char": 102
+          }
+        ]
       }
     }
   ]

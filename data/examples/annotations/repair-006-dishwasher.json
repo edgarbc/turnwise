@@ -1,1 +1,66 @@
-{"conversation_id":"repair-006-dishwasher","task_id":"repair_intake","task_version":"0.1.0","snapshots":[{"snapshot_id":"repair-006-s01","through_event_id":"repair-006-e01","values":{"appliance":"Dishwasher","location":"Pantry","active_leak":true,"preferred_appointment":"Tuesday morning","quote_required":true,"spending_limit":{"amount":250,"currency":"USD"}},"evidence":{"appliance":[{"event_id":"repair-006-e01","start_char":19,"end_char":29}],"location":[{"event_id":"repair-006-e01","start_char":37,"end_char":43}],"active_leak":[{"event_id":"repair-006-e01","start_char":45,"end_char":65}],"preferred_appointment":[{"event_id":"repair-006-e01","start_char":67,"end_char":82}],"quote_required":[{"event_id":"repair-006-e01","start_char":97,"end_char":126}],"spending_limit":[{"event_id":"repair-006-e01","start_char":149,"end_char":153}]}}]}
+{
+  "conversation_id": "repair-006-dishwasher",
+  "task_id": "repair_intake",
+  "task_version": "0.1.0",
+  "snapshots": [
+    {
+      "snapshot_id": "repair-006-s01",
+      "through_event_id": "repair-006-e01",
+      "values": {
+        "appliance": "Dishwasher",
+        "location": "Pantry",
+        "active_leak": true,
+        "preferred_appointment": "Tuesday morning",
+        "quote_required": true,
+        "spending_limit": {
+          "amount": 250,
+          "currency": "USD"
+        }
+      },
+      "evidence": {
+        "appliance": [
+          {
+            "event_id": "repair-006-e01",
+            "start_char": 19,
+            "end_char": 29
+          }
+        ],
+        "location": [
+          {
+            "event_id": "repair-006-e01",
+            "start_char": 37,
+            "end_char": 43
+          }
+        ],
+        "active_leak": [
+          {
+            "event_id": "repair-006-e01",
+            "start_char": 45,
+            "end_char": 65
+          }
+        ],
+        "preferred_appointment": [
+          {
+            "event_id": "repair-006-e01",
+            "start_char": 67,
+            "end_char": 82
+          }
+        ],
+        "quote_required": [
+          {
+            "event_id": "repair-006-e01",
+            "start_char": 97,
+            "end_char": 126
+          }
+        ],
+        "spending_limit": [
+          {
+            "event_id": "repair-006-e01",
+            "start_char": 149,
+            "end_char": 153
+          }
+        ]
+      }
+    }
+  ]
+}

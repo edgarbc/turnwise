@@ -2,5 +2,15 @@
   "conversation_id": "repair-008-oven",
   "task_id": "repair_intake",
   "task_version": "0.1.0",
-  "events": [{"event_id":"repair-008-e01","speaker":"customer","start_ms":0,"end_ms":9000,"revision":0,"is_final":true,"text":"Please service the oven in the kitchen. There is no water leaking now. Saturday morning works for me. I do not require a quote before work. My maximum is 500 U.S. dollars."}]
+  "events": [
+    {
+      "event_id": "repair-008-e01",
+      "speaker": "customer",
+      "start_ms": 0,
+      "end_ms": 9000,
+      "revision": 0,
+      "is_final": true,
+      "text": "Please service the oven in the kitchen. There is no water leaking now. Saturday morning works for me. I do not require a quote before work. My maximum is 500 U.S. dollars."
+    }
+  ]
 }

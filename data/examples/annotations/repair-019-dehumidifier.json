@@ -1,1 +1,59 @@
-{"conversation_id":"repair-019-dehumidifier","task_id":"repair_intake","task_version":"0.1.0","snapshots":[{"snapshot_id":"repair-019-s01","through_event_id":"repair-019-e01","values":{"appliance":"Dehumidifier","location":"Finished basement","active_leak":true,"preferred_appointment":"Saturday afternoon","quote_required":null,"spending_limit":{"amount":275,"currency":"USD"}},"evidence":{"appliance":[{"event_id":"repair-019-e01","start_char":19,"end_char":31}],"location":[{"event_id":"repair-019-e01","start_char":39,"end_char":56}],"active_leak":[{"event_id":"repair-019-e01","start_char":58,"end_char":78}],"preferred_appointment":[{"event_id":"repair-019-e01","start_char":80,"end_char":98}],"spending_limit":[{"event_id":"repair-019-e01","start_char":172,"end_char":176}]}}]}
+{
+  "conversation_id": "repair-019-dehumidifier",
+  "task_id": "repair_intake",
+  "task_version": "0.1.0",
+  "snapshots": [
+    {
+      "snapshot_id": "repair-019-s01",
+      "through_event_id": "repair-019-e01",
+      "values": {
+        "appliance": "Dehumidifier",
+        "location": "Finished basement",
+        "active_leak": true,
+        "preferred_appointment": "Saturday afternoon",
+        "quote_required": null,
+        "spending_limit": {
+          "amount": 275,
+          "currency": "USD"
+        }
+      },
+      "evidence": {
+        "appliance": [
+          {
+            "event_id": "repair-019-e01",
+            "start_char": 19,
+            "end_char": 31
+          }
+        ],
+        "location": [
+          {
+            "event_id": "repair-019-e01",
+            "start_char": 39,
+            "end_char": 56
+          }
+        ],
+        "active_leak": [
+          {
+            "event_id": "repair-019-e01",
+            "start_char": 58,
+            "end_char": 78
+          }
+        ],
+        "preferred_appointment": [
+          {
+            "event_id": "repair-019-e01",
+            "start_char": 80,
+            "end_char": 98
+          }
+        ],
+        "spending_limit": [
+          {
+            "event_id": "repair-019-e01",
+            "start_char": 172,
+            "end_char": 176
+          }
+        ]
+      }
+    }
+  ]
+}

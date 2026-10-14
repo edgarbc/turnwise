@@ -1,1 +1,66 @@
-{"conversation_id":"repair-030-water-softener","task_id":"repair_intake","task_version":"0.1.0","snapshots":[{"snapshot_id":"repair-030-s01","through_event_id":"repair-030-e01","values":{"appliance":"Water softener","location":"Basement utility room","active_leak":true,"preferred_appointment":"Saturday morning","quote_required":true,"spending_limit":{"amount":950,"currency":"USD"}},"evidence":{"appliance":[{"event_id":"repair-030-e01","start_char":19,"end_char":33}],"location":[{"event_id":"repair-030-e01","start_char":41,"end_char":62}],"active_leak":[{"event_id":"repair-030-e01","start_char":64,"end_char":84}],"preferred_appointment":[{"event_id":"repair-030-e01","start_char":86,"end_char":102}],"quote_required":[{"event_id":"repair-030-e01","start_char":117,"end_char":150}],"spending_limit":[{"event_id":"repair-030-e01","start_char":166,"end_char":170}]}}]}
+{
+  "conversation_id": "repair-030-water-softener",
+  "task_id": "repair_intake",
+  "task_version": "0.1.0",
+  "snapshots": [
+    {
+      "snapshot_id": "repair-030-s01",
+      "through_event_id": "repair-030-e01",
+      "values": {
+        "appliance": "Water softener",
+        "location": "Basement utility room",
+        "active_leak": true,
+        "preferred_appointment": "Saturday morning",
+        "quote_required": true,
+        "spending_limit": {
+          "amount": 950,
+          "currency": "USD"
+        }
+      },
+      "evidence": {
+        "appliance": [
+          {
+            "event_id": "repair-030-e01",
+            "start_char": 19,
+            "end_char": 33
+          }
+        ],
+        "location": [
+          {
+            "event_id": "repair-030-e01",
+            "start_char": 41,
+            "end_char": 62
+          }
+        ],
+        "active_leak": [
+          {
+            "event_id": "repair-030-e01",
+            "start_char": 64,
+            "end_char": 84
+          }
+        ],
+        "preferred_appointment": [
+          {
+            "event_id": "repair-030-e01",
+            "start_char": 86,
+            "end_char": 102
+          }
+        ],
+        "quote_required": [
+          {
+            "event_id": "repair-030-e01",
+            "start_char": 117,
+            "end_char": 150
+          }
+        ],
+        "spending_limit": [
+          {
+            "event_id": "repair-030-e01",
+            "start_char": 166,
+            "end_char": 170
+          }
+        ]
+      }
+    }
+  ]
+}

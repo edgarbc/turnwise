@@ -1,1 +1,56 @@
-{"conversation_id":"repair-027-portable-dishwasher","task_id":"repair_intake","task_version":"0.1.0","snapshots":[{"snapshot_id":"repair-027-s01","through_event_id":"repair-027-e01","values":{"appliance":"Portable dishwasher","location":"Studio kitchenette","active_leak":false,"preferred_appointment":"Saturday afternoon","quote_required":true,"spending_limit":null},"evidence":{"appliance":[{"event_id":"repair-027-e01","start_char":19,"end_char":38}],"location":[{"event_id":"repair-027-e01","start_char":46,"end_char":64}],"active_leak":[{"event_id":"repair-027-e01","start_char":66,"end_char":95}],"preferred_appointment":[{"event_id":"repair-027-e01","start_char":97,"end_char":115}],"quote_required":[{"event_id":"repair-027-e01","start_char":130,"end_char":159}]}}]}
+{
+  "conversation_id": "repair-027-portable-dishwasher",
+  "task_id": "repair_intake",
+  "task_version": "0.1.0",
+  "snapshots": [
+    {
+      "snapshot_id": "repair-027-s01",
+      "through_event_id": "repair-027-e01",
+      "values": {
+        "appliance": "Portable dishwasher",
+        "location": "Studio kitchenette",
+        "active_leak": false,
+        "preferred_appointment": "Saturday afternoon",
+        "quote_required": true,
+        "spending_limit": null
+      },
+      "evidence": {
+        "appliance": [
+          {
+            "event_id": "repair-027-e01",
+            "start_char": 19,
+            "end_char": 38
+          }
+        ],
+        "location": [
+          {
+            "event_id": "repair-027-e01",
+            "start_char": 46,
+            "end_char": 64
+          }
+        ],
+        "active_leak": [
+          {
+            "event_id": "repair-027-e01",
+            "start_char": 66,
+            "end_char": 95
+          }
+        ],
+        "preferred_appointment": [
+          {
+            "event_id": "repair-027-e01",
+            "start_char": 97,
+            "end_char": 115
+          }
+        ],
+        "quote_required": [
+          {
+            "event_id": "repair-027-e01",
+            "start_char": 130,
+            "end_char": 159
+          }
+        ]
+      }
+    }
+  ]
+}

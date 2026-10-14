@@ -1,1 +1,66 @@
-{"conversation_id":"repair-017-cooktop","task_id":"repair_intake","task_version":"0.1.0","snapshots":[{"snapshot_id":"repair-017-s01","through_event_id":"repair-017-e01","values":{"appliance":"Cooktop","location":"Island kitchen","active_leak":false,"preferred_appointment":"Thursday afternoon","quote_required":true,"spending_limit":{"amount":350,"currency":"USD"}},"evidence":{"appliance":[{"event_id":"repair-017-e01","start_char":19,"end_char":26}],"location":[{"event_id":"repair-017-e01","start_char":34,"end_char":48}],"active_leak":[{"event_id":"repair-017-e01","start_char":50,"end_char":79}],"preferred_appointment":[{"event_id":"repair-017-e01","start_char":81,"end_char":99}],"quote_required":[{"event_id":"repair-017-e01","start_char":114,"end_char":140}],"spending_limit":[{"event_id":"repair-017-e01","start_char":154,"end_char":158}]}}]}
+{
+  "conversation_id": "repair-017-cooktop",
+  "task_id": "repair_intake",
+  "task_version": "0.1.0",
+  "snapshots": [
+    {
+      "snapshot_id": "repair-017-s01",
+      "through_event_id": "repair-017-e01",
+      "values": {
+        "appliance": "Cooktop",
+        "location": "Island kitchen",
+        "active_leak": false,
+        "preferred_appointment": "Thursday afternoon",
+        "quote_required": true,
+        "spending_limit": {
+          "amount": 350,
+          "currency": "USD"
+        }
+      },
+      "evidence": {
+        "appliance": [
+          {
+            "event_id": "repair-017-e01",
+            "start_char": 19,
+            "end_char": 26
+          }
+        ],
+        "location": [
+          {
+            "event_id": "repair-017-e01",
+            "start_char": 34,
+            "end_char": 48
+          }
+        ],
+        "active_leak": [
+          {
+            "event_id": "repair-017-e01",
+            "start_char": 50,
+            "end_char": 79
+          }
+        ],
+        "preferred_appointment": [
+          {
+            "event_id": "repair-017-e01",
+            "start_char": 81,
+            "end_char": 99
+          }
+        ],
+        "quote_required": [
+          {
+            "event_id": "repair-017-e01",
+            "start_char": 114,
+            "end_char": 140
+          }
+        ],
+        "spending_limit": [
+          {
+            "event_id": "repair-017-e01",
+            "start_char": 154,
+            "end_char": 158
+          }
+        ]
+      }
+    }
+  ]
+}

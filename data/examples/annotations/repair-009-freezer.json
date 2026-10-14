@@ -1,1 +1,52 @@
-{"conversation_id":"repair-009-freezer","task_id":"repair_intake","task_version":"0.1.0","snapshots":[{"snapshot_id":"repair-009-s01","through_event_id":"repair-009-e01","values":{"appliance":"Freezer","location":"Basement","active_leak":null,"preferred_appointment":"Wednesday evening","quote_required":null,"spending_limit":{"amount":300,"currency":"USD"}},"evidence":{"appliance":[{"event_id":"repair-009-e01","start_char":19,"end_char":26}],"location":[{"event_id":"repair-009-e01","start_char":34,"end_char":42}],"preferred_appointment":[{"event_id":"repair-009-e01","start_char":89,"end_char":106}],"spending_limit":[{"event_id":"repair-009-e01","start_char":185,"end_char":189}]}}]}
+{
+  "conversation_id": "repair-009-freezer",
+  "task_id": "repair_intake",
+  "task_version": "0.1.0",
+  "snapshots": [
+    {
+      "snapshot_id": "repair-009-s01",
+      "through_event_id": "repair-009-e01",
+      "values": {
+        "appliance": "Freezer",
+        "location": "Basement",
+        "active_leak": null,
+        "preferred_appointment": "Wednesday evening",
+        "quote_required": null,
+        "spending_limit": {
+          "amount": 300,
+          "currency": "USD"
+        }
+      },
+      "evidence": {
+        "appliance": [
+          {
+            "event_id": "repair-009-e01",
+            "start_char": 19,
+            "end_char": 26
+          }
+        ],
+        "location": [
+          {
+            "event_id": "repair-009-e01",
+            "start_char": 34,
+            "end_char": 42
+          }
+        ],
+        "preferred_appointment": [
+          {
+            "event_id": "repair-009-e01",
+            "start_char": 89,
+            "end_char": 106
+          }
+        ],
+        "spending_limit": [
+          {
+            "event_id": "repair-009-e01",
+            "start_char": 185,
+            "end_char": 189
+          }
+        ]
+      }
+    }
+  ]
+}

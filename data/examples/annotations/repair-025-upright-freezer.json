@@ -1,1 +1,66 @@
-{"conversation_id":"repair-025-upright-freezer","task_id":"repair_intake","task_version":"0.1.0","snapshots":[{"snapshot_id":"repair-025-s01","through_event_id":"repair-025-e01","values":{"appliance":"Upright freezer","location":"Mudroom","active_leak":false,"preferred_appointment":"Friday afternoon","quote_required":false,"spending_limit":{"amount":375,"currency":"USD"}},"evidence":{"appliance":[{"event_id":"repair-025-e01","start_char":19,"end_char":34}],"location":[{"event_id":"repair-025-e01","start_char":42,"end_char":49}],"active_leak":[{"event_id":"repair-025-e01","start_char":51,"end_char":80}],"preferred_appointment":[{"event_id":"repair-025-e01","start_char":82,"end_char":98}],"quote_required":[{"event_id":"repair-025-e01","start_char":113,"end_char":148}],"spending_limit":[{"event_id":"repair-025-e01","start_char":171,"end_char":175}]}}]}
+{
+  "conversation_id": "repair-025-upright-freezer",
+  "task_id": "repair_intake",
+  "task_version": "0.1.0",
+  "snapshots": [
+    {
+      "snapshot_id": "repair-025-s01",
+      "through_event_id": "repair-025-e01",
+      "values": {
+        "appliance": "Upright freezer",
+        "location": "Mudroom",
+        "active_leak": false,
+        "preferred_appointment": "Friday afternoon",
+        "quote_required": false,
+        "spending_limit": {
+          "amount": 375,
+          "currency": "USD"
+        }
+      },
+      "evidence": {
+        "appliance": [
+          {
+            "event_id": "repair-025-e01",
+            "start_char": 19,
+            "end_char": 34
+          }
+        ],
+        "location": [
+          {
+            "event_id": "repair-025-e01",
+            "start_char": 42,
+            "end_char": 49
+          }
+        ],
+        "active_leak": [
+          {
+            "event_id": "repair-025-e01",
+            "start_char": 51,
+            "end_char": 80
+          }
+        ],
+        "preferred_appointment": [
+          {
+            "event_id": "repair-025-e01",
+            "start_char": 82,
+            "end_char": 98
+          }
+        ],
+        "quote_required": [
+          {
+            "event_id": "repair-025-e01",
+            "start_char": 113,
+            "end_char": 148
+          }
+        ],
+        "spending_limit": [
+          {
+            "event_id": "repair-025-e01",
+            "start_char": 171,
+            "end_char": 175
+          }
+        ]
+      }
+    }
+  ]
+}

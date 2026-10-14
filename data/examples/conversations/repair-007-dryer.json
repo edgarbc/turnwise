@@ -2,5 +2,15 @@
   "conversation_id": "repair-007-dryer",
   "task_id": "repair_intake",
   "task_version": "0.1.0",
-  "events": [{"event_id":"repair-007-e01","speaker":"customer","start_ms":0,"end_ms":9000,"revision":0,"is_final":true,"text":"Please service the clothes dryer in the garage. There is no water leaking now. Friday afternoon works for me. I require a quote before work. I can spend up to USD 400."}]
+  "events": [
+    {
+      "event_id": "repair-007-e01",
+      "speaker": "customer",
+      "start_ms": 0,
+      "end_ms": 9000,
+      "revision": 0,
+      "is_final": true,
+      "text": "Please service the clothes dryer in the garage. There is no water leaking now. Friday afternoon works for me. I require a quote before work. I can spend up to USD 400."
+    }
+  ]
 }

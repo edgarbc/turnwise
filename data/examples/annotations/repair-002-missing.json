@@ -15,8 +15,20 @@
         "spending_limit": null
       },
       "evidence": {
-        "appliance": [{"event_id": "repair-002-e01", "start_char": 4, "end_char": 16}],
-        "location": [{"event_id": "repair-002-e01", "start_char": 24, "end_char": 32}]
+        "appliance": [
+          {
+            "event_id": "repair-002-e01",
+            "start_char": 4,
+            "end_char": 16
+          }
+        ],
+        "location": [
+          {
+            "event_id": "repair-002-e01",
+            "start_char": 24,
+            "end_char": 32
+          }
+        ]
       }
     },
     {
@@ -31,8 +43,20 @@
         "spending_limit": null
       },
       "evidence": {
-        "appliance": [{"event_id": "repair-002-e01", "start_char": 4, "end_char": 16}],
-        "location": [{"event_id": "repair-002-e01", "start_char": 24, "end_char": 32}]
+        "appliance": [
+          {
+            "event_id": "repair-002-e01",
+            "start_char": 4,
+            "end_char": 16
+          }
+        ],
+        "location": [
+          {
+            "event_id": "repair-002-e01",
+            "start_char": 24,
+            "end_char": 32
+          }
+        ]
       }
     }
   ]

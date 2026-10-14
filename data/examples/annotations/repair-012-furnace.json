@@ -1,1 +1,59 @@
-{"conversation_id":"repair-012-furnace","task_id":"repair_intake","task_version":"0.1.0","snapshots":[{"snapshot_id":"repair-012-s01","through_event_id":"repair-012-e01","values":{"appliance":"Furnace","location":"Attic","active_leak":null,"preferred_appointment":"Sunday morning","quote_required":true,"spending_limit":{"amount":1200,"currency":"USD"}},"evidence":{"appliance":[{"event_id":"repair-012-e01","start_char":19,"end_char":26}],"location":[{"event_id":"repair-012-e01","start_char":34,"end_char":39}],"preferred_appointment":[{"event_id":"repair-012-e01","start_char":86,"end_char":100}],"quote_required":[{"event_id":"repair-012-e01","start_char":115,"end_char":145}],"spending_limit":[{"event_id":"repair-012-e01","start_char":161,"end_char":193}]}}]}
+{
+  "conversation_id": "repair-012-furnace",
+  "task_id": "repair_intake",
+  "task_version": "0.1.0",
+  "snapshots": [
+    {
+      "snapshot_id": "repair-012-s01",
+      "through_event_id": "repair-012-e01",
+      "values": {
+        "appliance": "Furnace",
+        "location": "Attic",
+        "active_leak": null,
+        "preferred_appointment": "Sunday morning",
+        "quote_required": true,
+        "spending_limit": {
+          "amount": 1200,
+          "currency": "USD"
+        }
+      },
+      "evidence": {
+        "appliance": [
+          {
+            "event_id": "repair-012-e01",
+            "start_char": 19,
+            "end_char": 26
+          }
+        ],
+        "location": [
+          {
+            "event_id": "repair-012-e01",
+            "start_char": 34,
+            "end_char": 39
+          }
+        ],
+        "preferred_appointment": [
+          {
+            "event_id": "repair-012-e01",
+            "start_char": 86,
+            "end_char": 100
+          }
+        ],
+        "quote_required": [
+          {
+            "event_id": "repair-012-e01",
+            "start_char": 115,
+            "end_char": 145
+          }
+        ],
+        "spending_limit": [
+          {
+            "event_id": "repair-012-e01",
+            "start_char": 161,
+            "end_char": 193
+          }
+        ]
+      }
+    }
+  ]
+}

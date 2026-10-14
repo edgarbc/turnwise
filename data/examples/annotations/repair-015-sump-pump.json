@@ -1,1 +1,66 @@
-{"conversation_id":"repair-015-sump-pump","task_id":"repair_intake","task_version":"0.1.0","snapshots":[{"snapshot_id":"repair-015-s01","through_event_id":"repair-015-e01","values":{"appliance":"Sump pump","location":"Crawl space","active_leak":true,"preferred_appointment":"Sunday morning","quote_required":true,"spending_limit":{"amount":800,"currency":"USD"}},"evidence":{"appliance":[{"event_id":"repair-015-e01","start_char":19,"end_char":28}],"location":[{"event_id":"repair-015-e01","start_char":36,"end_char":47}],"active_leak":[{"event_id":"repair-015-e01","start_char":49,"end_char":69}],"preferred_appointment":[{"event_id":"repair-015-e01","start_char":71,"end_char":85}],"quote_required":[{"event_id":"repair-015-e01","start_char":100,"end_char":134}],"spending_limit":[{"event_id":"repair-015-e01","start_char":157,"end_char":161}]}}]}
+{
+  "conversation_id": "repair-015-sump-pump",
+  "task_id": "repair_intake",
+  "task_version": "0.1.0",
+  "snapshots": [
+    {
+      "snapshot_id": "repair-015-s01",
+      "through_event_id": "repair-015-e01",
+      "values": {
+        "appliance": "Sump pump",
+        "location": "Crawl space",
+        "active_leak": true,
+        "preferred_appointment": "Sunday morning",
+        "quote_required": true,
+        "spending_limit": {
+          "amount": 800,
+          "currency": "USD"
+        }
+      },
+      "evidence": {
+        "appliance": [
+          {
+            "event_id": "repair-015-e01",
+            "start_char": 19,
+            "end_char": 28
+          }
+        ],
+        "location": [
+          {
+            "event_id": "repair-015-e01",
+            "start_char": 36,
+            "end_char": 47
+          }
+        ],
+        "active_leak": [
+          {
+            "event_id": "repair-015-e01",
+            "start_char": 49,
+            "end_char": 69
+          }
+        ],
+        "preferred_appointment": [
+          {
+            "event_id": "repair-015-e01",
+            "start_char": 71,
+            "end_char": 85
+          }
+        ],
+        "quote_required": [
+          {
+            "event_id": "repair-015-e01",
+            "start_char": 100,
+            "end_char": 134
+          }
+        ],
+        "spending_limit": [
+          {
+            "event_id": "repair-015-e01",
+            "start_char": 157,
+            "end_char": 161
+          }
+        ]
+      }
+    }
+  ]
+}

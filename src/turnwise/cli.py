@@ -71,7 +71,11 @@ def replay(
     if provider not in {"fixture", "jev", "openai"}:
         raise typer.BadParameter("provider must be fixture, jev, or openai")
     if responses is not None and provider != "fixture":
-        raise typer.BadParameter("--responses is only supported with --provider fixture")
+        typer.echo(
+            "Error: --responses is only supported with --provider fixture",
+            err=True,
+        )
+        raise typer.Exit(code=2)
     if not case.is_file():
         raise typer.BadParameter(f"conversation fixture not found: {case}")
     if responses is not None and not responses.is_file():

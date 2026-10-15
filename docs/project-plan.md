@@ -1,11 +1,11 @@
 # Project Plan
 
-This document tracks the planned work for Turnwise. The repository is currently in the planning stage; paths and commands below describe intended work and are not implemented unless stated otherwise.
+This document tracks completed work and the research roadmap for Turnwise. The repository contains an implemented evaluation pipeline and an exploratory Jev/OpenAI pilot; audio processing, model training, and a production application remain future work.
 
 ## Research questions
 
 1. When does a general decision model such as Jev offer an advantage over a general LLM with schema-constrained output?
-2. Once the concept works, can a small local decision model approach Jev's task performance through fine-tuning?
+2. Can task-specific training improve an open-weight classifier on this structured extraction task?
 3. Which improvements in data, training, and calibration close the gap, and at what cost?
 
 The project investigates specialization twice: selecting a decision-oriented model, then training a local specialist for a defined task. A result on this task does not establish general-purpose equivalence.
@@ -17,11 +17,12 @@ The project investigates specialization twice: selecting a decision-oriented mod
 | 1. Define the task | Six fields, explicit unknown states, annotation rules, and transcript-prefix examples | Reviewed examples and annotation rules |
 | 2. Prove and compare | Jev and a general LLM, followed by incremental replay and a small audio demo | Measured feasibility and evidence about where decision models help |
 | 3. Freeze references | Pin task, prompts, models, dataset, and evaluation protocol | Reproducible comparison |
-| 4. Train locally | Train a small decision model with the Unsloth workflow | Saved checkpoint integrated into the same application |
-| 5. Improve | Analyze validation errors, improve data and training, and calibrate | Documented learning curves and performance gaps |
-| 6. Evaluate | Compare frozen models on untouched data and demonstrate local audio processing | Final report and reproducible demo |
+| 4. Establish local baseline | Select an open-weight model and measure its pretrained classifier performance | Reproducible baseline, model/license record, and inference adapter |
+| 5. Train locally | Train the open-weight classifier for the task | Saved checkpoint integrated into the same application and measured against its baseline |
+| 6. Improve | Analyze validation errors, improve data and training, and calibrate | Documented learning curves and performance gaps |
+| 7. Evaluate | Compare frozen models on untouched data and demonstrate local audio processing | Final report and reproducible demo |
 
-Training begins after the Jev concept is tested. Both reference models remain in the final comparison. If Jev does not outperform the general LLM, that is a result to report; local specialization can still be investigated.
+The initial Jev/OpenAI concept comparison is complete for the synthetic pilot. Both reference models remain in the final comparison. The next modeling milestone is an open-weight classifier baseline followed by task-specific training; a smaller hosted model is deferred. If Jev does not outperform the general LLM, that is a result to report; local specialization can still be investigated.
 
 ## First implementation milestone
 
@@ -30,8 +31,7 @@ Training begins after the Jev concept is tested. Both reference models remain in
 - [x] Define the six-field task and annotation rules in `configs/tasks/repair-intake.yaml` and `docs/annotation-guide.md`.
 - [x] Create 30 synthetic conversations covering ordinary facts, missing facts, negation, corrections, ambiguity, conflicts, and distractor values.
 - [x] Draft prefix-level gold annotations for all 30 conversations.
-- [x] Human-review and approve gold annotations for cases 001-005.
-- [ ] Human-review gold annotations for cases 006-030 and update the dataset manifest.
+- [x] Human-review and approve all 30 gold annotations and 35 snapshots.
 - [x] Implement shared contracts and transcript-prefix assembly.
 - [x] Implement fixture-based replay through the provider boundary.
 - [x] Verify future-turn exclusion, explicit absence versus unknown, and stale-response rejection.
@@ -42,9 +42,11 @@ Training begins after the Jev concept is tested. Both reference models remain in
 - [x] Implement the sequential pilot evaluation runner and run/report CLI commands.
 - [x] Add a hash-pinned pilot manifest and block hosted evaluation until human review is recorded.
 - [x] Run the initial five-conversation side-by-side pilot report with explicitly authorized provider calls.
-- [x] Run an expanded 30-conversation comparison once; Jev evidence mapping was subsequently fixed, so rerun after new annotations are reviewed.
-- [ ] Add a smaller, lower-cost OpenAI baseline such as GPT-6 Luna and compare it on the same prefixes.
-- [ ] Rerun the side-by-side report on all 30 conversations after annotation review and Jev evidence fix.
+- [x] Run the expanded 30-conversation, 35-prefix Jev/OpenAI comparison and publish a sanitized aggregate summary and figure.
+- [ ] Select and evaluate an open-weight classifier before task-specific training.
+- [ ] Train the classifier and compare pretrained versus fine-tuned results against both reference models.
+- [ ] Create a held-out dataset split large enough to support a meaningful follow-up evaluation.
+- [ ] Optionally add a smaller, lower-cost hosted baseline such as GPT-6 Luna in a later experiment revision.
 
 The pilot pins Jev `jev-1.13.0` and OpenAI `gpt-6.1-sol`; both SDK versions are pinned in project dependencies. Keep provider credentials in environment variables outside version control. Provider smoke tests should be explicitly invoked and request-limited.
 
@@ -111,7 +113,7 @@ Keep the initial implementation in one Python package. Separate GPU training dep
 
 ## Planned command interface
 
-These commands describe the intended interface; they are not runnable yet.
+These commands are implemented in the current CLI:
 
 ```bash
 uv run turnwise validate --dataset data/examples
@@ -138,4 +140,4 @@ If shared pipeline logic changes, rerun both references. Freeze the final config
 
 Commit only synthetic examples and selected publishable reports. Exclude secrets, personal audio, raw generated runs, and checkpoints from ordinary Git history. Record dataset provenance and licenses before redistribution.
 
-No benchmark results are available yet. The intended outcome is a working demo, trained local checkpoint, reproducible evaluation, and a technical post explaining when each approach is useful.
+The current results are one exploratory run on 30 synthetic conversations and 35 prefixes. The selected aggregate summary is committed under `reports/`; raw run artifacts remain ignored. The longer-term outcome is a working demo, an open-weight classifier measured before and after training, reproducible held-out evaluation, and a technical post explaining when each approach is useful.

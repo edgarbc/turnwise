@@ -6,9 +6,9 @@
 
 *From conversation to structured decisions.*
 
-Turnwise is a research project about extracting reliable, reviewable information from conversations. It will compare decision models with schema-constrained LLMs, then explore whether a small local decision model can perform well on the same task.
+Turnwise is a research project about extracting reliable, reviewable information from conversations. It compares a decision model with schema-constrained LLMs and will investigate whether training an open-weight classifier for the task improves on those baselines.
 
-**Status: Early implementation.** The uv-managed package, CLI, synthetic pilot dataset, offline validator, replay pipeline, and Jev/OpenAI adapters are implemented. The expanded 30-case gold set is still under review; results remain pilot-only.
+**Status: Early implementation.** The uv-managed package, CLI, reviewed synthetic pilot dataset, offline validator, replay pipeline, Jev/OpenAI adapters, evaluation runner, and first comparison are implemented. Results remain exploratory pilot evidence, not a general performance claim.
 
 ## Problem
 
@@ -18,14 +18,14 @@ The initial experiment uses synthetic English conversations about one appliance,
 
 ## Research approach
 
-The first comparison is between Jev and a general LLM using schema-constrained output. Both receive the same task labels, transcript prefixes, and candidate values. If the concept is useful, a small local decision model will be trained and evaluated against both references. The experiment measures correctness, output validity, latency, cost, and uncertainty handling; valid output structure alone is not treated as evidence of correct answers.
+The first comparison is between Jev and a general LLM using schema-constrained output. Both receive the same task labels, transcript prefixes, and candidate values. The next modeling objective is to train an open-weight classifier and measure whether task-specific training improves its results against both references. A smaller hosted LLM baseline is deferred future work. The experiment measures correctness, output validity, latency, cost, and uncertainty handling; valid output structure alone is not treated as evidence of correct answers.
 
 The task and experimental limits matter: matching Jev on this defined task would not show equivalent performance on arbitrary tasks. See the [evaluation protocol](docs/evaluation-protocol.md) for the planned comparison and metrics.
 
 ## Project documents
 
 - [Project plan](docs/project-plan.md): milestones, architecture, tooling, and intended repository layout.
-- [Annotation guide](docs/annotation-guide.md): field meanings and proposed rules for evidence, unknowns, negation, and corrections.
+- [Annotation guide](docs/annotation-guide.md): field meanings and rules for evidence, unknowns, negation, and corrections.
 - [Evaluation protocol](docs/evaluation-protocol.md): baselines, data splits, metrics, and comparison safeguards.
 
 ## Command-line interface
@@ -37,6 +37,8 @@ uv sync
 uv run turnwise --help
 uv run pytest
 ```
+
+GitHub Actions runs the dataset validator and test suite on pushes and pull requests. CI uses no provider credentials and makes no hosted API calls.
 
 The CLI registers four commands. Offline dataset validation, replay, pilot evaluation, and report summaries are implemented. Hosted replay and benchmark commands make paid API requests; select them explicitly. Use each command's `--help` option to inspect its arguments:
 
@@ -68,7 +70,15 @@ The benchmark invokes Jev and OpenAI sequentially for every selected gold prefix
 
 ![Jev and OpenAI benchmark results for the 30-conversation, 35-prefix synthetic pilot](reports/jev-vs-llm-pilot-20261014.svg)
 
-For run `20261014T035502398257Z-8196c207`, both providers scored 100% on accuracy, macro-F1, and evidence validity. Evidence-event match was 99.4% for Jev and 100% for OpenAI. Jev's p50 latency was 92 ms versus 3,219 ms for OpenAI; estimated run cost was $0.0024 versus $0.1000. These are pilot observations on synthetic data, not a representative performance claim.
+The [sanitized aggregate summary](reports/jev-vs-llm-pilot-20261014.json) records run `20261014T035502398257Z-8196c207` without persisting per-prefix predictions or gold values. Both providers scored 100% on accuracy, macro-F1, and evidence validity. Evidence-event match was 99.4% for Jev and 100% for OpenAI. Jev's p50 latency was 92 ms versus 3,219 ms for OpenAI; estimated run cost was $0.0024 versus $0.1000. These are pilot observations on synthetic data, not a representative performance claim.
+
+Regenerate the figure from the committed summary without requiring the ignored raw run artifact:
+
+```bash
+uv run python scripts/plot_pilot_results.py \
+  --summary reports/jev-vs-llm-pilot-20261014.json \
+  --output reports/jev-vs-llm-pilot-20261014.svg
+```
 
 Cost is estimated from SDK-reported tokens and standard short-context rates pinned in the experiment config: Jev input is `$0.042` per million tokens with free output; OpenAI `gpt-6.1-sol` input is `$2.00`, cached input `$0.10`, cache writes `$2.50`, and output `$10.00` per million tokens. The estimate is marked incomplete when usage is missing; taxes, account discounts, and any non-standard processing tier are excluded. See the pricing sources recorded in the config.
 
@@ -138,9 +148,9 @@ Fields:
 
 The request uses `model="gpt-6.1-sol"`, `reasoning.effort="low"`, `store=False`, and `text.format={"type":"json_schema","strict":true,...}`. Candidate selections and boolean evidence are then validated and normalized locally.
 
-### Next comparison
+### Future work
 
-The current pilot compares Jev with GPT-6.1 Sol. Next, add a smaller, lower-cost model such as **GPT-6 Luna** as another structured-output baseline, pin its model/SDK settings, and run it on the same prefixes before drawing broader conclusions.
+The current pilot compares Jev with GPT-6.1 Sol. The primary next research step is to select an open-weight model, establish a pretrained classifier baseline, then train it for repair-intake classification and compare both against the same frozen task and leakage-safe evaluation. A smaller, lower-cost hosted model such as GPT-6 Luna is deferred and is not required for that next milestone. Broader claims require additional data and a held-out evaluation set.
 
 Validate the conversation and annotation files in the example dataset with:
 

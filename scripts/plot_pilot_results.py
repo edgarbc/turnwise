@@ -19,7 +19,6 @@ WHITE = "#FFFFFF"
 GRID = "#DFE8E5"
 JEV = "#147D73"
 OPENAI = "#D45E4C"
-ACCENT = "#D9A441"
 
 
 def text(x: float, y: float, value: str, *, size: int = 16, fill: str = INK,
@@ -63,7 +62,9 @@ def render_chart(data: dict[str, Any]) -> str:
     jev = summaries[providers[0]]
     openai = summaries[providers[1]]
     prefix_count = int(data["dataset"]["prefix_count"])
-    case_count = len(data["dataset"]["cases"])
+    case_count = int(data["dataset"].get(
+        "conversation_count", len(data["dataset"].get("cases", []))
+    ))
     created = data["created_at"][:10]
     run_id = data["run_id"]
 
@@ -266,12 +267,29 @@ def render_chart(data: dict[str, Any]) -> str:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--run", type=Path, required=True,
-                        help="Run directory containing evaluation.json")
-    parser.add_argument("--output", type=Path, required=True,
-                        help="Output SVG path")
+    source = parser.add_mutually_exclusive_group(required=True)
+    source.add_argument(
+        "--run",
+        type=Path,
+        help="Run directory containing evaluation.json",
+    )
+    source.add_argument(
+        "--summary",
+        type=Path,
+        help="Compact sanitized evaluation summary JSON",
+    )
+    parser.add_argument(
+        "--output",
+        type=Path,
+        required=True,
+        help="Output SVG path",
+    )
     args = parser.parse_args()
-    evaluation_path = args.run / "evaluation.json"
+    evaluation_path = (
+        args.summary
+        if args.summary is not None
+        else args.run / "evaluation.json"
+    )
     data = json.loads(evaluation_path.read_text(encoding="utf-8"))
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(render_chart(data), encoding="utf-8")

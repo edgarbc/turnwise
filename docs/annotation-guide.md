@@ -1,6 +1,6 @@
 # Annotation Guide
 
-This is the annotation reference for the repair-intake pilot. The 30 synthetic conversations and 35 prefix snapshots pass machine validation. Cases 001-005 were previously reviewed; the expanded annotations for cases 006-030 still need human review. Do not run a hosted comparison until the full manifest records approval, reviewer identity, and timestamp in `data/manifests/jev-vs-llm-pilot.json`.
+This is the annotation reference for the repair-intake pilot. The 30 synthetic conversations and 35 prefix snapshots pass machine validation and are recorded as human-reviewed in `data/manifests/jev-vs-llm-pilot.json`. If annotations change, rerun validation and review the affected snapshots before updating their manifest approval and source hashes. The manifest must record overall reviewer identity and timestamp before hosted evaluation.
 
 ## Scope
 

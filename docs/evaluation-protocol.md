@@ -1,15 +1,15 @@
 # Evaluation Protocol
 
-This protocol describes the planned comparison. Freeze the task, model versions, prompts, dataset, and measurement rules before the final evaluation. No benchmark results are available yet.
+This protocol describes the comparison safeguards. Freeze the task, model versions, prompts, dataset, and measurement rules before each evaluation. An exploratory Jev/OpenAI pilot has been run on 30 synthetic conversations and 35 annotated prefixes; its aggregate results are summarized in [`reports/jev-vs-llm-pilot-20261014.json`](../reports/jev-vs-llm-pilot-20261014.json). This pilot is development evidence, not a final or held-out benchmark.
 
 ## Systems
 
-The final comparison includes:
+The current hosted comparison includes:
 
-- A general LLM with schema-constrained output.
 - Jev without task-specific fine-tuning.
-- The local model before task-specific fine-tuning.
-- The same local model after fine-tuning.
+- OpenAI GPT-6.1 Sol with strict schema-constrained output.
+
+The next modeling comparison will add an open-weight classifier measured both before and after task-specific training. Record the model/license, checkpoint revision, classifier head initialization, training data, hyperparameters, and compute. A smaller hosted LLM baseline is optional future work, not a prerequisite for classifier training.
 
 Record whether the initial local checkpoint is an existing decision model or a backbone with a newly initialized decision head. A random head is a sanity baseline only.
 
@@ -42,7 +42,7 @@ The pilot report estimates cost from actual SDK usage and the standard-tier, sho
 
 Include failures and retries in the report. Cached replay is not a latency measurement. Report per-field results and uncertainty intervals.
 
-The current evaluation runner scores each annotated prefix independently. Its evidence-validity measure checks that returned spans point to customer text inside the visible prefix; the pilot additionally records whether the evidence event matches the human annotation. Neither measure alone establishes semantic entailment. The five-case pilot is for exercising the evaluation workflow, not for drawing model-quality conclusions or uncertainty intervals suitable for publication.
+The current evaluation runner scores each annotated prefix independently. Its evidence-validity measure checks that returned spans point to customer text inside the visible prefix; the pilot additionally records whether the evidence event matches the human annotation. Neither measure alone establishes semantic entailment. The 30-conversation pilot is larger than the initial workflow smoke test but remains synthetic, single-run development evidence; it does not support general performance claims or robust uncertainty intervals.
 
 ## Provisional local-model goals
 
@@ -50,4 +50,4 @@ The initial targets are macro-F1 within two percentage points of Jev and coverag
 
 ## Reporting
 
-Publish selected reports only. Include model and dataset versions, configuration, environment, measurement policy, and any exclusions or retries so comparisons can be reproduced. Preserve an untouched final test set for the frozen comparison.
+Publish selected reports only. Include model and dataset versions, configuration, environment, measurement policy, and any exclusions or retries so comparisons can be reproduced. Commit aggregate summaries rather than per-example predictions or gold labels. Preserve an untouched final test set for the frozen comparison.

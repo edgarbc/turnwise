@@ -276,3 +276,6 @@ turnwise/
 - [TypeSafe and Jev documentation](https://docs.typesafe.ai/introduction)
 - [Train your own decision model with Unsloth](https://unsloth.ai/docs/basics/train-your-own-decision-model-with-unsloth)
 - [TypeSafe candidate-based value extraction](https://docs.typesafe.ai/cookbooks/pre_parsed_value_extraction_cookbook)
+
+---
+Made with 🩶 by Cortio and Copilot 

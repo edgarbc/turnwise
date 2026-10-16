@@ -72,6 +72,8 @@ The benchmark invokes Jev and OpenAI sequentially for every selected gold prefix
 
 The [sanitized aggregate summary](reports/jev-vs-llm-pilot-20261014.json) records run `20261014T035502398257Z-8196c207` without persisting per-prefix predictions or gold values. Both providers scored 100% on accuracy, macro-F1, and evidence validity. Evidence-event match was 99.4% for Jev and 100% for OpenAI. Jev's p50 latency was 92 ms versus 3,219 ms for OpenAI; estimated run cost was $0.0024 versus $0.1000. These are pilot observations on synthetic data, not a representative performance claim.
 
+Evidence-event match counts a known value as matched only when the cited event overlaps the single event recorded in the gold annotation. Jev's one miss (1 of 180 known values) was `repair-005-s02`, `preferred_appointment`: the value was correct, and Jev cited the customer's original statement (`repair-005-e03`) rather than the later reaffirmation the annotation records (`repair-005-e07`). Both are valid customer evidence for the value, so this reflects the strict single-event gold rather than a Jev error. This was found by inspecting the ignored raw run, which the committed summary cannot reproduce.
+
 Regenerate the figure from the committed summary without requiring the ignored raw run artifact:
 
 ```bash

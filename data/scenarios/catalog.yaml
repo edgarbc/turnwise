@@ -6,18 +6,29 @@ catalog:
   status: draft_for_review
   language: en
   intended_conversations: 50
+  catalogue_stage: initial_development_batch
+  initial_specification_count: 10
   split_counts:
     training: 30
     validation: 5
     calibration: 5
     test: 10
   constraints:
-    one_conversation_per_scenario: true
+    one_conversation_per_scenario_instance: true
+    each_initial_specification_generates_one_instance: true
     assign_family_before_wording_generation: true
     keep_family_in_one_split: true
     keep_all_prefixes_in_conversation_split: true
     pilot_dataset_is_training_data: false
     test_specifications_in_this_file: false
+    candidate_generation:
+      customer_events_only: true
+      appliance: Use a term currently recognized by the shared appliance extractor.
+      location: State the place in an "in" or "at" phrase that the shared location extractor recognizes.
+      preferred_appointment: Use a weekday/time expression currently recognized by the shared appointment extractor.
+      spending_limit: Use a currency/amount expression currently recognized by the shared money extractor; explicitly establish maximum semantics in context.
+    reject_generated_example_if_required_candidate_is_missing: true
+    keep_distractors_as_candidates_but_not_as_gold: true
 
 families:
   - id: train-ordinary
@@ -75,6 +86,7 @@ scenarios:
       purpose: Establish a clear baseline with all fields stated directly.
       prefixes:
         - id: p1
+          through_turn: t3
           available_facts:
             appliance: {value: Refrigerator, evidence_turn: t1}
             location: {value: Upstairs kitchen, evidence_turn: t1}
@@ -83,6 +95,16 @@ scenarios:
             quote_required: {value: true, evidence_turn: t3}
             spending_limit: {value: {amount: 500, currency: USD}, evidence_turn: t3}
       must_include: [customer_source_for_each_known_field]
+      turns:
+        - id: t1
+          speaker: customer
+          intent: Identify the refrigerator and upstairs kitchen; explicitly say it is not leaking now.
+        - id: t2
+          speaker: customer
+          intent: State Friday morning as the preferred appointment.
+        - id: t3
+          speaker: customer
+          intent: Request a quote before work and state a $500 USD maximum.
 
   - id: train-missing-001
     family_id: train-missing
@@ -92,6 +114,7 @@ scenarios:
       purpose: Keep omitted details unknown rather than inferred.
       prefixes:
         - id: p1
+          through_turn: t3
           available_facts:
             appliance: {value: Dishwasher, evidence_turn: t1}
             location: {value: Basement, evidence_turn: t1}
@@ -100,6 +123,16 @@ scenarios:
             quote_required: {value: null}
             spending_limit: {value: null}
       must_include: [no_agent_question_as_evidence, no_implied_preference_or_limit]
+      turns:
+        - id: t1
+          speaker: customer
+          intent: Identify the dishwasher in the basement without mentioning leak status, appointment, quote, or spending limit.
+        - id: t2
+          speaker: intake_agent
+          intent: Ask about leak status, appointment, quote, and spending limit without supplying answers.
+        - id: t3
+          speaker: customer
+          intent: Decline or defer those questions without giving any field values.
 
   - id: train-explicit-negative-001
     family_id: train-explicit-negative
@@ -109,6 +142,7 @@ scenarios:
       purpose: Distinguish explicit false values from unknown values.
       prefixes:
         - id: p1
+          through_turn: t2
           available_facts:
             appliance: {value: Washing machine, evidence_turn: t1}
             location: {value: Laundry room, evidence_turn: t1}
@@ -117,6 +151,13 @@ scenarios:
             quote_required: {value: false, evidence_turn: t2}
             spending_limit: {value: null}
       must_include: [explicit_customer_denial, unrelated_fields_unstated]
+      turns:
+        - id: t1
+          speaker: customer
+          intent: Identify the washing machine in the laundry room and explicitly state there is no active leak now.
+        - id: t2
+          speaker: customer
+          intent: Explicitly say a quote before repair is not required; do not state appointment or spending limit.
 
   - id: train-candidate-distractors-001
     family_id: train-candidate-distractors
@@ -126,6 +167,7 @@ scenarios:
       purpose: Make lexical candidates compete with distractor mentions.
       prefixes:
         - id: p1
+          through_turn: t2
           available_facts:
             appliance: {value: Oven, evidence_turn: t1}
             location: {value: Kitchen, evidence_turn: t1}
@@ -134,6 +176,13 @@ scenarios:
             quote_required: {value: null}
             spending_limit: {value: {amount: 180, currency: USD}, evidence_turn: t2}
       must_include: [non_selected_appointment_candidate, non_limit_money_mention]
+      turns:
+        - id: t1
+          speaker: customer
+          intent: Identify the oven in the kitchen; leave boolean fields unknown.
+        - id: t2
+          speaker: customer
+          intent: Mention Tuesday at ten as another person's availability, prefer Saturday after lunch, mention a $220 diagnostic fee as not a spending cap, and state a $180 USD maximum.
 
   - id: train-corrections-001
     family_id: train-corrections
@@ -143,6 +192,7 @@ scenarios:
       purpose: Verify prefix-specific state and prospective correction handling.
       prefixes:
         - id: p1
+          through_turn: t2
           available_facts:
             appliance: {value: Refrigerator, evidence_turn: t1}
             location: {value: Upstairs kitchen, evidence_turn: t1}
@@ -151,6 +201,7 @@ scenarios:
             quote_required: {value: null}
             spending_limit: {value: null}
         - id: p2
+          through_turn: t3
           available_facts:
             appliance: {value: Refrigerator, evidence_turn: t1}
             location: {value: Basement utility room, evidence_turn: t3}
@@ -159,6 +210,16 @@ scenarios:
             quote_required: {value: null}
             spending_limit: {value: null}
       must_include: [explicit_location_correction, explicit_appointment_correction]
+      turns:
+        - id: t1
+          speaker: customer
+          intent: Identify the refrigerator in the upstairs kitchen; leave other fields unknown.
+        - id: t2
+          speaker: customer
+          intent: State Friday morning as the preferred appointment.
+        - id: t3
+          speaker: customer
+          intent: Explicitly correct the location to the basement utility room and appointment to Saturday afternoon.
 
   - id: train-corrections-002
     family_id: train-corrections
@@ -168,6 +229,7 @@ scenarios:
       purpose: Verify a boolean state change without changing unrelated fields.
       prefixes:
         - id: p1
+          through_turn: t1
           available_facts:
             appliance: {value: Dishwasher, evidence_turn: t1}
             location: {value: Scullery, evidence_turn: t1}
@@ -176,6 +238,7 @@ scenarios:
             quote_required: {value: null}
             spending_limit: {value: null}
         - id: p2
+          through_turn: t2
           available_facts:
             appliance: {value: Dishwasher, evidence_turn: t1}
             location: {value: Scullery, evidence_turn: t1}
@@ -184,6 +247,13 @@ scenarios:
             quote_required: {value: null}
             spending_limit: {value: null}
       must_include: [explicit_leak_status_update, preserve_unchanged_values]
+      turns:
+        - id: t1
+          speaker: customer
+          intent: Identify the dishwasher in the scullery and state water is leaking now.
+        - id: t2
+          speaker: customer
+          intent: Explicitly report that the leak has stopped and there is no water leaking now.
 
   - id: validation-negation-001
     family_id: validation-negation
@@ -193,6 +263,7 @@ scenarios:
       purpose: Check negation scope and distinguish current state from historical mention.
       prefixes:
         - id: p1
+          through_turn: t1
           available_facts:
             appliance: {value: Freezer, evidence_turn: t1}
             location: {value: Garage, evidence_turn: t1}
@@ -201,6 +272,7 @@ scenarios:
             quote_required: {value: null}
             spending_limit: {value: null}
         - id: p2
+          through_turn: t2
           available_facts:
             appliance: {value: Freezer, evidence_turn: t1}
             location: {value: Garage, evidence_turn: t1}
@@ -209,6 +281,13 @@ scenarios:
             quote_required: {value: null}
             spending_limit: {value: null}
       must_include: [negated_current_leak, no_unsupported_boolean_inference]
+      turns:
+        - id: t1
+          speaker: customer
+          intent: Identify the freezer in the garage without describing current leak status.
+        - id: t2
+          speaker: customer
+          intent: Say it leaked earlier but is not leaking now; make the current-state negation explicit.
 
   - id: validation-negation-002
     family_id: validation-negation
@@ -218,6 +297,7 @@ scenarios:
       purpose: Check explicit negative wording for the quote requirement.
       prefixes:
         - id: p1
+          through_turn: t2
           available_facts:
             appliance: {value: Furnace, evidence_turn: t1}
             location: {value: Utility room, evidence_turn: t1}
@@ -226,6 +306,13 @@ scenarios:
             quote_required: {value: false, evidence_turn: t2}
             spending_limit: {value: null}
       must_include: [quote_not_required, no_inferred_spending_limit]
+      turns:
+        - id: t1
+          speaker: customer
+          intent: Identify the furnace in the utility room; leave boolean and numeric fields unknown.
+        - id: t2
+          speaker: customer
+          intent: Explicitly say no quote is needed before repairs; do not state a spending limit.
 
   - id: calibration-uncertainty-001
     family_id: calibration-uncertainty
@@ -235,6 +322,7 @@ scenarios:
       purpose: Keep a genuinely unresolved, conflicting leak status unknown.
       prefixes:
         - id: p1
+          through_turn: t1
           available_facts:
             appliance: {value: Washing machine, evidence_turn: t1}
             location: {value: Laundry room, evidence_turn: t1}
@@ -243,6 +331,10 @@ scenarios:
             quote_required: {value: null}
             spending_limit: {value: null}
       must_include: [conflicting_customer_statements, no_final_resolution_by_prefix]
+      turns:
+        - id: t1
+          speaker: customer
+          intent: Identify the washing machine in the laundry room and make two directly conflicting claims about whether water is leaking now, without resolving the contradiction.
 
   - id: calibration-uncertainty-002
     family_id: calibration-uncertainty
@@ -252,6 +344,7 @@ scenarios:
       purpose: Keep an unclear maximum distinct from a quote request.
       prefixes:
         - id: p1
+          through_turn: t2
           available_facts:
             appliance: {value: Water heater, evidence_turn: t1}
             location: {value: Basement, evidence_turn: t1}
@@ -260,6 +353,13 @@ scenarios:
             quote_required: {value: true, evidence_turn: t2}
             spending_limit: {value: null}
       must_include: [quote_request_without_maximum, amount_mentioned_without_limit_semantics]
+      turns:
+        - id: t1
+          speaker: customer
+          intent: Identify the water heater in the basement; leave boolean fields unknown.
+        - id: t2
+          speaker: customer
+          intent: Request a quote before repair and mention a prior $300 repair cost as historical context, not as a current spending maximum.
 
 reserved_test:
   access: withheld_until_development_workflow_is_frozen

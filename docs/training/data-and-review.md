@@ -46,13 +46,13 @@ All six fields are present for each row. Question IDs use `value__<field_id>`. E
 
 The candidate-backed fields are `appliance`, `location`, `preferred_appointment`, and `spending_limit`. For each field, criteria contain every candidate ID for that field and its source text, plus the `__unknown__` option.
 
-For a known annotation, find the candidate that both:
+For a known annotation, find the unique candidate that both:
 
 1. belongs to the annotated field;
-2. is supported by the annotation's evidence event/span; and
+2. has the same source event as an annotation evidence reference, and its complete half-open source span is contained within that evidence span; and
 3. normalizes through Turnwise's existing normalization function to the annotated value.
 
-The candidate ID is the gold answer. Evidence is essential: matching only a normalized value can select a distractor or an earlier superseded mention. If no candidate satisfies the annotation, report a candidate-extraction/label-mapping failure. Do not map it to `__unknown__`. If more than one candidate remains valid after evidence matching, treat the row as ambiguous and resolve the annotation/mapping rule before export.
+The candidate ID is the gold answer. Evidence is essential: matching only a normalized value can select a distractor or an earlier superseded mention. If no candidate satisfies the annotation, report a candidate-extraction/label-mapping failure. Do not map it to `__unknown__`. If more than one candidate remains valid after evidence matching, treat the row as ambiguous and resolve the annotation/mapping rule before export. Do not treat mere span overlap as sufficient support.
 
 If the annotation is null, use `__unknown__` only when the visible prefix contains no supported known value under the task rules. If a known value is stated but extraction omitted it, this is an extraction failure, not an unknown.
 
@@ -70,7 +70,7 @@ Every row has exactly the six task question IDs in `gold`, and every answer is a
 
 Assign scenario families to splits before generating dialogue wording. A family groups scenarios that share the same underlying fact pattern or decision shortcut; paraphrases and close variants belong to the same family. Keep a family, conversation, every prefix, and any later transcript/audio variant derived from it in one split. The split unit is the family, with conversation membership recorded in the manifest.
 
-The following conversation counts are a planning proposal, not yet an approved allocation:
+The working allocation is 30/5/5/10 conversations:
 
 | Split | Proposed conversations | Permitted use |
 | --- | ---: | --- |
@@ -79,7 +79,7 @@ The following conversation counts are a planning proposal, not yet an approved a
 | Calibration | 5 | Exploratory confidence and abstention calibration, separate from gradient updates |
 | Final test | 10 | One frozen comparison after configuration selection |
 
-These totals sum to the initial budget of 50 new conversations. Report conversation counts alongside prefix counts. Do not claim that prefixes are independent samples. Five-conversation validation and calibration estimates, and a ten-conversation test, are exploratory and should include uncertainty and limitations.
+These totals sum to the initial budget of 50 new conversations. Family assignments and the ten development specifications are recorded in [`data/scenarios/catalog.yaml`](../../data/scenarios/catalog.yaml). That catalogue reserves test-family IDs and counts but withholds test specifications and labels from development. Report conversation counts alongside prefix counts. Do not claim that prefixes are independent samples. Five-conversation validation and calibration estimates, and a ten-conversation test, are exploratory and should include uncertainty and limitations.
 
 Keep the existing 30-conversation pilot in a separate regression partition; it is not eligible for training, validation, calibration, or the new final test. Do not inspect final-test labels during model, threshold, or checkpoint selection. Prefer generating and fully reviewing test data after the workflow and configuration are frozen. If test examples must be created earlier, keep their labels access-controlled and unused in development.
 
@@ -116,12 +116,11 @@ The export must be deterministic for identical inputs, task version, and exporte
 
 ## Decisions Still to Confirm
 
-These are open decisions, not fixed policy:
+The working allocation and initial family assignments are in `data/scenarios/catalog.yaml`. Remaining decisions:
 
-1. Approve or revise the proposed 30/5/5/10 allocation.
-2. Define the scenario-family taxonomy and concrete family-to-split assignments.
-3. Decide whether initial development examples are fully reviewed before exporter implementation or used as a joint contract test; in either case, keep final-test labels out of development.
-4. Specify the durable manifest fields/schema for family IDs, per-item review provenance, freeze status, and hashes.
-5. Confirm the exact candidate evidence matching behavior for valid spans that contain or are contained by candidate spans; ambiguous mappings must fail closed until resolved.
+1. Review the initial ten specifications and decide whether the scenario-family taxonomy needs adjustment before wording generation.
+2. Specify the durable manifest fields/schema for family IDs, per-item review provenance, freeze status, and hashes.
+3. Confirm that evidence spans are sufficiently precise for the candidate-containment rule across existing annotations; any violation must be fixed in annotation or task policy, not silently relaxed in export.
+4. Decide whether initial scenarios need full review before generator/exporter implementation or will be used as a joint contract test. In either case, keep final-test labels out of development.
 
 Record settled choices in [`../decisions/`](../decisions/) and reflect machine-enforced rules in the dataset manifest, task config, exporter, and validator.

@@ -61,7 +61,7 @@ Record review level and provenance for scenarios, conversations, annotations, an
 
 ### 1. Freeze task, labels, and split rules
 
-Confirm the task and annotation rules, scenario metadata, review provenance, split membership policy, manifest changes, and validation requirements. Assign scenario families to splits before generating language variations.
+Confirm the task and annotation rules, scenario metadata, review provenance, split membership policy, manifest changes, and validation requirements. Assign scenario families to splits before generating language variations. The initial family assignments and ten development-only scenario specifications are in [`../../data/scenarios/catalog.yaml`](../../data/scenarios/catalog.yaml); review them before generating wording variations.
 
 **Exit:** versioned scenario and generation specification; documented split policy; validator requirements agreed.
 

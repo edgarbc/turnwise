@@ -1,0 +1,272 @@
+catalog:
+  id: repair-intake-training-scenarios
+  version: "0.1.0"
+  task_id: repair_intake
+  task_version: "0.1.0"
+  status: draft_for_review
+  language: en
+  intended_conversations: 50
+  split_counts:
+    training: 30
+    validation: 5
+    calibration: 5
+    test: 10
+  constraints:
+    one_conversation_per_scenario: true
+    assign_family_before_wording_generation: true
+    keep_family_in_one_split: true
+    keep_all_prefixes_in_conversation_split: true
+    pilot_dataset_is_training_data: false
+    test_specifications_in_this_file: false
+
+families:
+  - id: train-ordinary
+    split: training
+    conversation_count: 6
+    dimensions: [ordinary_request, direct_statements]
+    description: Direct, unambiguous facts without corrections or distractor values.
+  - id: train-missing
+    split: training
+    conversation_count: 6
+    dimensions: [missing_information, unknown]
+    description: A mix of known core facts and fields that remain unstated.
+  - id: train-explicit-negative
+    split: training
+    conversation_count: 6
+    dimensions: [explicit_negative, boolean]
+    description: Explicit false states distinguished from fields that remain unknown.
+  - id: train-candidate-distractors
+    split: training
+    conversation_count: 6
+    dimensions: [distractors, candidate_selection]
+    description: Multiple plausible candidate mentions where only one answers the field.
+  - id: train-corrections
+    split: training
+    conversation_count: 6
+    dimensions: [corrections, prefix_updates]
+    description: One or more values are explicitly corrected; earlier snapshots retain prior values.
+  - id: validation-negation
+    split: validation
+    conversation_count: 5
+    dimensions: [negation, boolean, unknown]
+    description: Negated or qualified statements requiring the latest supported boolean state.
+  - id: calibration-uncertainty
+    split: calibration
+    conversation_count: 5
+    dimensions: [ambiguity, conflict, abstention]
+    description: Ambiguous or conflicting evidence with an explicit unknown target until resolved.
+  - id: test-heldout-corrections-conflicts
+    split: test
+    conversation_count: 5
+    dimensions: [held_out_family]
+    description: Reserved family; specifications and labels are withheld from development.
+  - id: test-heldout-combinations
+    split: test
+    conversation_count: 5
+    dimensions: [held_out_family]
+    description: Reserved family; specifications and labels are withheld from development.
+
+scenarios:
+  - id: train-ordinary-001
+    family_id: train-ordinary
+    split: training
+    review_status: unreviewed
+    specification:
+      purpose: Establish a clear baseline with all fields stated directly.
+      prefixes:
+        - id: p1
+          available_facts:
+            appliance: {value: Refrigerator, evidence_turn: t1}
+            location: {value: Upstairs kitchen, evidence_turn: t1}
+            active_leak: {value: false, evidence_turn: t1}
+            preferred_appointment: {value: Friday morning, evidence_turn: t2}
+            quote_required: {value: true, evidence_turn: t3}
+            spending_limit: {value: {amount: 500, currency: USD}, evidence_turn: t3}
+      must_include: [customer_source_for_each_known_field]
+
+  - id: train-missing-001
+    family_id: train-missing
+    split: training
+    review_status: unreviewed
+    specification:
+      purpose: Keep omitted details unknown rather than inferred.
+      prefixes:
+        - id: p1
+          available_facts:
+            appliance: {value: Dishwasher, evidence_turn: t1}
+            location: {value: Basement, evidence_turn: t1}
+            active_leak: {value: null}
+            preferred_appointment: {value: null}
+            quote_required: {value: null}
+            spending_limit: {value: null}
+      must_include: [no_agent_question_as_evidence, no_implied_preference_or_limit]
+
+  - id: train-explicit-negative-001
+    family_id: train-explicit-negative
+    split: training
+    review_status: unreviewed
+    specification:
+      purpose: Distinguish explicit false values from unknown values.
+      prefixes:
+        - id: p1
+          available_facts:
+            appliance: {value: Washing machine, evidence_turn: t1}
+            location: {value: Laundry room, evidence_turn: t1}
+            active_leak: {value: false, evidence_turn: t1}
+            preferred_appointment: {value: null}
+            quote_required: {value: false, evidence_turn: t2}
+            spending_limit: {value: null}
+      must_include: [explicit_customer_denial, unrelated_fields_unstated]
+
+  - id: train-candidate-distractors-001
+    family_id: train-candidate-distractors
+    split: training
+    review_status: unreviewed
+    specification:
+      purpose: Make lexical candidates compete with distractor mentions.
+      prefixes:
+        - id: p1
+          available_facts:
+            appliance: {value: Oven, evidence_turn: t1}
+            location: {value: Kitchen, evidence_turn: t1}
+            active_leak: {value: null}
+            preferred_appointment: {value: Saturday after lunch, evidence_turn: t2}
+            quote_required: {value: null}
+            spending_limit: {value: {amount: 180, currency: USD}, evidence_turn: t2}
+      must_include: [non_selected_appointment_candidate, non_limit_money_mention]
+
+  - id: train-corrections-001
+    family_id: train-corrections
+    split: training
+    review_status: unreviewed
+    specification:
+      purpose: Verify prefix-specific state and prospective correction handling.
+      prefixes:
+        - id: p1
+          available_facts:
+            appliance: {value: Refrigerator, evidence_turn: t1}
+            location: {value: Upstairs kitchen, evidence_turn: t1}
+            active_leak: {value: null}
+            preferred_appointment: {value: Friday morning, evidence_turn: t2}
+            quote_required: {value: null}
+            spending_limit: {value: null}
+        - id: p2
+          available_facts:
+            appliance: {value: Refrigerator, evidence_turn: t1}
+            location: {value: Basement utility room, evidence_turn: t3}
+            active_leak: {value: null}
+            preferred_appointment: {value: Saturday afternoon, evidence_turn: t3}
+            quote_required: {value: null}
+            spending_limit: {value: null}
+      must_include: [explicit_location_correction, explicit_appointment_correction]
+
+  - id: train-corrections-002
+    family_id: train-corrections
+    split: training
+    review_status: unreviewed
+    specification:
+      purpose: Verify a boolean state change without changing unrelated fields.
+      prefixes:
+        - id: p1
+          available_facts:
+            appliance: {value: Dishwasher, evidence_turn: t1}
+            location: {value: Scullery, evidence_turn: t1}
+            active_leak: {value: true, evidence_turn: t1}
+            preferred_appointment: {value: null}
+            quote_required: {value: null}
+            spending_limit: {value: null}
+        - id: p2
+          available_facts:
+            appliance: {value: Dishwasher, evidence_turn: t1}
+            location: {value: Scullery, evidence_turn: t1}
+            active_leak: {value: false, evidence_turn: t2}
+            preferred_appointment: {value: null}
+            quote_required: {value: null}
+            spending_limit: {value: null}
+      must_include: [explicit_leak_status_update, preserve_unchanged_values]
+
+  - id: validation-negation-001
+    family_id: validation-negation
+    split: validation
+    review_status: unreviewed
+    specification:
+      purpose: Check negation scope and distinguish current state from historical mention.
+      prefixes:
+        - id: p1
+          available_facts:
+            appliance: {value: Freezer, evidence_turn: t1}
+            location: {value: Garage, evidence_turn: t1}
+            active_leak: {value: null}
+            preferred_appointment: {value: null}
+            quote_required: {value: null}
+            spending_limit: {value: null}
+        - id: p2
+          available_facts:
+            appliance: {value: Freezer, evidence_turn: t1}
+            location: {value: Garage, evidence_turn: t1}
+            active_leak: {value: false, evidence_turn: t2}
+            preferred_appointment: {value: null}
+            quote_required: {value: null}
+            spending_limit: {value: null}
+      must_include: [negated_current_leak, no_unsupported_boolean_inference]
+
+  - id: validation-negation-002
+    family_id: validation-negation
+    split: validation
+    review_status: unreviewed
+    specification:
+      purpose: Check explicit negative wording for the quote requirement.
+      prefixes:
+        - id: p1
+          available_facts:
+            appliance: {value: Furnace, evidence_turn: t1}
+            location: {value: Utility room, evidence_turn: t1}
+            active_leak: {value: null}
+            preferred_appointment: {value: null}
+            quote_required: {value: false, evidence_turn: t2}
+            spending_limit: {value: null}
+      must_include: [quote_not_required, no_inferred_spending_limit]
+
+  - id: calibration-uncertainty-001
+    family_id: calibration-uncertainty
+    split: calibration
+    review_status: unreviewed
+    specification:
+      purpose: Keep a genuinely unresolved, conflicting leak status unknown.
+      prefixes:
+        - id: p1
+          available_facts:
+            appliance: {value: Washing machine, evidence_turn: t1}
+            location: {value: Laundry room, evidence_turn: t1}
+            active_leak: {value: null}
+            preferred_appointment: {value: null}
+            quote_required: {value: null}
+            spending_limit: {value: null}
+      must_include: [conflicting_customer_statements, no_final_resolution_by_prefix]
+
+  - id: calibration-uncertainty-002
+    family_id: calibration-uncertainty
+    split: calibration
+    review_status: unreviewed
+    specification:
+      purpose: Keep an unclear maximum distinct from a quote request.
+      prefixes:
+        - id: p1
+          available_facts:
+            appliance: {value: Water heater, evidence_turn: t1}
+            location: {value: Basement, evidence_turn: t1}
+            active_leak: {value: null}
+            preferred_appointment: {value: null}
+            quote_required: {value: true, evidence_turn: t2}
+            spending_limit: {value: null}
+      must_include: [quote_request_without_maximum, amount_mentioned_without_limit_semantics]
+
+reserved_test:
+  access: withheld_until_development_workflow_is_frozen
+  families:
+    - id: test-heldout-corrections-conflicts
+      split: test
+      conversation_count: 5
+    - id: test-heldout-combinations
+      split: test
+      conversation_count: 5

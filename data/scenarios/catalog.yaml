@@ -82,6 +82,7 @@ scenarios:
     family_id: train-ordinary
     split: training
     review_status: unreviewed
+    specification_status: confirmed
     specification:
       purpose: Establish a clear baseline with all fields stated directly.
       prefixes:
@@ -110,6 +111,7 @@ scenarios:
     family_id: train-missing
     split: training
     review_status: unreviewed
+    specification_status: confirmed
     specification:
       purpose: Keep omitted details unknown rather than inferred.
       prefixes:
@@ -138,6 +140,7 @@ scenarios:
     family_id: train-explicit-negative
     split: training
     review_status: unreviewed
+    specification_status: confirmed
     specification:
       purpose: Distinguish explicit false values from unknown values.
       prefixes:
@@ -163,6 +166,7 @@ scenarios:
     family_id: train-candidate-distractors
     split: training
     review_status: unreviewed
+    specification_status: confirmed
     specification:
       purpose: Make lexical candidates compete with distractor mentions.
       prefixes:
@@ -188,6 +192,7 @@ scenarios:
     family_id: train-corrections
     split: training
     review_status: unreviewed
+    specification_status: confirmed
     specification:
       purpose: Verify prefix-specific state and prospective correction handling.
       prefixes:
@@ -225,6 +230,7 @@ scenarios:
     family_id: train-corrections
     split: training
     review_status: unreviewed
+    specification_status: confirmed
     specification:
       purpose: Verify a boolean state change without changing unrelated fields.
       prefixes:
@@ -259,6 +265,7 @@ scenarios:
     family_id: validation-negation
     split: validation
     review_status: unreviewed
+    specification_status: confirmed
     specification:
       purpose: Check negation scope and distinguish current state from historical mention.
       prefixes:
@@ -293,6 +300,7 @@ scenarios:
     family_id: validation-negation
     split: validation
     review_status: unreviewed
+    specification_status: confirmed
     specification:
       purpose: Check explicit negative wording for the quote requirement.
       prefixes:
@@ -318,6 +326,7 @@ scenarios:
     family_id: calibration-uncertainty
     split: calibration
     review_status: unreviewed
+    specification_status: confirmed
     specification:
       purpose: Keep a genuinely unresolved, conflicting leak status unknown.
       prefixes:
@@ -340,6 +349,7 @@ scenarios:
     family_id: calibration-uncertainty
     split: calibration
     review_status: unreviewed
+    specification_status: confirmed
     specification:
       purpose: Keep an unclear maximum distinct from a quote request.
       prefixes:

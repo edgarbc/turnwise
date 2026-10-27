@@ -1,0 +1,25 @@
+{
+  "conversation_id": "train-corrections-002",
+  "task_id": "repair_intake",
+  "task_version": "0.1.0",
+  "events": [
+    {
+      "event_id": "train-corrections-002-e01",
+      "speaker": "customer",
+      "start_ms": 0,
+      "end_ms": 8000,
+      "revision": 0,
+      "is_final": true,
+      "text": "The dishwasher in the scullery is leaking water onto the floor right now."
+    },
+    {
+      "event_id": "train-corrections-002-e02",
+      "speaker": "customer",
+      "start_ms": 12000,
+      "end_ms": 19000,
+      "revision": 0,
+      "is_final": true,
+      "text": "The leak has stopped, and no water is coming out now."
+    }
+  ]
+}

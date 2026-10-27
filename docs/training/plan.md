@@ -113,6 +113,7 @@ Integrate the best validation-selected local checkpoint into Turnwise. Document 
 
 - This document is the living roadmap for the training stage.
 - [`data-and-review.md`](data-and-review.md) defines the proposed training-row, split, provenance, and review contract; open decisions there must be resolved before corpus generation.
+- [`generation-and-review.md`](generation-and-review.md) defines transcript generation and human review requirements for scenario-derived data.
 - [`../annotation-guide.md`](../annotation-guide.md) remains authoritative for annotation semantics.
 - Task definitions and experiment settings belong in versioned files under `configs/`.
 - Dataset membership, approval, provenance, and source hashes belong in a manifest under `data/manifests/`.

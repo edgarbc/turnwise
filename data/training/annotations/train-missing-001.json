@@ -1,0 +1,35 @@
+{
+  "conversation_id": "train-missing-001",
+  "task_id": "repair_intake",
+  "task_version": "0.1.0",
+  "snapshots": [
+    {
+      "snapshot_id": "train-missing-001-s01",
+      "through_event_id": "train-missing-001-e03",
+      "values": {
+        "appliance": "Dishwasher",
+        "location": "Basement",
+        "active_leak": null,
+        "preferred_appointment": null,
+        "quote_required": null,
+        "spending_limit": null
+      },
+      "evidence": {
+        "appliance": [
+          {
+            "event_id": "train-missing-001-e01",
+            "start_char": 4,
+            "end_char": 14
+          }
+        ],
+        "location": [
+          {
+            "event_id": "train-missing-001-e01",
+            "start_char": 25,
+            "end_char": 33
+          }
+        ]
+      }
+    }
+  ]
+}

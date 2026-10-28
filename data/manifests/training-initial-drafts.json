@@ -14,15 +14,15 @@
   },
   "review_policy": {
     "scenario_specifications": "requester_confirmed",
-    "conversation_review_status": "unreviewed",
-    "annotation_status": "not_created_pending_human_review",
+    "conversation_review_status": "approved",
+    "annotation_status": "draft_pending_human_review",
     "reviewer": null,
     "reviewed_at": null
   },
   "validation": {
     "automated_structure_and_candidate_check": "passed",
-    "human_transcript_review": "in_progress",
-    "human_annotation_review": "pending",
+    "human_transcript_review": "approved",
+    "human_annotation_review": "in_progress",
     "validation_is_not_semantic_approval": true
   },
   "cases": [
@@ -39,7 +39,15 @@
         "reviewed_at": "2026-10-27",
         "outcome": "approved"
       },
-      "annotation_status": "not_created"
+      "annotation_path": "data/training/annotations/train-ordinary-001.json",
+      "annotation_sha256": "9dd40d756b0392763c2fc4f989dcc6adf6ba585763ab55e576559ead936deb44",
+      "annotation_review_status": "approved",
+      "annotation_review": {
+        "reviewer": "requester",
+        "reviewed_at": "2026-10-27",
+        "outcome": "approved"
+      },
+      "annotation_status": "approved"
     },
     {
       "case_id": "train-missing-001",
@@ -54,7 +62,15 @@
         "reviewed_at": "2026-10-27",
         "outcome": "approved"
       },
-      "annotation_status": "not_created"
+      "annotation_path": "data/training/annotations/train-missing-001.json",
+      "annotation_sha256": "8a4e6683769342d269c56b542608a46769344ac8e4a50130d97833068c335e7b",
+      "annotation_review_status": "approved",
+      "annotation_review": {
+        "reviewer": "requester",
+        "reviewed_at": "2026-10-27",
+        "outcome": "approved"
+      },
+      "annotation_status": "approved"
     },
     {
       "case_id": "train-explicit-negative-001",
@@ -69,7 +85,15 @@
         "reviewed_at": "2026-10-27",
         "outcome": "approved"
       },
-      "annotation_status": "not_created"
+      "annotation_path": "data/training/annotations/train-explicit-negative-001.json",
+      "annotation_sha256": "4d24c4ac9c5727dfa70cc0dea98fe951d3491112e05345077b9c32d38b099d64",
+      "annotation_review_status": "approved",
+      "annotation_review": {
+        "reviewer": "requester",
+        "reviewed_at": "2026-10-27",
+        "outcome": "approved"
+      },
+      "annotation_status": "approved"
     },
     {
       "case_id": "train-candidate-distractors-001",
@@ -84,7 +108,15 @@
         "reviewed_at": "2026-10-27",
         "outcome": "approved"
       },
-      "annotation_status": "not_created"
+      "annotation_path": "data/training/annotations/train-candidate-distractors-001.json",
+      "annotation_sha256": "fba33563c283316199b192ac39ada9c6e8c807f104375ee3ace01d14b95da3ce",
+      "annotation_review_status": "approved",
+      "annotation_review": {
+        "reviewer": "requester",
+        "reviewed_at": "2026-10-27",
+        "outcome": "approved"
+      },
+      "annotation_status": "approved"
     },
     {
       "case_id": "train-corrections-001",
@@ -99,7 +131,15 @@
         "reviewed_at": "2026-10-27",
         "outcome": "approved"
       },
-      "annotation_status": "not_created"
+      "annotation_path": "data/training/annotations/train-corrections-001.json",
+      "annotation_sha256": "738be27a9496d5ac5ad97651a5b96867c342ad8a20fb761abdac0cf319fc541c",
+      "annotation_review_status": "approved",
+      "annotation_review": {
+        "reviewer": "requester",
+        "reviewed_at": "2026-10-27",
+        "outcome": "approved"
+      },
+      "annotation_status": "approved"
     },
     {
       "case_id": "train-corrections-002",
@@ -114,7 +154,15 @@
         "reviewed_at": "2026-10-27",
         "outcome": "approved"
       },
-      "annotation_status": "not_created"
+      "annotation_path": "data/training/annotations/train-corrections-002.json",
+      "annotation_sha256": "d2c6568cd009aaa54eac47991b82325daef79264ebb5bd1cb1c0903aaa5110bc",
+      "annotation_review_status": "approved",
+      "annotation_review": {
+        "reviewer": "requester",
+        "reviewed_at": "2026-10-27",
+        "outcome": "approved"
+      },
+      "annotation_status": "approved"
     },
     {
       "case_id": "validation-negation-001",
@@ -129,7 +177,15 @@
         "reviewed_at": "2026-10-27",
         "outcome": "approved"
       },
-      "annotation_status": "not_created"
+      "annotation_path": "data/training/annotations/validation-negation-001.json",
+      "annotation_sha256": "c5f7ffba90194fc67dd3747e676a339a8492f0b59a8f39092c34abe626df7199",
+      "annotation_review_status": "approved",
+      "annotation_review": {
+        "reviewer": "requester",
+        "reviewed_at": "2026-10-27",
+        "outcome": "approved"
+      },
+      "annotation_status": "approved"
     },
     {
       "case_id": "validation-negation-002",
@@ -144,7 +200,15 @@
         "reviewed_at": "2026-10-27",
         "outcome": "approved"
       },
-      "annotation_status": "not_created"
+      "annotation_path": "data/training/annotations/validation-negation-002.json",
+      "annotation_sha256": "29664a4c336da84117727d6f626df463035a2ee6af89c1226f0fe89a1ae430ce",
+      "annotation_review_status": "approved",
+      "annotation_review": {
+        "reviewer": "requester",
+        "reviewed_at": "2026-10-27",
+        "outcome": "approved"
+      },
+      "annotation_status": "approved"
     },
     {
       "case_id": "calibration-uncertainty-001",
@@ -159,7 +223,15 @@
         "reviewed_at": "2026-10-27",
         "outcome": "approved"
       },
-      "annotation_status": "not_created"
+      "annotation_path": "data/training/annotations/calibration-uncertainty-001.json",
+      "annotation_sha256": "0ad7e7aac9d6289626eab77dc0942f26eaa17af45a2c6cad3c52e28a5e180ad9",
+      "annotation_review_status": "approved",
+      "annotation_review": {
+        "reviewer": "requester",
+        "reviewed_at": "2026-10-27",
+        "outcome": "approved"
+      },
+      "annotation_status": "approved"
     },
     {
       "case_id": "calibration-uncertainty-002",
@@ -174,7 +246,15 @@
         "reviewed_at": "2026-10-27",
         "outcome": "approved"
       },
-      "annotation_status": "not_created"
+      "annotation_path": "data/training/annotations/calibration-uncertainty-002.json",
+      "annotation_sha256": "d87874ab9a80972e17af48ed19da5058f50f38ef87a37f9249b4e279f3f48b3b",
+      "annotation_review_status": "approved",
+      "annotation_review": {
+        "reviewer": "requester",
+        "reviewed_at": "2026-10-27",
+        "outcome": "approved"
+      },
+      "annotation_status": "approved"
     }
   ]
 }

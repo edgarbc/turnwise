@@ -1,0 +1,66 @@
+{
+  "conversation_id": "train-ordinary-001",
+  "task_id": "repair_intake",
+  "task_version": "0.1.0",
+  "snapshots": [
+    {
+      "snapshot_id": "train-ordinary-001-s01",
+      "through_event_id": "train-ordinary-001-e03",
+      "values": {
+        "appliance": "Refrigerator",
+        "location": "Upstairs kitchen",
+        "active_leak": false,
+        "preferred_appointment": "Friday morning",
+        "quote_required": true,
+        "spending_limit": {
+          "amount": 500,
+          "currency": "USD"
+        }
+      },
+      "evidence": {
+        "appliance": [
+          {
+            "event_id": "train-ordinary-001-e01",
+            "start_char": 4,
+            "end_char": 16
+          }
+        ],
+        "location": [
+          {
+            "event_id": "train-ordinary-001-e01",
+            "start_char": 27,
+            "end_char": 43
+          }
+        ],
+        "active_leak": [
+          {
+            "event_id": "train-ordinary-001-e01",
+            "start_char": 55,
+            "end_char": 70
+          }
+        ],
+        "preferred_appointment": [
+          {
+            "event_id": "train-ordinary-001-e02",
+            "start_char": 0,
+            "end_char": 14
+          }
+        ],
+        "quote_required": [
+          {
+            "event_id": "train-ordinary-001-e03",
+            "start_char": 0,
+            "end_char": 46
+          }
+        ],
+        "spending_limit": [
+          {
+            "event_id": "train-ordinary-001-e03",
+            "start_char": 77,
+            "end_char": 84
+          }
+        ]
+      }
+    }
+  ]
+}

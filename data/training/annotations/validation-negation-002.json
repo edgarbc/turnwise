@@ -1,0 +1,42 @@
+{
+  "conversation_id": "validation-negation-002",
+  "task_id": "repair_intake",
+  "task_version": "0.1.0",
+  "snapshots": [
+    {
+      "snapshot_id": "validation-negation-002-s01",
+      "through_event_id": "validation-negation-002-e02",
+      "values": {
+        "appliance": "Furnace",
+        "location": "Utility room",
+        "active_leak": null,
+        "preferred_appointment": null,
+        "quote_required": false,
+        "spending_limit": null
+      },
+      "evidence": {
+        "appliance": [
+          {
+            "event_id": "validation-negation-002-e01",
+            "start_char": 4,
+            "end_char": 11
+          }
+        ],
+        "location": [
+          {
+            "event_id": "validation-negation-002-e01",
+            "start_char": 22,
+            "end_char": 34
+          }
+        ],
+        "quote_required": [
+          {
+            "event_id": "validation-negation-002-e02",
+            "start_char": 0,
+            "end_char": 40
+          }
+        ]
+      }
+    }
+  ]
+}

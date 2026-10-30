@@ -1,14 +1,17 @@
 # Turnwise
 
-![Python 3.11+](https://img.shields.io/badge/Python-3.11%2B-3776AB?logo=python&logoColor=white)
-![uv](https://img.shields.io/badge/package%20manager-uv-6E9F18)
-![Status: Early implementation](https://img.shields.io/badge/status-early%20implementation-orange)
+[![CI](https://github.com/edgarbc/turnwise/actions/workflows/ci.yml/badge.svg)](https://github.com/edgarbc/turnwise/actions/workflows/ci.yml)
+[![Python 3.11+](https://img.shields.io/badge/Python-3.11%2B-3776AB?logo=python&logoColor=white)](https://www.python.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Current focus: Dataset preparation](https://img.shields.io/badge/current%20focus-dataset%20preparation-6E9F18)](#current-focus)
 
 *From conversation to structured decisions.*
 
-Turnwise is a research project about extracting reliable, reviewable information from conversations. It compares a decision model with schema-constrained LLMs and will investigate whether training an open-weight classifier for the task improves on those baselines.
+Turnwise is a research project about extracting reliable, reviewable information from conversations. It compares Jev, a decision model, with schema-constrained LLMs and is preparing to fine-tune an open-weight decision model for the same task.
 
-**Status: Early implementation.** The uv-managed package, CLI, reviewed synthetic pilot dataset, offline validator, replay pipeline, Jev/OpenAI adapters, evaluation runner, and first comparison are implemented. Results remain exploratory pilot evidence, not a general performance claim.
+## Current focus
+
+Preparing a fine-tuning dataset in Jev's dataset format for an open-weight decision model. The repository already includes a reviewed synthetic pilot dataset, offline validator, replay pipeline, Jev/OpenAI adapters, and evaluation runner. The pilot results are exploratory evidence, not a general performance claim; open-weight model training and evaluation remain ahead.
 
 ## Problem
 
@@ -204,7 +207,7 @@ openai = settings.for_provider("openai")
 
 ## Repository structure
 
-This is the current scaffold. Empty directories are retained with `.gitkeep`; implementation files will be added as the milestones progress. The local `.venv/` is excluded from version control.
+The repository contains the implemented pilot pipeline alongside placeholders for planned training, audio, and application work. The local `.venv/` is excluded from version control.
 
 ```text
 turnwise/

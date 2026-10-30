@@ -1,0 +1,91 @@
+{
+  "exporter_version": "0.1.0",
+  "manifest_path": "data/manifests/training-initial-drafts.json",
+  "manifest_sha256": "ebf7c45fb89e3fa803540e44acff2da9865bbc090f629db095662f8cb239f890",
+  "row_count": 8,
+  "rows": [
+    {
+      "annotation_sha256": "9dd40d756b0392763c2fc4f989dcc6adf6ba585763ab55e576559ead936deb44",
+      "case_id": "train-ordinary-001",
+      "conversation_sha256": "0fb9f5845b73a593e5bbd8332fb2acabb3563e6fc0523a46f37390f30c455dd1",
+      "row_index": 0,
+      "scenario_family_id": "train-ordinary",
+      "snapshot_id": "train-ordinary-001-s01",
+      "split": "training",
+      "through_event_id": "train-ordinary-001-e03"
+    },
+    {
+      "annotation_sha256": "8a4e6683769342d269c56b542608a46769344ac8e4a50130d97833068c335e7b",
+      "case_id": "train-missing-001",
+      "conversation_sha256": "f43f51baf0c4ab640a9ceaedc23b2951cdd79c52ef7c36d338420174cc9fcdfb",
+      "row_index": 1,
+      "scenario_family_id": "train-missing",
+      "snapshot_id": "train-missing-001-s01",
+      "split": "training",
+      "through_event_id": "train-missing-001-e03"
+    },
+    {
+      "annotation_sha256": "4d24c4ac9c5727dfa70cc0dea98fe951d3491112e05345077b9c32d38b099d64",
+      "case_id": "train-explicit-negative-001",
+      "conversation_sha256": "6735f546f82520f28d1faa12fee12255ef0799938cc69d1d8d4337729a193454",
+      "row_index": 2,
+      "scenario_family_id": "train-explicit-negative",
+      "snapshot_id": "train-explicit-negative-001-s01",
+      "split": "training",
+      "through_event_id": "train-explicit-negative-001-e02"
+    },
+    {
+      "annotation_sha256": "fba33563c283316199b192ac39ada9c6e8c807f104375ee3ace01d14b95da3ce",
+      "case_id": "train-candidate-distractors-001",
+      "conversation_sha256": "8e61b44c1a1e7184ef4a2c0e3543bd32b7383e2f32fa5b1f1fff921497c9c878",
+      "row_index": 3,
+      "scenario_family_id": "train-candidate-distractors",
+      "snapshot_id": "train-candidate-distractors-001-s01",
+      "split": "training",
+      "through_event_id": "train-candidate-distractors-001-e02"
+    },
+    {
+      "annotation_sha256": "738be27a9496d5ac5ad97651a5b96867c342ad8a20fb761abdac0cf319fc541c",
+      "case_id": "train-corrections-001",
+      "conversation_sha256": "f1cbae1e61e887c84c8f1f8c74fbb7ba7c6df2ee7ad22e262c89dc53476313f3",
+      "row_index": 4,
+      "scenario_family_id": "train-corrections",
+      "snapshot_id": "train-corrections-001-s01",
+      "split": "training",
+      "through_event_id": "train-corrections-001-e02"
+    },
+    {
+      "annotation_sha256": "738be27a9496d5ac5ad97651a5b96867c342ad8a20fb761abdac0cf319fc541c",
+      "case_id": "train-corrections-001",
+      "conversation_sha256": "f1cbae1e61e887c84c8f1f8c74fbb7ba7c6df2ee7ad22e262c89dc53476313f3",
+      "row_index": 5,
+      "scenario_family_id": "train-corrections",
+      "snapshot_id": "train-corrections-001-s02",
+      "split": "training",
+      "through_event_id": "train-corrections-001-e03"
+    },
+    {
+      "annotation_sha256": "d2c6568cd009aaa54eac47991b82325daef79264ebb5bd1cb1c0903aaa5110bc",
+      "case_id": "train-corrections-002",
+      "conversation_sha256": "f69763fef86274d62d8a29e488aba74cda0dedbd337d2da8d2d5f08afe3eb05a",
+      "row_index": 6,
+      "scenario_family_id": "train-corrections",
+      "snapshot_id": "train-corrections-002-s01",
+      "split": "training",
+      "through_event_id": "train-corrections-002-e01"
+    },
+    {
+      "annotation_sha256": "d2c6568cd009aaa54eac47991b82325daef79264ebb5bd1cb1c0903aaa5110bc",
+      "case_id": "train-corrections-002",
+      "conversation_sha256": "f69763fef86274d62d8a29e488aba74cda0dedbd337d2da8d2d5f08afe3eb05a",
+      "row_index": 7,
+      "scenario_family_id": "train-corrections",
+      "snapshot_id": "train-corrections-002-s02",
+      "split": "training",
+      "through_event_id": "train-corrections-002-e02"
+    }
+  ],
+  "split_filter": "training",
+  "task_path": "configs/tasks/repair-intake.yaml",
+  "task_sha256": "2bcfeac17ccd30d85c640394b930bfd9db4a4dc7b1b67f049483ab79b9284db3"
+}

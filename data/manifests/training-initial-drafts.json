@@ -5,12 +5,14 @@
   "task": {
     "id": "repair_intake",
     "version": "0.1.0",
-    "path": "configs/tasks/repair-intake.yaml"
+    "path": "configs/tasks/repair-intake.yaml",
+    "sha256": "2bcfeac17ccd30d85c640394b930bfd9db4a4dc7b1b67f049483ab79b9284db3"
   },
   "scenario_catalog": {
     "id": "repair-intake-training-scenarios",
     "version": "0.1.0",
-    "path": "data/scenarios/catalog.yaml"
+    "path": "data/scenarios/catalog.yaml",
+    "sha256": "ee575431c24afa4b9e5ecd8c99b208e4abdb224e32659af9a73de6b1be29d3af"
   },
   "review_policy": {
     "scenario_specifications": "requester_confirmed",
@@ -33,7 +35,7 @@
       "conversation_path": "data/training/conversations/train-ordinary-001.json",
       "conversation_sha256": "0fb9f5845b73a593e5bbd8332fb2acabb3563e6fc0523a46f37390f30c455dd1",
       "snapshot_count": 1,
-      "human_review_status": "transcript_approved_annotations_pending",
+      "human_review_status": "approved",
       "transcript_review": {
         "reviewer": "requester",
         "reviewed_at": "2026-10-27",
@@ -56,7 +58,7 @@
       "conversation_path": "data/training/conversations/train-missing-001.json",
       "conversation_sha256": "f43f51baf0c4ab640a9ceaedc23b2951cdd79c52ef7c36d338420174cc9fcdfb",
       "snapshot_count": 1,
-      "human_review_status": "transcript_approved_annotations_pending",
+      "human_review_status": "approved",
       "transcript_review": {
         "reviewer": "requester",
         "reviewed_at": "2026-10-27",
@@ -79,7 +81,7 @@
       "conversation_path": "data/training/conversations/train-explicit-negative-001.json",
       "conversation_sha256": "6735f546f82520f28d1faa12fee12255ef0799938cc69d1d8d4337729a193454",
       "snapshot_count": 1,
-      "human_review_status": "transcript_approved_annotations_pending",
+      "human_review_status": "approved",
       "transcript_review": {
         "reviewer": "requester",
         "reviewed_at": "2026-10-27",
@@ -102,7 +104,7 @@
       "conversation_path": "data/training/conversations/train-candidate-distractors-001.json",
       "conversation_sha256": "8e61b44c1a1e7184ef4a2c0e3543bd32b7383e2f32fa5b1f1fff921497c9c878",
       "snapshot_count": 1,
-      "human_review_status": "transcript_approved_annotations_pending",
+      "human_review_status": "approved",
       "transcript_review": {
         "reviewer": "requester",
         "reviewed_at": "2026-10-27",
@@ -125,7 +127,7 @@
       "conversation_path": "data/training/conversations/train-corrections-001.json",
       "conversation_sha256": "f1cbae1e61e887c84c8f1f8c74fbb7ba7c6df2ee7ad22e262c89dc53476313f3",
       "snapshot_count": 2,
-      "human_review_status": "transcript_approved_annotations_pending",
+      "human_review_status": "approved",
       "transcript_review": {
         "reviewer": "requester",
         "reviewed_at": "2026-10-27",
@@ -148,7 +150,7 @@
       "conversation_path": "data/training/conversations/train-corrections-002.json",
       "conversation_sha256": "f69763fef86274d62d8a29e488aba74cda0dedbd337d2da8d2d5f08afe3eb05a",
       "snapshot_count": 2,
-      "human_review_status": "transcript_approved_annotations_pending",
+      "human_review_status": "approved",
       "transcript_review": {
         "reviewer": "requester",
         "reviewed_at": "2026-10-27",
@@ -171,7 +173,7 @@
       "conversation_path": "data/training/conversations/validation-negation-001.json",
       "conversation_sha256": "2ed53d49357803776673f55982c538abb8af4f07621b353b16904c1923f24b9e",
       "snapshot_count": 2,
-      "human_review_status": "transcript_approved_annotations_pending",
+      "human_review_status": "approved",
       "transcript_review": {
         "reviewer": "requester",
         "reviewed_at": "2026-10-27",
@@ -194,7 +196,7 @@
       "conversation_path": "data/training/conversations/validation-negation-002.json",
       "conversation_sha256": "8f51a456868c90a65e90bf16c8f7e8f7dff468d295f9aba4439350a67749f863",
       "snapshot_count": 1,
-      "human_review_status": "transcript_approved_annotations_pending",
+      "human_review_status": "approved",
       "transcript_review": {
         "reviewer": "requester",
         "reviewed_at": "2026-10-27",
@@ -217,7 +219,7 @@
       "conversation_path": "data/training/conversations/calibration-uncertainty-001.json",
       "conversation_sha256": "d8414a8e3d220395b20fd72af1802cdd079ba92da492bfa1ebe06bd773a9b688",
       "snapshot_count": 1,
-      "human_review_status": "transcript_approved_annotations_pending",
+      "human_review_status": "approved",
       "transcript_review": {
         "reviewer": "requester",
         "reviewed_at": "2026-10-27",
@@ -240,7 +242,7 @@
       "conversation_path": "data/training/conversations/calibration-uncertainty-002.json",
       "conversation_sha256": "52652414ce9f42000ec0966377b251ebedaf858ab9034e2b5fe13bf3fe9ac14a",
       "snapshot_count": 1,
-      "human_review_status": "transcript_approved_annotations_pending",
+      "human_review_status": "approved",
       "transcript_review": {
         "reviewer": "requester",
         "reviewed_at": "2026-10-27",

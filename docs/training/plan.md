@@ -43,7 +43,7 @@ The Unsloth decision-model row format is `state`, `questions`, and `gold`. The T
 
 Create a versioned scenario catalogue before generating wording variations. Each scenario specifies intended facts and when they become available. Cover ordinary requests, missing information, explicit negatives, negation, corrections, conflicts, distractors, and useful combinations. Generator-produced answers are not ground truth: validate transcripts against scenario specifications, then annotate evidence and expected state at selected prefixes using Turnwise's rules.
 
-The following allocation is the **initial proposal**. Confirm family assignments and split policy before generation; keep related scenarios, paraphrases, and every prefix from one conversation in one split.
+The working allocation is 30/5/5/10 conversations. Family assignments and split policy are recorded in the scenario catalogue; keep related scenarios, paraphrases, and every prefix from one conversation in one split.
 
 | Split | Conversations | Use |
 | --- | ---: | --- |
@@ -81,7 +81,7 @@ Generate remaining examples after split assignment. Run automated checks and tar
 
 Move Jev's task question and option construction into a reusable component. Export transcript-prefix inputs, exact options, and gold targets to Unsloth's `state`, `questions`, and `gold` format. Reject invalid targets, missing evidence, candidate extraction gaps, and split leakage. Provide a deterministic, inspectable sample.
 
-**Exit:** unit tests cover option parity with Jev, target validity, evidence and candidate failures, and deterministic export.
+**Exit:** complete for the initial reviewed batch. Unit tests cover option parity with Jev, target validity, scenario-to-annotation agreement, evidence and candidate failures, and deterministic export. See [`export-format.md`](export-format.md) and the inspectable sample under `data/training/exports/`.
 
 ### 5. Establish the pretrained baseline and smoke train
 
@@ -112,8 +112,9 @@ Integrate the best validation-selected local checkpoint into Turnwise. Document 
 ## Documentation and Sources of Truth
 
 - This document is the living roadmap for the training stage.
-- [`data-and-review.md`](data-and-review.md) defines the proposed training-row, split, provenance, and review contract; open decisions there must be resolved before corpus generation.
+- [`data-and-review.md`](data-and-review.md) defines the training-row, split, provenance, and review contract. Initial scenario specifications, transcripts, and annotations are approved; the remaining corpus still requires generation and review.
 - [`generation-and-review.md`](generation-and-review.md) defines transcript generation and human review requirements for scenario-derived data.
+- [`export-format.md`](export-format.md) documents the Unsloth row format, provenance sidecar, and export command.
 - [`../annotation-guide.md`](../annotation-guide.md) remains authoritative for annotation semantics.
 - Task definitions and experiment settings belong in versioned files under `configs/`.
 - Dataset membership, approval, provenance, and source hashes belong in a manifest under `data/manifests/`.

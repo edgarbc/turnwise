@@ -114,13 +114,10 @@ The exporter and dataset validator must reject or clearly report:
 
 The export must be deterministic for identical inputs, task version, and exporter version. Produce a small inspectable sample for review before any training run. Validation success establishes structural consistency, not that a synthetic transcript or label is semantically correct; human review remains required.
 
-## Decisions Still to Confirm
+## Status and Remaining Work
 
-The working allocation and initial family assignments are in `data/scenarios/catalog.yaml`. Remaining decisions:
+The working 30/5/5/10 allocation and initial family assignments are recorded in `data/scenarios/catalog.yaml`. The first ten development specifications, transcripts, and annotations have been reviewed. The batch manifest records per-case review outcomes and source hashes. The candidate evidence-containment rule has been checked against the initial reviewed data, and the Unsloth exporter checks row labels against the confirmed scenario facts.
 
-1. Review the initial ten specifications and decide whether the scenario-family taxonomy needs adjustment before wording generation.
-2. Specify the durable manifest fields/schema for family IDs, per-item review provenance, freeze status, and hashes.
-3. Confirm that evidence spans are sufficiently precise for the candidate-containment rule across existing annotations; any violation must be fixed in annotation or task policy, not silently relaxed in export.
-4. Decide whether initial scenarios need full review before generator/exporter implementation or will be used as a joint contract test. In either case, keep final-test labels out of development.
+The remaining work is to extend the catalogue to the other 40 conversations without changing the frozen test access policy, generate and review those examples, and update the manifest with their provenance and hashes. The final-test specifications and labels remain withheld until the workflow and configuration are frozen.
 
 Record settled choices in [`../decisions/`](../decisions/) and reflect machine-enforced rules in the dataset manifest, task config, exporter, and validator.

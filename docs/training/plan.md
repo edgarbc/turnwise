@@ -55,21 +55,21 @@ The working allocation is 30/5/5/10 conversations. Family assignments and split 
 
 These small partitions support workflow exploration, not precise population estimates. Report conversation-level counts and uncertainty; prefixes from one conversation are correlated and must not be counted as independent conversations.
 
-Record review level and provenance for scenarios, conversations, annotations, and splits. Fully review the first 10 training/validation examples to refine the process, then generate the remaining data after split assignment. Apply automated schema, evidence-span, candidate-coverage, and consistency checks. Human-review a diverse sample and every flagged or ambiguous example. Fully review and lock every final-test conversation and annotation before evaluation; keep test labels unavailable during training and checkpoint selection.
+Record review level and provenance for scenarios, conversations, annotations, and splits. The initial 10 development examples (six training, two validation, and two calibration) are fully reviewed. Apply automated schema, evidence-span, candidate-coverage, and consistency checks to subsequent batches; human-review a diverse sample and every flagged or ambiguous example. Fully review and lock every final-test conversation and annotation before evaluation; keep test labels unavailable during training and checkpoint selection.
 
 ## Work Sequence and Exit Criteria
 
 ### 1. Freeze task, labels, and split rules
 
-Confirm the task and annotation rules, scenario metadata, review provenance, split membership policy, manifest changes, and validation requirements. Assign scenario families to splits before generating language variations. The initial family assignments and ten development-only scenario specifications are in [`../../data/scenarios/catalog.yaml`](../../data/scenarios/catalog.yaml); review them before generating wording variations.
+The initial task and label contract, 30/5/5/10 working split, family assignments, and ten development scenario specifications have been reviewed. The canonical task, scenario catalogue, review contract, and approved batch manifest record those decisions. Keep final-test specifications and labels withheld until the workflow is frozen.
 
-**Exit:** versioned scenario and generation specification; documented split policy; validator requirements agreed.
+**Exit:** complete for the initial development batch. The remaining 40 scenarios still need specifications and generation after family-level split assignment.
 
 ### 2. Prove the data contract on a small reviewed batch
 
-Generate and fully review an initial batch from development splits. Validate transcript facts, prefix labels, evidence spans, candidate coverage, and unknown handling. Record concrete defects and update the specification before generating the rest.
+The first 10 development conversations (six training, two validation, and two calibration) and all 13 prefix annotations have been reviewed and approved. Their hashes and outcomes are recorded in `data/manifests/training-initial-drafts.json`. The exporter has been exercised against this batch, including checks for candidate coverage, exact options, evidence, and unknown handling.
 
-**Exit:** reviewed examples pass offline validation and demonstrate the required target shapes.
+**Exit:** complete for the initial development batch. Use any defects discovered while expanding the corpus to update the generation specification before further generation.
 
 ### 3. Complete and lock the 50-conversation corpus
 

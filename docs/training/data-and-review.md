@@ -118,6 +118,6 @@ The export must be deterministic for identical inputs, task version, and exporte
 
 The working 30/5/5/10 allocation and initial family assignments are recorded in `data/scenarios/catalog.yaml`. The first ten development specifications, transcripts, and annotations have been reviewed. The batch manifest records per-case review outcomes and source hashes. The candidate evidence-containment rule has been checked against the initial reviewed data, and the Unsloth exporter checks row labels against the confirmed scenario facts.
 
-The remaining work is to extend the catalogue to the other 40 conversations without changing the frozen test access policy, generate and review those examples, and update the manifest with their provenance and hashes. The final-test specifications and labels remain withheld until the workflow and configuration are frozen.
+The catalogue now contains 40 development specifications: ten confirmed scenarios with approved transcripts and annotations, plus 30 draft specifications awaiting review. After those drafts are approved, generate their transcripts in batches, validate and review them, and update the manifest with provenance and hashes. The remaining ten conversations are final test; their specifications and labels remain withheld until the workflow and configuration are frozen.
 
 Record settled choices in [`../decisions/`](../decisions/) and reflect machine-enforced rules in the dataset manifest, task config, exporter, and validator.

@@ -4,14 +4,14 @@ This procedure applies to draft conversation data generated from [`data/scenario
 
 ## Generation Rules
 
-1. Generate only scenarios with `specification_status: confirmed` and only for the assigned non-test split. Do not generate, inspect, or infer final-test scenario answers during development.
+1. Generate only scenarios with `specification_status: confirmed` and only for the assigned training, validation, or calibration split. Do not generate, inspect, or infer final-test scenario answers during development.
 2. Keep the specified turn order, speaker, intended facts, unknown fields, and prefix cutoffs. Natural wording may vary, but do not add facts that change any field's state.
 3. Use customer statements as the only evidence for values. Agent questions may request information but must not answer the questions. A customer's refusal or deferral must not imply a value.
 4. Make temporal language unambiguous. Corrections change the value from their turn onward. For unresolved conflicts, do not add a correction marker, clarification, or later statement that resolves the conflict before the annotated cutoff.
 5. For candidate-backed known values, phrase the source so the current shared candidate extractor produces a candidate for the intended value. Use detectable appliance terms, `in`/`at` place phrases, supported weekday/time patterns, and supported currency/amount patterns. Explicitly establish spending-limit semantics; a detected money candidate alone does not establish a spending limit.
 6. Preserve distractor mentions required by a scenario. Make their role clear from context while ensuring they remain detectable candidates. The intended answer must be supported by its own source span, not merely by matching normalized text.
 7. Keep the conversation natural and concise. Avoid repetitive template phrasing across scenarios. Do not add technical metadata, labels, or explanations to transcript text.
-8. Use a unique conversation ID and event IDs derived from the scenario ID. Events are ordered, non-overlapping, and use the repository's event schema. One event corresponds to each specified turn in this initial batch.
+8. Use a unique conversation ID and event IDs derived from the scenario ID. Events are ordered, non-overlapping, and use the repository's event schema. For the initial batch, one event corresponds to each specified turn; later batches may use more events only if prefix cutoffs and turn-to-event mappings remain explicit.
 
 ## Validation Before Annotation
 
@@ -32,4 +32,4 @@ Track scenario-specification confirmation separately from generated-data review.
 
 ## Initial Batch Scope
 
-The first development batch contains the ten confirmed non-test scenario specifications: six training, two validation, and two calibration conversations. They are intended to exercise the generation and annotation workflow, not to provide a statistically meaningful evaluation. The original 30-conversation pilot remains a separate regression set.
+The first development batch contains ten approved non-test conversations: six training, two validation, and two calibration. Thirty additional development scenario specifications are drafted and must be approved before transcript generation. These small batches exercise the generation and annotation workflow; they are not statistically meaningful evaluation sets. The original 30-conversation pilot remains a separate regression set.

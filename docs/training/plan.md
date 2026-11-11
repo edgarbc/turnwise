@@ -63,7 +63,7 @@ Record review level and provenance for scenarios, conversations, annotations, an
 
 The initial task and label contract, 30/5/5/10 working split, family assignments, and ten development scenario specifications have been reviewed. The canonical task, scenario catalogue, review contract, and approved batch manifest record those decisions. Keep final-test specifications and labels withheld until the workflow is frozen.
 
-**Exit:** complete for the initial development batch. The remaining 40 scenarios still need specifications and generation after family-level split assignment.
+**Exit:** initial task and split policy are established. Forty development specifications are now catalogued; the original ten are confirmed and the added thirty remain drafts for review before wording generation.
 
 ### 2. Prove the data contract on a small reviewed batch
 
@@ -112,7 +112,7 @@ Integrate the best validation-selected local checkpoint into Turnwise. Document 
 ## Documentation and Sources of Truth
 
 - This document is the living roadmap for the training stage.
-- [`data-and-review.md`](data-and-review.md) defines the training-row, split, provenance, and review contract. Initial scenario specifications, transcripts, and annotations are approved; the remaining corpus still requires generation and review.
+- [`data-and-review.md`](data-and-review.md) defines the training-row, split, provenance, and review contract. Ten scenarios, transcripts, and annotations are approved; thirty additional development scenario specs are awaiting review before generation.
 - [`generation-and-review.md`](generation-and-review.md) defines transcript generation and human review requirements for scenario-derived data.
 - [`export-format.md`](export-format.md) documents the Unsloth row format, provenance sidecar, and export command.
 - [`../annotation-guide.md`](../annotation-guide.md) remains authoritative for annotation semantics.

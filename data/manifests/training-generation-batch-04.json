@@ -81,13 +81,21 @@
       "conversation_path": "data/training/conversations/train-explicit-negative-004.json",
       "conversation_sha256": "d1df579ba989d057d4ebc8f5aeee371b1c367852b0605fec18a0dc44283074ac",
       "snapshot_count": 1,
-      "human_review_status": "transcript_approved_annotations_pending",
+      "human_review_status": "approved",
       "transcript_review": {
         "reviewer": "requester",
         "reviewed_at": "2026-11-14",
         "outcome": "approved"
       },
-      "annotation_status": "not_created"
+      "annotation_path": "data/training/annotations/train-explicit-negative-004.json",
+      "annotation_sha256": "463784644bbb15b4debd64413d92b627d2d6f39251fea89ecf2efe4be7b5439e",
+      "annotation_review_status": "approved",
+      "annotation_review": {
+        "reviewer": "requester",
+        "reviewed_at": "2026-11-14",
+        "outcome": "approved"
+      },
+      "annotation_status": "approved"
     },
     {
       "case_id": "train-explicit-negative-005",

@@ -32,4 +32,4 @@ Track scenario-specification confirmation separately from generated-data review.
 
 ## Initial Batch Scope
 
-The first development batch contains ten approved non-test conversations: six training, two validation, and two calibration. Thirty additional development scenario specifications are drafted and must be approved before transcript generation. These small batches exercise the generation and annotation workflow; they are not statistically meaningful evaluation sets. The original 30-conversation pilot remains a separate regression set.
+The first development batch contains ten approved non-test conversations: six training, two validation, and two calibration. The remaining 30 development scenario specifications are also reviewed and confirmed; their transcripts still need to be generated and reviewed. These small batches exercise the generation and annotation workflow; they are not statistically meaningful evaluation sets. The original 30-conversation pilot remains a separate regression set.

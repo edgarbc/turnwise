@@ -3,7 +3,7 @@ catalog:
   version: "0.1.0"
   task_id: repair_intake
   task_version: "0.1.0"
-  status: draft_for_review
+  status: development_specs_reviewed
   language: en
   intended_conversations: 50
   catalogue_stage: development_specifications
@@ -82,7 +82,7 @@ scenarios:
   - id: train-ordinary-001
     family_id: train-ordinary
     split: training
-    review_status: unreviewed
+    review_status: reviewed
     specification_status: confirmed
     specification:
       purpose: Establish a clear baseline with all fields stated directly.
@@ -111,8 +111,8 @@ scenarios:
   - id: train-ordinary-002
     family_id: train-ordinary
     split: training
-    review_status: unreviewed
-    specification_status: draft
+    review_status: reviewed
+    specification_status: confirmed
     specification:
       purpose: Cover a direct active-leak report with an explicit visit preference and spending cap.
       prefixes:
@@ -140,8 +140,8 @@ scenarios:
   - id: train-ordinary-003
     family_id: train-ordinary
     split: training
-    review_status: unreviewed
-    specification_status: draft
+    review_status: reviewed
+    specification_status: confirmed
     specification:
       purpose: Cover direct known fields while leaving leak state and spending limit unstated.
       prefixes:
@@ -169,8 +169,8 @@ scenarios:
   - id: train-ordinary-004
     family_id: train-ordinary
     split: training
-    review_status: unreviewed
-    specification_status: draft
+    review_status: reviewed
+    specification_status: confirmed
     specification:
       purpose: Cover a direct negative leak state and a numeric maximum in different phrasing.
       prefixes:
@@ -198,8 +198,8 @@ scenarios:
   - id: train-ordinary-005
     family_id: train-ordinary
     split: training
-    review_status: unreviewed
-    specification_status: draft
+    review_status: reviewed
+    specification_status: confirmed
     specification:
       purpose: Exercise a plain six-field intake with a spoken-number spending limit.
       prefixes:
@@ -227,8 +227,8 @@ scenarios:
   - id: train-ordinary-006
     family_id: train-ordinary
     split: training
-    review_status: unreviewed
-    specification_status: draft
+    review_status: reviewed
+    specification_status: confirmed
     specification:
       purpose: Cover a multiword location and quote request without a budget.
       prefixes:
@@ -256,7 +256,7 @@ scenarios:
   - id: train-missing-001
     family_id: train-missing
     split: training
-    review_status: unreviewed
+    review_status: reviewed
     specification_status: confirmed
     specification:
       purpose: Keep omitted details unknown rather than inferred.
@@ -285,8 +285,8 @@ scenarios:
   - id: train-missing-002
     family_id: train-missing
     split: training
-    review_status: unreviewed
-    specification_status: draft
+    review_status: reviewed
+    specification_status: confirmed
     specification:
       purpose: Keep appointment and boolean fields unknown despite an agent prompt.
       prefixes:
@@ -314,8 +314,8 @@ scenarios:
   - id: train-missing-003
     family_id: train-missing
     split: training
-    review_status: unreviewed
-    specification_status: draft
+    review_status: reviewed
+    specification_status: confirmed
     specification:
       purpose: Keep quote and spending fields unknown when only operational facts are provided.
       prefixes:
@@ -340,8 +340,8 @@ scenarios:
   - id: train-missing-004
     family_id: train-missing
     split: training
-    review_status: unreviewed
-    specification_status: draft
+    review_status: reviewed
+    specification_status: confirmed
     specification:
       purpose: Distinguish an unanswered leak question from a known negative state.
       prefixes:
@@ -369,8 +369,8 @@ scenarios:
   - id: train-missing-005
     family_id: train-missing
     split: training
-    review_status: unreviewed
-    specification_status: draft
+    review_status: reviewed
+    specification_status: confirmed
     specification:
       purpose: Keep a detected money mention unknown when it is not framed as a maximum.
       prefixes:
@@ -395,8 +395,8 @@ scenarios:
   - id: train-missing-006
     family_id: train-missing
     split: training
-    review_status: unreviewed
-    specification_status: draft
+    review_status: reviewed
+    specification_status: confirmed
     specification:
       purpose: Keep boolean and quote fields unknown when exact-value intake details are supplied.
       prefixes:
@@ -421,7 +421,7 @@ scenarios:
   - id: train-explicit-negative-001
     family_id: train-explicit-negative
     split: training
-    review_status: unreviewed
+    review_status: reviewed
     specification_status: confirmed
     specification:
       purpose: Distinguish explicit false values from unknown values.
@@ -447,8 +447,8 @@ scenarios:
   - id: train-explicit-negative-002
     family_id: train-explicit-negative
     split: training
-    review_status: unreviewed
-    specification_status: draft
+    review_status: reviewed
+    specification_status: confirmed
     specification:
       purpose: Combine an explicit no-leak statement with otherwise missing fields.
       prefixes:
@@ -473,8 +473,8 @@ scenarios:
   - id: train-explicit-negative-003
     family_id: train-explicit-negative
     split: training
-    review_status: unreviewed
-    specification_status: draft
+    review_status: reviewed
+    specification_status: confirmed
     specification:
       purpose: Exercise an explicit negative quote preference while leak status is unknown.
       prefixes:
@@ -499,8 +499,8 @@ scenarios:
   - id: train-explicit-negative-004
     family_id: train-explicit-negative
     split: training
-    review_status: unreviewed
-    specification_status: draft
+    review_status: reviewed
+    specification_status: confirmed
     specification:
       purpose: Combine both explicit negative boolean values with an appointment preference.
       prefixes:
@@ -528,8 +528,8 @@ scenarios:
   - id: train-explicit-negative-005
     family_id: train-explicit-negative
     split: training
-    review_status: unreviewed
-    specification_status: draft
+    review_status: reviewed
+    specification_status: confirmed
     specification:
       purpose: Cover a clear negative leak state after a historical leak mention.
       prefixes:
@@ -554,8 +554,8 @@ scenarios:
   - id: train-explicit-negative-006
     family_id: train-explicit-negative
     split: training
-    review_status: unreviewed
-    specification_status: draft
+    review_status: reviewed
+    specification_status: confirmed
     specification:
       purpose: Exercise an explicit false quote decision alongside a known leak state.
       prefixes:
@@ -580,7 +580,7 @@ scenarios:
   - id: train-candidate-distractors-001
     family_id: train-candidate-distractors
     split: training
-    review_status: unreviewed
+    review_status: reviewed
     specification_status: confirmed
     specification:
       purpose: Make lexical candidates compete with distractor mentions.
@@ -606,8 +606,8 @@ scenarios:
   - id: train-candidate-distractors-002
     family_id: train-candidate-distractors
     split: training
-    review_status: unreviewed
-    specification_status: draft
+    review_status: reviewed
+    specification_status: confirmed
     specification:
       purpose: Contrast an agent-suggested appointment repeated by the customer with the customer's actual preference.
       prefixes:
@@ -632,8 +632,8 @@ scenarios:
   - id: train-candidate-distractors-003
     family_id: train-candidate-distractors
     split: training
-    review_status: unreviewed
-    specification_status: draft
+    review_status: reviewed
+    specification_status: confirmed
     specification:
       purpose: Distinguish a quoted estimate from the customer's maximum spending limit.
       prefixes:
@@ -658,8 +658,8 @@ scenarios:
   - id: train-candidate-distractors-004
     family_id: train-candidate-distractors
     split: training
-    review_status: unreviewed
-    specification_status: draft
+    review_status: reviewed
+    specification_status: confirmed
     specification:
       purpose: Select the customer's latest preference from multiple appointment mentions.
       prefixes:
@@ -684,8 +684,8 @@ scenarios:
   - id: train-candidate-distractors-005
     family_id: train-candidate-distractors
     split: training
-    review_status: unreviewed
-    specification_status: draft
+    review_status: reviewed
+    specification_status: confirmed
     specification:
       purpose: Distinguish a service fee from an explicit spending cap.
       prefixes:
@@ -710,8 +710,8 @@ scenarios:
   - id: train-candidate-distractors-006
     family_id: train-candidate-distractors
     split: training
-    review_status: unreviewed
-    specification_status: draft
+    review_status: reviewed
+    specification_status: confirmed
     specification:
       purpose: Select the repair-related amount from unrelated money context.
       prefixes:
@@ -736,7 +736,7 @@ scenarios:
   - id: train-corrections-001
     family_id: train-corrections
     split: training
-    review_status: unreviewed
+    review_status: reviewed
     specification_status: confirmed
     specification:
       purpose: Verify prefix-specific state and prospective correction handling.
@@ -774,7 +774,7 @@ scenarios:
   - id: train-corrections-002
     family_id: train-corrections
     split: training
-    review_status: unreviewed
+    review_status: reviewed
     specification_status: confirmed
     specification:
       purpose: Verify a boolean state change without changing unrelated fields.
@@ -809,8 +809,8 @@ scenarios:
   - id: train-corrections-003
     family_id: train-corrections
     split: training
-    review_status: unreviewed
-    specification_status: draft
+    review_status: reviewed
+    specification_status: confirmed
     specification:
       purpose: Track a location correction while preserving a known appliance and unknown other fields.
       prefixes:
@@ -844,8 +844,8 @@ scenarios:
   - id: train-corrections-004
     family_id: train-corrections
     split: training
-    review_status: unreviewed
-    specification_status: draft
+    review_status: reviewed
+    specification_status: confirmed
     specification:
       purpose: Track an appointment correction while other candidate fields remain unknown.
       prefixes:
@@ -882,8 +882,8 @@ scenarios:
   - id: train-corrections-005
     family_id: train-corrections
     split: training
-    review_status: unreviewed
-    specification_status: draft
+    review_status: reviewed
+    specification_status: confirmed
     specification:
       purpose: Track a corrected spending maximum without changing quote preference.
       prefixes:
@@ -920,8 +920,8 @@ scenarios:
   - id: train-corrections-006
     family_id: train-corrections
     split: training
-    review_status: unreviewed
-    specification_status: draft
+    review_status: reviewed
+    specification_status: confirmed
     specification:
       purpose: Track a boolean correction alongside a stable appointment preference.
       prefixes:
@@ -958,7 +958,7 @@ scenarios:
   - id: validation-negation-001
     family_id: validation-negation
     split: validation
-    review_status: unreviewed
+    review_status: reviewed
     specification_status: confirmed
     specification:
       purpose: Check negation scope and distinguish current state from historical mention.
@@ -993,7 +993,7 @@ scenarios:
   - id: validation-negation-002
     family_id: validation-negation
     split: validation
-    review_status: unreviewed
+    review_status: reviewed
     specification_status: confirmed
     specification:
       purpose: Check explicit negative wording for the quote requirement.
@@ -1019,7 +1019,7 @@ scenarios:
   - id: calibration-uncertainty-001
     family_id: calibration-uncertainty
     split: calibration
-    review_status: unreviewed
+    review_status: reviewed
     specification_status: confirmed
     specification:
       purpose: Keep a genuinely unresolved, conflicting leak status unknown.
@@ -1042,7 +1042,7 @@ scenarios:
   - id: calibration-uncertainty-002
     family_id: calibration-uncertainty
     split: calibration
-    review_status: unreviewed
+    review_status: reviewed
     specification_status: confirmed
     specification:
       purpose: Keep an unclear maximum distinct from a quote request.
@@ -1068,8 +1068,8 @@ scenarios:
   - id: validation-negation-003
     family_id: validation-negation
     split: validation
-    review_status: unreviewed
-    specification_status: draft
+    review_status: reviewed
+    specification_status: confirmed
     specification:
       purpose: Test a leak state that becomes explicitly true after an unknown prefix.
       prefixes:
@@ -1103,8 +1103,8 @@ scenarios:
   - id: validation-negation-004
     family_id: validation-negation
     split: validation
-    review_status: unreviewed
-    specification_status: draft
+    review_status: reviewed
+    specification_status: confirmed
     specification:
       purpose: Test scope of negation when a past leak is explicitly contrasted with current status.
       prefixes:
@@ -1138,8 +1138,8 @@ scenarios:
   - id: validation-negation-005
     family_id: validation-negation
     split: validation
-    review_status: unreviewed
-    specification_status: draft
+    review_status: reviewed
+    specification_status: confirmed
     specification:
       purpose: Test an explicit negative quote preference against a requested quote mentioned for someone else.
       prefixes:
@@ -1164,8 +1164,8 @@ scenarios:
   - id: calibration-uncertainty-003
     family_id: calibration-uncertainty
     split: calibration
-    review_status: unreviewed
-    specification_status: draft
+    review_status: reviewed
+    specification_status: confirmed
     specification:
       purpose: Keep tentative language about current leak status unknown.
       prefixes:
@@ -1187,8 +1187,8 @@ scenarios:
   - id: calibration-uncertainty-004
     family_id: calibration-uncertainty
     split: calibration
-    review_status: unreviewed
-    specification_status: draft
+    review_status: reviewed
+    specification_status: confirmed
     specification:
       purpose: Keep a vague appointment preference unknown while retaining clear repair facts.
       prefixes:
@@ -1213,8 +1213,8 @@ scenarios:
   - id: calibration-uncertainty-005
     family_id: calibration-uncertainty
     split: calibration
-    review_status: unreviewed
-    specification_status: draft
+    review_status: reviewed
+    specification_status: confirmed
     specification:
       purpose: Keep quote requirement unknown when the customer is unsure whether one is needed.
       prefixes:

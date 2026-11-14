@@ -12,7 +12,7 @@
     "id": "repair-intake-training-scenarios",
     "version": "0.1.0",
     "path": "data/scenarios/catalog.yaml",
-    "sha256": "6be9124d35d1a9d5a463b36031a0b8b66640c73ab22aa4e522c0a57ef6c19d84"
+    "sha256": "24733bfc371d679a96540574d7bd92cc313edc678d40de24fb727cf918a33572"
   },
   "review_policy": {
     "scenario_specifications": "requester_confirmed",

@@ -116,8 +116,8 @@ The export must be deterministic for identical inputs, task version, and exporte
 
 ## Status and Remaining Work
 
-The working 30/5/5/10 allocation and initial family assignments are recorded in `data/scenarios/catalog.yaml`. The first ten development specifications, transcripts, and annotations have been reviewed. The batch manifest records per-case review outcomes and source hashes. The candidate evidence-containment rule has been checked against the initial reviewed data, and the Unsloth exporter checks row labels against the confirmed scenario facts.
+The working 30/5/5/10 allocation and family assignments are recorded in `data/scenarios/catalog.yaml`. All 40 development scenario specifications have been reviewed and confirmed. The first ten development transcripts and annotations have also been reviewed and approved; the batch manifest records per-case outcomes and source hashes. The candidate evidence-containment rule has been checked against that initial batch, and the Unsloth exporter checks row labels against the confirmed scenario facts.
 
-The catalogue now contains 40 development specifications: ten confirmed scenarios with approved transcripts and annotations, plus 30 draft specifications awaiting review. After those drafts are approved, generate their transcripts in batches, validate and review them, and update the manifest with provenance and hashes. The remaining ten conversations are final test; their specifications and labels remain withheld until the workflow and configuration are frozen.
+The catalogue contains 40 reviewed development specifications. Ten have approved transcripts and annotations; the other 30 still need transcript generation, validation, and human review in batches. Update the manifest with their provenance and hashes as they are approved. The remaining ten conversations are final test; their specifications and labels remain withheld until the workflow and configuration are frozen.
 
 Record settled choices in [`../decisions/`](../decisions/) and reflect machine-enforced rules in the dataset manifest, task config, exporter, and validator.

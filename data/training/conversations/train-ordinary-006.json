@@ -1,0 +1,10 @@
+{
+  "conversation_id": "train-ordinary-006",
+  "task_id": "repair_intake",
+  "task_version": "0.1.0",
+  "events": [
+    {"event_id": "train-ordinary-006-e01", "speaker": "customer", "start_ms": 0, "end_ms": 9000, "revision": 0, "is_final": true, "text": "The sump pump in the crawl space is sending water into the space right now."},
+    {"event_id": "train-ordinary-006-e02", "speaker": "customer", "start_ms": 12000, "end_ms": 18000, "revision": 0, "is_final": true, "text": "Friday night would work best for a technician visit."},
+    {"event_id": "train-ordinary-006-e03", "speaker": "customer", "start_ms": 24000, "end_ms": 31000, "revision": 0, "is_final": true, "text": "I need a quote before the technician starts any work."}
+  ]
+}

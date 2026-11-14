@@ -1,0 +1,49 @@
+{
+  "conversation_id": "train-missing-003",
+  "task_id": "repair_intake",
+  "task_version": "0.1.0",
+  "snapshots": [
+    {
+      "snapshot_id": "train-missing-003-s01",
+      "through_event_id": "train-missing-003-e02",
+      "values": {
+        "appliance": "Water heater",
+        "location": "Basement",
+        "active_leak": true,
+        "preferred_appointment": "Wednesday morning",
+        "quote_required": null,
+        "spending_limit": null
+      },
+      "evidence": {
+        "appliance": [
+          {
+            "event_id": "train-missing-003-e01",
+            "start_char": 4,
+            "end_char": 16
+          }
+        ],
+        "location": [
+          {
+            "event_id": "train-missing-003-e01",
+            "start_char": 27,
+            "end_char": 35
+          }
+        ],
+        "active_leak": [
+          {
+            "event_id": "train-missing-003-e02",
+            "start_char": 0,
+            "end_char": 43
+          }
+        ],
+        "preferred_appointment": [
+          {
+            "event_id": "train-missing-003-e02",
+            "start_char": 44,
+            "end_char": 61
+          }
+        ]
+      }
+    }
+  ]
+}

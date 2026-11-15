@@ -6,7 +6,7 @@ catalog:
   status: test_data_review_in_progress
   catalogue_stage: final_test_specifications
   intended_conversations: 10
-  approved_specification_count: 4
+  approved_specification_count: 5
   split_counts:
     test: 10
   source_pins:
@@ -325,6 +325,77 @@ scenarios:
       outcome: approved
     annotation_path: data/test/annotations/test-heldout-corrections-conflicts-004.json
     annotation_sha256: 5b5f8e638f2792e6bd8bbd45019ffcd682bded4942de41682faf756b96a84c8d
+    annotation_review_status: approved
+    annotation_review:
+      reviewer: requester
+      reviewed_at: "2026-11-15"
+      outcome: approved
+    annotation_status: approved
+
+  - id: test-heldout-corrections-conflicts-005
+    family_id: test-heldout-corrections-conflicts
+    split: test
+    review_status: reviewed
+    specification_status: confirmed
+    specification_review:
+      reviewer: requester
+      reviewed_at: "2026-11-15"
+      outcome: approved
+    specification:
+      purpose: Keep appointment preference unknown when the customer cannot choose between competing candidates, then apply a later explicit preference correction.
+      prefixes:
+        - id: p1
+          through_turn: t1
+          available_facts:
+            appliance: {value: Chest freezer, evidence_turn: t1}
+            location: {value: Laundry room, evidence_turn: t1}
+            active_leak: {value: null}
+            preferred_appointment: {value: null}
+            quote_required: {value: null}
+            spending_limit: {value: null}
+        - id: p2
+          through_turn: t2
+          available_facts:
+            appliance: {value: Chest freezer, evidence_turn: t1}
+            location: {value: Laundry room, evidence_turn: t1}
+            active_leak: {value: null}
+            preferred_appointment: {value: null}
+            quote_required: {value: true, evidence_turn: t2}
+            spending_limit: {value: null}
+        - id: p3
+          through_turn: t3
+          available_facts:
+            appliance: {value: Chest freezer, evidence_turn: t1}
+            location: {value: Laundry room, evidence_turn: t1}
+            active_leak: {value: null}
+            preferred_appointment: {value: Thursday evening, evidence_turn: t3}
+            quote_required: {value: true, evidence_turn: t2}
+            spending_limit: {value: null}
+      must_include:
+        - competing_appointment_candidates_at_p2
+        - customer_cannot_choose_at_p2
+        - later_explicit_thursday_preference
+        - quote_requirement_remains_true
+      turns:
+        - id: t1
+          speaker: customer
+          intent: Identify the chest freezer in the laundry room.
+        - id: t2
+          speaker: customer
+          intent: Say Friday morning was the first thought and Tuesday afternoon could also work, but the customer cannot choose between them yet; explicitly request a quote before work.
+        - id: t3
+          speaker: customer
+          intent: Correct the appointment preference to Thursday evening, not Friday morning or Tuesday afternoon, and leave the quote requirement unchanged.
+    conversation_path: data/test/conversations/test-heldout-corrections-conflicts-005.json
+    conversation_sha256: 5aa16c83da5877554a7ff795aae962851a3b849c2e22658c2f684bf49da62c18
+    snapshot_count: 3
+    transcript_review_status: approved
+    transcript_review:
+      reviewer: requester
+      reviewed_at: "2026-11-15"
+      outcome: approved
+    annotation_path: data/test/annotations/test-heldout-corrections-conflicts-005.json
+    annotation_sha256: 36b72e70726b821d34d6a2151e59fbbc925e364416963d59092a975714ad4cd0
     annotation_review_status: approved
     annotation_review:
       reviewer: requester

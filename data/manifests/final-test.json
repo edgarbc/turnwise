@@ -127,9 +127,26 @@
       "case_id": "test-heldout-corrections-conflicts-005",
       "family_id": "test-heldout-corrections-conflicts",
       "split": "test",
-      "scenario_specification_status": "not_created",
-      "human_review_status": "not_created",
-      "annotation_status": "not_created"
+      "scenario_specification_status": "confirmed",
+      "scenario_spec_sha256": "c95a2226c98a5c9732e77602c5876eeb5f182cd599dbc6a72d1a4b436f30df80",
+      "conversation_path": "data/test/conversations/test-heldout-corrections-conflicts-005.json",
+      "conversation_sha256": "5aa16c83da5877554a7ff795aae962851a3b849c2e22658c2f684bf49da62c18",
+      "snapshot_count": 3,
+      "human_review_status": "approved",
+      "transcript_review": {
+        "reviewer": "requester",
+        "reviewed_at": "2026-11-15",
+        "outcome": "approved"
+      },
+      "annotation_path": "data/test/annotations/test-heldout-corrections-conflicts-005.json",
+      "annotation_sha256": "36b72e70726b821d34d6a2151e59fbbc925e364416963d59092a975714ad4cd0",
+      "annotation_review_status": "approved",
+      "annotation_review": {
+        "reviewer": "requester",
+        "reviewed_at": "2026-11-15",
+        "outcome": "approved"
+      },
+      "annotation_status": "approved"
     },
     {
       "case_id": "test-heldout-combinations-001",

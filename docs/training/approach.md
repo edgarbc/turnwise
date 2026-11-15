@@ -39,7 +39,7 @@ Automation checks structure, evidence spans, candidates, scenario consistency, a
 
 ## Current State and Next Step
 
-The 40 non-test examples are approved and the dataset validates. No open-weight model training results have been produced yet. The next data milestone is to freeze the generation and evaluation workflow, then create, review, and hash-lock the 10 held-out test conversations before model selection or training. The [training plan](plan.md) tracks milestones; generation and review instructions are in [generation and review](generation-and-review.md).
+The 40 non-test examples are approved and the dataset validates. The data-generation and evaluation workflow freeze is recorded in [`../decisions/2026-11-15-freeze-training-data-workflow.md`](../decisions/2026-11-15-freeze-training-data-workflow.md). No open-weight model training results have been produced yet. The next data milestone is to create, review, and hash-lock the 10 held-out test conversations in a separate manifest, keeping their labels out of development and model selection. The [training plan](plan.md) tracks milestones; generation and review instructions are in [generation and review](generation-and-review.md).
 
 ## Sources of Truth
 

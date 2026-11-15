@@ -41,7 +41,7 @@ The Unsloth decision-model row format is `state`, `questions`, and `gold`. The T
 
 ## Scenario, Split, and Review Plan
 
-The versioned catalogue contains 40 reviewed development scenarios, with intended facts and their availability by turn. Coverage includes ordinary requests, missing information, explicit negatives, negation, corrections, conflicts, distractors, and combinations. All 40 non-test conversations and their annotations are now approved, and dataset validation passes with 40 conversations and 49 snapshots. Generator-produced answers are not ground truth: validate transcripts against scenario specifications, then annotate evidence and expected state at selected prefixes using Turnwise's rules. The 10 final-test specifications and labels remain withheld until the workflow is frozen.
+The versioned catalogue contains 40 reviewed development scenarios, with intended facts and their availability by turn. Coverage includes ordinary requests, missing information, explicit negatives, negation, corrections, conflicts, distractors, and combinations. All 40 non-test conversations and their annotations are now approved, and dataset validation passes with 40 conversations and 49 snapshots. Generator-produced answers are not ground truth: validate transcripts against scenario specifications, then annotate evidence and expected state at selected prefixes using Turnwise's rules. The workflow freeze is recorded; final-test cases may now be created separately but must remain outside development and model selection.
 
 The working allocation is 30/5/5/10 conversations. Family assignments and split policy are recorded in the scenario catalogue; keep related scenarios, paraphrases, and every prefix from one conversation in one split.
 
@@ -61,9 +61,9 @@ Record review level and provenance for scenarios, conversations, annotations, an
 
 ### 1. Freeze task, labels, and split rules
 
-The initial task and label contract, 30/5/5/10 working split, family assignments, and all 40 development scenario specifications have been reviewed. The canonical task, scenario catalogue, review contract, and approved batch manifest record those decisions. Keep final-test specifications and labels withheld until the workflow is frozen.
+The initial task and label contract, 30/5/5/10 working split, family assignments, and all 40 development scenario specifications have been reviewed. The canonical task, scenario catalogue, review contract, and approved batch manifest record those decisions. The accepted workflow-freeze decision allows final-test specifications and labels to be prepared in a separate manifest, but not used in development, prompt or threshold selection, or checkpoint selection.
 
-**Exit:** complete for the task, label, split, and 40 development-scenario specifications. Final-test specifications and labels remain reserved until the workflow is frozen.
+**Exit:** complete for the task, label, split, and 40 development-scenario specifications. Final-test cases are handled separately after the workflow freeze, and their labels remain unavailable to development and model selection.
 
 ### 2. Prove the data contract on a small reviewed batch
 
@@ -73,7 +73,7 @@ The first 10 development conversations (six training, two validation, and two ca
 
 ### 3. Complete and lock the 50-conversation corpus
 
-The 40 non-test conversations (30 training, five validation, and five calibration) are generated, annotated, and approved. `uv run turnwise validate --dataset data/training` passes with 40 conversations and 49 snapshots. The 10 final-test scenarios and labels remain withheld. Next, freeze the generation and evaluation workflow, then create and fully review the held-out test cases; keep their labels unavailable during development.
+The 40 non-test conversations (30 training, five validation, and five calibration) are generated, annotated, and approved. `uv run turnwise validate --dataset data/training` passes with 40 conversations and 49 snapshots. The data-generation and evaluation workflow freeze is recorded in [`../decisions/2026-11-15-freeze-training-data-workflow.md`](../decisions/2026-11-15-freeze-training-data-workflow.md). Next, create and fully review the 10 held-out test cases in a separate manifest, then freeze their hashes; keep their labels unavailable during development.
 
 **Exit:** approved split manifest, data-quality report, and frozen source hashes for all 50 conversations, with test labels access-controlled and unused in model selection.
 
@@ -112,6 +112,7 @@ Integrate the best validation-selected local checkpoint into Turnwise. Document 
 ## Documentation and Sources of Truth
 
 - This document is the living roadmap for the training stage.
+- [`../decisions/2026-11-15-freeze-training-data-workflow.md`](../decisions/2026-11-15-freeze-training-data-workflow.md) records the accepted data and evaluation workflow freeze and its boundaries.
 - [`approach.md`](approach.md) summarizes the research design and current corpus status for orientation.
 - [`data-and-review.md`](data-and-review.md) defines the training-row, split, provenance, and review contract. All 40 non-test conversations and annotations are approved; ten final-test cases remain reserved.
 - [`generation-and-review.md`](generation-and-review.md) defines transcript generation and human review requirements for scenario-derived data.

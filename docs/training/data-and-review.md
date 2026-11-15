@@ -118,6 +118,6 @@ The export must be deterministic for identical inputs, task version, and exporte
 
 The working 30/5/5/10 allocation and family assignments are recorded in `data/scenarios/catalog.yaml`. All 40 development scenario specifications, transcripts, and annotations are reviewed and approved. Their batch manifests record per-case outcomes and source hashes. The candidate evidence-containment rule has been checked, and the Unsloth exporter checks row labels against confirmed scenario facts.
 
-The non-test dataset validates with 40 conversations and 49 snapshots. The remaining ten conversations are final test; their specifications and labels remain withheld until the data-generation and evaluation workflow is frozen. Then generate, review, and hash-lock the test cases before using the test split.
+The non-test dataset validates with 40 conversations and 49 snapshots. The data-generation and evaluation workflow freeze is recorded in [`../decisions/2026-11-15-freeze-training-data-workflow.md`](../decisions/2026-11-15-freeze-training-data-workflow.md). The ten final-test cases may now be generated and reviewed under a separate manifest. Keep their labels out of training, validation, calibration, prompt development, threshold selection, and checkpoint selection; hash-lock the reviewed test cases before final evaluation.
 
 Record settled choices in [`../decisions/`](../decisions/) and reflect machine-enforced rules in the dataset manifest, task config, exporter, and validator.

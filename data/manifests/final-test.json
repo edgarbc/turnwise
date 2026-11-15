@@ -77,9 +77,26 @@
       "case_id": "test-heldout-corrections-conflicts-003",
       "family_id": "test-heldout-corrections-conflicts",
       "split": "test",
-      "scenario_specification_status": "not_created",
-      "human_review_status": "not_created",
-      "annotation_status": "not_created"
+      "scenario_specification_status": "confirmed",
+      "scenario_spec_sha256": "9701e530c78a8071b4c7b1c73d05da3346f36e3ca06cd90f75f579b5b3ee3d07",
+      "conversation_path": "data/test/conversations/test-heldout-corrections-conflicts-003.json",
+      "conversation_sha256": "5acf46eee039f938a5683f7dc1188a868af08fe7e88596a409b7d044e72069c1",
+      "snapshot_count": 3,
+      "human_review_status": "approved",
+      "transcript_review": {
+        "reviewer": "requester",
+        "reviewed_at": "2026-11-15",
+        "outcome": "approved"
+      },
+      "annotation_path": "data/test/annotations/test-heldout-corrections-conflicts-003.json",
+      "annotation_sha256": "5776a6a6db1f60ecd42198a0badb2f6e74117d3c7b6d930531dbbeec553d4f8e",
+      "annotation_review_status": "approved",
+      "annotation_review": {
+        "reviewer": "requester",
+        "reviewed_at": "2026-11-15",
+        "outcome": "approved"
+      },
+      "annotation_status": "approved"
     },
     {
       "case_id": "test-heldout-corrections-conflicts-004",

@@ -6,7 +6,7 @@ catalog:
   status: test_data_review_in_progress
   catalogue_stage: final_test_specifications
   intended_conversations: 10
-  approved_specification_count: 2
+  approved_specification_count: 3
   split_counts:
     test: 10
   source_pins:
@@ -181,6 +181,78 @@ scenarios:
       outcome: approved
     annotation_path: data/test/annotations/test-heldout-corrections-conflicts-002.json
     annotation_sha256: 28f07ab6b45704625093bbc8b426204331fd7a86561d360cd12e88ca93696147
+    annotation_review_status: approved
+    annotation_review:
+      reviewer: requester
+      reviewed_at: "2026-11-15"
+      outcome: approved
+    annotation_status: approved
+
+  - id: test-heldout-corrections-conflicts-003
+    family_id: test-heldout-corrections-conflicts
+    split: test
+    review_status: reviewed
+    specification_status: confirmed
+    specification_review:
+      reviewer: requester
+      reviewed_at: "2026-11-15"
+      outcome: approved
+    specification:
+      purpose: Combine conflicting current-leak evidence and a corrected quote preference while preserving an appointment preference.
+      prefixes:
+        - id: p1
+          through_turn: t1
+          available_facts:
+            appliance: {value: Dishwasher, evidence_turn: t1}
+            location: {value: Basement, evidence_turn: t1}
+            active_leak: {value: true, evidence_turn: t1}
+            preferred_appointment: {value: null}
+            quote_required: {value: null}
+            spending_limit: {value: null}
+        - id: p2
+          through_turn: t2
+          available_facts:
+            appliance: {value: Dishwasher, evidence_turn: t1}
+            location: {value: Basement, evidence_turn: t1}
+            active_leak: {value: null}
+            preferred_appointment: {value: Saturday morning, evidence_turn: t2}
+            quote_required: {value: true, evidence_turn: t2}
+            spending_limit: {value: null}
+        - id: p3
+          through_turn: t3
+          available_facts:
+            appliance: {value: Dishwasher, evidence_turn: t1}
+            location: {value: Basement, evidence_turn: t1}
+            active_leak: {value: false, evidence_turn: t3}
+            preferred_appointment: {value: Saturday morning, evidence_turn: t2}
+            quote_required: {value: false, evidence_turn: t3}
+            spending_limit: {value: null}
+      must_include:
+        - initial_explicit_active_leak
+        - conflicting_current_leak_reports_leave_state_unknown
+        - later_explicit_negative_leak_update
+        - explicit_quote_request_then_correction
+        - appointment_preference_remains_unchanged
+      turns:
+        - id: t1
+          speaker: customer
+          intent: Identify the dishwasher in the basement and explicitly report water leaking now.
+        - id: t2
+          speaker: customer
+          intent: Say a partner believes the leak stopped, but the customer saw water under the dishwasher just now and cannot tell whether a leak is still active; prefer Saturday morning and request a quote before work.
+        - id: t3
+          speaker: customer
+          intent: Explicitly say there is no leak now, correct the quote preference to not needing one, and reaffirm Saturday morning.
+    conversation_path: data/test/conversations/test-heldout-corrections-conflicts-003.json
+    conversation_sha256: 5acf46eee039f938a5683f7dc1188a868af08fe7e88596a409b7d044e72069c1
+    snapshot_count: 3
+    transcript_review_status: approved
+    transcript_review:
+      reviewer: requester
+      reviewed_at: "2026-11-15"
+      outcome: approved
+    annotation_path: data/test/annotations/test-heldout-corrections-conflicts-003.json
+    annotation_sha256: 5776a6a6db1f60ecd42198a0badb2f6e74117d3c7b6d930531dbbeec553d4f8e
     annotation_review_status: approved
     annotation_review:
       reviewer: requester

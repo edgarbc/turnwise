@@ -20,13 +20,15 @@ The initial experiment uses synthetic English conversations about one appliance,
 
 The first comparison is between Jev and a general LLM using schema-constrained output. Both receive the same task labels, transcript prefixes, and candidate values. The next modeling objective is to train an open-weight classifier and measure whether task-specific training improves its results against both references. A smaller hosted LLM baseline is deferred future work. The experiment measures correctness, output validity, latency, cost, and uncertainty handling; valid output structure alone is not treated as evidence of correct answers.
 
-The open-weight training roadmap, data and review process, and training workflow are documented in the [training plan](docs/training/plan.md). Durable research and implementation choices will be recorded in `docs/decisions/`; the [project plan](docs/project-plan.md) remains the overview of the full research roadmap.
+The [training approach](docs/training/approach.md) summarizes the open-weight experiment. Its operational milestones, data contract, generation/review workflow, and export format are documented in the training docs. Durable research and implementation choices will be recorded in `docs/decisions/`; the [project plan](docs/project-plan.md) remains the overview of the full research roadmap.
 
 The task and experimental limits matter: matching Jev on this defined task would not show equivalent performance on arbitrary tasks. See the [evaluation protocol](docs/evaluation-protocol.md) for the planned comparison and metrics.
 
 ## Project documents
 
 - [Project plan](docs/project-plan.md): milestones, architecture, tooling, and intended repository layout.
+- [Training approach](docs/training/approach.md): research design, dataset strategy, review controls, and current status.
+- [Open-weight training plan](docs/training/plan.md): milestones, prerequisites, and exit criteria.
 - [Annotation guide](docs/annotation-guide.md): field meanings and rules for evidence, unknowns, negation, and corrections.
 - [Evaluation protocol](docs/evaluation-protocol.md): baselines, data splits, metrics, and comparison safeguards.
 

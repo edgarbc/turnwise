@@ -94,7 +94,7 @@ Record provenance and review status at scenario, conversation, annotation/snapsh
 - annotation/task version and source-file hashes;
 - any flags, adjudication, or correction history.
 
-The first reviewed development batch is intended to test the generator and annotation process; do not include final-test labels in that development review loop. After refining the instructions, generate remaining conversations only after family split assignment. Fully review every final-test conversation, selected prefix label, and evidence reference before freezing its hashes.
+The first reviewed development batch tested the generator and annotation process; final-test labels are excluded from that development review loop. All 40 non-test conversations are now approved. After the data-generation and evaluation workflow is frozen, generate and fully review every final-test conversation, selected prefix label, and evidence reference before freezing its hashes.
 
 ## Export and Acceptance Checks
 
@@ -116,8 +116,8 @@ The export must be deterministic for identical inputs, task version, and exporte
 
 ## Status and Remaining Work
 
-The working 30/5/5/10 allocation and family assignments are recorded in `data/scenarios/catalog.yaml`. All 40 development scenario specifications have been reviewed and confirmed. The first ten development transcripts and annotations have also been reviewed and approved; the batch manifest records per-case outcomes and source hashes. The candidate evidence-containment rule has been checked against that initial batch, and the Unsloth exporter checks row labels against the confirmed scenario facts.
+The working 30/5/5/10 allocation and family assignments are recorded in `data/scenarios/catalog.yaml`. All 40 development scenario specifications, transcripts, and annotations are reviewed and approved. Their batch manifests record per-case outcomes and source hashes. The candidate evidence-containment rule has been checked, and the Unsloth exporter checks row labels against confirmed scenario facts.
 
-The catalogue contains 40 reviewed development specifications. Ten have approved transcripts and annotations; the other 30 still need transcript generation, validation, and human review in batches. Update the manifest with their provenance and hashes as they are approved. The remaining ten conversations are final test; their specifications and labels remain withheld until the workflow and configuration are frozen.
+The non-test dataset validates with 40 conversations and 49 snapshots. The remaining ten conversations are final test; their specifications and labels remain withheld until the data-generation and evaluation workflow is frozen. Then generate, review, and hash-lock the test cases before using the test split.
 
 Record settled choices in [`../decisions/`](../decisions/) and reflect machine-enforced rules in the dataset manifest, task config, exporter, and validator.

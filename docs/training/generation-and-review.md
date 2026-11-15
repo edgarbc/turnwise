@@ -30,6 +30,6 @@ Structural validation is not semantic approval. After transcript validation, a h
 
 Track scenario-specification confirmation separately from generated-data review. Generated conversation drafts begin `unreviewed`; annotations do not exist until human review. Record targeted or full review, reviewer, date, outcome, and hashes in the batch manifest. Only mark a batch approved after all required transcript, label, and evidence checks have passed.
 
-## Initial Batch Scope
+## Initial Batch and Current Status
 
-The first development batch contains ten approved non-test conversations: six training, two validation, and two calibration. The remaining 30 development scenario specifications are also reviewed and confirmed; their transcripts still need to be generated and reviewed. These small batches exercise the generation and annotation workflow; they are not statistically meaningful evaluation sets. The original 30-conversation pilot remains a separate regression set.
+The first development batch contained ten approved non-test conversations: six training, two validation, and two calibration. Those cases exercised the generation and annotation workflow. All 40 non-test development conversations are now generated, annotated, and approved; the full dataset validator passes with 40 conversations and 49 snapshots. The remaining ten conversations are final test and their specifications and labels stay withheld until the data-generation and evaluation workflow is frozen. These small partitions are not statistically meaningful evaluation sets. The original 30-conversation pilot remains a separate regression set.

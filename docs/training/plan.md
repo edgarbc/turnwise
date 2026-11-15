@@ -41,7 +41,7 @@ The Unsloth decision-model row format is `state`, `questions`, and `gold`. The T
 
 ## Scenario, Split, and Review Plan
 
-The versioned catalogue now contains 40 reviewed development scenarios, with intended facts and their availability by turn. Coverage includes ordinary requests, missing information, explicit negatives, negation, corrections, conflicts, distractors, and combinations. Generator-produced answers are not ground truth: validate transcripts against scenario specifications, then annotate evidence and expected state at selected prefixes using Turnwise's rules. Final-test specifications remain withheld.
+The versioned catalogue contains 40 reviewed development scenarios, with intended facts and their availability by turn. Coverage includes ordinary requests, missing information, explicit negatives, negation, corrections, conflicts, distractors, and combinations. All 40 non-test conversations and their annotations are now approved, and dataset validation passes with 40 conversations and 49 snapshots. Generator-produced answers are not ground truth: validate transcripts against scenario specifications, then annotate evidence and expected state at selected prefixes using Turnwise's rules. The 10 final-test specifications and labels remain withheld until the workflow is frozen.
 
 The working allocation is 30/5/5/10 conversations. Family assignments and split policy are recorded in the scenario catalogue; keep related scenarios, paraphrases, and every prefix from one conversation in one split.
 
@@ -55,7 +55,7 @@ The working allocation is 30/5/5/10 conversations. Family assignments and split 
 
 These small partitions support workflow exploration, not precise population estimates. Report conversation-level counts and uncertainty; prefixes from one conversation are correlated and must not be counted as independent conversations.
 
-Record review level and provenance for scenarios, conversations, annotations, and splits. The initial 10 development examples (six training, two validation, and two calibration) are fully reviewed. Apply automated schema, evidence-span, candidate-coverage, and consistency checks to subsequent batches; human-review a diverse sample and every flagged or ambiguous example. Fully review and lock every final-test conversation and annotation before evaluation; keep test labels unavailable during training and checkpoint selection.
+Record review level and provenance for scenarios, conversations, annotations, and splits. The initial 10 development examples (six training, two validation, and two calibration) were fully reviewed first; the remaining development examples were then generated and reviewed in batches. All 40 non-test examples are approved. Fully review and lock every final-test conversation and annotation after the workflow is frozen; keep test labels unavailable during model, threshold, and checkpoint selection.
 
 ## Work Sequence and Exit Criteria
 
@@ -63,7 +63,7 @@ Record review level and provenance for scenarios, conversations, annotations, an
 
 The initial task and label contract, 30/5/5/10 working split, family assignments, and all 40 development scenario specifications have been reviewed. The canonical task, scenario catalogue, review contract, and approved batch manifest record those decisions. Keep final-test specifications and labels withheld until the workflow is frozen.
 
-**Exit:** complete for the 40 development conversations. All scenario specs are approved; the remaining 30 transcripts and annotations have not yet been generated or reviewed.
+**Exit:** complete for the task, label, split, and 40 development-scenario specifications. Final-test specifications and labels remain reserved until the workflow is frozen.
 
 ### 2. Prove the data contract on a small reviewed batch
 
@@ -73,9 +73,9 @@ The first 10 development conversations (six training, two validation, and two ca
 
 ### 3. Complete and lock the 50-conversation corpus
 
-Generate remaining examples after split assignment. Run automated checks and targeted review. Fully review the final test set and freeze its source hashes before any training or tuning.
+The 40 non-test conversations (30 training, five validation, and five calibration) are generated, annotated, and approved. `uv run turnwise validate --dataset data/training` passes with 40 conversations and 49 snapshots. The 10 final-test scenarios and labels remain withheld. Next, freeze the generation and evaluation workflow, then create and fully review the held-out test cases; keep their labels unavailable during development.
 
-**Exit:** split manifest, reviewed annotations, data-quality report, and frozen test hashes.
+**Exit:** approved split manifest, data-quality report, and frozen source hashes for all 50 conversations, with test labels access-controlled and unused in model selection.
 
 ### 4. Extract shared questions and implement the exporter
 
@@ -112,7 +112,8 @@ Integrate the best validation-selected local checkpoint into Turnwise. Document 
 ## Documentation and Sources of Truth
 
 - This document is the living roadmap for the training stage.
-- [`data-and-review.md`](data-and-review.md) defines the training-row, split, provenance, and review contract. All 40 development specs are approved; ten transcripts and annotation sets are approved, with 30 remaining to generate and review.
+- [`approach.md`](approach.md) summarizes the research design and current corpus status for orientation.
+- [`data-and-review.md`](data-and-review.md) defines the training-row, split, provenance, and review contract. All 40 non-test conversations and annotations are approved; ten final-test cases remain reserved.
 - [`generation-and-review.md`](generation-and-review.md) defines transcript generation and human review requirements for scenario-derived data.
 - [`export-format.md`](export-format.md) documents the Unsloth row format, provenance sidecar, and export command.
 - [`../annotation-guide.md`](../annotation-guide.md) remains authoritative for annotation semantics.

@@ -1,0 +1,43 @@
+{
+  "conversation_id": "test-heldout-corrections-conflicts-002",
+  "task_id": "repair_intake",
+  "task_version": "0.1.0",
+  "events": [
+    {
+      "event_id": "test-heldout-corrections-conflicts-002-e01",
+      "speaker": "customer",
+      "start_ms": 0,
+      "end_ms": 8000,
+      "revision": 0,
+      "is_final": true,
+      "text": "The wine cooler in the den is making a rattling noise."
+    },
+    {
+      "event_id": "test-heldout-corrections-conflicts-002-e02",
+      "speaker": "customer",
+      "start_ms": 12000,
+      "end_ms": 20000,
+      "revision": 0,
+      "is_final": true,
+      "text": "Friday morning works best, and for this repair my maximum is eight hundred U.S. dollars."
+    },
+    {
+      "event_id": "test-heldout-corrections-conflicts-002-e03",
+      "speaker": "customer",
+      "start_ms": 24000,
+      "end_ms": 34000,
+      "revision": 0,
+      "is_final": true,
+      "text": "My partner says the eight hundred U.S. dollars was the limit for another appliance. I think it was for this repair, but I cannot verify which of us is right."
+    },
+    {
+      "event_id": "test-heldout-corrections-conflicts-002-e04",
+      "speaker": "customer",
+      "start_ms": 38000,
+      "end_ms": 48000,
+      "revision": 0,
+      "is_final": true,
+      "text": "I found the invoice: the eight hundred U.S. dollars was for the other appliance. My maximum for this repair is six hundred U.S. dollars."
+    }
+  ]
+}

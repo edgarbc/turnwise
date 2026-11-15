@@ -6,7 +6,7 @@ catalog:
   status: test_data_review_in_progress
   catalogue_stage: final_test_specifications
   intended_conversations: 10
-  approved_specification_count: 1
+  approved_specification_count: 2
   split_counts:
     test: 10
   source_pins:
@@ -106,6 +106,81 @@ scenarios:
       outcome: approved
     annotation_path: data/test/annotations/test-heldout-corrections-conflicts-001.json
     annotation_sha256: 17a963081a895d9fa16a2da812a5a59e2eedc68bb5476522ed9c3821390f2aa2
+    annotation_review_status: approved
+    annotation_review:
+      reviewer: requester
+      reviewed_at: "2026-11-15"
+      outcome: approved
+    annotation_status: approved
+
+  - id: test-heldout-corrections-conflicts-002
+    family_id: test-heldout-corrections-conflicts
+    split: test
+    review_status: reviewed
+    specification_status: confirmed
+    specification_review:
+      reviewer: requester
+      reviewed_at: "2026-11-15"
+      outcome: approved
+    specification:
+      purpose: Keep a repair maximum unknown while conflicting reports disagree about whether an earlier amount applies to this job, then resolve the scope from an invoice.
+      prefixes:
+        - id: p1
+          through_turn: t2
+          available_facts:
+            appliance: {value: Wine cooler, evidence_turn: t1}
+            location: {value: Den, evidence_turn: t1}
+            active_leak: {value: null}
+            preferred_appointment: {value: Friday morning, evidence_turn: t2}
+            quote_required: {value: null}
+            spending_limit: {value: {amount: 800, currency: USD}, evidence_turn: t2}
+        - id: p2
+          through_turn: t3
+          available_facts:
+            appliance: {value: Wine cooler, evidence_turn: t1}
+            location: {value: Den, evidence_turn: t1}
+            active_leak: {value: null}
+            preferred_appointment: {value: Friday morning, evidence_turn: t2}
+            quote_required: {value: null}
+            spending_limit: {value: null}
+        - id: p3
+          through_turn: t4
+          available_facts:
+            appliance: {value: Wine cooler, evidence_turn: t1}
+            location: {value: Den, evidence_turn: t1}
+            active_leak: {value: null}
+            preferred_appointment: {value: Friday morning, evidence_turn: t2}
+            quote_required: {value: null}
+            spending_limit: {value: {amount: 600, currency: USD}, evidence_turn: t4}
+      must_include:
+        - explicit_initial_repair_maximum
+        - conflicting_reports_about_amount_scope
+        - unresolved_scope_keeps_limit_unknown
+        - invoice_clarifies_amount_scope
+        - clarified_repair_maximum
+      turns:
+        - id: t1
+          speaker: customer
+          intent: Identify the wine cooler in the den.
+        - id: t2
+          speaker: customer
+          intent: Prefer Friday morning and explicitly set an eight-hundred-dollar maximum for this repair.
+        - id: t3
+          speaker: customer
+          intent: Report that a partner believes the eight-hundred-dollar amount applied to another appliance, while the customer believes it applied to this repair; say they cannot verify which is correct.
+        - id: t4
+          speaker: customer
+          intent: Use an invoice to clarify that eight hundred dollars was for the other appliance and explicitly set a six-hundred-dollar maximum for this repair.
+    conversation_path: data/test/conversations/test-heldout-corrections-conflicts-002.json
+    conversation_sha256: 3088f9739744e9ecd2732c0b40ee190a3126e0a838e128ecfcd0bf5647a7a9bb
+    snapshot_count: 3
+    transcript_review_status: approved
+    transcript_review:
+      reviewer: requester
+      reviewed_at: "2026-11-15"
+      outcome: approved
+    annotation_path: data/test/annotations/test-heldout-corrections-conflicts-002.json
+    annotation_sha256: 28f07ab6b45704625093bbc8b426204331fd7a86561d360cd12e88ca93696147
     annotation_review_status: approved
     annotation_review:
       reviewer: requester

@@ -6,7 +6,7 @@ catalog:
   status: test_data_review_in_progress
   catalogue_stage: final_test_specifications
   intended_conversations: 10
-  approved_specification_count: 3
+  approved_specification_count: 4
   split_counts:
     test: 10
   source_pins:
@@ -253,6 +253,78 @@ scenarios:
       outcome: approved
     annotation_path: data/test/annotations/test-heldout-corrections-conflicts-003.json
     annotation_sha256: 5776a6a6db1f60ecd42198a0badb2f6e74117d3c7b6d930531dbbeec553d4f8e
+    annotation_review_status: approved
+    annotation_review:
+      reviewer: requester
+      reviewed_at: "2026-11-15"
+      outcome: approved
+    annotation_status: approved
+
+  - id: test-heldout-corrections-conflicts-004
+    family_id: test-heldout-corrections-conflicts
+    split: test
+    review_status: reviewed
+    specification_status: confirmed
+    specification_review:
+      reviewer: requester
+      reviewed_at: "2026-11-15"
+      outcome: approved
+    specification:
+      purpose: Preserve an initially stated appliance location, keep it unknown when the customer reports conflicting room possibilities, then apply the location confirmed by a service label.
+      prefixes:
+        - id: p1
+          through_turn: t1
+          available_facts:
+            appliance: {value: Water heater, evidence_turn: t1}
+            location: {value: Basement, evidence_turn: t1}
+            active_leak: {value: null}
+            preferred_appointment: {value: null}
+            quote_required: {value: null}
+            spending_limit: {value: null}
+        - id: p2
+          through_turn: t2
+          available_facts:
+            appliance: {value: Water heater, evidence_turn: t1}
+            location: {value: null}
+            active_leak: {value: null}
+            preferred_appointment: {value: null}
+            quote_required: {value: null}
+            spending_limit: {value: null}
+        - id: p3
+          through_turn: t3
+          available_facts:
+            appliance: {value: Water heater, evidence_turn: t1}
+            location: {value: Utility room, evidence_turn: t3}
+            active_leak: {value: null}
+            preferred_appointment: {value: null}
+            quote_required: {value: null}
+            spending_limit: {value: null}
+      must_include:
+        - initial_explicit_basement_location
+        - competing_extractor_visible_utility_room_candidate
+        - customer_cannot_resolve_location_conflict_at_p2
+        - service_label_resolves_location_at_p3
+        - other_fields_remain_unknown
+      turns:
+        - id: t1
+          speaker: customer
+          intent: Identify the water heater in the basement.
+        - id: t2
+          speaker: customer
+          intent: Say the customer cannot recall whether it is in the basement, while a brother thinks it may be in the utility room; the customer cannot confirm which room is correct.
+        - id: t3
+          speaker: customer
+          intent: Check the service label and confirm the water heater is in the utility room, not the basement.
+    conversation_path: data/test/conversations/test-heldout-corrections-conflicts-004.json
+    conversation_sha256: 03da992d1baf2c88fe4281a7f7e69351e6a27b3ce829007a693318b68e5e8527
+    snapshot_count: 3
+    transcript_review_status: approved
+    transcript_review:
+      reviewer: requester
+      reviewed_at: "2026-11-15"
+      outcome: approved
+    annotation_path: data/test/annotations/test-heldout-corrections-conflicts-004.json
+    annotation_sha256: 5b5f8e638f2792e6bd8bbd45019ffcd682bded4942de41682faf756b96a84c8d
     annotation_review_status: approved
     annotation_review:
       reviewer: requester

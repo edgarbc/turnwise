@@ -1,0 +1,59 @@
+{
+  "conversation_id": "train-candidate-distractors-003",
+  "task_id": "repair_intake",
+  "task_version": "0.1.0",
+  "snapshots": [
+    {
+      "snapshot_id": "train-candidate-distractors-003-s01",
+      "through_event_id": "train-candidate-distractors-003-e02",
+      "values": {
+        "appliance": "Cooktop",
+        "location": "Dining room",
+        "active_leak": null,
+        "preferred_appointment": "Wednesday evening",
+        "quote_required": true,
+        "spending_limit": {
+          "amount": 700,
+          "currency": "USD"
+        }
+      },
+      "evidence": {
+        "appliance": [
+          {
+            "event_id": "train-candidate-distractors-003-e01",
+            "start_char": 4,
+            "end_char": 11
+          }
+        ],
+        "location": [
+          {
+            "event_id": "train-candidate-distractors-003-e01",
+            "start_char": 19,
+            "end_char": 30
+          }
+        ],
+        "preferred_appointment": [
+          {
+            "event_id": "train-candidate-distractors-003-e02",
+            "start_char": 100,
+            "end_char": 117
+          }
+        ],
+        "quote_required": [
+          {
+            "event_id": "train-candidate-distractors-003-e02",
+            "start_char": 60,
+            "end_char": 98
+          }
+        ],
+        "spending_limit": [
+          {
+            "event_id": "train-candidate-distractors-003-e02",
+            "start_char": 164,
+            "end_char": 190
+          }
+        ]
+      }
+    }
+  ]
+}

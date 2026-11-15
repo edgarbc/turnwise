@@ -1,0 +1,55 @@
+{
+  "manifest_version": "0.1.0",
+  "dataset_id": "repair-intake-training-generation-batch-18",
+  "purpose": "transcript_generation_draft_only",
+  "task": {
+    "id": "repair_intake",
+    "version": "0.1.0",
+    "path": "configs/tasks/repair-intake.yaml",
+    "sha256": "2bcfeac17ccd30d85c640394b930bfd9db4a4dc7b1b67f049483ab79b9284db3"
+  },
+  "scenario_catalog": {
+    "id": "repair-intake-training-scenarios",
+    "version": "0.1.0",
+    "path": "data/scenarios/catalog.yaml",
+    "sha256": "24733bfc371d679a96540574d7bd92cc313edc678d40de24fb727cf918a33572"
+  },
+  "review_policy": {
+    "scenario_specifications": "requester_confirmed",
+    "conversation_review_status": "unreviewed",
+    "annotation_status": "not_created_pending_human_review",
+    "reviewer": null,
+    "reviewed_at": null
+  },
+  "validation": {
+    "automated_structure_and_candidate_check": "passed",
+    "human_transcript_review": "pending",
+    "human_annotation_review": "not_started",
+    "validation_is_not_semantic_approval": true
+  },
+  "cases": [
+    {
+      "case_id": "calibration-uncertainty-004",
+      "family_id": "calibration-uncertainty",
+      "split": "calibration",
+      "conversation_path": "data/training/conversations/calibration-uncertainty-004.json",
+      "conversation_sha256": "215d78e2bffe61f9bcf07635140d50776515fabab33636a3e1ea0158e20502ca",
+      "snapshot_count": 1,
+      "human_review_status": "approved",
+      "transcript_review": {
+        "reviewer": "requester",
+        "reviewed_at": "2026-11-15",
+        "outcome": "approved"
+      },
+      "annotation_path": "data/training/annotations/calibration-uncertainty-004.json",
+      "annotation_sha256": "98a8b163837f0e6e54ecc212576379e0f8570ebca5655c19f5edce6d040c201d",
+      "annotation_review_status": "approved",
+      "annotation_review": {
+        "reviewer": "requester",
+        "reviewed_at": "2026-11-15",
+        "outcome": "approved"
+      },
+      "annotation_status": "approved"
+    }
+  ]
+}

@@ -1,0 +1,160 @@
+{
+  "conversation_id": "test-heldout-combinations-003",
+  "task_id": "repair_intake",
+  "task_version": "0.1.0",
+  "snapshots": [
+    {
+      "snapshot_id": "test-heldout-combinations-003-s01",
+      "through_event_id": "test-heldout-combinations-003-e01",
+      "values": {
+        "appliance": "Refrigerator",
+        "location": "Pantry",
+        "active_leak": true,
+        "preferred_appointment": null,
+        "quote_required": null,
+        "spending_limit": null
+      },
+      "evidence": {
+        "appliance": [
+          {
+            "event_id": "test-heldout-combinations-003-e01",
+            "start_char": 4,
+            "end_char": 16
+          }
+        ],
+        "location": [
+          {
+            "event_id": "test-heldout-combinations-003-e01",
+            "start_char": 27,
+            "end_char": 33
+          }
+        ],
+        "active_leak": [
+          {
+            "event_id": "test-heldout-combinations-003-e01",
+            "start_char": 45,
+            "end_char": 68
+          }
+        ]
+      }
+    },
+    {
+      "snapshot_id": "test-heldout-combinations-003-s02",
+      "through_event_id": "test-heldout-combinations-003-e02",
+      "values": {
+        "appliance": "Wine cooler",
+        "location": "Pantry",
+        "active_leak": true,
+        "preferred_appointment": "Friday morning",
+        "quote_required": true,
+        "spending_limit": {
+          "amount": 400,
+          "currency": "USD"
+        }
+      },
+      "evidence": {
+        "appliance": [
+          {
+            "event_id": "test-heldout-combinations-003-e02",
+            "start_char": 20,
+            "end_char": 31
+          }
+        ],
+        "location": [
+          {
+            "event_id": "test-heldout-combinations-003-e01",
+            "start_char": 27,
+            "end_char": 33
+          }
+        ],
+        "active_leak": [
+          {
+            "event_id": "test-heldout-combinations-003-e01",
+            "start_char": 45,
+            "end_char": 68
+          }
+        ],
+        "preferred_appointment": [
+          {
+            "event_id": "test-heldout-combinations-003-e02",
+            "start_char": 53,
+            "end_char": 67
+          }
+        ],
+        "quote_required": [
+          {
+            "event_id": "test-heldout-combinations-003-e02",
+            "start_char": 80,
+            "end_char": 109
+          }
+        ],
+        "spending_limit": [
+          {
+            "event_id": "test-heldout-combinations-003-e02",
+            "start_char": 141,
+            "end_char": 166
+          }
+        ]
+      }
+    },
+    {
+      "snapshot_id": "test-heldout-combinations-003-s03",
+      "through_event_id": "test-heldout-combinations-003-e03",
+      "values": {
+        "appliance": "Wine cooler",
+        "location": "Pantry",
+        "active_leak": false,
+        "preferred_appointment": "Thursday afternoon",
+        "quote_required": true,
+        "spending_limit": {
+          "amount": 400,
+          "currency": "USD"
+        }
+      },
+      "evidence": {
+        "appliance": [
+          {
+            "event_id": "test-heldout-combinations-003-e02",
+            "start_char": 20,
+            "end_char": 31
+          }
+        ],
+        "location": [
+          {
+            "event_id": "test-heldout-combinations-003-e01",
+            "start_char": 27,
+            "end_char": 33
+          }
+        ],
+        "active_leak": [
+          {
+            "event_id": "test-heldout-combinations-003-e03",
+            "start_char": 87,
+            "end_char": 116
+          }
+        ],
+        "preferred_appointment": [
+          {
+            "event_id": "test-heldout-combinations-003-e03",
+            "start_char": 12,
+            "end_char": 30
+          }
+        ],
+        "quote_required": [
+          {
+            "event_id": "test-heldout-combinations-003-e02",
+            "start_char": 80,
+            "end_char": 109
+          }
+        ],
+        "spending_limit": [
+          {
+            "event_id": "test-heldout-combinations-003-e02",
+            "start_char": 141,
+            "end_char": 166
+          }
+        ]
+      }
+    }
+  ]
+}

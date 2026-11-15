@@ -1,0 +1,34 @@
+{
+  "conversation_id": "test-heldout-combinations-003",
+  "task_id": "repair_intake",
+  "task_version": "0.1.0",
+  "events": [
+    {
+      "event_id": "test-heldout-combinations-003-e01",
+      "speaker": "customer",
+      "start_ms": 0,
+      "end_ms": 8000,
+      "revision": 0,
+      "is_final": true,
+      "text": "The refrigerator is in the pantry, and it is leaking water right now."
+    },
+    {
+      "event_id": "test-heldout-combinations-003-e02",
+      "speaker": "customer",
+      "start_ms": 12000,
+      "end_ms": 26000,
+      "revision": 0,
+      "is_final": true,
+      "text": "I misspoke: it is a wine cooler, not a refrigerator. Friday morning works best, I need a quote before repairs, my maximum for this repair is four hundred U.S. dollars, and the one hundred U.S. dollar dispatch fee is separate."
+    },
+    {
+      "event_id": "test-heldout-combinations-003-e03",
+      "speaker": "customer",
+      "start_ms": 30000,
+      "end_ms": 39000,
+      "revision": 0,
+      "is_final": true,
+      "text": "Correction: Thursday afternoon works better than Friday morning. The leak has stopped; there is no water leaking now."
+    }
+  ]
+}

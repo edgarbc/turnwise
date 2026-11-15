@@ -202,9 +202,26 @@
       "case_id": "test-heldout-combinations-003",
       "family_id": "test-heldout-combinations",
       "split": "test",
-      "scenario_specification_status": "not_created",
-      "human_review_status": "not_created",
-      "annotation_status": "not_created"
+      "scenario_specification_status": "confirmed",
+      "scenario_spec_sha256": "e11b34b28355c6f9de077728b869f8484ae352698815eae1e69f5ac573e24658",
+      "conversation_path": "data/test/conversations/test-heldout-combinations-003.json",
+      "conversation_sha256": "84f750b87d5ce4a12e49c06e20b38bf275975a652304519543eadf51ded5b019",
+      "snapshot_count": 3,
+      "human_review_status": "approved",
+      "transcript_review": {
+        "reviewer": "requester",
+        "reviewed_at": "2026-11-15",
+        "outcome": "approved"
+      },
+      "annotation_path": "data/test/annotations/test-heldout-combinations-003.json",
+      "annotation_sha256": "c91a61aee450ed136ae0bbeab69c35ba9ef41227722af05ee61038184543cf1d",
+      "annotation_review_status": "approved",
+      "annotation_review": {
+        "reviewer": "requester",
+        "reviewed_at": "2026-11-15",
+        "outcome": "approved"
+      },
+      "annotation_status": "approved"
     },
     {
       "case_id": "test-heldout-combinations-004",

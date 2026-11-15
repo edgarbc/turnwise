@@ -6,7 +6,7 @@ catalog:
   status: test_data_review_in_progress
   catalogue_stage: final_test_specifications
   intended_conversations: 10
-  approved_specification_count: 7
+  approved_specification_count: 8
   split_counts:
     test: 10
   source_pins:
@@ -528,6 +528,79 @@ scenarios:
       outcome: approved
     annotation_path: data/test/annotations/test-heldout-combinations-002.json
     annotation_sha256: 3b8337fe76f6346b205eb36c4313174f95a522623bb60dd0bc5a025d128bc359
+    annotation_review_status: approved
+    annotation_review:
+      reviewer: requester
+      reviewed_at: "2026-11-15"
+      outcome: approved
+    annotation_status: approved
+
+  - id: test-heldout-combinations-003
+    family_id: test-heldout-combinations
+    split: test
+    review_status: reviewed
+    specification_status: confirmed
+    specification_review:
+      reviewer: requester
+      reviewed_at: "2026-11-15"
+      outcome: approved
+    specification:
+      purpose: Combine an appliance correction, active-leak update, appointment correction, quote requirement, and service-fee distractor beside a repair cap.
+      prefixes:
+        - id: p1
+          through_turn: t1
+          available_facts:
+            appliance: {value: Refrigerator, evidence_turn: t1}
+            location: {value: Pantry, evidence_turn: t1}
+            active_leak: {value: true, evidence_turn: t1}
+            preferred_appointment: {value: null}
+            quote_required: {value: null}
+            spending_limit: {value: null}
+        - id: p2
+          through_turn: t2
+          available_facts:
+            appliance: {value: Wine cooler, evidence_turn: t2}
+            location: {value: Pantry, evidence_turn: t1}
+            active_leak: {value: true, evidence_turn: t1}
+            preferred_appointment: {value: Friday morning, evidence_turn: t2}
+            quote_required: {value: true, evidence_turn: t2}
+            spending_limit: {value: {amount: 400, currency: USD}, evidence_turn: t2}
+        - id: p3
+          through_turn: t3
+          available_facts:
+            appliance: {value: Wine cooler, evidence_turn: t2}
+            location: {value: Pantry, evidence_turn: t1}
+            active_leak: {value: false, evidence_turn: t3}
+            preferred_appointment: {value: Thursday afternoon, evidence_turn: t3}
+            quote_required: {value: true, evidence_turn: t2}
+            spending_limit: {value: {amount: 400, currency: USD}, evidence_turn: t2}
+      must_include:
+        - explicit_appliance_correction
+        - active_leak_persists_through_p2
+        - later_explicit_leak_stopped
+        - appointment_correction_from_friday_to_thursday
+        - quote_requirement_and_repair_cap
+        - dispatch_fee_not_selected_as_repair_cap
+      turns:
+        - id: t1
+          speaker: customer
+          intent: Identify the refrigerator in the pantry and explicitly report water leaking now.
+        - id: t2
+          speaker: customer
+          intent: Correct the appliance to a wine cooler, prefer Friday morning, request a quote, set a $400 USD repair maximum, and mention a separate $100 USD dispatch fee.
+        - id: t3
+          speaker: customer
+          intent: Correct the appointment preference to Thursday afternoon and explicitly state the leak has stopped.
+    conversation_path: data/test/conversations/test-heldout-combinations-003.json
+    conversation_sha256: 84f750b87d5ce4a12e49c06e20b38bf275975a652304519543eadf51ded5b019
+    snapshot_count: 3
+    transcript_review_status: approved
+    transcript_review:
+      reviewer: requester
+      reviewed_at: "2026-11-15"
+      outcome: approved
+    annotation_path: data/test/annotations/test-heldout-combinations-003.json
+    annotation_sha256: c91a61aee450ed136ae0bbeab69c35ba9ef41227722af05ee61038184543cf1d
     annotation_review_status: approved
     annotation_review:
       reviewer: requester

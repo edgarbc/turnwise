@@ -6,7 +6,7 @@ catalog:
   status: test_data_review_in_progress
   catalogue_stage: final_test_specifications
   intended_conversations: 10
-  approved_specification_count: 6
+  approved_specification_count: 7
   split_counts:
     test: 10
   source_pins:
@@ -456,6 +456,78 @@ scenarios:
       outcome: approved
     annotation_path: data/test/annotations/test-heldout-combinations-001.json
     annotation_sha256: b7c8a3da63f5ff9eefce448ce9ec38d7e905040770292864f31e83bc952f0a69
+    annotation_review_status: approved
+    annotation_review:
+      reviewer: requester
+      reviewed_at: "2026-11-15"
+      outcome: approved
+    annotation_status: approved
+
+  - id: test-heldout-combinations-002
+    family_id: test-heldout-combinations
+    split: test
+    review_status: reviewed
+    specification_status: confirmed
+    specification_review:
+      reviewer: requester
+      reviewed_at: "2026-11-15"
+      outcome: approved
+    specification:
+      purpose: Combine uncertain leak evidence, an appointment correction, a quote requirement, and a service-fee distractor beside an explicit repair cap.
+      prefixes:
+        - id: p1
+          through_turn: t1
+          available_facts:
+            appliance: {value: Refrigerator, evidence_turn: t1}
+            location: {value: Pantry, evidence_turn: t1}
+            active_leak: {value: null}
+            preferred_appointment: {value: null}
+            quote_required: {value: null}
+            spending_limit: {value: null}
+        - id: p2
+          through_turn: t2
+          available_facts:
+            appliance: {value: Refrigerator, evidence_turn: t1}
+            location: {value: Pantry, evidence_turn: t1}
+            active_leak: {value: null}
+            preferred_appointment: {value: Thursday morning, evidence_turn: t2}
+            quote_required: {value: true, evidence_turn: t2}
+            spending_limit: {value: {amount: 700, currency: USD}, evidence_turn: t2}
+        - id: p3
+          through_turn: t3
+          available_facts:
+            appliance: {value: Refrigerator, evidence_turn: t1}
+            location: {value: Pantry, evidence_turn: t1}
+            active_leak: {value: false, evidence_turn: t3}
+            preferred_appointment: {value: Tuesday afternoon, evidence_turn: t3}
+            quote_required: {value: true, evidence_turn: t2}
+            spending_limit: {value: {amount: 700, currency: USD}, evidence_turn: t2}
+      must_include:
+        - uncertain_current_leak_keeps_unknown_at_p2
+        - dispatch_fee_is_not_spending_limit
+        - explicit_quote_requirement
+        - appointment_correction_from_thursday_to_tuesday
+        - later_explicit_no_leak_state
+      turns:
+        - id: t1
+          speaker: customer
+          intent: Identify the refrigerator in the pantry without discussing leaks.
+        - id: t2
+          speaker: customer
+          intent: Mention moisture underneath but say it may be a spill and the customer cannot tell whether there is an active leak; prefer Thursday morning, require a quote before work, set a $700 USD repair maximum, and say a $90 dispatch fee is separate.
+        - id: t3
+          speaker: customer
+          intent: Correct the appointment preference to Tuesday afternoon and explicitly state there is no water leaking now; keep the quote requirement and repair cap.
+    conversation_path: data/test/conversations/test-heldout-combinations-002.json
+    conversation_sha256: c2c34e2ff9139e4281a78ae0452996b67639ad1303053826b4eeded1b7b77629
+    snapshot_count: 3
+    transcript_review_status: approved
+    transcript_review:
+      reviewer: requester
+      reviewed_at: "2026-11-15"
+      outcome: approved
+    annotation_path: data/test/annotations/test-heldout-combinations-002.json
+    annotation_sha256: 3b8337fe76f6346b205eb36c4313174f95a522623bb60dd0bc5a025d128bc359
     annotation_review_status: approved
     annotation_review:
       reviewer: requester

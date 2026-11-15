@@ -1,0 +1,101 @@
+{
+  "conversation_id": "test-heldout-combinations-004",
+  "task_id": "repair_intake",
+  "task_version": "0.1.0",
+  "snapshots": [
+    {
+      "snapshot_id": "test-heldout-combinations-004-s01",
+      "through_event_id": "test-heldout-combinations-004-e01",
+      "values": {
+        "appliance": "Electric dryer",
+        "location": "Upstairs hall",
+        "active_leak": false,
+        "preferred_appointment": null,
+        "quote_required": null,
+        "spending_limit": null
+      },
+      "evidence": {
+        "appliance": [
+          {
+            "event_id": "test-heldout-combinations-004-e01",
+            "start_char": 4,
+            "end_char": 18
+          }
+        ],
+        "location": [
+          {
+            "event_id": "test-heldout-combinations-004-e01",
+            "start_char": 29,
+            "end_char": 42
+          }
+        ],
+        "active_leak": [
+          {
+            "event_id": "test-heldout-combinations-004-e01",
+            "start_char": 50,
+            "end_char": 71
+          }
+        ]
+      }
+    },
+    {
+      "snapshot_id": "test-heldout-combinations-004-s02",
+      "through_event_id": "test-heldout-combinations-004-e02",
+      "values": {
+        "appliance": "Clothes dryer",
+        "location": "Upstairs hall",
+        "active_leak": false,
+        "preferred_appointment": "Friday afternoon",
+        "quote_required": true,
+        "spending_limit": {
+          "amount": 600,
+          "currency": "USD"
+        }
+      },
+      "evidence": {
+        "appliance": [
+          {
+            "event_id": "test-heldout-combinations-004-e02",
+            "start_char": 20,
+            "end_char": 33
+          }
+        ],
+        "location": [
+          {
+            "event_id": "test-heldout-combinations-004-e01",
+            "start_char": 29,
+            "end_char": 42
+          }
+        ],
+        "active_leak": [
+          {
+            "event_id": "test-heldout-combinations-004-e02",
+            "start_char": 88,
+            "end_char": 103
+          }
+        ],
+        "preferred_appointment": [
+          {
+            "event_id": "test-heldout-combinations-004-e02",
+            "start_char": 105,
+            "end_char": 121
+          }
+        ],
+        "quote_required": [
+          {
+            "event_id": "test-heldout-combinations-004-e02",
+            "start_char": 134,
+            "end_char": 163
+          }
+        ],
+        "spending_limit": [
+          {
+            "event_id": "test-heldout-combinations-004-e02",
+            "start_char": 224,
+            "end_char": 248
+          }
+        ]
+      }
+    }
+  ]
+}

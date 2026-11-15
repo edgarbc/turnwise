@@ -1,0 +1,101 @@
+{
+  "conversation_id": "test-heldout-combinations-001",
+  "task_id": "repair_intake",
+  "task_version": "0.1.0",
+  "snapshots": [
+    {
+      "snapshot_id": "test-heldout-combinations-001-s01",
+      "through_event_id": "test-heldout-combinations-001-e01",
+      "values": {
+        "appliance": "Portable dishwasher",
+        "location": "Mudroom",
+        "active_leak": false,
+        "preferred_appointment": null,
+        "quote_required": null,
+        "spending_limit": null
+      },
+      "evidence": {
+        "appliance": [
+          {
+            "event_id": "test-heldout-combinations-001-e01",
+            "start_char": 4,
+            "end_char": 23
+          }
+        ],
+        "location": [
+          {
+            "event_id": "test-heldout-combinations-001-e01",
+            "start_char": 34,
+            "end_char": 41
+          }
+        ],
+        "active_leak": [
+          {
+            "event_id": "test-heldout-combinations-001-e01",
+            "start_char": 72,
+            "end_char": 93
+          }
+        ]
+      }
+    },
+    {
+      "snapshot_id": "test-heldout-combinations-001-s02",
+      "through_event_id": "test-heldout-combinations-001-e02",
+      "values": {
+        "appliance": "Portable dishwasher",
+        "location": "Mudroom",
+        "active_leak": false,
+        "preferred_appointment": "Friday afternoon",
+        "quote_required": true,
+        "spending_limit": {
+          "amount": 600,
+          "currency": "USD"
+        }
+      },
+      "evidence": {
+        "appliance": [
+          {
+            "event_id": "test-heldout-combinations-001-e01",
+            "start_char": 4,
+            "end_char": 23
+          }
+        ],
+        "location": [
+          {
+            "event_id": "test-heldout-combinations-001-e01",
+            "start_char": 34,
+            "end_char": 41
+          }
+        ],
+        "active_leak": [
+          {
+            "event_id": "test-heldout-combinations-001-e01",
+            "start_char": 72,
+            "end_char": 93
+          }
+        ],
+        "preferred_appointment": [
+          {
+            "event_id": "test-heldout-combinations-001-e02",
+            "start_char": 77,
+            "end_char": 93
+          }
+        ],
+        "quote_required": [
+          {
+            "event_id": "test-heldout-combinations-001-e02",
+            "start_char": 103,
+            "end_char": 129
+          }
+        ],
+        "spending_limit": [
+          {
+            "event_id": "test-heldout-combinations-001-e02",
+            "start_char": 161,
+            "end_char": 185
+          }
+        ]
+      }
+    }
+  ]
+}

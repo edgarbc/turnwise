@@ -6,7 +6,7 @@ catalog:
   status: test_data_review_in_progress
   catalogue_stage: final_test_specifications
   intended_conversations: 10
-  approved_specification_count: 5
+  approved_specification_count: 6
   split_counts:
     test: 10
   source_pins:
@@ -396,6 +396,66 @@ scenarios:
       outcome: approved
     annotation_path: data/test/annotations/test-heldout-corrections-conflicts-005.json
     annotation_sha256: 36b72e70726b821d34d6a2151e59fbbc925e364416963d59092a975714ad4cd0
+    annotation_review_status: approved
+    annotation_review:
+      reviewer: requester
+      reviewed_at: "2026-11-15"
+      outcome: approved
+    annotation_status: approved
+
+  - id: test-heldout-combinations-001
+    family_id: test-heldout-combinations
+    split: test
+    review_status: reviewed
+    specification_status: confirmed
+    specification_review:
+      reviewer: requester
+      reviewed_at: "2026-11-15"
+      outcome: approved
+    specification:
+      purpose: Combine an explicit negative leak state with a required quote, a customer appointment preference, and a spending cap that must be distinguished from a service fee.
+      prefixes:
+        - id: p1
+          through_turn: t1
+          available_facts:
+            appliance: {value: Portable dishwasher, evidence_turn: t1}
+            location: {value: Mudroom, evidence_turn: t1}
+            active_leak: {value: false, evidence_turn: t1}
+            preferred_appointment: {value: null}
+            quote_required: {value: null}
+            spending_limit: {value: null}
+        - id: p2
+          through_turn: t2
+          available_facts:
+            appliance: {value: Portable dishwasher, evidence_turn: t1}
+            location: {value: Mudroom, evidence_turn: t1}
+            active_leak: {value: false, evidence_turn: t1}
+            preferred_appointment: {value: Friday afternoon, evidence_turn: t2}
+            quote_required: {value: true, evidence_turn: t2}
+            spending_limit: {value: {amount: 600, currency: USD}, evidence_turn: t2}
+      must_include:
+        - explicit_current_no_leak
+        - separate_service_fee_distractor
+        - explicit_quote_requirement
+        - customer_appointment_preference
+        - explicit_repair_spending_maximum
+      turns:
+        - id: t1
+          speaker: customer
+          intent: Identify a portable dishwasher in the mudroom and explicitly state it is not leaking now.
+        - id: t2
+          speaker: customer
+          intent: Mention a $95 dispatch fee as separate from repair cost, prefer Friday afternoon, require a quote before work, and set a $600 USD maximum for the repair.
+    conversation_path: data/test/conversations/test-heldout-combinations-001.json
+    conversation_sha256: 83f231ecd72df7e602ab493c5b0ca06a15c7af5c889d9e7abb58ba82acd999c1
+    snapshot_count: 2
+    transcript_review_status: approved
+    transcript_review:
+      reviewer: requester
+      reviewed_at: "2026-11-15"
+      outcome: approved
+    annotation_path: data/test/annotations/test-heldout-combinations-001.json
+    annotation_sha256: b7c8a3da63f5ff9eefce448ce9ec38d7e905040770292864f31e83bc952f0a69
     annotation_review_status: approved
     annotation_review:
       reviewer: requester

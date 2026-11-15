@@ -1,0 +1,114 @@
+catalog:
+  id: repair-intake-final-test-scenarios
+  version: "0.1.0"
+  task_id: repair_intake
+  task_version: "0.1.0"
+  status: test_data_review_in_progress
+  catalogue_stage: final_test_specifications
+  intended_conversations: 10
+  approved_specification_count: 1
+  split_counts:
+    test: 10
+  source_pins:
+    task_path: configs/tasks/repair-intake.yaml
+    task_sha256: 2bcfeac17ccd30d85c640394b930bfd9db4a4dc7b1b67f049483ab79b9284db3
+    development_catalogue_path: data/scenarios/catalog.yaml
+    development_catalogue_sha256: 24733bfc371d679a96540574d7bd92cc313edc678d40de24fb727cf918a33572
+  leakage_controls:
+    exclude_from_training: true
+    exclude_from_validation: true
+    exclude_from_calibration: true
+    exclude_from_prompt_and_threshold_selection: true
+    expose_labels_only_for_final_frozen_evaluation: true
+families:
+  - id: test-heldout-corrections-conflicts
+    split: test
+    conversation_count: 5
+    scenario_ids:
+      - test-heldout-corrections-conflicts-001
+      - test-heldout-corrections-conflicts-002
+      - test-heldout-corrections-conflicts-003
+      - test-heldout-corrections-conflicts-004
+      - test-heldout-corrections-conflicts-005
+  - id: test-heldout-combinations
+    split: test
+    conversation_count: 5
+    scenario_ids:
+      - test-heldout-combinations-001
+      - test-heldout-combinations-002
+      - test-heldout-combinations-003
+      - test-heldout-combinations-004
+      - test-heldout-combinations-005
+scenarios:
+  - id: test-heldout-corrections-conflicts-001
+    family_id: test-heldout-corrections-conflicts
+    split: test
+    review_status: reviewed
+    specification_status: confirmed
+    specification_review:
+      reviewer: requester
+      reviewed_at: "2026-11-15"
+      outcome: approved
+    specification:
+      purpose: Combine conflicting leak evidence and an uncertain appointment with later explicit resolution and correction.
+      prefixes:
+        - id: p1
+          through_turn: t1
+          available_facts:
+            appliance: {value: Refrigerator, evidence_turn: t1}
+            location: {value: Garage, evidence_turn: t1}
+            active_leak: {value: true, evidence_turn: t1}
+            preferred_appointment: {value: null}
+            quote_required: {value: null}
+            spending_limit: {value: null}
+        - id: p2
+          through_turn: t2
+          available_facts:
+            appliance: {value: Refrigerator, evidence_turn: t1}
+            location: {value: Garage, evidence_turn: t1}
+            active_leak: {value: null}
+            preferred_appointment: {value: null}
+            quote_required: {value: null}
+            spending_limit: {value: null}
+        - id: p3
+          through_turn: t3
+          available_facts:
+            appliance: {value: Refrigerator, evidence_turn: t1}
+            location: {value: Garage, evidence_turn: t1}
+            active_leak: {value: true, evidence_turn: t3}
+            preferred_appointment: {value: Thursday afternoon, evidence_turn: t3}
+            quote_required: {value: true, evidence_turn: t3}
+            spending_limit: {value: null}
+      must_include:
+        - initial_explicit_active_leak
+        - later_conflicting_report_leaves_current_status_unknown
+        - later_customer_observation_resolves_leak_conflict
+        - tentative_appointment_remains_unknown
+        - explicit_appointment_correction
+        - explicit_quote_request
+      turns:
+        - id: t1
+          speaker: customer
+          intent: Identify the refrigerator in the garage and explicitly report water leaking now.
+        - id: t2
+          speaker: customer
+          intent: Relay a partner's belief that it is still leaking, but say the water may be from yesterday and the customer cannot tell whether the leak is active; mention Wednesday morning as tentative availability only.
+        - id: t3
+          speaker: customer
+          intent: Confirm from direct observation that water is leaking now, correct the appointment preference to Thursday afternoon instead of Wednesday morning, and request a quote before work.
+    conversation_path: data/test/conversations/test-heldout-corrections-conflicts-001.json
+    conversation_sha256: 501ca62eaaeee5227e7c3384c96292765b8195c1e729d55a2e6c0659aff38a45
+    snapshot_count: 3
+    transcript_review_status: approved
+    transcript_review:
+      reviewer: requester
+      reviewed_at: "2026-11-15"
+      outcome: approved
+    annotation_path: data/test/annotations/test-heldout-corrections-conflicts-001.json
+    annotation_sha256: 17a963081a895d9fa16a2da812a5a59e2eedc68bb5476522ed9c3821390f2aa2
+    annotation_review_status: approved
+    annotation_review:
+      reviewer: requester
+      reviewed_at: "2026-11-15"
+      outcome: approved
+    annotation_status: approved

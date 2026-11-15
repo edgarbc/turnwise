@@ -1,0 +1,119 @@
+{
+  "conversation_id": "test-heldout-corrections-conflicts-001",
+  "task_id": "repair_intake",
+  "task_version": "0.1.0",
+  "snapshots": [
+    {
+      "snapshot_id": "test-heldout-corrections-conflicts-001-s01",
+      "through_event_id": "test-heldout-corrections-conflicts-001-e01",
+      "values": {
+        "appliance": "Refrigerator",
+        "location": "Garage",
+        "active_leak": true,
+        "preferred_appointment": null,
+        "quote_required": null,
+        "spending_limit": null
+      },
+      "evidence": {
+        "appliance": [
+          {
+            "event_id": "test-heldout-corrections-conflicts-001-e01",
+            "start_char": 4,
+            "end_char": 16
+          }
+        ],
+        "location": [
+          {
+            "event_id": "test-heldout-corrections-conflicts-001-e01",
+            "start_char": 27,
+            "end_char": 33
+          }
+        ],
+        "active_leak": [
+          {
+            "event_id": "test-heldout-corrections-conflicts-001-e01",
+            "start_char": 39,
+            "end_char": 65
+          }
+        ]
+      }
+    },
+    {
+      "snapshot_id": "test-heldout-corrections-conflicts-001-s02",
+      "through_event_id": "test-heldout-corrections-conflicts-001-e02",
+      "values": {
+        "appliance": "Refrigerator",
+        "location": "Garage",
+        "active_leak": null,
+        "preferred_appointment": null,
+        "quote_required": null,
+        "spending_limit": null
+      },
+      "evidence": {
+        "appliance": [
+          {
+            "event_id": "test-heldout-corrections-conflicts-001-e01",
+            "start_char": 4,
+            "end_char": 16
+          }
+        ],
+        "location": [
+          {
+            "event_id": "test-heldout-corrections-conflicts-001-e01",
+            "start_char": 27,
+            "end_char": 33
+          }
+        ]
+      }
+    },
+    {
+      "snapshot_id": "test-heldout-corrections-conflicts-001-s03",
+      "through_event_id": "test-heldout-corrections-conflicts-001-e03",
+      "values": {
+        "appliance": "Refrigerator",
+        "location": "Garage",
+        "active_leak": true,
+        "preferred_appointment": "Thursday afternoon",
+        "quote_required": true,
+        "spending_limit": null
+      },
+      "evidence": {
+        "appliance": [
+          {
+            "event_id": "test-heldout-corrections-conflicts-001-e01",
+            "start_char": 4,
+            "end_char": 16
+          }
+        ],
+        "location": [
+          {
+            "event_id": "test-heldout-corrections-conflicts-001-e01",
+            "start_char": 27,
+            "end_char": 33
+          }
+        ],
+        "active_leak": [
+          {
+            "event_id": "test-heldout-corrections-conflicts-001-e03",
+            "start_char": 24,
+            "end_char": 57
+          }
+        ],
+        "preferred_appointment": [
+          {
+            "event_id": "test-heldout-corrections-conflicts-001-e03",
+            "start_char": 59,
+            "end_char": 77
+          }
+        ],
+        "quote_required": [
+          {
+            "event_id": "test-heldout-corrections-conflicts-001-e03",
+            "start_char": 122,
+            "end_char": 160
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,124 @@
+{
+  "manifest_version": "0.1.0",
+  "dataset_id": "repair-intake-final-test",
+  "purpose": "held_out_final_evaluation_only",
+  "status": "in_progress",
+  "task": {
+    "id": "repair_intake",
+    "version": "0.1.0",
+    "path": "configs/tasks/repair-intake.yaml",
+    "sha256": "2bcfeac17ccd30d85c640394b930bfd9db4a4dc7b1b67f049483ab79b9284db3"
+  },
+  "scenario_catalog_path": "data/scenarios/final-test-catalog.yaml",
+  "scenario_spec_hash_method": "SHA-256 of JSON serialization of the scenario specification mapping",
+  "access_controls": {
+    "exclude_from_training": true,
+    "exclude_from_validation": true,
+    "exclude_from_calibration": true,
+    "exclude_from_prompt_and_threshold_selection": true,
+    "labels_for_final_frozen_evaluation_only": true
+  },
+  "allocation": {
+    "test-heldout-corrections-conflicts": 5,
+    "test-heldout-combinations": 5
+  },
+  "cases": [
+    {
+      "case_id": "test-heldout-corrections-conflicts-001",
+      "family_id": "test-heldout-corrections-conflicts",
+      "split": "test",
+      "scenario_specification_status": "confirmed",
+      "scenario_spec_sha256": "765dcca4bb3edd2fbf80e68c05d0ac389207a59404a36434e6b0e4c591ef2bb4",
+      "conversation_path": "data/test/conversations/test-heldout-corrections-conflicts-001.json",
+      "conversation_sha256": "501ca62eaaeee5227e7c3384c96292765b8195c1e729d55a2e6c0659aff38a45",
+      "snapshot_count": 3,
+      "human_review_status": "approved",
+      "transcript_review": {
+        "reviewer": "requester",
+        "reviewed_at": "2026-11-15",
+        "outcome": "approved"
+      },
+      "annotation_path": "data/test/annotations/test-heldout-corrections-conflicts-001.json",
+      "annotation_sha256": "17a963081a895d9fa16a2da812a5a59e2eedc68bb5476522ed9c3821390f2aa2",
+      "annotation_review_status": "approved",
+      "annotation_review": {
+        "reviewer": "requester",
+        "reviewed_at": "2026-11-15",
+        "outcome": "approved"
+      },
+      "annotation_status": "approved"
+    },
+    {
+      "case_id": "test-heldout-corrections-conflicts-002",
+      "family_id": "test-heldout-corrections-conflicts",
+      "split": "test",
+      "scenario_specification_status": "not_created",
+      "human_review_status": "not_created",
+      "annotation_status": "not_created"
+    },
+    {
+      "case_id": "test-heldout-corrections-conflicts-003",
+      "family_id": "test-heldout-corrections-conflicts",
+      "split": "test",
+      "scenario_specification_status": "not_created",
+      "human_review_status": "not_created",
+      "annotation_status": "not_created"
+    },
+    {
+      "case_id": "test-heldout-corrections-conflicts-004",
+      "family_id": "test-heldout-corrections-conflicts",
+      "split": "test",
+      "scenario_specification_status": "not_created",
+      "human_review_status": "not_created",
+      "annotation_status": "not_created"
+    },
+    {
+      "case_id": "test-heldout-corrections-conflicts-005",
+      "family_id": "test-heldout-corrections-conflicts",
+      "split": "test",
+      "scenario_specification_status": "not_created",
+      "human_review_status": "not_created",
+      "annotation_status": "not_created"
+    },
+    {
+      "case_id": "test-heldout-combinations-001",
+      "family_id": "test-heldout-combinations",
+      "split": "test",
+      "scenario_specification_status": "not_created",
+      "human_review_status": "not_created",
+      "annotation_status": "not_created"
+    },
+    {
+      "case_id": "test-heldout-combinations-002",
+      "family_id": "test-heldout-combinations",
+      "split": "test",
+      "scenario_specification_status": "not_created",
+      "human_review_status": "not_created",
+      "annotation_status": "not_created"
+    },
+    {
+      "case_id": "test-heldout-combinations-003",
+      "family_id": "test-heldout-combinations",
+      "split": "test",
+      "scenario_specification_status": "not_created",
+      "human_review_status": "not_created",
+      "annotation_status": "not_created"
+    },
+    {
+      "case_id": "test-heldout-combinations-004",
+      "family_id": "test-heldout-combinations",
+      "split": "test",
+      "scenario_specification_status": "not_created",
+      "human_review_status": "not_created",
+      "annotation_status": "not_created"
+    },
+    {
+      "case_id": "test-heldout-combinations-005",
+      "family_id": "test-heldout-combinations",
+      "split": "test",
+      "scenario_specification_status": "not_created",
+      "human_review_status": "not_created",
+      "annotation_status": "not_created"
+    }
+  ]
+}

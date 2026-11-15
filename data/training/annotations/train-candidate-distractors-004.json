@@ -1,0 +1,42 @@
+{
+  "conversation_id": "train-candidate-distractors-004",
+  "task_id": "repair_intake",
+  "task_version": "0.1.0",
+  "snapshots": [
+    {
+      "snapshot_id": "train-candidate-distractors-004-s01",
+      "through_event_id": "train-candidate-distractors-004-e02",
+      "values": {
+        "appliance": "Ice maker",
+        "location": "Pantry",
+        "active_leak": null,
+        "preferred_appointment": "Thursday afternoon",
+        "quote_required": null,
+        "spending_limit": null
+      },
+      "evidence": {
+        "appliance": [
+          {
+            "event_id": "train-candidate-distractors-004-e01",
+            "start_char": 4,
+            "end_char": 13
+          }
+        ],
+        "location": [
+          {
+            "event_id": "train-candidate-distractors-004-e01",
+            "start_char": 21,
+            "end_char": 27
+          }
+        ],
+        "preferred_appointment": [
+          {
+            "event_id": "train-candidate-distractors-004-e02",
+            "start_char": 57,
+            "end_char": 75
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -3,10 +3,11 @@ catalog:
   version: "0.1.0"
   task_id: repair_intake
   task_version: "0.1.0"
-  status: test_data_review_in_progress
+  status: test_set_locked
   catalogue_stage: final_test_specifications
   intended_conversations: 10
   approved_specification_count: 10
+  locked_at: "2026-11-15"
   split_counts:
     test: 10
   source_pins:

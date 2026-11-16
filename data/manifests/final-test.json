@@ -2,7 +2,8 @@
   "manifest_version": "0.1.0",
   "dataset_id": "repair-intake-final-test",
   "purpose": "held_out_final_evaluation_only",
-  "status": "in_progress",
+  "status": "locked",
+  "locked_at": "2026-11-15",
   "task": {
     "id": "repair_intake",
     "version": "0.1.0",
@@ -10,6 +11,7 @@
     "sha256": "2bcfeac17ccd30d85c640394b930bfd9db4a4dc7b1b67f049483ab79b9284db3"
   },
   "scenario_catalog_path": "data/scenarios/final-test-catalog.yaml",
+  "scenario_catalog_sha256": "a39fad86b2c5848d1e2d9e794fbf1afce4081343d2b2cb4de5226ad1498cd0b8",
   "scenario_spec_hash_method": "SHA-256 of JSON serialization of the scenario specification mapping",
   "access_controls": {
     "exclude_from_training": true,

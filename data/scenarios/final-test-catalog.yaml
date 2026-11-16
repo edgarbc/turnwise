@@ -6,7 +6,7 @@ catalog:
   status: test_data_review_in_progress
   catalogue_stage: final_test_specifications
   intended_conversations: 10
-  approved_specification_count: 9
+  approved_specification_count: 10
   split_counts:
     test: 10
   source_pins:
@@ -662,6 +662,67 @@ scenarios:
       outcome: approved
     annotation_path: data/test/annotations/test-heldout-combinations-004.json
     annotation_sha256: 5635a7b0abafec7be307bdd3901d66de3d1f97a9833b1d83303f8b6cea7e415d
+    annotation_review_status: approved
+    annotation_review:
+      reviewer: requester
+      reviewed_at: "2026-11-15"
+      outcome: approved
+    annotation_status: approved
+
+  - id: test-heldout-combinations-005
+    family_id: test-heldout-combinations
+    split: test
+    review_status: reviewed
+    specification_status: confirmed
+    specification_review:
+      reviewer: requester
+      reviewed_at: "2026-11-15"
+      outcome: approved
+    specification:
+      purpose: Combine appliance and location corrections, a stopped leak, an explicit quote refusal, an appointment preference, and a diagnostic-fee distractor beside a new repair maximum.
+      prefixes:
+        - id: p1
+          through_turn: t1
+          available_facts:
+            appliance: {value: Water heater, evidence_turn: t1}
+            location: {value: Basement, evidence_turn: t1}
+            active_leak: {value: true, evidence_turn: t1}
+            preferred_appointment: {value: null}
+            quote_required: {value: null}
+            spending_limit: {value: null}
+        - id: p2
+          through_turn: t2
+          available_facts:
+            appliance: {value: Boiler, evidence_turn: t2}
+            location: {value: Spare room, evidence_turn: t2}
+            active_leak: {value: false, evidence_turn: t2}
+            preferred_appointment: {value: Friday evening, evidence_turn: t2}
+            quote_required: {value: false, evidence_turn: t2}
+            spending_limit: {value: {amount: 500, currency: USD}, evidence_turn: t2}
+      must_include:
+        - appliance_and_location_correction
+        - active_leak_changes_to_false
+        - explicit_appointment_preference
+        - explicit_quote_refusal
+        - diagnostic_fee_not_selected_as_repair_maximum
+        - explicit_repair_maximum
+      turns:
+        - id: t1
+          speaker: customer
+          intent: Identify the water heater in the basement and report water leaking now.
+        - id: t2
+          speaker: customer
+          intent: Correct the appliance to a boiler in the spare room, say the leak has stopped, prefer Friday evening over Thursday morning, decline a quote, identify a $150 diagnostic fee as separate, and set a $500 USD repair maximum.
+    conversation_path: data/test/conversations/test-heldout-combinations-005.json
+    conversation_sha256: d9e94986ad35336c35e0738b6ce5d688b0ae6d4a89ca1e9f2bbf61bd0378bd1a
+    snapshot_count: 2
+    transcript_review_status: approved
+    transcript_review:
+      reviewer: requester
+      reviewed_at: "2026-11-15"
+      outcome: approved
+    annotation_path: data/test/annotations/test-heldout-combinations-005.json
+    annotation_sha256: 7d37746a1a7933729ffaa03da67dd2375d60c05640b04b24aac5d137a0683ada
     annotation_review_status: approved
     annotation_review:
       reviewer: requester

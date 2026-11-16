@@ -41,7 +41,7 @@ The Unsloth decision-model row format is `state`, `questions`, and `gold`. The T
 
 ## Scenario, Split, and Review Plan
 
-The versioned catalogue contains 40 reviewed development scenarios, with intended facts and their availability by turn. Coverage includes ordinary requests, missing information, explicit negatives, negation, corrections, conflicts, distractors, and combinations. All 40 non-test conversations and their annotations are now approved, and dataset validation passes with 40 conversations and 49 snapshots. Generator-produced answers are not ground truth: validate transcripts against scenario specifications, then annotate evidence and expected state at selected prefixes using Turnwise's rules. The workflow freeze is recorded; final-test cases may now be created separately but must remain outside development and model selection.
+The versioned development catalogue contains 40 reviewed non-test scenarios, with intended facts and their availability by turn. A separate final-test catalogue contains ten held-out scenarios across two families. All 50 conversations and their annotations are approved; the manifests and catalogues pin source hashes. The development dataset validates with 40 conversations and 49 snapshots, and the test dataset validates separately with 10 conversations and 27 snapshots. Generator-produced answers are not ground truth: transcripts were checked against scenario specifications, then annotated from customer evidence at selected prefixes. The final-test set is locked and excluded from development and model selection.
 
 The working allocation is 30/5/5/10 conversations. Family assignments and split policy are recorded in the scenario catalogue; keep related scenarios, paraphrases, and every prefix from one conversation in one split.
 
@@ -55,7 +55,7 @@ The working allocation is 30/5/5/10 conversations. Family assignments and split 
 
 These small partitions support workflow exploration, not precise population estimates. Report conversation-level counts and uncertainty; prefixes from one conversation are correlated and must not be counted as independent conversations.
 
-Record review level and provenance for scenarios, conversations, annotations, and splits. The initial 10 development examples (six training, two validation, and two calibration) were fully reviewed first; the remaining development examples were then generated and reviewed in batches. All 40 non-test examples are approved. Fully review and lock every final-test conversation and annotation after the workflow is frozen; keep test labels unavailable during model, threshold, and checkpoint selection.
+Record review level and provenance for scenarios, conversations, annotations, and splits. The initial 10 development examples (six training, two validation, and two calibration) were fully reviewed first; the remaining development examples and the 10 final-test examples were then generated and reviewed in separate batches. All 50 examples are approved and their manifests record hashes and outcomes. Keep final-test labels unavailable during model, threshold, and checkpoint selection.
 
 ## Work Sequence and Exit Criteria
 
@@ -73,9 +73,9 @@ The first 10 development conversations (six training, two validation, and two ca
 
 ### 3. Complete and lock the 50-conversation corpus
 
-The 40 non-test conversations (30 training, five validation, and five calibration) are generated, annotated, and approved. `uv run turnwise validate --dataset data/training` passes with 40 conversations and 49 snapshots. The data-generation and evaluation workflow freeze is recorded in [`../decisions/2026-11-15-freeze-training-data-workflow.md`](../decisions/2026-11-15-freeze-training-data-workflow.md). Next, create and fully review the 10 held-out test cases in a separate manifest, then freeze their hashes; keep their labels unavailable during development.
+The 50-conversation corpus is generated, annotated, and approved: 30 training, five validation, five calibration, and ten final-test conversations. `uv run turnwise validate --dataset data/training` passes with 40 conversations and 49 snapshots; `uv run turnwise validate --dataset data/test` passes with ten conversations and 27 snapshots. The final-test catalogue and manifest are locked as documented in [`../decisions/2026-11-15-freeze-training-data-workflow.md`](../decisions/2026-11-15-freeze-training-data-workflow.md). The corpus and hash audits are recorded in [`../../reports/final-test-data-quality-20261115.md`](../../reports/final-test-data-quality-20261115.md).
 
-**Exit:** approved split manifest, data-quality report, and frozen source hashes for all 50 conversations, with test labels access-controlled and unused in model selection.
+**Exit:** complete. All 50 approved conversations, split assignments, quality checks, and source hashes are recorded; final-test labels remain excluded from development and model selection.
 
 ### 4. Extract shared questions and implement the exporter
 
@@ -85,7 +85,7 @@ Move Jev's task question and option construction into a reusable component. Expo
 
 ### 5. Establish the pretrained baseline and smoke train
 
-Select a small Unsloth-supported open-weight model only after checking model/license terms, GPU compatibility, decision-head support, and local inference/reload path. Measure a pretrained baseline where meaningful; document a newly initialized head as a sanity baseline, not a strong pretrained decision model. Run a short smoke experiment to verify loading, training, checkpoint save/reload, and Turnwise inference integration.
+The smoke-run candidate is `unsloth/Qwen3.5-0.8B` at pinned revision `23c69c53358a07516b5827588b3fdb12ae78fd65` (Apache-2.0), with a newly initialized decision head. The three-step, training-only smoke configuration is in [`configs/experiments/open-weight-smoke.yaml`](../../configs/experiments/open-weight-smoke.yaml); the model choice and limits are in [`../decisions/2026-11-15-select-qwen35-08b-smoke-run.md`](../decisions/2026-11-15-select-qwen35-08b-smoke-run.md). This Mac has no PyTorch/Unsloth installation, so execution requires a verified remote GPU runtime. Run the smoke to check loading, training, checkpoint save/reload, and Turnwise option-compatible inference. A newly initialized head is a sanity baseline only, not a pretrained decision-model baseline.
 
 **Exit:** reproducible smoke configuration, logs, checkpoint reference, and inference check.
 
@@ -114,7 +114,7 @@ Integrate the best validation-selected local checkpoint into Turnwise. Document 
 - This document is the living roadmap for the training stage.
 - [`../decisions/2026-11-15-freeze-training-data-workflow.md`](../decisions/2026-11-15-freeze-training-data-workflow.md) records the accepted data and evaluation workflow freeze and its boundaries.
 - [`approach.md`](approach.md) summarizes the research design and current corpus status for orientation.
-- [`data-and-review.md`](data-and-review.md) defines the training-row, split, provenance, and review contract. All 40 non-test conversations and annotations are approved; ten final-test cases remain reserved.
+- [`data-and-review.md`](data-and-review.md) defines the training-row, split, provenance, and review contract. All 50 conversations are approved; the final-test set is locked and kept out of development.
 - [`generation-and-review.md`](generation-and-review.md) defines transcript generation and human review requirements for scenario-derived data.
 - [`export-format.md`](export-format.md) documents the Unsloth row format, provenance sidecar, and export command.
 - [`../annotation-guide.md`](../annotation-guide.md) remains authoritative for annotation semantics.

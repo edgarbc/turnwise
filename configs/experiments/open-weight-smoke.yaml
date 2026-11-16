@@ -1,7 +1,7 @@
 experiment:
   id: repair-intake-open-weight-smoke
   version: "0.1.0"
-  status: prepared_runtime_verification_required
+  status: pretrained_inference_check_pending
   purpose: mechanics_smoke_only
   description: Verify pretrained loading, decision-head training, checkpoint save/reload, and Turnwise option-compatible inference; do not treat smoke metrics as model-quality evidence.
   references:
@@ -55,6 +55,29 @@ runtime:
   required_accelerator: nvidia_gpu
   record_actual_gpu_and_vram: true
   local_core_training_available: false
+  observed_preflight:
+    recorded_at: "2026-11-15"
+    platform: google_colab
+    gpu: NVIDIA Tesla T4
+    vram_gib: 14.563
+    python: "3.13"
+    torch: "2.8.0+cu128"
+    cuda_toolkit: "12.8"
+    triton: "3.4.0"
+    transformers: "5.2.0"
+    xformers: "0.0.32.post2"
+    unsloth: "2026.11.4"
+    bfloat16_supported: false
+    install_cell_completed: true
+    model_setup_cell_status: completed
+    pretrained_model_load_completed: true
+    model_weights_loaded: "723/723"
+    model_files_fetched: 13
+    gpu_memory_after_load_free_gib: 10.07
+    gpu_memory_total_gib: 14.563
+    pretrained_inference_status: pending
+    precision_note: "Unsloth reported fp16 unsupported for Qwen3.5 on this runtime and selected float32; verify model load and memory headroom before training."
+    torchaudio_note: "Torchaudio backend-dispatch deprecation warning observed during Unsloth patching; not an installation failure."
 
 outputs:
   checkpoint_directory: outputs/repair-intake-open-weight-smoke

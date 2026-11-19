@@ -12,7 +12,15 @@ Use the already reviewed, training-only eight-row export at `data/training/expor
 
 Use the official Unsloth Colab decision-model notebook; use Kaggle as the fallback if a suitable Colab session cannot continue. A Colab NVIDIA Tesla T4 with 14.563 GiB VRAM is now provisioned. The installation cell completed with Python 3.13, PyTorch 2.8.0+cu128, CUDA Toolkit 12.8, Triton 3.4.0, Transformers 5.2.0, xFormers 0.0.32.post2, and Unsloth 2026.11.4. This macOS workspace still has neither PyTorch nor Unsloth installed, so it cannot execute the code-based smoke run locally.
 
-The Hugging Face model-setup cell has completed: the log reports 723/723 weights loaded and 13 model files fetched. After loading, Colab reported 10.07 GiB free of 14.563 GiB on the T4. Unsloth reported that fp16 is unsupported for Qwen3.5 on this runtime and selected float32 because bfloat16 is unavailable. This is enough headroom to attempt the planned inference and short smoke, but check for memory errors during both. A Torchaudio backend-dispatch deprecation warning also appeared during patching; it was non-fatal.
+The notebook's default `unsloth/Qwen3.5-4B` loaded without a pinned revision; the log reported 723/723 weights and 13 files loaded, with 10.07 GiB free of 14.563 GiB on the T4. One training-row inference returned valid original options with that 4B model. These observations do not verify the selected 0.8B revision or its memory usage. For the 4B load, Unsloth reported float32 fallback on the T4; a Torchaudio backend-dispatch deprecation warning also appeared and was non-fatal.
+
+On 2026-11-18, the user ran the 0.8B load cell with the configured revision; it completed with 473/473 weights and 13 files fetched. Colab reported Unsloth 2026.11.6 and 13.08 GiB free of 14.56 GiB on the T4 after loading, with the same float32 fallback warning. The requested revision was passed to the loader; the resolved revision has not been independently checked.
+
+One training-row inference with the 0.8B model returned all six question IDs and valid original option keys. This verifies option compatibility for that row, not accuracy or full-dataset compatibility. The user also confirmed the eight uploaded rows' loaded questions matched the JSONL and its hash matched the pinned export.
+
+Unsloth dataset preparation produced eight items from the eight training rows, reporting 48 decisions, zero skipped, and zero truncated. This is a preparation check, not a training or quality result.
+
+LoRA setup completed with 37,147,588 trainable parameters, including 372 LoRA tensors; the listed trainable parameters also include the decision head. The T4 reported 13.04 GiB free of 14.56 GiB after setup. Training has not yet run.
 
 ## Smoke Configuration
 
@@ -28,7 +36,7 @@ A newly initialized decision head on the pretrained backbone is a sanity baselin
 - Keep checkpoints, credentials, raw provider outputs, and run-local secrets out of Git. Record artifact location and hashes in experiment metadata.
 - Do not use any final-test row or label during this smoke run.
 
-Model loading and the post-load memory check are complete. Pretrained inference, smoke training, save/reload, and post-reload inference are still pending. Runtime-dependent settings may change only through a recorded experiment revision before touching the final test set.
+The 0.8B load, memory check, one-row option-compatibility check, dataset preparation, and LoRA setup completed with the configured revision requested. Smoke training, save/reload, and post-reload inference remain pending. Runtime-dependent settings may change only through a recorded experiment revision before touching the final test set.
 
 ## References
 

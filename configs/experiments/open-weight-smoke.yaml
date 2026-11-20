@@ -1,7 +1,7 @@
 experiment:
   id: repair-intake-open-weight-smoke
   version: "0.1.0"
-  status: training_pending
+  status: completed
   purpose: mechanics_smoke_only
   description: Verify pretrained loading, decision-head training, checkpoint save/reload, and Turnwise option-compatible inference; do not treat smoke metrics as model-quality evidence.
   references:
@@ -28,6 +28,8 @@ model:
   repository: unsloth/Qwen3.5-0.8B
   revision: 23c69c53358a07516b5827588b3fdb12ae78fd65
   license: Apache-2.0
+  license_file: https://huggingface.co/unsloth/Qwen3.5-0.8B/blob/23c69c53358a07516b5827588b3fdb12ae78fd65/LICENSE
+  license_file_verified: true
   task: decision_model
   decision_head: newly_initialized
 
@@ -105,9 +107,43 @@ runtime:
       trainable_lora_tensors: 372
       gpu_memory_after_setup_free_gib: 13.04
       gpu_memory_total_gib: 14.56
+    training_run:
+      recorded_at: "2026-11-19"
+      completed_steps: 3
+      epoch: 0.375
+      runtime_seconds: 137.2567
+      training_loss: 1.0472546219825745
+      step_losses: [1.191558, 1.165599, 0.784608]
+      out_of_memory_reported: false
 
 outputs:
   checkpoint_directory: outputs/repair-intake-open-weight-smoke
+  observed_checkpoint:
+    location: "/content/drive/MyDrive/Colab Notebooks/Turnwise_Smoke/checkpoints/smoke-20261120T013234Z-bdea1afb"
+    reload_status: completed
+    reload_unsloth_version: "2026.11.7"
+    reloaded_encoder_commit: 23c69c53358a07516b5827588b3fdb12ae78fd65
+    reloaded_head_weights_match: true
+    reloaded_lora_parameters_present: true
+    reloaded_lora_weights_match: true
+    reloaded_lora_tensors_verified: 372
+    reloaded_inference_status: valid_original_options_on_one_training_row
+    decision_base_model: unsloth/Qwen3.5-0.8B
+    decision_base_revision: 23c69c53358a07516b5827588b3fdb12ae78fd65
+    adapter_base_model: unsloth/Qwen3.5-0.8B
+    adapter_revision: 23c69c53358a07516b5827588b3fdb12ae78fd65
+    loaded_encoder_commit: 23c69c53358a07516b5827588b3fdb12ae78fd65
+    sha256:
+      README.md: 4c2423cde13d2ef1775d1e90f1a3a8cd59b82b401b8915b18c198488d3c18f88
+      adapter_config.json: 2ae57ec985c32d1fc33f0245aae054dd244318f82776af8be40a3936b36da14b
+      adapter_model.safetensors: 17c8e836467af721d846d5e193d9003919f66e2cd0d145fbee0823519cfc202b
+      chat_template.jinja: ea210e5b4997b7b1d3af5ee3ad34e7677ffe38df7469e8d88089789b5a27fae5
+      joint_head.safetensors: da243c7da557222b440efc1afb5258ae0602ea225b5f8844ec3e51f682af1098
+      joint_head_config.json: 99f65ef462b1c92d9304ad1acecbbab93506efc0ba8227c46582b4264d27aa30
+      processor_config.json: 14932921ca485d458a04dafd8069fbb0a4505622a48208d19ed247115801385b
+      tokenizer.json: 87a7830d63fcf43bf241c3c5242e96e62dd3fdc29224ca26fed8ea333db72de4
+      tokenizer_config.json: 3fd8a3311e2d68d200c3f82f921ea03888a4eb5c23ae870759263d3a6731e9fb
+      unsloth_decision_config.json: 6a66a9dc7858b336b7b043babe6fac8842c94c5ea2ae3ad49c149ba4fcb5c94b
   persist_predictions: false
   persist_per_example_metrics: false
   smoke_acceptance:

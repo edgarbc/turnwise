@@ -1,6 +1,6 @@
 # Open-Weight Training Approach
 
-**Status as of 2026-11-15:** the 40 non-test development conversations are reviewed and approved. The 10 final-test scenarios and labels remain withheld.
+**Status as of 2026-11-19:** all 50 conversations are reviewed and approved. The 40 development conversations are available for development; the 10 final-test cases are locked and excluded from model selection.
 
 ## Research Question
 
@@ -15,7 +15,7 @@ The initial budget is 50 new synthetic conversations. Scenario families are assi
 | Training | 30 | Reviewed and approved |
 | Validation | 5 | Reviewed and approved |
 | Calibration | 5 | Reviewed and approved |
-| Final test | 10 | Reserved; specifications and labels withheld |
+| Final test | 10 | Reviewed and locked; excluded from development |
 
 The 40 available development conversations pass the dataset validator: 40 conversations and 49 annotated snapshots. The original 30-conversation Jev/OpenAI pilot remains a separate regression set; it is not part of this allocation and is not training data.
 
@@ -39,7 +39,7 @@ Automation checks structure, evidence spans, candidates, scenario consistency, a
 
 ## Current State and Next Step
 
-All 50 conversations are approved and locked: 30 training, five validation, five calibration, and ten final test. The development set validates at 40 conversations/49 snapshots; the isolated test set validates at 10 conversations/27 snapshots. The freeze decisions are recorded in [`../decisions/2026-11-15-freeze-training-data-workflow.md`](../decisions/2026-11-15-freeze-training-data-workflow.md) and [`../decisions/2026-11-15-select-qwen35-08b-smoke-run.md`](../decisions/2026-11-15-select-qwen35-08b-smoke-run.md). Qwen3.5-0.8B is selected only as a smoke candidate; its Colab load completed with the configured revision requested. Inference and the three-step training/save/reload smoke remain pending; no quality results exist yet. The locked test labels remain outside development and model selection.
+All 50 conversations are approved and locked: 30 training, five validation, five calibration, and ten final test. The development set validates at 40 conversations/49 snapshots; the isolated test set validates at 10 conversations/27 snapshots. The freeze decisions are recorded in [`../decisions/2026-11-15-freeze-training-data-workflow.md`](../decisions/2026-11-15-freeze-training-data-workflow.md) and [`../decisions/2026-11-15-select-qwen35-08b-smoke-run.md`](../decisions/2026-11-15-select-qwen35-08b-smoke-run.md). The Qwen3.5-0.8B three-step smoke completed, including checkpoint save/reload, weight checks, and one-row option compatibility; it provides no quality result. The full development splits are exported and structurally audited as described in the [export audit](../../reports/development-export-audit-20261119.md). The locked test labels remain outside development and model selection.
 
 ## Sources of Truth
 

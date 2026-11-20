@@ -85,9 +85,9 @@ Move Jev's task question and option construction into a reusable component. Expo
 
 ### 5. Establish the pretrained baseline and smoke train
 
-The smoke-run candidate is `unsloth/Qwen3.5-0.8B` at pinned revision `23c69c53358a07516b5827588b3fdb12ae78fd65` (Apache-2.0), with a newly initialized decision head. The three-step, training-only smoke configuration is in [`configs/experiments/open-weight-smoke.yaml`](../../configs/experiments/open-weight-smoke.yaml); the model choice and limits are in [`../decisions/2026-11-15-select-qwen35-08b-smoke-run.md`](../decisions/2026-11-15-select-qwen35-08b-smoke-run.md). On Colab's Tesla T4, the 0.8B load completed with the configured revision requested and 13.08 GiB free afterward. Next check its option compatibility, then run the three-step update and checkpoint save/reload. A newly initialized head is a sanity baseline only, not a pretrained decision-model baseline.
+The smoke-run candidate was `unsloth/Qwen3.5-0.8B` at pinned revision `23c69c53358a07516b5827588b3fdb12ae78fd65` (Apache-2.0), with a newly initialized decision head. The three-step, training-only smoke run completed on Colab's Tesla T4, including checkpoint save/reload, saved-weight checks, and option-compatible inference on one training row. The configuration, recorded observations, and checkpoint reference are in [`configs/experiments/open-weight-smoke.yaml`](../../configs/experiments/open-weight-smoke.yaml); the model choice and limits are in [`../decisions/2026-11-15-select-qwen35-08b-smoke-run.md`](../decisions/2026-11-15-select-qwen35-08b-smoke-run.md). The smoke run and newly initialized head do not establish model quality.
 
-**Exit:** reproducible smoke configuration, logs, checkpoint reference, and inference check.
+**Exit:** complete for the recorded smoke configuration, observations, checkpoint reference, and inference check. The full development exports are structurally audited in [`../../reports/development-export-audit-20261119.md`](../../reports/development-export-audit-20261119.md); review that audit before selecting a fresh training run.
 
 ### 6. Train and compare
 

@@ -1,0 +1,371 @@
+{
+  "exporter_version": "0.1.0",
+  "manifest_path": "data/manifests/training-development.json",
+  "manifest_sha256": "c9d2a788d91c6f888581230b0717890987d37a594dd5baef2efe57ba4aed5ba8",
+  "row_count": 36,
+  "rows": [
+    {
+      "annotation_sha256": "9dd40d756b0392763c2fc4f989dcc6adf6ba585763ab55e576559ead936deb44",
+      "case_id": "train-ordinary-001",
+      "conversation_sha256": "0fb9f5845b73a593e5bbd8332fb2acabb3563e6fc0523a46f37390f30c455dd1",
+      "row_index": 0,
+      "scenario_family_id": "train-ordinary",
+      "snapshot_id": "train-ordinary-001-s01",
+      "split": "training",
+      "through_event_id": "train-ordinary-001-e03"
+    },
+    {
+      "annotation_sha256": "8a4e6683769342d269c56b542608a46769344ac8e4a50130d97833068c335e7b",
+      "case_id": "train-missing-001",
+      "conversation_sha256": "f43f51baf0c4ab640a9ceaedc23b2951cdd79c52ef7c36d338420174cc9fcdfb",
+      "row_index": 1,
+      "scenario_family_id": "train-missing",
+      "snapshot_id": "train-missing-001-s01",
+      "split": "training",
+      "through_event_id": "train-missing-001-e03"
+    },
+    {
+      "annotation_sha256": "4d24c4ac9c5727dfa70cc0dea98fe951d3491112e05345077b9c32d38b099d64",
+      "case_id": "train-explicit-negative-001",
+      "conversation_sha256": "6735f546f82520f28d1faa12fee12255ef0799938cc69d1d8d4337729a193454",
+      "row_index": 2,
+      "scenario_family_id": "train-explicit-negative",
+      "snapshot_id": "train-explicit-negative-001-s01",
+      "split": "training",
+      "through_event_id": "train-explicit-negative-001-e02"
+    },
+    {
+      "annotation_sha256": "fba33563c283316199b192ac39ada9c6e8c807f104375ee3ace01d14b95da3ce",
+      "case_id": "train-candidate-distractors-001",
+      "conversation_sha256": "8e61b44c1a1e7184ef4a2c0e3543bd32b7383e2f32fa5b1f1fff921497c9c878",
+      "row_index": 3,
+      "scenario_family_id": "train-candidate-distractors",
+      "snapshot_id": "train-candidate-distractors-001-s01",
+      "split": "training",
+      "through_event_id": "train-candidate-distractors-001-e02"
+    },
+    {
+      "annotation_sha256": "738be27a9496d5ac5ad97651a5b96867c342ad8a20fb761abdac0cf319fc541c",
+      "case_id": "train-corrections-001",
+      "conversation_sha256": "f1cbae1e61e887c84c8f1f8c74fbb7ba7c6df2ee7ad22e262c89dc53476313f3",
+      "row_index": 4,
+      "scenario_family_id": "train-corrections",
+      "snapshot_id": "train-corrections-001-s01",
+      "split": "training",
+      "through_event_id": "train-corrections-001-e02"
+    },
+    {
+      "annotation_sha256": "738be27a9496d5ac5ad97651a5b96867c342ad8a20fb761abdac0cf319fc541c",
+      "case_id": "train-corrections-001",
+      "conversation_sha256": "f1cbae1e61e887c84c8f1f8c74fbb7ba7c6df2ee7ad22e262c89dc53476313f3",
+      "row_index": 5,
+      "scenario_family_id": "train-corrections",
+      "snapshot_id": "train-corrections-001-s02",
+      "split": "training",
+      "through_event_id": "train-corrections-001-e03"
+    },
+    {
+      "annotation_sha256": "d2c6568cd009aaa54eac47991b82325daef79264ebb5bd1cb1c0903aaa5110bc",
+      "case_id": "train-corrections-002",
+      "conversation_sha256": "f69763fef86274d62d8a29e488aba74cda0dedbd337d2da8d2d5f08afe3eb05a",
+      "row_index": 6,
+      "scenario_family_id": "train-corrections",
+      "snapshot_id": "train-corrections-002-s01",
+      "split": "training",
+      "through_event_id": "train-corrections-002-e01"
+    },
+    {
+      "annotation_sha256": "d2c6568cd009aaa54eac47991b82325daef79264ebb5bd1cb1c0903aaa5110bc",
+      "case_id": "train-corrections-002",
+      "conversation_sha256": "f69763fef86274d62d8a29e488aba74cda0dedbd337d2da8d2d5f08afe3eb05a",
+      "row_index": 7,
+      "scenario_family_id": "train-corrections",
+      "snapshot_id": "train-corrections-002-s02",
+      "split": "training",
+      "through_event_id": "train-corrections-002-e02"
+    },
+    {
+      "annotation_sha256": "a41e4e55669c510f0554cdbdc673a1b8200672d21bfe22d11029ae845b24eecc",
+      "case_id": "train-ordinary-002",
+      "conversation_sha256": "2bd0028b6455d1a813ad921d6c4a867fccc3a4584a21870b20ac9ecc97db07f6",
+      "row_index": 8,
+      "scenario_family_id": "train-ordinary",
+      "snapshot_id": "train-ordinary-002-s01",
+      "split": "training",
+      "through_event_id": "train-ordinary-002-e03"
+    },
+    {
+      "annotation_sha256": "0dbf441bd314ad59c7c067f53c88f73eb83c4d613f0d349318001874517b9697",
+      "case_id": "train-ordinary-003",
+      "conversation_sha256": "a3b228d12205c53fb44749251da6c762910a6d99bbd8a8312e5cf5c20cb7af20",
+      "row_index": 9,
+      "scenario_family_id": "train-ordinary",
+      "snapshot_id": "train-ordinary-003-s01",
+      "split": "training",
+      "through_event_id": "train-ordinary-003-e03"
+    },
+    {
+      "annotation_sha256": "cbbbece08c9f7a1aa269806d10348c502351d74b360dcd64726cbb656b2dd39b",
+      "case_id": "train-ordinary-004",
+      "conversation_sha256": "b9b2fa2185aaf30aed90c8803fbc7290737d676b7f59f89e8869464f47f13a69",
+      "row_index": 10,
+      "scenario_family_id": "train-ordinary",
+      "snapshot_id": "train-ordinary-004-s01",
+      "split": "training",
+      "through_event_id": "train-ordinary-004-e03"
+    },
+    {
+      "annotation_sha256": "95d8bd6d81a74f5ea1b3f556c430dbfcdd3b35abde8a66ea847ea7435bb7205f",
+      "case_id": "train-ordinary-005",
+      "conversation_sha256": "85da838d11a07dadffdc991deee96f19b72d3685009e7910914504835e80e7cc",
+      "row_index": 11,
+      "scenario_family_id": "train-ordinary",
+      "snapshot_id": "train-ordinary-005-s01",
+      "split": "training",
+      "through_event_id": "train-ordinary-005-e03"
+    },
+    {
+      "annotation_sha256": "3c2f8a6f12d2b18ba4eed3e5f90f31e4da8f79178ae33d1dd2408eb2e9b89b18",
+      "case_id": "train-ordinary-006",
+      "conversation_sha256": "e8b31849ee123e8d951015cea145814a4d7d4f3f6628cbb28eb3d0ea7bd3cb8e",
+      "row_index": 12,
+      "scenario_family_id": "train-ordinary",
+      "snapshot_id": "train-ordinary-006-s01",
+      "split": "training",
+      "through_event_id": "train-ordinary-006-e03"
+    },
+    {
+      "annotation_sha256": "a4a84e97834ec53f5a5a48fc5d6e2b8328c52a5ecaf1799fd164a00c24cd2805",
+      "case_id": "train-missing-002",
+      "conversation_sha256": "af9ee7c57199927149ed85f767f5891aa2d593be9b25d3460ea5d8b7ba876576",
+      "row_index": 13,
+      "scenario_family_id": "train-missing",
+      "snapshot_id": "train-missing-002-s01",
+      "split": "training",
+      "through_event_id": "train-missing-002-e03"
+    },
+    {
+      "annotation_sha256": "771bf1a965df143858294b434a5ad2f45238def8cd76a4525e51bd151cd4c801",
+      "case_id": "train-missing-003",
+      "conversation_sha256": "13f75115659c9b641f620829e41037bbf4e7a476d75f28b25270c6f62665cb4d",
+      "row_index": 14,
+      "scenario_family_id": "train-missing",
+      "snapshot_id": "train-missing-003-s01",
+      "split": "training",
+      "through_event_id": "train-missing-003-e02"
+    },
+    {
+      "annotation_sha256": "ced6ec2fda5fc9ba2d7221c7550ccd1b4559d2c5bf81fcef4df2f5a10f204691",
+      "case_id": "train-missing-004",
+      "conversation_sha256": "4ced4478d8552968cc857d7d53c0d6f60ff4860ef07f94c6961f93b2d82c85be",
+      "row_index": 15,
+      "scenario_family_id": "train-missing",
+      "snapshot_id": "train-missing-004-s01",
+      "split": "training",
+      "through_event_id": "train-missing-004-e03"
+    },
+    {
+      "annotation_sha256": "f46695a0d8e100d8a11d9e142ff79b25d4a7f6fd8636377013225c306c2ce4ac",
+      "case_id": "train-missing-005",
+      "conversation_sha256": "ff8c49dbe34905ac11d1a367191f942bfdcf00bb2361f1007d3d5a13c855e36f",
+      "row_index": 16,
+      "scenario_family_id": "train-missing",
+      "snapshot_id": "train-missing-005-s01",
+      "split": "training",
+      "through_event_id": "train-missing-005-e02"
+    },
+    {
+      "annotation_sha256": "acc9c71f732e9091533b17c259c9e1acd3b94d82f6d5cb2830432d15b1f5822f",
+      "case_id": "train-missing-006",
+      "conversation_sha256": "4a68c2af0d4266885302b05062a27e909fc9eaf3bf2ed4d6ae79dda1b9eaa2da",
+      "row_index": 17,
+      "scenario_family_id": "train-missing",
+      "snapshot_id": "train-missing-006-s01",
+      "split": "training",
+      "through_event_id": "train-missing-006-e02"
+    },
+    {
+      "annotation_sha256": "2713ab5e1e85e07ef3cd2daa0ae2033107f404752032c47c86966fe152488a32",
+      "case_id": "train-explicit-negative-002",
+      "conversation_sha256": "e690eb93b148b4e9849f6f6fcf89f49de39c4a17c7bb533c1f66cb01e0e92114",
+      "row_index": 18,
+      "scenario_family_id": "train-explicit-negative",
+      "snapshot_id": "train-explicit-negative-002-s01",
+      "split": "training",
+      "through_event_id": "train-explicit-negative-002-e02"
+    },
+    {
+      "annotation_sha256": "2550695725d987bfcb2bb8f29c0fca0e06b92fdc9dd6bc63a0d394e62d482046",
+      "case_id": "train-explicit-negative-003",
+      "conversation_sha256": "5ca2d21d5478965db05d42eacc4f6fa8736ab120456f200f84b6435122a633fd",
+      "row_index": 19,
+      "scenario_family_id": "train-explicit-negative",
+      "snapshot_id": "train-explicit-negative-003-s01",
+      "split": "training",
+      "through_event_id": "train-explicit-negative-003-e02"
+    },
+    {
+      "annotation_sha256": "463784644bbb15b4debd64413d92b627d2d6f39251fea89ecf2efe4be7b5439e",
+      "case_id": "train-explicit-negative-004",
+      "conversation_sha256": "d1df579ba989d057d4ebc8f5aeee371b1c367852b0605fec18a0dc44283074ac",
+      "row_index": 20,
+      "scenario_family_id": "train-explicit-negative",
+      "snapshot_id": "train-explicit-negative-004-s01",
+      "split": "training",
+      "through_event_id": "train-explicit-negative-004-e03"
+    },
+    {
+      "annotation_sha256": "28eb80506db610136d198a2eec440d07e9c32decc967b5c390de0b0ab25d7667",
+      "case_id": "train-explicit-negative-005",
+      "conversation_sha256": "c36cfc3e51990c18b272369634a57acf592fc0907687944c581633da3fd8c932",
+      "row_index": 21,
+      "scenario_family_id": "train-explicit-negative",
+      "snapshot_id": "train-explicit-negative-005-s01",
+      "split": "training",
+      "through_event_id": "train-explicit-negative-005-e02"
+    },
+    {
+      "annotation_sha256": "678f92fe21cc42c00a4220995d366ee4be994eef4ec5ef46c92485f920a88154",
+      "case_id": "train-explicit-negative-006",
+      "conversation_sha256": "99a72b8649b502170738ad87b83e663e52fd0ea9453d206aa198e5e0ddb0f6ad",
+      "row_index": 22,
+      "scenario_family_id": "train-explicit-negative",
+      "snapshot_id": "train-explicit-negative-006-s01",
+      "split": "training",
+      "through_event_id": "train-explicit-negative-006-e02"
+    },
+    {
+      "annotation_sha256": "4ce3b514a2b3dbbf42931c73326521e0c2f5fde941c8ef429fe1d23483e94e5e",
+      "case_id": "train-candidate-distractors-002",
+      "conversation_sha256": "66bff52a9641689f0c8053ee0b7ffe72baa6c3c1f17d0b0425d100682f89cc4a",
+      "row_index": 23,
+      "scenario_family_id": "train-candidate-distractors",
+      "snapshot_id": "train-candidate-distractors-002-s01",
+      "split": "training",
+      "through_event_id": "train-candidate-distractors-002-e02"
+    },
+    {
+      "annotation_sha256": "6067bda29fdd83bffe43b72fe9c7c1d571c45de43831d8d5c68996069c605d15",
+      "case_id": "train-candidate-distractors-003",
+      "conversation_sha256": "c38f0c622f4f17bc7cf029d013bd30c29869bc314c20e7baafed87d6927fd8e3",
+      "row_index": 24,
+      "scenario_family_id": "train-candidate-distractors",
+      "snapshot_id": "train-candidate-distractors-003-s01",
+      "split": "training",
+      "through_event_id": "train-candidate-distractors-003-e02"
+    },
+    {
+      "annotation_sha256": "23720a87a8244039134854d80977012d83871db490197aa5aa27a3640ab66a5f",
+      "case_id": "train-candidate-distractors-004",
+      "conversation_sha256": "541613829a5cbcb98b953e7849a7e8c8daed8093a5426c86b3d78f9835e52d16",
+      "row_index": 25,
+      "scenario_family_id": "train-candidate-distractors",
+      "snapshot_id": "train-candidate-distractors-004-s01",
+      "split": "training",
+      "through_event_id": "train-candidate-distractors-004-e02"
+    },
+    {
+      "annotation_sha256": "188a2a191e5566beaffcc2e7652514d3ebe1fc546eba6429cecc2f0bb0e1b2f9",
+      "case_id": "train-candidate-distractors-005",
+      "conversation_sha256": "94f099a19e59ba2e9a157025aff4562101bd06e8de76fd9d1dcf8ef0f56e51e2",
+      "row_index": 26,
+      "scenario_family_id": "train-candidate-distractors",
+      "snapshot_id": "train-candidate-distractors-005-s01",
+      "split": "training",
+      "through_event_id": "train-candidate-distractors-005-e02"
+    },
+    {
+      "annotation_sha256": "63ef1ce58f240ed441b4434c5c8a92e6b799cfbfbb9a138f9eda5a10098efa38",
+      "case_id": "train-candidate-distractors-006",
+      "conversation_sha256": "3b1d71b9a22872be7eacf5c31f76ef605999611beae6c9a16e83093a49a5247e",
+      "row_index": 27,
+      "scenario_family_id": "train-candidate-distractors",
+      "snapshot_id": "train-candidate-distractors-006-s01",
+      "split": "training",
+      "through_event_id": "train-candidate-distractors-006-e02"
+    },
+    {
+      "annotation_sha256": "731a8270e0dea0d61366b73e4787e641e4e18772fa09587aeee15412182df213",
+      "case_id": "train-corrections-003",
+      "conversation_sha256": "e46368e26c62d237b26949f2b22126e57136e59700ef2d19bd42ca4ab608c367",
+      "row_index": 28,
+      "scenario_family_id": "train-corrections",
+      "snapshot_id": "train-corrections-003-s01",
+      "split": "training",
+      "through_event_id": "train-corrections-003-e01"
+    },
+    {
+      "annotation_sha256": "731a8270e0dea0d61366b73e4787e641e4e18772fa09587aeee15412182df213",
+      "case_id": "train-corrections-003",
+      "conversation_sha256": "e46368e26c62d237b26949f2b22126e57136e59700ef2d19bd42ca4ab608c367",
+      "row_index": 29,
+      "scenario_family_id": "train-corrections",
+      "snapshot_id": "train-corrections-003-s02",
+      "split": "training",
+      "through_event_id": "train-corrections-003-e02"
+    },
+    {
+      "annotation_sha256": "eba67b4c8ac4fb141588c689210f24a16f1499746b1808d67aba221ba88c7210",
+      "case_id": "train-corrections-004",
+      "conversation_sha256": "c74d481b6a4776a1059cca67dd65832fd4355622c1115b1e22fb7bdb93c9d592",
+      "row_index": 30,
+      "scenario_family_id": "train-corrections",
+      "snapshot_id": "train-corrections-004-s01",
+      "split": "training",
+      "through_event_id": "train-corrections-004-e02"
+    },
+    {
+      "annotation_sha256": "eba67b4c8ac4fb141588c689210f24a16f1499746b1808d67aba221ba88c7210",
+      "case_id": "train-corrections-004",
+      "conversation_sha256": "c74d481b6a4776a1059cca67dd65832fd4355622c1115b1e22fb7bdb93c9d592",
+      "row_index": 31,
+      "scenario_family_id": "train-corrections",
+      "snapshot_id": "train-corrections-004-s02",
+      "split": "training",
+      "through_event_id": "train-corrections-004-e03"
+    },
+    {
+      "annotation_sha256": "bc4e6b9fe5c758f72bbfbcaed6e989cff349577f66fd9268dffed2957e2b7ce7",
+      "case_id": "train-corrections-005",
+      "conversation_sha256": "68f4f4c049b5f3e500c3164d28947be3bab4210066305df58e0d4805e30a8dc5",
+      "row_index": 32,
+      "scenario_family_id": "train-corrections",
+      "snapshot_id": "train-corrections-005-s01",
+      "split": "training",
+      "through_event_id": "train-corrections-005-e02"
+    },
+    {
+      "annotation_sha256": "bc4e6b9fe5c758f72bbfbcaed6e989cff349577f66fd9268dffed2957e2b7ce7",
+      "case_id": "train-corrections-005",
+      "conversation_sha256": "68f4f4c049b5f3e500c3164d28947be3bab4210066305df58e0d4805e30a8dc5",
+      "row_index": 33,
+      "scenario_family_id": "train-corrections",
+      "snapshot_id": "train-corrections-005-s02",
+      "split": "training",
+      "through_event_id": "train-corrections-005-e03"
+    },
+    {
+      "annotation_sha256": "651628c7a7eb2457b0d9fb052800e10b75b66efab125c76746aff59405102fb8",
+      "case_id": "train-corrections-006",
+      "conversation_sha256": "55b8c8e08c0b46d2c065215c6d892f13fb137c8e6d265bbcdd0d3fd0ba043f6f",
+      "row_index": 34,
+      "scenario_family_id": "train-corrections",
+      "snapshot_id": "train-corrections-006-s01",
+      "split": "training",
+      "through_event_id": "train-corrections-006-e02"
+    },
+    {
+      "annotation_sha256": "651628c7a7eb2457b0d9fb052800e10b75b66efab125c76746aff59405102fb8",
+      "case_id": "train-corrections-006",
+      "conversation_sha256": "55b8c8e08c0b46d2c065215c6d892f13fb137c8e6d265bbcdd0d3fd0ba043f6f",
+      "row_index": 35,
+      "scenario_family_id": "train-corrections",
+      "snapshot_id": "train-corrections-006-s02",
+      "split": "training",
+      "through_event_id": "train-corrections-006-e03"
+    }
+  ],
+  "split_filter": "training",
+  "task_path": "configs/tasks/repair-intake.yaml",
+  "task_sha256": "2bcfeac17ccd30d85c640394b930bfd9db4a4dc7b1b67f049483ab79b9284db3"
+}

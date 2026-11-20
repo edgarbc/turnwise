@@ -1,5 +1,6 @@
 import json
 import hashlib
+import runpy
 import shutil
 from pathlib import Path
 
@@ -17,6 +18,83 @@ from typer.testing import CliRunner
 ROOT = Path(__file__).resolve().parents[2]
 MANIFEST = ROOT / "data" / "manifests" / "training-initial-drafts.json"
 TASK = ROOT / "configs" / "tasks" / "repair-intake.yaml"
+BUILD_DEVELOPMENT_MANIFEST = runpy.run_path(
+    str(ROOT / "scripts" / "prepare_development_manifest.py")
+)["build_manifest"]
+
+
+def test_development_manifest_preserves_review_evidence_and_splits() -> None:
+    manifest = BUILD_DEVELOPMENT_MANIFEST(ROOT)
+    cases = manifest["cases"]
+    assert len(manifest["source_manifests"]) == 19
+    assert len(cases) == len({case["case_id"] for case in cases}) == 40
+    assert {split: sum(case["snapshot_count"] for case in cases if case["split"] == split)
+            for split in ("training", "validation", "calibration")} == {
+                "training": 36, "validation": 8, "calibration": 5,
+            }
+    assert all(source["batch_annotation_status"] == "approved"
+               and source["batch_human_annotation_review"] == "approved"
+               for source in manifest["source_manifests"])
+    assert all(case["annotation_review"]["outcome"] == "approved" for case in cases)
+
+
+def test_development_manifest_rejects_missing_case_review(tmp_path: Path) -> None:
+    root = tmp_path / "project"
+    shutil.copytree(ROOT / "data" / "manifests", root / "data" / "manifests",
+                    ignore=shutil.ignore_patterns("final-test.json"))
+    source = root / "data" / "manifests" / "training-generation-batch-04.json"
+    batch = json.loads(source.read_text())
+    batch["cases"][0]["annotation_review"]["outcome"] = "pending"
+    source.write_text(json.dumps(batch))
+    with pytest.raises(ValueError, match="missing annotation approval"):
+        BUILD_DEVELOPMENT_MANIFEST(root)
+
+
+def test_development_manifest_rejects_pending_batch_annotation_review(tmp_path: Path) -> None:
+    root = tmp_path / "project"
+    shutil.copytree(ROOT / "data" / "manifests", root / "data" / "manifests",
+                    ignore=shutil.ignore_patterns("final-test.json"))
+    source = root / "data" / "manifests" / "training-generation-batch-04.json"
+    batch = json.loads(source.read_text())
+    batch["validation"]["human_annotation_review"] = "not_started"
+    source.write_text(json.dumps(batch))
+    with pytest.raises(ValueError, match="batch annotation review is not approved"):
+        BUILD_DEVELOPMENT_MANIFEST(root)
+
+
+@pytest.mark.parametrize("mutation, message", [
+    ("test_split", "non-development split"),
+    ("duplicate_case", "duplicate case"),
+])
+def test_development_manifest_rejects_leakage_and_duplicates(
+    tmp_path: Path, mutation: str, message: str
+) -> None:
+    root = tmp_path / "project"
+    shutil.copytree(ROOT / "data" / "manifests", root / "data" / "manifests",
+                    ignore=shutil.ignore_patterns("final-test.json"))
+    source = root / "data" / "manifests" / "training-generation-batch-04.json"
+    batch = json.loads(source.read_text())
+    if mutation == "test_split":
+        batch["cases"][0]["split"] = "test"
+    else:
+        initial = json.loads((root / "data" / "manifests" / "training-initial-drafts.json").read_text())
+        batch["cases"][0]["case_id"] = initial["cases"][0]["case_id"]
+    source.write_text(json.dumps(batch))
+    with pytest.raises(ValueError, match=message):
+        BUILD_DEVELOPMENT_MANIFEST(root)
+
+
+@pytest.mark.parametrize("split, count", [("training", 36), ("validation", 8), ("calibration", 5)])
+def test_development_exports_are_reproducible(tmp_path: Path, split: str, count: int) -> None:
+    manifest = ROOT / "data" / "manifests" / "training-development.json"
+    rows_path = tmp_path / f"{split}.jsonl"
+    metadata_path = tmp_path / f"{split}.metadata.json"
+    _, _, row_count = write_unsloth_export(
+        manifest.relative_to(ROOT), TASK.relative_to(ROOT), rows_path, metadata_path, split=split
+    )
+    assert row_count == count
+    assert rows_path.read_bytes() == (ROOT / "data" / "training" / "exports" / f"development-{split}.jsonl").read_bytes()
+    assert metadata_path.read_bytes() == (ROOT / "data" / "training" / "exports" / f"development-{split}.metadata.json").read_bytes()
 
 
 def _copy_training_batch(tmp_path: Path) -> tuple[Path, Path, Path]:

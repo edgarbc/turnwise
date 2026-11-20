@@ -1,0 +1,61 @@
+{
+  "exporter_version": "0.1.0",
+  "manifest_path": "data/manifests/training-development.json",
+  "manifest_sha256": "c9d2a788d91c6f888581230b0717890987d37a594dd5baef2efe57ba4aed5ba8",
+  "row_count": 5,
+  "rows": [
+    {
+      "annotation_sha256": "0ad7e7aac9d6289626eab77dc0942f26eaa17af45a2c6cad3c52e28a5e180ad9",
+      "case_id": "calibration-uncertainty-001",
+      "conversation_sha256": "d8414a8e3d220395b20fd72af1802cdd079ba92da492bfa1ebe06bd773a9b688",
+      "row_index": 0,
+      "scenario_family_id": "calibration-uncertainty",
+      "snapshot_id": "calibration-uncertainty-001-s01",
+      "split": "calibration",
+      "through_event_id": "calibration-uncertainty-001-e01"
+    },
+    {
+      "annotation_sha256": "d87874ab9a80972e17af48ed19da5058f50f38ef87a37f9249b4e279f3f48b3b",
+      "case_id": "calibration-uncertainty-002",
+      "conversation_sha256": "52652414ce9f42000ec0966377b251ebedaf858ab9034e2b5fe13bf3fe9ac14a",
+      "row_index": 1,
+      "scenario_family_id": "calibration-uncertainty",
+      "snapshot_id": "calibration-uncertainty-002-s01",
+      "split": "calibration",
+      "through_event_id": "calibration-uncertainty-002-e02"
+    },
+    {
+      "annotation_sha256": "3683566f734dc018db365cd42e57a7753d6a4059b8d01bbdd21ae523906c9950",
+      "case_id": "calibration-uncertainty-003",
+      "conversation_sha256": "e0f83d6ffe679993c277278b47979f30af6aecec1b789f48624026f40aee9290",
+      "row_index": 2,
+      "scenario_family_id": "calibration-uncertainty",
+      "snapshot_id": "calibration-uncertainty-003-s01",
+      "split": "calibration",
+      "through_event_id": "calibration-uncertainty-003-e01"
+    },
+    {
+      "annotation_sha256": "98a8b163837f0e6e54ecc212576379e0f8570ebca5655c19f5edce6d040c201d",
+      "case_id": "calibration-uncertainty-004",
+      "conversation_sha256": "215d78e2bffe61f9bcf07635140d50776515fabab33636a3e1ea0158e20502ca",
+      "row_index": 3,
+      "scenario_family_id": "calibration-uncertainty",
+      "snapshot_id": "calibration-uncertainty-004-s01",
+      "split": "calibration",
+      "through_event_id": "calibration-uncertainty-004-e02"
+    },
+    {
+      "annotation_sha256": "dcfc94b387ba5ca4659b5a479e1029379e369f57f2fc7397374dcdc1711fe6ec",
+      "case_id": "calibration-uncertainty-005",
+      "conversation_sha256": "881fe1d01735f0098afa2a6b3b2a9c9e49cc643c9341aa7d913024d480f4808d",
+      "row_index": 4,
+      "scenario_family_id": "calibration-uncertainty",
+      "snapshot_id": "calibration-uncertainty-005-s01",
+      "split": "calibration",
+      "through_event_id": "calibration-uncertainty-005-e02"
+    }
+  ],
+  "split_filter": "calibration",
+  "task_path": "configs/tasks/repair-intake.yaml",
+  "task_sha256": "2bcfeac17ccd30d85c640394b930bfd9db4a4dc7b1b67f049483ab79b9284db3"
+}

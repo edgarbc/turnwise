@@ -34,6 +34,8 @@ def test_development_manifest_preserves_review_evidence_and_splits() -> None:
             }
     assert all(source["batch_annotation_status"] == "approved"
                and source["batch_human_annotation_review"] == "approved"
+               and source["batch_conversation_review_status"] == "approved"
+               and source["batch_human_transcript_review"] == "approved"
                for source in manifest["source_manifests"])
     assert all(case["annotation_review"]["outcome"] == "approved" for case in cases)
 
@@ -59,6 +61,24 @@ def test_development_manifest_rejects_pending_batch_annotation_review(tmp_path: 
     batch["validation"]["human_annotation_review"] = "not_started"
     source.write_text(json.dumps(batch))
     with pytest.raises(ValueError, match="batch annotation review is not approved"):
+        BUILD_DEVELOPMENT_MANIFEST(root)
+
+
+@pytest.mark.parametrize("section, field", [
+    ("review_policy", "conversation_review_status"),
+    ("validation", "human_transcript_review"),
+])
+def test_development_manifest_rejects_pending_batch_transcript_review(
+    tmp_path: Path, section: str, field: str
+) -> None:
+    root = tmp_path / "project"
+    shutil.copytree(ROOT / "data" / "manifests", root / "data" / "manifests",
+                    ignore=shutil.ignore_patterns("final-test.json"))
+    source = root / "data" / "manifests" / "training-generation-batch-04.json"
+    batch = json.loads(source.read_text())
+    batch[section][field] = "pending"
+    source.write_text(json.dumps(batch))
+    with pytest.raises(ValueError, match="batch transcript review is not approved"):
         BUILD_DEVELOPMENT_MANIFEST(root)
 
 

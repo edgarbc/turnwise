@@ -25,7 +25,7 @@ Validation checks structure and mapping, not semantic correctness. The human-app
 
 ## Full Development Exports
 
-The derived `data/manifests/training-development.json` consolidates the 19 development batch manifests. It preserves each case's named, dated approvals and records source manifest hashes and batch-level annotation statuses. Sixteen batch annotation summaries were reconciled with their approved case-level records. The same 16 batches still have pending or unreviewed transcript summaries despite approved case-level transcript reviews; review that separate discrepancy and the [development export audit](../../reports/development-export-audit-20261119.md) before using the exports.
+The derived `data/manifests/training-development.json` consolidates the 19 development batch manifests. It preserves each case's named, dated approvals and records source manifest hashes and batch-level transcript and annotation statuses. Sixteen batch transcript and annotation summaries were reconciled with their approved case-level records. See the [development export audit](../../reports/development-export-audit-20261119.md) for the provenance checks and limitations.
 
 Rebuild the derived manifest and export the three development splits from the repository root:
 

@@ -977,117 +977,155 @@
   "source_manifests": [
     {
       "batch_annotation_status": "approved",
+      "batch_conversation_review_status": "approved",
       "batch_human_annotation_review": "approved",
+      "batch_human_transcript_review": "approved",
       "path": "data/manifests/training-initial-drafts.json",
       "sha256": "04f7763a3878357e44268cb660a9075a663a9287c0bfba3893a1ef9fc6a7dc18"
     },
     {
       "batch_annotation_status": "approved",
+      "batch_conversation_review_status": "approved",
       "batch_human_annotation_review": "approved",
+      "batch_human_transcript_review": "approved",
       "path": "data/manifests/training-generation-batch-02.json",
       "sha256": "259ef3483caebb27613ddfe2f0f6c822b07e1550ad220d34cbda329ac4a35a67"
     },
     {
       "batch_annotation_status": "approved",
+      "batch_conversation_review_status": "approved",
       "batch_human_annotation_review": "approved",
+      "batch_human_transcript_review": "approved",
       "path": "data/manifests/training-generation-batch-03.json",
       "sha256": "701a0aa402244b5e18c1db584ab7be729250ff3bd2cedf4c2b3251bb088d6468"
     },
     {
       "batch_annotation_status": "approved",
+      "batch_conversation_review_status": "approved",
       "batch_human_annotation_review": "approved",
+      "batch_human_transcript_review": "approved",
       "path": "data/manifests/training-generation-batch-04.json",
-      "sha256": "91a85a39ea40b445921dfde86e25de2674105c7b17e691e21daa99a4e9d64f3d"
+      "sha256": "8449f24bc6d43ce98708769fa4abc1654a96fee46cff59295612b8332bfb1dac"
     },
     {
       "batch_annotation_status": "approved",
+      "batch_conversation_review_status": "approved",
       "batch_human_annotation_review": "approved",
+      "batch_human_transcript_review": "approved",
       "path": "data/manifests/training-generation-batch-05.json",
-      "sha256": "9814bf2b50ebf5deeb682cafffce02b2e974aed0f6a9d0cb13620b4724790cf1"
+      "sha256": "b3cafcba44a56d09db1787f41225c91384dcc8e6982f8a47430a3c6039456e94"
     },
     {
       "batch_annotation_status": "approved",
+      "batch_conversation_review_status": "approved",
       "batch_human_annotation_review": "approved",
+      "batch_human_transcript_review": "approved",
       "path": "data/manifests/training-generation-batch-06.json",
-      "sha256": "84f4a0e3005cb8c1865ee6237e786f93d9dd134f01429bcbddb4a736106f39e6"
+      "sha256": "949833f87f79d72770deca185abb0fe96311fe703c84cd1087ee51ee1f4564e5"
     },
     {
       "batch_annotation_status": "approved",
+      "batch_conversation_review_status": "approved",
       "batch_human_annotation_review": "approved",
+      "batch_human_transcript_review": "approved",
       "path": "data/manifests/training-generation-batch-07.json",
-      "sha256": "b812f1fb0b0e70586186b485b582e32496c0b511af1349c3d388ae9a815dcc5a"
+      "sha256": "c9608fa360035391a6356428a13bbb9ef123d09cda93aef3699fb4f85e12927d"
     },
     {
       "batch_annotation_status": "approved",
+      "batch_conversation_review_status": "approved",
       "batch_human_annotation_review": "approved",
+      "batch_human_transcript_review": "approved",
       "path": "data/manifests/training-generation-batch-08.json",
-      "sha256": "edc23bd853d4659c3e5e219cd1dd3c8328b974eb8f3f086696beab8a7535ed87"
+      "sha256": "e7b1fbd3fe5049916538097c21067a3eeca7372641f13a0da9ea0a308b9d038f"
     },
     {
       "batch_annotation_status": "approved",
+      "batch_conversation_review_status": "approved",
       "batch_human_annotation_review": "approved",
+      "batch_human_transcript_review": "approved",
       "path": "data/manifests/training-generation-batch-09.json",
-      "sha256": "48791d0c54fcde4f7eeac84594d76dd9f9b1ef896dec80ebbff5d5fb08dbbe66"
+      "sha256": "4d96cc6f34439ca208d23067e172ff0e3ee20524824431003c48daa30a41632a"
     },
     {
       "batch_annotation_status": "approved",
+      "batch_conversation_review_status": "approved",
       "batch_human_annotation_review": "approved",
+      "batch_human_transcript_review": "approved",
       "path": "data/manifests/training-generation-batch-10.json",
-      "sha256": "c09265db674043d560f27766114fd5ebb123547f9864d819a8dbdafb3d322c96"
+      "sha256": "0f033a4d132043f72033af4dad917492511da63d3df377521a3f4c49fb5afed4"
     },
     {
       "batch_annotation_status": "approved",
+      "batch_conversation_review_status": "approved",
       "batch_human_annotation_review": "approved",
+      "batch_human_transcript_review": "approved",
       "path": "data/manifests/training-generation-batch-11.json",
-      "sha256": "1d2490dfa7d3ccae6fb6b573da69dd99e21c1b30bf2fe2ed2e9ea6cbe6a858ef"
+      "sha256": "2bcdbfa41c32fbc6b967c57fb728ed1e4fe131c23ff1bf2da598b015fb42a7d6"
     },
     {
       "batch_annotation_status": "approved",
+      "batch_conversation_review_status": "approved",
       "batch_human_annotation_review": "approved",
+      "batch_human_transcript_review": "approved",
       "path": "data/manifests/training-generation-batch-12.json",
-      "sha256": "ab27c6951a8661a9b07486875094a40bf3df0bbd760fd621bb50c6fe8fd24054"
+      "sha256": "3b1216f92e2d9f80abd35f1a4f4f64feba6aa1b79594175fdefbe27fbd3a3654"
     },
     {
       "batch_annotation_status": "approved",
+      "batch_conversation_review_status": "approved",
       "batch_human_annotation_review": "approved",
+      "batch_human_transcript_review": "approved",
       "path": "data/manifests/training-generation-batch-13.json",
-      "sha256": "a0a9f4c865fa88be578eea0f776253928a5fc53c9bedad521a332f3b1561f067"
+      "sha256": "0bb401c2c01a6280fd53fbf4c99f8c22613803b858dc70643236ebbd814a933c"
     },
     {
       "batch_annotation_status": "approved",
+      "batch_conversation_review_status": "approved",
       "batch_human_annotation_review": "approved",
+      "batch_human_transcript_review": "approved",
       "path": "data/manifests/training-generation-batch-14.json",
-      "sha256": "e753e9ae8d5d0fb26bd5a26597443de11cddb09757a1294913d23c795ebd1678"
+      "sha256": "ca17a92a478bc1cf142ec8945c855beb740dae10359d92c6e724fa682060760d"
     },
     {
       "batch_annotation_status": "approved",
+      "batch_conversation_review_status": "approved",
       "batch_human_annotation_review": "approved",
+      "batch_human_transcript_review": "approved",
       "path": "data/manifests/training-generation-batch-15.json",
-      "sha256": "46967e9d6e6445cb23f9b06186ef4b16a7c89df7186309e38fc7ac05a85212f7"
+      "sha256": "db68e0fc7ba5216862f73236029a715acb674280f6bbfe7d30225b0d9972b399"
     },
     {
       "batch_annotation_status": "approved",
+      "batch_conversation_review_status": "approved",
       "batch_human_annotation_review": "approved",
+      "batch_human_transcript_review": "approved",
       "path": "data/manifests/training-generation-batch-16.json",
-      "sha256": "c4a12c3d66cd70c89d5f0247066348f09d4ac5f09c5423aa9609ccafa8c28f7f"
+      "sha256": "60aa339f5bb1d60f3ad7449851ed206b82381c734f1709b04300848d5b96bbf1"
     },
     {
       "batch_annotation_status": "approved",
+      "batch_conversation_review_status": "approved",
       "batch_human_annotation_review": "approved",
+      "batch_human_transcript_review": "approved",
       "path": "data/manifests/training-generation-batch-17.json",
-      "sha256": "926b1a5055b2446095d0fa915756fd1a762f46723c6b500630d242fa693116a7"
+      "sha256": "0c1563b6c65396de46d5dbd51107bc106734b6dd238d399001d3ef975473e8ce"
     },
     {
       "batch_annotation_status": "approved",
+      "batch_conversation_review_status": "approved",
       "batch_human_annotation_review": "approved",
+      "batch_human_transcript_review": "approved",
       "path": "data/manifests/training-generation-batch-18.json",
-      "sha256": "779892befa7a7b8715dfffe2561fc7081c7375f7a1bbe29f4d2250be940b8158"
+      "sha256": "b15ff02648598e003e4dd48afdfe2683d26c4100174c77fe7eb59184c76252b1"
     },
     {
       "batch_annotation_status": "approved",
+      "batch_conversation_review_status": "approved",
       "batch_human_annotation_review": "approved",
+      "batch_human_transcript_review": "approved",
       "path": "data/manifests/training-generation-batch-19.json",
-      "sha256": "07649daa2865dd4ce97ff47c039ce899bc444bb42790d0352f9ee449c64a0bb3"
+      "sha256": "07039b47345354619e03bdbcc47622afc0017c3f02ddac1c5281feee3dc453ee"
     }
   ],
   "task": {
@@ -1097,7 +1135,7 @@
     "version": "0.1.0"
   },
   "validation": {
-    "basis": "case-level review records, with batch annotation summaries also required",
+    "basis": "case-level review records, with batch transcript and annotation summaries also required",
     "human_annotation_review": "approved",
     "validation_is_not_semantic_approval": true
   }

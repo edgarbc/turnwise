@@ -33,6 +33,9 @@ def build_manifest(root: Path) -> dict:
             catalog = batch["scenario_catalog"]
         elif batch["task"] != task or batch["scenario_catalog"] != catalog:
             raise ValueError(f"inconsistent task or scenario catalogue: {path.name}")
+        if (batch["review_policy"]["conversation_review_status"] != "approved"
+                or batch["validation"]["human_transcript_review"] != "approved"):
+            raise ValueError(f"batch transcript review is not approved: {path.name}")
         if (batch["review_policy"]["annotation_status"] != "approved"
                 or batch["validation"]["human_annotation_review"] != "approved"):
             raise ValueError(f"batch annotation review is not approved: {path.name}")
@@ -40,6 +43,8 @@ def build_manifest(root: Path) -> dict:
         sources.append({
             "path": source_path,
             "sha256": hashlib.sha256(content).hexdigest(),
+            "batch_conversation_review_status": batch["review_policy"]["conversation_review_status"],
+            "batch_human_transcript_review": batch["validation"]["human_transcript_review"],
             "batch_annotation_status": batch["review_policy"]["annotation_status"],
             "batch_human_annotation_review": batch["validation"]["human_annotation_review"],
         })
@@ -91,7 +96,7 @@ def build_manifest(root: Path) -> dict:
         },
         "validation": {
             "human_annotation_review": "approved",
-            "basis": "case-level review records, with batch annotation summaries also required",
+            "basis": "case-level review records, with batch transcript and annotation summaries also required",
             "validation_is_not_semantic_approval": True,
         },
         "source_manifests": sources,

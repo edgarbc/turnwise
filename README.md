@@ -22,6 +22,8 @@ The first comparison is between Jev and a general LLM using schema-constrained o
 
 The [training approach](docs/training/approach.md) summarizes the open-weight experiment. Its operational milestones, data contract, generation/review workflow, and export format are documented in the training docs. Durable research and implementation choices will be recorded in `docs/decisions/`; the [project plan](docs/project-plan.md) remains the overview of the full research roadmap.
 
+The [open-weight smoke notebook](notebooks/open-weight-smoke.ipynb) runs a three-step Unsloth decision-model smoke test in Google Colab. It uses a small training-only export to check loading, training, checkpoint save/reload, and valid option keys; it is not a model-quality evaluation and must not use final-test data. See the [smoke configuration](configs/experiments/open-weight-smoke.yaml) for the recorded run and checkpoint details.
+
 The task and experimental limits matter: matching Jev on this defined task would not show equivalent performance on arbitrary tasks. See the [evaluation protocol](docs/evaluation-protocol.md) for the planned comparison and metrics.
 
 ## Project documents
@@ -231,6 +233,8 @@ turnwise/
 │   ├── annotation-guide.md
 │   ├── evaluation-protocol.md
 │   └── project-plan.md
+├── notebooks/
+│   └── open-weight-smoke.ipynb
 ├── src/turnwise/
 │   ├── app/
 │   ├── audio/

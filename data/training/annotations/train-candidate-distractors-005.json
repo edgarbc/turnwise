@@ -1,0 +1,59 @@
+{
+  "conversation_id": "train-candidate-distractors-005",
+  "task_id": "repair_intake",
+  "task_version": "0.1.0",
+  "snapshots": [
+    {
+      "snapshot_id": "train-candidate-distractors-005-s01",
+      "through_event_id": "train-candidate-distractors-005-e02",
+      "values": {
+        "appliance": "Furnace",
+        "location": "Attic",
+        "active_leak": null,
+        "preferred_appointment": "Friday afternoon",
+        "quote_required": false,
+        "spending_limit": {
+          "amount": 550,
+          "currency": "USD"
+        }
+      },
+      "evidence": {
+        "appliance": [
+          {
+            "event_id": "train-candidate-distractors-005-e01",
+            "start_char": 4,
+            "end_char": 11
+          }
+        ],
+        "location": [
+          {
+            "event_id": "train-candidate-distractors-005-e01",
+            "start_char": 19,
+            "end_char": 24
+          }
+        ],
+        "preferred_appointment": [
+          {
+            "event_id": "train-candidate-distractors-005-e02",
+            "start_char": 49,
+            "end_char": 65
+          }
+        ],
+        "quote_required": [
+          {
+            "event_id": "train-candidate-distractors-005-e02",
+            "start_char": 89,
+            "end_char": 125
+          }
+        ],
+        "spending_limit": [
+          {
+            "event_id": "train-candidate-distractors-005-e02",
+            "start_char": 154,
+            "end_char": 185
+          }
+        ]
+      }
+    }
+  ]
+}

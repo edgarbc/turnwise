@@ -1,0 +1,56 @@
+{
+  "conversation_id": "train-ordinary-006",
+  "task_id": "repair_intake",
+  "task_version": "0.1.0",
+  "snapshots": [
+    {
+      "snapshot_id": "train-ordinary-006-s01",
+      "through_event_id": "train-ordinary-006-e03",
+      "values": {
+        "appliance": "Sump pump",
+        "location": "Crawl space",
+        "active_leak": true,
+        "preferred_appointment": "Friday night",
+        "quote_required": true,
+        "spending_limit": null
+      },
+      "evidence": {
+        "appliance": [
+          {
+            "event_id": "train-ordinary-006-e01",
+            "start_char": 4,
+            "end_char": 13
+          }
+        ],
+        "location": [
+          {
+            "event_id": "train-ordinary-006-e01",
+            "start_char": 21,
+            "end_char": 32
+          }
+        ],
+        "active_leak": [
+          {
+            "event_id": "train-ordinary-006-e01",
+            "start_char": 36,
+            "end_char": 74
+          }
+        ],
+        "preferred_appointment": [
+          {
+            "event_id": "train-ordinary-006-e02",
+            "start_char": 0,
+            "end_char": 12
+          }
+        ],
+        "quote_required": [
+          {
+            "event_id": "train-ordinary-006-e03",
+            "start_char": 0,
+            "end_char": 53
+          }
+        ]
+      }
+    }
+  ]
+}

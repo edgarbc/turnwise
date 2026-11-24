@@ -1,0 +1,70 @@
+{
+  "conversation_id": "validation-negation-001",
+  "task_id": "repair_intake",
+  "task_version": "0.1.0",
+  "snapshots": [
+    {
+      "snapshot_id": "validation-negation-001-s01",
+      "through_event_id": "validation-negation-001-e01",
+      "values": {
+        "appliance": "Freezer",
+        "location": "Garage",
+        "active_leak": null,
+        "preferred_appointment": null,
+        "quote_required": null,
+        "spending_limit": null
+      },
+      "evidence": {
+        "appliance": [
+          {
+            "event_id": "validation-negation-001-e01",
+            "start_char": 4,
+            "end_char": 11
+          }
+        ],
+        "location": [
+          {
+            "event_id": "validation-negation-001-e01",
+            "start_char": 22,
+            "end_char": 28
+          }
+        ]
+      }
+    },
+    {
+      "snapshot_id": "validation-negation-001-s02",
+      "through_event_id": "validation-negation-001-e02",
+      "values": {
+        "appliance": "Freezer",
+        "location": "Garage",
+        "active_leak": false,
+        "preferred_appointment": null,
+        "quote_required": null,
+        "spending_limit": null
+      },
+      "evidence": {
+        "appliance": [
+          {
+            "event_id": "validation-negation-001-e01",
+            "start_char": 4,
+            "end_char": 11
+          }
+        ],
+        "location": [
+          {
+            "event_id": "validation-negation-001-e01",
+            "start_char": 22,
+            "end_char": 28
+          }
+        ],
+        "active_leak": [
+          {
+            "event_id": "validation-negation-001-e02",
+            "start_char": 29,
+            "end_char": 44
+          }
+        ]
+      }
+    }
+  ]
+}

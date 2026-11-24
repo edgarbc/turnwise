@@ -1,0 +1,147 @@
+{
+  "manifest_version": "0.1.0",
+  "dataset_id": "repair-intake-training-generation-batch-04",
+  "purpose": "transcript_generation_draft_only",
+  "task": {
+    "id": "repair_intake",
+    "version": "0.1.0",
+    "path": "configs/tasks/repair-intake.yaml",
+    "sha256": "2bcfeac17ccd30d85c640394b930bfd9db4a4dc7b1b67f049483ab79b9284db3"
+  },
+  "scenario_catalog": {
+    "id": "repair-intake-training-scenarios",
+    "version": "0.1.0",
+    "path": "data/scenarios/catalog.yaml",
+    "sha256": "24733bfc371d679a96540574d7bd92cc313edc678d40de24fb727cf918a33572"
+  },
+  "review_policy": {
+    "scenario_specifications": "requester_confirmed",
+    "conversation_review_status": "approved",
+    "annotation_status": "approved",
+    "reviewer": null,
+    "reviewed_at": null
+  },
+  "validation": {
+    "automated_structure_and_candidate_check": "passed",
+    "human_transcript_review": "approved",
+    "human_annotation_review": "approved",
+    "validation_is_not_semantic_approval": true
+  },
+  "cases": [
+    {
+      "case_id": "train-explicit-negative-002",
+      "family_id": "train-explicit-negative",
+      "split": "training",
+      "conversation_path": "data/training/conversations/train-explicit-negative-002.json",
+      "conversation_sha256": "e690eb93b148b4e9849f6f6fcf89f49de39c4a17c7bb533c1f66cb01e0e92114",
+      "snapshot_count": 1,
+      "human_review_status": "approved",
+      "transcript_review": {
+        "reviewer": "requester",
+        "reviewed_at": "2026-11-14",
+        "outcome": "approved"
+      },
+      "annotation_path": "data/training/annotations/train-explicit-negative-002.json",
+      "annotation_sha256": "2713ab5e1e85e07ef3cd2daa0ae2033107f404752032c47c86966fe152488a32",
+      "annotation_review_status": "approved",
+      "annotation_review": {
+        "reviewer": "requester",
+        "reviewed_at": "2026-11-14",
+        "outcome": "approved"
+      },
+      "annotation_status": "approved"
+    },
+    {
+      "case_id": "train-explicit-negative-003",
+      "family_id": "train-explicit-negative",
+      "split": "training",
+      "conversation_path": "data/training/conversations/train-explicit-negative-003.json",
+      "conversation_sha256": "5ca2d21d5478965db05d42eacc4f6fa8736ab120456f200f84b6435122a633fd",
+      "snapshot_count": 1,
+      "human_review_status": "approved",
+      "transcript_review": {
+        "reviewer": "requester",
+        "reviewed_at": "2026-11-14",
+        "outcome": "approved"
+      },
+      "annotation_path": "data/training/annotations/train-explicit-negative-003.json",
+      "annotation_sha256": "2550695725d987bfcb2bb8f29c0fca0e06b92fdc9dd6bc63a0d394e62d482046",
+      "annotation_review_status": "approved",
+      "annotation_review": {
+        "reviewer": "requester",
+        "reviewed_at": "2026-11-14",
+        "outcome": "approved"
+      },
+      "annotation_status": "approved"
+    },
+    {
+      "case_id": "train-explicit-negative-004",
+      "family_id": "train-explicit-negative",
+      "split": "training",
+      "conversation_path": "data/training/conversations/train-explicit-negative-004.json",
+      "conversation_sha256": "d1df579ba989d057d4ebc8f5aeee371b1c367852b0605fec18a0dc44283074ac",
+      "snapshot_count": 1,
+      "human_review_status": "approved",
+      "transcript_review": {
+        "reviewer": "requester",
+        "reviewed_at": "2026-11-14",
+        "outcome": "approved"
+      },
+      "annotation_path": "data/training/annotations/train-explicit-negative-004.json",
+      "annotation_sha256": "463784644bbb15b4debd64413d92b627d2d6f39251fea89ecf2efe4be7b5439e",
+      "annotation_review_status": "approved",
+      "annotation_review": {
+        "reviewer": "requester",
+        "reviewed_at": "2026-11-14",
+        "outcome": "approved"
+      },
+      "annotation_status": "approved"
+    },
+    {
+      "case_id": "train-explicit-negative-005",
+      "family_id": "train-explicit-negative",
+      "split": "training",
+      "conversation_path": "data/training/conversations/train-explicit-negative-005.json",
+      "conversation_sha256": "c36cfc3e51990c18b272369634a57acf592fc0907687944c581633da3fd8c932",
+      "snapshot_count": 1,
+      "human_review_status": "approved",
+      "transcript_review": {
+        "reviewer": "requester",
+        "reviewed_at": "2026-11-14",
+        "outcome": "approved"
+      },
+      "annotation_path": "data/training/annotations/train-explicit-negative-005.json",
+      "annotation_sha256": "28eb80506db610136d198a2eec440d07e9c32decc967b5c390de0b0ab25d7667",
+      "annotation_review_status": "approved",
+      "annotation_review": {
+        "reviewer": "requester",
+        "reviewed_at": "2026-11-14",
+        "outcome": "approved"
+      },
+      "annotation_status": "approved"
+    },
+    {
+      "case_id": "train-explicit-negative-006",
+      "family_id": "train-explicit-negative",
+      "split": "training",
+      "conversation_path": "data/training/conversations/train-explicit-negative-006.json",
+      "conversation_sha256": "99a72b8649b502170738ad87b83e663e52fd0ea9453d206aa198e5e0ddb0f6ad",
+      "snapshot_count": 1,
+      "human_review_status": "approved",
+      "transcript_review": {
+        "reviewer": "requester",
+        "reviewed_at": "2026-11-14",
+        "outcome": "approved"
+      },
+      "annotation_path": "data/training/annotations/train-explicit-negative-006.json",
+      "annotation_sha256": "678f92fe21cc42c00a4220995d366ee4be994eef4ec5ef46c92485f920a88154",
+      "annotation_review_status": "approved",
+      "annotation_review": {
+        "reviewer": "requester",
+        "reviewed_at": "2026-11-14",
+        "outcome": "approved"
+      },
+      "annotation_status": "approved"
+    }
+  ]
+}

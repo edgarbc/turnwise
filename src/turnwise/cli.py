@@ -13,6 +13,7 @@ from turnwise.providers.jev import JevProvider
 from turnwise.providers.structured_llm import StructuredLLMProvider
 from turnwise.dataset_validation import validate_dataset
 from turnwise.evaluation.runner import run_experiment
+from turnwise.training.export_unsloth import ExportError, write_unsloth_export
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 TASK_PATH = PROJECT_ROOT / "configs" / "tasks" / "repair-intake.yaml"
@@ -133,6 +134,38 @@ def benchmark(
     except (OSError, ValueError, yaml.YAMLError) as error:
         raise typer.BadParameter(str(error)) from error
     typer.echo(f"Evaluation complete: {artifact_path}")
+
+
+@app.command("export-unsloth")
+def export_unsloth(
+    manifest: Path = typer.Option(
+        ..., "--manifest", help="Approved dataset manifest with source hashes."
+    ),
+    output: Path = typer.Option(..., "--output", help="Output JSONL path for Unsloth rows."),
+    metadata: Path = typer.Option(
+        ..., "--metadata", help="Output JSON sidecar path for row provenance."
+    ),
+    task: Path = typer.Option(TASK_PATH, "--task", help="Canonical task YAML."),
+    split: str | None = typer.Option(
+        None, "--split", help="Optional split to export (for example training)."
+    ),
+) -> None:
+    """Export approved transcript prefixes as Unsloth decision rows."""
+    try:
+        output_path, metadata_path, row_count = write_unsloth_export(
+            manifest,
+            task,
+            output,
+            metadata,
+            split=split,
+        )
+    except (OSError, ExportError, yaml.YAMLError) as error:
+        typer.echo(f"Export failed: {error}", err=True)
+        raise typer.Exit(code=1) from error
+    typer.echo(
+        f"Exported {row_count} rows to {output_path} "
+        f"with metadata {metadata_path}"
+    )
 
 
 @app.command()

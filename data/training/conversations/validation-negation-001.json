@@ -1,0 +1,25 @@
+{
+  "conversation_id": "validation-negation-001",
+  "task_id": "repair_intake",
+  "task_version": "0.1.0",
+  "events": [
+    {
+      "event_id": "validation-negation-001-e01",
+      "speaker": "customer",
+      "start_ms": 0,
+      "end_ms": 7000,
+      "revision": 0,
+      "is_final": true,
+      "text": "The freezer is in the garage, and it has been making a rattling sound."
+    },
+    {
+      "event_id": "validation-negation-001-e02",
+      "speaker": "customer",
+      "start_ms": 12000,
+      "end_ms": 19000,
+      "revision": 0,
+      "is_final": true,
+      "text": "It leaked earlier, but it is not leaking now."
+    }
+  ]
+}

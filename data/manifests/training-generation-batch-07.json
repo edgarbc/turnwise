@@ -1,0 +1,55 @@
+{
+  "manifest_version": "0.1.0",
+  "dataset_id": "repair-intake-training-generation-batch-07",
+  "purpose": "transcript_generation_draft_only",
+  "task": {
+    "id": "repair_intake",
+    "version": "0.1.0",
+    "path": "configs/tasks/repair-intake.yaml",
+    "sha256": "2bcfeac17ccd30d85c640394b930bfd9db4a4dc7b1b67f049483ab79b9284db3"
+  },
+  "scenario_catalog": {
+    "id": "repair-intake-training-scenarios",
+    "version": "0.1.0",
+    "path": "data/scenarios/catalog.yaml",
+    "sha256": "24733bfc371d679a96540574d7bd92cc313edc678d40de24fb727cf918a33572"
+  },
+  "review_policy": {
+    "scenario_specifications": "requester_confirmed",
+    "conversation_review_status": "approved",
+    "annotation_status": "approved",
+    "reviewer": null,
+    "reviewed_at": null
+  },
+  "validation": {
+    "automated_structure_and_candidate_check": "passed",
+    "human_transcript_review": "approved",
+    "human_annotation_review": "approved",
+    "validation_is_not_semantic_approval": true
+  },
+  "cases": [
+    {
+      "case_id": "train-candidate-distractors-004",
+      "family_id": "train-candidate-distractors",
+      "split": "training",
+      "conversation_path": "data/training/conversations/train-candidate-distractors-004.json",
+      "conversation_sha256": "541613829a5cbcb98b953e7849a7e8c8daed8093a5426c86b3d78f9835e52d16",
+      "snapshot_count": 1,
+      "human_review_status": "approved",
+      "transcript_review": {
+        "reviewer": "requester",
+        "reviewed_at": "2026-11-14",
+        "outcome": "approved"
+      },
+      "annotation_path": "data/training/annotations/train-candidate-distractors-004.json",
+      "annotation_sha256": "23720a87a8244039134854d80977012d83871db490197aa5aa27a3640ab66a5f",
+      "annotation_review_status": "approved",
+      "annotation_review": {
+        "reviewer": "requester",
+        "reviewed_at": "2026-11-14",
+        "outcome": "approved"
+      },
+      "annotation_status": "approved"
+    }
+  ]
+}

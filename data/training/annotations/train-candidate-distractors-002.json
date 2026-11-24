@@ -1,0 +1,52 @@
+{
+  "conversation_id": "train-candidate-distractors-002",
+  "task_id": "repair_intake",
+  "task_version": "0.1.0",
+  "snapshots": [
+    {
+      "snapshot_id": "train-candidate-distractors-002-s01",
+      "through_event_id": "train-candidate-distractors-002-e02",
+      "values": {
+        "appliance": "Gas oven",
+        "location": "Kitchen",
+        "active_leak": null,
+        "preferred_appointment": "Saturday morning",
+        "quote_required": null,
+        "spending_limit": {
+          "amount": 250,
+          "currency": "USD"
+        }
+      },
+      "evidence": {
+        "appliance": [
+          {
+            "event_id": "train-candidate-distractors-002-e01",
+            "start_char": 4,
+            "end_char": 12
+          }
+        ],
+        "location": [
+          {
+            "event_id": "train-candidate-distractors-002-e01",
+            "start_char": 20,
+            "end_char": 27
+          }
+        ],
+        "preferred_appointment": [
+          {
+            "event_id": "train-candidate-distractors-002-e02",
+            "start_char": 60,
+            "end_char": 76
+          }
+        ],
+        "spending_limit": [
+          {
+            "event_id": "train-candidate-distractors-002-e02",
+            "start_char": 125,
+            "end_char": 155
+          }
+        ]
+      }
+    }
+  ]
+}

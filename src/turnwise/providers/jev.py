@@ -9,14 +9,14 @@ from turnwise.contracts import (
     DecisionInput,
     DecisionResult,
     EvidenceReference,
-    ValueCandidate,
 )
 from turnwise.pipeline.normalization import normalize_candidate
 from turnwise.providers.task import load_task_definition
+from turnwise.providers.questions import (
+    UNKNOWN_CHOICE,
+    build_task_questions,
+)
 from turnwise.settings import Settings
-
-
-UNKNOWN_CHOICE = "__unknown__"
 
 
 class JevProvider:
@@ -42,11 +42,6 @@ class JevProvider:
             model=self.model,
         )
         self._task = task_definition or load_task_definition()
-        self._candidate_fields = frozenset(
-            self._task["value_extraction"]["candidate_selected_values"]
-        )
-        self._fields = tuple(self._task["fields"])
-
     def decide(self, decision_input: DecisionInput) -> DecisionResult:
         if not decision_input.transcript:
             return DecisionResult({}, {}, self.name, self.model, error="empty transcript")
@@ -63,62 +58,18 @@ class JevProvider:
             )
 
         candidates_by_id = {candidate.candidate_id: candidate for candidate in decision_input.candidates}
-        candidates_by_field: dict[str, list[ValueCandidate]] = {
-            field["id"]: [] for field in self._fields
+        task_questions = build_task_questions(decision_input, self._task)
+        questions = {
+            question_id: Choice(
+                instructions=question["instructions"],
+                criteria=question["criteria"],
+            )
+            for question_id, question in task_questions.questions.items()
         }
-        for candidate in decision_input.candidates:
-            candidates_by_field.setdefault(candidate.field_id, []).append(candidate)
-
-        questions: dict[str, Choice] = {}
-        question_fields: dict[str, str] = {}
+        question_fields = task_questions.question_fields
         customer_events = [
             event for event in decision_input.transcript if event.speaker == "customer"
         ]
-        for field in self._fields:
-            field_id = field["id"]
-            if field_id in self._candidate_fields:
-                options = candidates_by_field.get(field_id, [])
-                criteria = {
-                    candidate.candidate_id: candidate.text for candidate in options
-                }
-                criteria[UNKNOWN_CHOICE] = f"No supported value for {field_id}."
-                question_id = f"value__{field_id}"
-                questions[question_id] = Choice(
-                    instructions=(
-                        f"Select the candidate that answers the task field "
-                        f"{field_id!r}. Select {UNKNOWN_CHOICE!r} if none does. "
-                        "Do not infer or combine candidate values."
-                    ),
-                    criteria=criteria,
-                )
-                question_fields[question_id] = field_id
-            else:
-                question_id = f"value__{field_id}"
-                evidence_criteria: dict[str, str] = {}
-                for event in customer_events:
-                    for boolean_value in ("true", "false"):
-                        option_id = f"{boolean_value}::{event.event_id}"
-                        outcome_description = field.get(
-                            "true_means" if boolean_value == "true" else "false_means",
-                            f"The field is explicitly {boolean_value}.",
-                        )
-                        evidence_criteria[option_id] = (
-                            f"{outcome_description} Supporting customer statement: "
-                            f"{event.text}"
-                        )
-                evidence_criteria[UNKNOWN_CHOICE] = field.get(
-                    "unknown_when", "Unknown or unstated."
-                )
-                questions[question_id] = Choice(
-                    instructions=(
-                        f"Determine the current value of {field_id!r} using the supplied "
-                        "customer statements. Select a true/false option together with the "
-                        "customer event that supports it. Select unknown if no statement "
-                        "supports either known value."
-                    ),
-                    criteria=evidence_criteria,
-                )
-                question_fields[question_id] = field_id
 
         state = {
             "conversation_id": decision_input.conversation_id,
@@ -171,7 +122,7 @@ class JevProvider:
                 if selected == UNKNOWN_CHOICE:
                     values[field_id] = None
                     continue
-                if field_id in self._candidate_fields:
+                if field_id in task_questions.candidate_fields:
                     candidate = candidates_by_id.get(selected)
                     if candidate is None or candidate.field_id != field_id:
                         raise ValueError(

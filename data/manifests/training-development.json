@@ -1,0 +1,1142 @@
+{
+  "cases": [
+    {
+      "annotation_path": "data/training/annotations/train-ordinary-001.json",
+      "annotation_review": {
+        "outcome": "approved",
+        "reviewed_at": "2026-10-27",
+        "reviewer": "requester"
+      },
+      "annotation_review_status": "approved",
+      "annotation_sha256": "9dd40d756b0392763c2fc4f989dcc6adf6ba585763ab55e576559ead936deb44",
+      "annotation_status": "approved",
+      "case_id": "train-ordinary-001",
+      "conversation_path": "data/training/conversations/train-ordinary-001.json",
+      "conversation_sha256": "0fb9f5845b73a593e5bbd8332fb2acabb3563e6fc0523a46f37390f30c455dd1",
+      "family_id": "train-ordinary",
+      "human_review_status": "approved",
+      "snapshot_count": 1,
+      "source_manifest": "data/manifests/training-initial-drafts.json",
+      "split": "training",
+      "transcript_review": {
+        "outcome": "approved",
+        "reviewed_at": "2026-10-27",
+        "reviewer": "requester"
+      }
+    },
+    {
+      "annotation_path": "data/training/annotations/train-missing-001.json",
+      "annotation_review": {
+        "outcome": "approved",
+        "reviewed_at": "2026-10-27",
+        "reviewer": "requester"
+      },
+      "annotation_review_status": "approved",
+      "annotation_sha256": "8a4e6683769342d269c56b542608a46769344ac8e4a50130d97833068c335e7b",
+      "annotation_status": "approved",
+      "case_id": "train-missing-001",
+      "conversation_path": "data/training/conversations/train-missing-001.json",
+      "conversation_sha256": "f43f51baf0c4ab640a9ceaedc23b2951cdd79c52ef7c36d338420174cc9fcdfb",
+      "family_id": "train-missing",
+      "human_review_status": "approved",
+      "snapshot_count": 1,
+      "source_manifest": "data/manifests/training-initial-drafts.json",
+      "split": "training",
+      "transcript_review": {
+        "outcome": "approved",
+        "reviewed_at": "2026-10-27",
+        "reviewer": "requester"
+      }
+    },
+    {
+      "annotation_path": "data/training/annotations/train-explicit-negative-001.json",
+      "annotation_review": {
+        "outcome": "approved",
+        "reviewed_at": "2026-10-27",
+        "reviewer": "requester"
+      },
+      "annotation_review_status": "approved",
+      "annotation_sha256": "4d24c4ac9c5727dfa70cc0dea98fe951d3491112e05345077b9c32d38b099d64",
+      "annotation_status": "approved",
+      "case_id": "train-explicit-negative-001",
+      "conversation_path": "data/training/conversations/train-explicit-negative-001.json",
+      "conversation_sha256": "6735f546f82520f28d1faa12fee12255ef0799938cc69d1d8d4337729a193454",
+      "family_id": "train-explicit-negative",
+      "human_review_status": "approved",
+      "snapshot_count": 1,
+      "source_manifest": "data/manifests/training-initial-drafts.json",
+      "split": "training",
+      "transcript_review": {
+        "outcome": "approved",
+        "reviewed_at": "2026-10-27",
+        "reviewer": "requester"
+      }
+    },
+    {
+      "annotation_path": "data/training/annotations/train-candidate-distractors-001.json",
+      "annotation_review": {
+        "outcome": "approved",
+        "reviewed_at": "2026-10-27",
+        "reviewer": "requester"
+      },
+      "annotation_review_status": "approved",
+      "annotation_sha256": "fba33563c283316199b192ac39ada9c6e8c807f104375ee3ace01d14b95da3ce",
+      "annotation_status": "approved",
+      "case_id": "train-candidate-distractors-001",
+      "conversation_path": "data/training/conversations/train-candidate-distractors-001.json",
+      "conversation_sha256": "8e61b44c1a1e7184ef4a2c0e3543bd32b7383e2f32fa5b1f1fff921497c9c878",
+      "family_id": "train-candidate-distractors",
+      "human_review_status": "approved",
+      "snapshot_count": 1,
+      "source_manifest": "data/manifests/training-initial-drafts.json",
+      "split": "training",
+      "transcript_review": {
+        "outcome": "approved",
+        "reviewed_at": "2026-10-27",
+        "reviewer": "requester"
+      }
+    },
+    {
+      "annotation_path": "data/training/annotations/train-corrections-001.json",
+      "annotation_review": {
+        "outcome": "approved",
+        "reviewed_at": "2026-10-27",
+        "reviewer": "requester"
+      },
+      "annotation_review_status": "approved",
+      "annotation_sha256": "738be27a9496d5ac5ad97651a5b96867c342ad8a20fb761abdac0cf319fc541c",
+      "annotation_status": "approved",
+      "case_id": "train-corrections-001",
+      "conversation_path": "data/training/conversations/train-corrections-001.json",
+      "conversation_sha256": "f1cbae1e61e887c84c8f1f8c74fbb7ba7c6df2ee7ad22e262c89dc53476313f3",
+      "family_id": "train-corrections",
+      "human_review_status": "approved",
+      "snapshot_count": 2,
+      "source_manifest": "data/manifests/training-initial-drafts.json",
+      "split": "training",
+      "transcript_review": {
+        "outcome": "approved",
+        "reviewed_at": "2026-10-27",
+        "reviewer": "requester"
+      }
+    },
+    {
+      "annotation_path": "data/training/annotations/train-corrections-002.json",
+      "annotation_review": {
+        "outcome": "approved",
+        "reviewed_at": "2026-10-27",
+        "reviewer": "requester"
+      },
+      "annotation_review_status": "approved",
+      "annotation_sha256": "d2c6568cd009aaa54eac47991b82325daef79264ebb5bd1cb1c0903aaa5110bc",
+      "annotation_status": "approved",
+      "case_id": "train-corrections-002",
+      "conversation_path": "data/training/conversations/train-corrections-002.json",
+      "conversation_sha256": "f69763fef86274d62d8a29e488aba74cda0dedbd337d2da8d2d5f08afe3eb05a",
+      "family_id": "train-corrections",
+      "human_review_status": "approved",
+      "snapshot_count": 2,
+      "source_manifest": "data/manifests/training-initial-drafts.json",
+      "split": "training",
+      "transcript_review": {
+        "outcome": "approved",
+        "reviewed_at": "2026-10-27",
+        "reviewer": "requester"
+      }
+    },
+    {
+      "annotation_path": "data/training/annotations/validation-negation-001.json",
+      "annotation_review": {
+        "outcome": "approved",
+        "reviewed_at": "2026-10-27",
+        "reviewer": "requester"
+      },
+      "annotation_review_status": "approved",
+      "annotation_sha256": "c5f7ffba90194fc67dd3747e676a339a8492f0b59a8f39092c34abe626df7199",
+      "annotation_status": "approved",
+      "case_id": "validation-negation-001",
+      "conversation_path": "data/training/conversations/validation-negation-001.json",
+      "conversation_sha256": "2ed53d49357803776673f55982c538abb8af4f07621b353b16904c1923f24b9e",
+      "family_id": "validation-negation",
+      "human_review_status": "approved",
+      "snapshot_count": 2,
+      "source_manifest": "data/manifests/training-initial-drafts.json",
+      "split": "validation",
+      "transcript_review": {
+        "outcome": "approved",
+        "reviewed_at": "2026-10-27",
+        "reviewer": "requester"
+      }
+    },
+    {
+      "annotation_path": "data/training/annotations/validation-negation-002.json",
+      "annotation_review": {
+        "outcome": "approved",
+        "reviewed_at": "2026-10-27",
+        "reviewer": "requester"
+      },
+      "annotation_review_status": "approved",
+      "annotation_sha256": "29664a4c336da84117727d6f626df463035a2ee6af89c1226f0fe89a1ae430ce",
+      "annotation_status": "approved",
+      "case_id": "validation-negation-002",
+      "conversation_path": "data/training/conversations/validation-negation-002.json",
+      "conversation_sha256": "8f51a456868c90a65e90bf16c8f7e8f7dff468d295f9aba4439350a67749f863",
+      "family_id": "validation-negation",
+      "human_review_status": "approved",
+      "snapshot_count": 1,
+      "source_manifest": "data/manifests/training-initial-drafts.json",
+      "split": "validation",
+      "transcript_review": {
+        "outcome": "approved",
+        "reviewed_at": "2026-10-27",
+        "reviewer": "requester"
+      }
+    },
+    {
+      "annotation_path": "data/training/annotations/calibration-uncertainty-001.json",
+      "annotation_review": {
+        "outcome": "approved",
+        "reviewed_at": "2026-10-27",
+        "reviewer": "requester"
+      },
+      "annotation_review_status": "approved",
+      "annotation_sha256": "0ad7e7aac9d6289626eab77dc0942f26eaa17af45a2c6cad3c52e28a5e180ad9",
+      "annotation_status": "approved",
+      "case_id": "calibration-uncertainty-001",
+      "conversation_path": "data/training/conversations/calibration-uncertainty-001.json",
+      "conversation_sha256": "d8414a8e3d220395b20fd72af1802cdd079ba92da492bfa1ebe06bd773a9b688",
+      "family_id": "calibration-uncertainty",
+      "human_review_status": "approved",
+      "snapshot_count": 1,
+      "source_manifest": "data/manifests/training-initial-drafts.json",
+      "split": "calibration",
+      "transcript_review": {
+        "outcome": "approved",
+        "reviewed_at": "2026-10-27",
+        "reviewer": "requester"
+      }
+    },
+    {
+      "annotation_path": "data/training/annotations/calibration-uncertainty-002.json",
+      "annotation_review": {
+        "outcome": "approved",
+        "reviewed_at": "2026-10-27",
+        "reviewer": "requester"
+      },
+      "annotation_review_status": "approved",
+      "annotation_sha256": "d87874ab9a80972e17af48ed19da5058f50f38ef87a37f9249b4e279f3f48b3b",
+      "annotation_status": "approved",
+      "case_id": "calibration-uncertainty-002",
+      "conversation_path": "data/training/conversations/calibration-uncertainty-002.json",
+      "conversation_sha256": "52652414ce9f42000ec0966377b251ebedaf858ab9034e2b5fe13bf3fe9ac14a",
+      "family_id": "calibration-uncertainty",
+      "human_review_status": "approved",
+      "snapshot_count": 1,
+      "source_manifest": "data/manifests/training-initial-drafts.json",
+      "split": "calibration",
+      "transcript_review": {
+        "outcome": "approved",
+        "reviewed_at": "2026-10-27",
+        "reviewer": "requester"
+      }
+    },
+    {
+      "annotation_path": "data/training/annotations/train-ordinary-002.json",
+      "annotation_review": {
+        "outcome": "approved",
+        "reviewed_at": "2026-11-14",
+        "reviewer": "requester"
+      },
+      "annotation_review_status": "approved",
+      "annotation_sha256": "a41e4e55669c510f0554cdbdc673a1b8200672d21bfe22d11029ae845b24eecc",
+      "annotation_status": "approved",
+      "case_id": "train-ordinary-002",
+      "conversation_path": "data/training/conversations/train-ordinary-002.json",
+      "conversation_sha256": "2bd0028b6455d1a813ad921d6c4a867fccc3a4584a21870b20ac9ecc97db07f6",
+      "family_id": "train-ordinary",
+      "human_review_status": "approved",
+      "snapshot_count": 1,
+      "source_manifest": "data/manifests/training-generation-batch-02.json",
+      "split": "training",
+      "transcript_review": {
+        "outcome": "approved",
+        "reviewed_at": "2026-11-14",
+        "reviewer": "requester"
+      }
+    },
+    {
+      "annotation_path": "data/training/annotations/train-ordinary-003.json",
+      "annotation_review": {
+        "outcome": "approved",
+        "reviewed_at": "2026-11-14",
+        "reviewer": "requester"
+      },
+      "annotation_review_status": "approved",
+      "annotation_sha256": "0dbf441bd314ad59c7c067f53c88f73eb83c4d613f0d349318001874517b9697",
+      "annotation_status": "approved",
+      "case_id": "train-ordinary-003",
+      "conversation_path": "data/training/conversations/train-ordinary-003.json",
+      "conversation_sha256": "a3b228d12205c53fb44749251da6c762910a6d99bbd8a8312e5cf5c20cb7af20",
+      "family_id": "train-ordinary",
+      "human_review_status": "approved",
+      "snapshot_count": 1,
+      "source_manifest": "data/manifests/training-generation-batch-02.json",
+      "split": "training",
+      "transcript_review": {
+        "outcome": "approved",
+        "reviewed_at": "2026-11-14",
+        "reviewer": "requester"
+      }
+    },
+    {
+      "annotation_path": "data/training/annotations/train-ordinary-004.json",
+      "annotation_review": {
+        "outcome": "approved",
+        "reviewed_at": "2026-11-14",
+        "reviewer": "requester"
+      },
+      "annotation_review_status": "approved",
+      "annotation_sha256": "cbbbece08c9f7a1aa269806d10348c502351d74b360dcd64726cbb656b2dd39b",
+      "annotation_status": "approved",
+      "case_id": "train-ordinary-004",
+      "conversation_path": "data/training/conversations/train-ordinary-004.json",
+      "conversation_sha256": "b9b2fa2185aaf30aed90c8803fbc7290737d676b7f59f89e8869464f47f13a69",
+      "family_id": "train-ordinary",
+      "human_review_status": "approved",
+      "snapshot_count": 1,
+      "source_manifest": "data/manifests/training-generation-batch-02.json",
+      "split": "training",
+      "transcript_review": {
+        "outcome": "approved",
+        "reviewed_at": "2026-11-14",
+        "reviewer": "requester"
+      }
+    },
+    {
+      "annotation_path": "data/training/annotations/train-ordinary-005.json",
+      "annotation_review": {
+        "outcome": "approved",
+        "reviewed_at": "2026-11-14",
+        "reviewer": "requester"
+      },
+      "annotation_review_status": "approved",
+      "annotation_sha256": "95d8bd6d81a74f5ea1b3f556c430dbfcdd3b35abde8a66ea847ea7435bb7205f",
+      "annotation_status": "approved",
+      "case_id": "train-ordinary-005",
+      "conversation_path": "data/training/conversations/train-ordinary-005.json",
+      "conversation_sha256": "85da838d11a07dadffdc991deee96f19b72d3685009e7910914504835e80e7cc",
+      "family_id": "train-ordinary",
+      "human_review_status": "approved",
+      "snapshot_count": 1,
+      "source_manifest": "data/manifests/training-generation-batch-02.json",
+      "split": "training",
+      "transcript_review": {
+        "outcome": "approved",
+        "reviewed_at": "2026-11-14",
+        "reviewer": "requester"
+      }
+    },
+    {
+      "annotation_path": "data/training/annotations/train-ordinary-006.json",
+      "annotation_review": {
+        "outcome": "approved",
+        "reviewed_at": "2026-11-14",
+        "reviewer": "requester"
+      },
+      "annotation_review_status": "approved",
+      "annotation_sha256": "3c2f8a6f12d2b18ba4eed3e5f90f31e4da8f79178ae33d1dd2408eb2e9b89b18",
+      "annotation_status": "approved",
+      "case_id": "train-ordinary-006",
+      "conversation_path": "data/training/conversations/train-ordinary-006.json",
+      "conversation_sha256": "e8b31849ee123e8d951015cea145814a4d7d4f3f6628cbb28eb3d0ea7bd3cb8e",
+      "family_id": "train-ordinary",
+      "human_review_status": "approved",
+      "snapshot_count": 1,
+      "source_manifest": "data/manifests/training-generation-batch-02.json",
+      "split": "training",
+      "transcript_review": {
+        "outcome": "approved",
+        "reviewed_at": "2026-11-14",
+        "reviewer": "requester"
+      }
+    },
+    {
+      "annotation_path": "data/training/annotations/train-missing-002.json",
+      "annotation_review": {
+        "outcome": "approved",
+        "reviewed_at": "2026-11-14",
+        "reviewer": "requester"
+      },
+      "annotation_review_status": "approved",
+      "annotation_sha256": "a4a84e97834ec53f5a5a48fc5d6e2b8328c52a5ecaf1799fd164a00c24cd2805",
+      "annotation_status": "approved",
+      "case_id": "train-missing-002",
+      "conversation_path": "data/training/conversations/train-missing-002.json",
+      "conversation_sha256": "af9ee7c57199927149ed85f767f5891aa2d593be9b25d3460ea5d8b7ba876576",
+      "family_id": "train-missing",
+      "human_review_status": "approved",
+      "snapshot_count": 1,
+      "source_manifest": "data/manifests/training-generation-batch-03.json",
+      "split": "training",
+      "transcript_review": {
+        "outcome": "approved",
+        "reviewed_at": "2026-11-14",
+        "reviewer": "requester"
+      }
+    },
+    {
+      "annotation_path": "data/training/annotations/train-missing-003.json",
+      "annotation_review": {
+        "outcome": "approved",
+        "reviewed_at": "2026-11-14",
+        "reviewer": "requester"
+      },
+      "annotation_review_status": "approved",
+      "annotation_sha256": "771bf1a965df143858294b434a5ad2f45238def8cd76a4525e51bd151cd4c801",
+      "annotation_status": "approved",
+      "case_id": "train-missing-003",
+      "conversation_path": "data/training/conversations/train-missing-003.json",
+      "conversation_sha256": "13f75115659c9b641f620829e41037bbf4e7a476d75f28b25270c6f62665cb4d",
+      "family_id": "train-missing",
+      "human_review_status": "approved",
+      "snapshot_count": 1,
+      "source_manifest": "data/manifests/training-generation-batch-03.json",
+      "split": "training",
+      "transcript_review": {
+        "outcome": "approved",
+        "reviewed_at": "2026-11-14",
+        "reviewer": "requester"
+      }
+    },
+    {
+      "annotation_path": "data/training/annotations/train-missing-004.json",
+      "annotation_review": {
+        "outcome": "approved",
+        "reviewed_at": "2026-11-14",
+        "reviewer": "requester"
+      },
+      "annotation_review_status": "approved",
+      "annotation_sha256": "ced6ec2fda5fc9ba2d7221c7550ccd1b4559d2c5bf81fcef4df2f5a10f204691",
+      "annotation_status": "approved",
+      "case_id": "train-missing-004",
+      "conversation_path": "data/training/conversations/train-missing-004.json",
+      "conversation_sha256": "4ced4478d8552968cc857d7d53c0d6f60ff4860ef07f94c6961f93b2d82c85be",
+      "family_id": "train-missing",
+      "human_review_status": "approved",
+      "snapshot_count": 1,
+      "source_manifest": "data/manifests/training-generation-batch-03.json",
+      "split": "training",
+      "transcript_review": {
+        "outcome": "approved",
+        "reviewed_at": "2026-11-14",
+        "reviewer": "requester"
+      }
+    },
+    {
+      "annotation_path": "data/training/annotations/train-missing-005.json",
+      "annotation_review": {
+        "outcome": "approved",
+        "reviewed_at": "2026-11-14",
+        "reviewer": "requester"
+      },
+      "annotation_review_status": "approved",
+      "annotation_sha256": "f46695a0d8e100d8a11d9e142ff79b25d4a7f6fd8636377013225c306c2ce4ac",
+      "annotation_status": "approved",
+      "case_id": "train-missing-005",
+      "conversation_path": "data/training/conversations/train-missing-005.json",
+      "conversation_sha256": "ff8c49dbe34905ac11d1a367191f942bfdcf00bb2361f1007d3d5a13c855e36f",
+      "family_id": "train-missing",
+      "human_review_status": "approved",
+      "snapshot_count": 1,
+      "source_manifest": "data/manifests/training-generation-batch-03.json",
+      "split": "training",
+      "transcript_review": {
+        "outcome": "approved",
+        "reviewed_at": "2026-11-14",
+        "reviewer": "requester"
+      }
+    },
+    {
+      "annotation_path": "data/training/annotations/train-missing-006.json",
+      "annotation_review": {
+        "outcome": "approved",
+        "reviewed_at": "2026-11-14",
+        "reviewer": "requester"
+      },
+      "annotation_review_status": "approved",
+      "annotation_sha256": "acc9c71f732e9091533b17c259c9e1acd3b94d82f6d5cb2830432d15b1f5822f",
+      "annotation_status": "approved",
+      "case_id": "train-missing-006",
+      "conversation_path": "data/training/conversations/train-missing-006.json",
+      "conversation_sha256": "4a68c2af0d4266885302b05062a27e909fc9eaf3bf2ed4d6ae79dda1b9eaa2da",
+      "family_id": "train-missing",
+      "human_review_status": "approved",
+      "snapshot_count": 1,
+      "source_manifest": "data/manifests/training-generation-batch-03.json",
+      "split": "training",
+      "transcript_review": {
+        "outcome": "approved",
+        "reviewed_at": "2026-11-14",
+        "reviewer": "requester"
+      }
+    },
+    {
+      "annotation_path": "data/training/annotations/train-explicit-negative-002.json",
+      "annotation_review": {
+        "outcome": "approved",
+        "reviewed_at": "2026-11-14",
+        "reviewer": "requester"
+      },
+      "annotation_review_status": "approved",
+      "annotation_sha256": "2713ab5e1e85e07ef3cd2daa0ae2033107f404752032c47c86966fe152488a32",
+      "annotation_status": "approved",
+      "case_id": "train-explicit-negative-002",
+      "conversation_path": "data/training/conversations/train-explicit-negative-002.json",
+      "conversation_sha256": "e690eb93b148b4e9849f6f6fcf89f49de39c4a17c7bb533c1f66cb01e0e92114",
+      "family_id": "train-explicit-negative",
+      "human_review_status": "approved",
+      "snapshot_count": 1,
+      "source_manifest": "data/manifests/training-generation-batch-04.json",
+      "split": "training",
+      "transcript_review": {
+        "outcome": "approved",
+        "reviewed_at": "2026-11-14",
+        "reviewer": "requester"
+      }
+    },
+    {
+      "annotation_path": "data/training/annotations/train-explicit-negative-003.json",
+      "annotation_review": {
+        "outcome": "approved",
+        "reviewed_at": "2026-11-14",
+        "reviewer": "requester"
+      },
+      "annotation_review_status": "approved",
+      "annotation_sha256": "2550695725d987bfcb2bb8f29c0fca0e06b92fdc9dd6bc63a0d394e62d482046",
+      "annotation_status": "approved",
+      "case_id": "train-explicit-negative-003",
+      "conversation_path": "data/training/conversations/train-explicit-negative-003.json",
+      "conversation_sha256": "5ca2d21d5478965db05d42eacc4f6fa8736ab120456f200f84b6435122a633fd",
+      "family_id": "train-explicit-negative",
+      "human_review_status": "approved",
+      "snapshot_count": 1,
+      "source_manifest": "data/manifests/training-generation-batch-04.json",
+      "split": "training",
+      "transcript_review": {
+        "outcome": "approved",
+        "reviewed_at": "2026-11-14",
+        "reviewer": "requester"
+      }
+    },
+    {
+      "annotation_path": "data/training/annotations/train-explicit-negative-004.json",
+      "annotation_review": {
+        "outcome": "approved",
+        "reviewed_at": "2026-11-14",
+        "reviewer": "requester"
+      },
+      "annotation_review_status": "approved",
+      "annotation_sha256": "463784644bbb15b4debd64413d92b627d2d6f39251fea89ecf2efe4be7b5439e",
+      "annotation_status": "approved",
+      "case_id": "train-explicit-negative-004",
+      "conversation_path": "data/training/conversations/train-explicit-negative-004.json",
+      "conversation_sha256": "d1df579ba989d057d4ebc8f5aeee371b1c367852b0605fec18a0dc44283074ac",
+      "family_id": "train-explicit-negative",
+      "human_review_status": "approved",
+      "snapshot_count": 1,
+      "source_manifest": "data/manifests/training-generation-batch-04.json",
+      "split": "training",
+      "transcript_review": {
+        "outcome": "approved",
+        "reviewed_at": "2026-11-14",
+        "reviewer": "requester"
+      }
+    },
+    {
+      "annotation_path": "data/training/annotations/train-explicit-negative-005.json",
+      "annotation_review": {
+        "outcome": "approved",
+        "reviewed_at": "2026-11-14",
+        "reviewer": "requester"
+      },
+      "annotation_review_status": "approved",
+      "annotation_sha256": "28eb80506db610136d198a2eec440d07e9c32decc967b5c390de0b0ab25d7667",
+      "annotation_status": "approved",
+      "case_id": "train-explicit-negative-005",
+      "conversation_path": "data/training/conversations/train-explicit-negative-005.json",
+      "conversation_sha256": "c36cfc3e51990c18b272369634a57acf592fc0907687944c581633da3fd8c932",
+      "family_id": "train-explicit-negative",
+      "human_review_status": "approved",
+      "snapshot_count": 1,
+      "source_manifest": "data/manifests/training-generation-batch-04.json",
+      "split": "training",
+      "transcript_review": {
+        "outcome": "approved",
+        "reviewed_at": "2026-11-14",
+        "reviewer": "requester"
+      }
+    },
+    {
+      "annotation_path": "data/training/annotations/train-explicit-negative-006.json",
+      "annotation_review": {
+        "outcome": "approved",
+        "reviewed_at": "2026-11-14",
+        "reviewer": "requester"
+      },
+      "annotation_review_status": "approved",
+      "annotation_sha256": "678f92fe21cc42c00a4220995d366ee4be994eef4ec5ef46c92485f920a88154",
+      "annotation_status": "approved",
+      "case_id": "train-explicit-negative-006",
+      "conversation_path": "data/training/conversations/train-explicit-negative-006.json",
+      "conversation_sha256": "99a72b8649b502170738ad87b83e663e52fd0ea9453d206aa198e5e0ddb0f6ad",
+      "family_id": "train-explicit-negative",
+      "human_review_status": "approved",
+      "snapshot_count": 1,
+      "source_manifest": "data/manifests/training-generation-batch-04.json",
+      "split": "training",
+      "transcript_review": {
+        "outcome": "approved",
+        "reviewed_at": "2026-11-14",
+        "reviewer": "requester"
+      }
+    },
+    {
+      "annotation_path": "data/training/annotations/train-candidate-distractors-002.json",
+      "annotation_review": {
+        "outcome": "approved",
+        "reviewed_at": "2026-11-14",
+        "reviewer": "requester"
+      },
+      "annotation_review_status": "approved",
+      "annotation_sha256": "4ce3b514a2b3dbbf42931c73326521e0c2f5fde941c8ef429fe1d23483e94e5e",
+      "annotation_status": "approved",
+      "case_id": "train-candidate-distractors-002",
+      "conversation_path": "data/training/conversations/train-candidate-distractors-002.json",
+      "conversation_sha256": "66bff52a9641689f0c8053ee0b7ffe72baa6c3c1f17d0b0425d100682f89cc4a",
+      "family_id": "train-candidate-distractors",
+      "human_review_status": "approved",
+      "snapshot_count": 1,
+      "source_manifest": "data/manifests/training-generation-batch-05.json",
+      "split": "training",
+      "transcript_review": {
+        "outcome": "approved",
+        "reviewed_at": "2026-11-14",
+        "reviewer": "requester"
+      }
+    },
+    {
+      "annotation_path": "data/training/annotations/train-candidate-distractors-003.json",
+      "annotation_review": {
+        "outcome": "approved",
+        "reviewed_at": "2026-11-14",
+        "reviewer": "requester"
+      },
+      "annotation_review_status": "approved",
+      "annotation_sha256": "6067bda29fdd83bffe43b72fe9c7c1d571c45de43831d8d5c68996069c605d15",
+      "annotation_status": "approved",
+      "case_id": "train-candidate-distractors-003",
+      "conversation_path": "data/training/conversations/train-candidate-distractors-003.json",
+      "conversation_sha256": "c38f0c622f4f17bc7cf029d013bd30c29869bc314c20e7baafed87d6927fd8e3",
+      "family_id": "train-candidate-distractors",
+      "human_review_status": "approved",
+      "snapshot_count": 1,
+      "source_manifest": "data/manifests/training-generation-batch-06.json",
+      "split": "training",
+      "transcript_review": {
+        "outcome": "approved",
+        "reviewed_at": "2026-11-14",
+        "reviewer": "requester"
+      }
+    },
+    {
+      "annotation_path": "data/training/annotations/train-candidate-distractors-004.json",
+      "annotation_review": {
+        "outcome": "approved",
+        "reviewed_at": "2026-11-14",
+        "reviewer": "requester"
+      },
+      "annotation_review_status": "approved",
+      "annotation_sha256": "23720a87a8244039134854d80977012d83871db490197aa5aa27a3640ab66a5f",
+      "annotation_status": "approved",
+      "case_id": "train-candidate-distractors-004",
+      "conversation_path": "data/training/conversations/train-candidate-distractors-004.json",
+      "conversation_sha256": "541613829a5cbcb98b953e7849a7e8c8daed8093a5426c86b3d78f9835e52d16",
+      "family_id": "train-candidate-distractors",
+      "human_review_status": "approved",
+      "snapshot_count": 1,
+      "source_manifest": "data/manifests/training-generation-batch-07.json",
+      "split": "training",
+      "transcript_review": {
+        "outcome": "approved",
+        "reviewed_at": "2026-11-14",
+        "reviewer": "requester"
+      }
+    },
+    {
+      "annotation_path": "data/training/annotations/train-candidate-distractors-005.json",
+      "annotation_review": {
+        "outcome": "approved",
+        "reviewed_at": "2026-11-14",
+        "reviewer": "requester"
+      },
+      "annotation_review_status": "approved",
+      "annotation_sha256": "188a2a191e5566beaffcc2e7652514d3ebe1fc546eba6429cecc2f0bb0e1b2f9",
+      "annotation_status": "approved",
+      "case_id": "train-candidate-distractors-005",
+      "conversation_path": "data/training/conversations/train-candidate-distractors-005.json",
+      "conversation_sha256": "94f099a19e59ba2e9a157025aff4562101bd06e8de76fd9d1dcf8ef0f56e51e2",
+      "family_id": "train-candidate-distractors",
+      "human_review_status": "approved",
+      "snapshot_count": 1,
+      "source_manifest": "data/manifests/training-generation-batch-08.json",
+      "split": "training",
+      "transcript_review": {
+        "outcome": "approved",
+        "reviewed_at": "2026-11-14",
+        "reviewer": "requester"
+      }
+    },
+    {
+      "annotation_path": "data/training/annotations/train-candidate-distractors-006.json",
+      "annotation_review": {
+        "outcome": "approved",
+        "reviewed_at": "2026-11-14",
+        "reviewer": "requester"
+      },
+      "annotation_review_status": "approved",
+      "annotation_sha256": "63ef1ce58f240ed441b4434c5c8a92e6b799cfbfbb9a138f9eda5a10098efa38",
+      "annotation_status": "approved",
+      "case_id": "train-candidate-distractors-006",
+      "conversation_path": "data/training/conversations/train-candidate-distractors-006.json",
+      "conversation_sha256": "3b1d71b9a22872be7eacf5c31f76ef605999611beae6c9a16e83093a49a5247e",
+      "family_id": "train-candidate-distractors",
+      "human_review_status": "approved",
+      "snapshot_count": 1,
+      "source_manifest": "data/manifests/training-generation-batch-09.json",
+      "split": "training",
+      "transcript_review": {
+        "outcome": "approved",
+        "reviewed_at": "2026-11-14",
+        "reviewer": "requester"
+      }
+    },
+    {
+      "annotation_path": "data/training/annotations/train-corrections-003.json",
+      "annotation_review": {
+        "outcome": "approved",
+        "reviewed_at": "2026-11-14",
+        "reviewer": "requester"
+      },
+      "annotation_review_status": "approved",
+      "annotation_sha256": "731a8270e0dea0d61366b73e4787e641e4e18772fa09587aeee15412182df213",
+      "annotation_status": "approved",
+      "case_id": "train-corrections-003",
+      "conversation_path": "data/training/conversations/train-corrections-003.json",
+      "conversation_sha256": "e46368e26c62d237b26949f2b22126e57136e59700ef2d19bd42ca4ab608c367",
+      "family_id": "train-corrections",
+      "human_review_status": "approved",
+      "snapshot_count": 2,
+      "source_manifest": "data/manifests/training-generation-batch-10.json",
+      "split": "training",
+      "transcript_review": {
+        "outcome": "approved",
+        "reviewed_at": "2026-11-14",
+        "reviewer": "requester"
+      }
+    },
+    {
+      "annotation_path": "data/training/annotations/train-corrections-004.json",
+      "annotation_review": {
+        "outcome": "approved",
+        "reviewed_at": "2026-11-14",
+        "reviewer": "requester"
+      },
+      "annotation_review_status": "approved",
+      "annotation_sha256": "eba67b4c8ac4fb141588c689210f24a16f1499746b1808d67aba221ba88c7210",
+      "annotation_status": "approved",
+      "case_id": "train-corrections-004",
+      "conversation_path": "data/training/conversations/train-corrections-004.json",
+      "conversation_sha256": "c74d481b6a4776a1059cca67dd65832fd4355622c1115b1e22fb7bdb93c9d592",
+      "family_id": "train-corrections",
+      "human_review_status": "approved",
+      "snapshot_count": 2,
+      "source_manifest": "data/manifests/training-generation-batch-11.json",
+      "split": "training",
+      "transcript_review": {
+        "outcome": "approved",
+        "reviewed_at": "2026-11-14",
+        "reviewer": "requester"
+      }
+    },
+    {
+      "annotation_path": "data/training/annotations/train-corrections-005.json",
+      "annotation_review": {
+        "outcome": "approved",
+        "reviewed_at": "2026-11-14",
+        "reviewer": "requester"
+      },
+      "annotation_review_status": "approved",
+      "annotation_sha256": "bc4e6b9fe5c758f72bbfbcaed6e989cff349577f66fd9268dffed2957e2b7ce7",
+      "annotation_status": "approved",
+      "case_id": "train-corrections-005",
+      "conversation_path": "data/training/conversations/train-corrections-005.json",
+      "conversation_sha256": "68f4f4c049b5f3e500c3164d28947be3bab4210066305df58e0d4805e30a8dc5",
+      "family_id": "train-corrections",
+      "human_review_status": "approved",
+      "snapshot_count": 2,
+      "source_manifest": "data/manifests/training-generation-batch-12.json",
+      "split": "training",
+      "transcript_review": {
+        "outcome": "approved",
+        "reviewed_at": "2026-11-14",
+        "reviewer": "requester"
+      }
+    },
+    {
+      "annotation_path": "data/training/annotations/train-corrections-006.json",
+      "annotation_review": {
+        "outcome": "approved",
+        "reviewed_at": "2026-11-14",
+        "reviewer": "requester"
+      },
+      "annotation_review_status": "approved",
+      "annotation_sha256": "651628c7a7eb2457b0d9fb052800e10b75b66efab125c76746aff59405102fb8",
+      "annotation_status": "approved",
+      "case_id": "train-corrections-006",
+      "conversation_path": "data/training/conversations/train-corrections-006.json",
+      "conversation_sha256": "55b8c8e08c0b46d2c065215c6d892f13fb137c8e6d265bbcdd0d3fd0ba043f6f",
+      "family_id": "train-corrections",
+      "human_review_status": "approved",
+      "snapshot_count": 2,
+      "source_manifest": "data/manifests/training-generation-batch-13.json",
+      "split": "training",
+      "transcript_review": {
+        "outcome": "approved",
+        "reviewed_at": "2026-11-14",
+        "reviewer": "requester"
+      }
+    },
+    {
+      "annotation_path": "data/training/annotations/validation-negation-003.json",
+      "annotation_review": {
+        "outcome": "approved",
+        "reviewed_at": "2026-11-14",
+        "reviewer": "requester"
+      },
+      "annotation_review_status": "approved",
+      "annotation_sha256": "d24eb2b53688afe96dcdec85546e5994fa00429b70e818bd22bb9d906f278387",
+      "annotation_status": "approved",
+      "case_id": "validation-negation-003",
+      "conversation_path": "data/training/conversations/validation-negation-003.json",
+      "conversation_sha256": "20a379617831b5b7a1de7a846b30782d6e49b6c70fb3b05dafb3dce1a1499ad4",
+      "family_id": "validation-negation",
+      "human_review_status": "approved",
+      "snapshot_count": 2,
+      "source_manifest": "data/manifests/training-generation-batch-14.json",
+      "split": "validation",
+      "transcript_review": {
+        "outcome": "approved",
+        "reviewed_at": "2026-11-14",
+        "reviewer": "requester"
+      }
+    },
+    {
+      "annotation_path": "data/training/annotations/validation-negation-004.json",
+      "annotation_review": {
+        "outcome": "approved",
+        "reviewed_at": "2026-11-14",
+        "reviewer": "requester"
+      },
+      "annotation_review_status": "approved",
+      "annotation_sha256": "b8eaa40c4d088662f9ca28288e6a480a54b8c00b326d9d96716a56651fd003a7",
+      "annotation_status": "approved",
+      "case_id": "validation-negation-004",
+      "conversation_path": "data/training/conversations/validation-negation-004.json",
+      "conversation_sha256": "480db82ab20a7b9838573d06370e8241b94953cbfc69022fad34fad9b424d97c",
+      "family_id": "validation-negation",
+      "human_review_status": "approved",
+      "snapshot_count": 2,
+      "source_manifest": "data/manifests/training-generation-batch-15.json",
+      "split": "validation",
+      "transcript_review": {
+        "outcome": "approved",
+        "reviewed_at": "2026-11-14",
+        "reviewer": "requester"
+      }
+    },
+    {
+      "annotation_path": "data/training/annotations/validation-negation-005.json",
+      "annotation_review": {
+        "outcome": "approved",
+        "reviewed_at": "2026-11-14",
+        "reviewer": "requester"
+      },
+      "annotation_review_status": "approved",
+      "annotation_sha256": "c8517dab38ea59382c40473c3e4a19c53cb8912951aae0ca8ff05962de34c8f9",
+      "annotation_status": "approved",
+      "case_id": "validation-negation-005",
+      "conversation_path": "data/training/conversations/validation-negation-005.json",
+      "conversation_sha256": "a97446cef71421cb963c408d14fede473eabeb6c37338e375d251e8b7848ca41",
+      "family_id": "validation-negation",
+      "human_review_status": "approved",
+      "snapshot_count": 1,
+      "source_manifest": "data/manifests/training-generation-batch-16.json",
+      "split": "validation",
+      "transcript_review": {
+        "outcome": "approved",
+        "reviewed_at": "2026-11-14",
+        "reviewer": "requester"
+      }
+    },
+    {
+      "annotation_path": "data/training/annotations/calibration-uncertainty-003.json",
+      "annotation_review": {
+        "outcome": "approved",
+        "reviewed_at": "2026-11-14",
+        "reviewer": "requester"
+      },
+      "annotation_review_status": "approved",
+      "annotation_sha256": "3683566f734dc018db365cd42e57a7753d6a4059b8d01bbdd21ae523906c9950",
+      "annotation_status": "approved",
+      "case_id": "calibration-uncertainty-003",
+      "conversation_path": "data/training/conversations/calibration-uncertainty-003.json",
+      "conversation_sha256": "e0f83d6ffe679993c277278b47979f30af6aecec1b789f48624026f40aee9290",
+      "family_id": "calibration-uncertainty",
+      "human_review_status": "approved",
+      "snapshot_count": 1,
+      "source_manifest": "data/manifests/training-generation-batch-17.json",
+      "split": "calibration",
+      "transcript_review": {
+        "outcome": "approved",
+        "reviewed_at": "2026-11-14",
+        "reviewer": "requester"
+      }
+    },
+    {
+      "annotation_path": "data/training/annotations/calibration-uncertainty-004.json",
+      "annotation_review": {
+        "outcome": "approved",
+        "reviewed_at": "2026-11-15",
+        "reviewer": "requester"
+      },
+      "annotation_review_status": "approved",
+      "annotation_sha256": "98a8b163837f0e6e54ecc212576379e0f8570ebca5655c19f5edce6d040c201d",
+      "annotation_status": "approved",
+      "case_id": "calibration-uncertainty-004",
+      "conversation_path": "data/training/conversations/calibration-uncertainty-004.json",
+      "conversation_sha256": "215d78e2bffe61f9bcf07635140d50776515fabab33636a3e1ea0158e20502ca",
+      "family_id": "calibration-uncertainty",
+      "human_review_status": "approved",
+      "snapshot_count": 1,
+      "source_manifest": "data/manifests/training-generation-batch-18.json",
+      "split": "calibration",
+      "transcript_review": {
+        "outcome": "approved",
+        "reviewed_at": "2026-11-15",
+        "reviewer": "requester"
+      }
+    },
+    {
+      "annotation_path": "data/training/annotations/calibration-uncertainty-005.json",
+      "annotation_review": {
+        "outcome": "approved",
+        "reviewed_at": "2026-11-15",
+        "reviewer": "requester"
+      },
+      "annotation_review_status": "approved",
+      "annotation_sha256": "dcfc94b387ba5ca4659b5a479e1029379e369f57f2fc7397374dcdc1711fe6ec",
+      "annotation_status": "approved",
+      "case_id": "calibration-uncertainty-005",
+      "conversation_path": "data/training/conversations/calibration-uncertainty-005.json",
+      "conversation_sha256": "881fe1d01735f0098afa2a6b3b2a9c9e49cc643c9341aa7d913024d480f4808d",
+      "family_id": "calibration-uncertainty",
+      "human_review_status": "approved",
+      "snapshot_count": 1,
+      "source_manifest": "data/manifests/training-generation-batch-19.json",
+      "split": "calibration",
+      "transcript_review": {
+        "outcome": "approved",
+        "reviewed_at": "2026-11-15",
+        "reviewer": "requester"
+      }
+    }
+  ],
+  "dataset_id": "repair-intake-reviewed-development",
+  "manifest_version": "0.1.0",
+  "purpose": "derived_development_export_manifest",
+  "review_policy": {
+    "annotation_status": "approved",
+    "basis": "all individual cases have dated, named transcript and annotation approvals"
+  },
+  "scenario_catalog": {
+    "id": "repair-intake-training-scenarios",
+    "path": "data/scenarios/catalog.yaml",
+    "sha256": "24733bfc371d679a96540574d7bd92cc313edc678d40de24fb727cf918a33572",
+    "version": "0.1.0"
+  },
+  "source_manifests": [
+    {
+      "batch_annotation_status": "approved",
+      "batch_conversation_review_status": "approved",
+      "batch_human_annotation_review": "approved",
+      "batch_human_transcript_review": "approved",
+      "path": "data/manifests/training-initial-drafts.json",
+      "sha256": "04f7763a3878357e44268cb660a9075a663a9287c0bfba3893a1ef9fc6a7dc18"
+    },
+    {
+      "batch_annotation_status": "approved",
+      "batch_conversation_review_status": "approved",
+      "batch_human_annotation_review": "approved",
+      "batch_human_transcript_review": "approved",
+      "path": "data/manifests/training-generation-batch-02.json",
+      "sha256": "259ef3483caebb27613ddfe2f0f6c822b07e1550ad220d34cbda329ac4a35a67"
+    },
+    {
+      "batch_annotation_status": "approved",
+      "batch_conversation_review_status": "approved",
+      "batch_human_annotation_review": "approved",
+      "batch_human_transcript_review": "approved",
+      "path": "data/manifests/training-generation-batch-03.json",
+      "sha256": "701a0aa402244b5e18c1db584ab7be729250ff3bd2cedf4c2b3251bb088d6468"
+    },
+    {
+      "batch_annotation_status": "approved",
+      "batch_conversation_review_status": "approved",
+      "batch_human_annotation_review": "approved",
+      "batch_human_transcript_review": "approved",
+      "path": "data/manifests/training-generation-batch-04.json",
+      "sha256": "8449f24bc6d43ce98708769fa4abc1654a96fee46cff59295612b8332bfb1dac"
+    },
+    {
+      "batch_annotation_status": "approved",
+      "batch_conversation_review_status": "approved",
+      "batch_human_annotation_review": "approved",
+      "batch_human_transcript_review": "approved",
+      "path": "data/manifests/training-generation-batch-05.json",
+      "sha256": "b3cafcba44a56d09db1787f41225c91384dcc8e6982f8a47430a3c6039456e94"
+    },
+    {
+      "batch_annotation_status": "approved",
+      "batch_conversation_review_status": "approved",
+      "batch_human_annotation_review": "approved",
+      "batch_human_transcript_review": "approved",
+      "path": "data/manifests/training-generation-batch-06.json",
+      "sha256": "949833f87f79d72770deca185abb0fe96311fe703c84cd1087ee51ee1f4564e5"
+    },
+    {
+      "batch_annotation_status": "approved",
+      "batch_conversation_review_status": "approved",
+      "batch_human_annotation_review": "approved",
+      "batch_human_transcript_review": "approved",
+      "path": "data/manifests/training-generation-batch-07.json",
+      "sha256": "c9608fa360035391a6356428a13bbb9ef123d09cda93aef3699fb4f85e12927d"
+    },
+    {
+      "batch_annotation_status": "approved",
+      "batch_conversation_review_status": "approved",
+      "batch_human_annotation_review": "approved",
+      "batch_human_transcript_review": "approved",
+      "path": "data/manifests/training-generation-batch-08.json",
+      "sha256": "e7b1fbd3fe5049916538097c21067a3eeca7372641f13a0da9ea0a308b9d038f"
+    },
+    {
+      "batch_annotation_status": "approved",
+      "batch_conversation_review_status": "approved",
+      "batch_human_annotation_review": "approved",
+      "batch_human_transcript_review": "approved",
+      "path": "data/manifests/training-generation-batch-09.json",
+      "sha256": "4d96cc6f34439ca208d23067e172ff0e3ee20524824431003c48daa30a41632a"
+    },
+    {
+      "batch_annotation_status": "approved",
+      "batch_conversation_review_status": "approved",
+      "batch_human_annotation_review": "approved",
+      "batch_human_transcript_review": "approved",
+      "path": "data/manifests/training-generation-batch-10.json",
+      "sha256": "0f033a4d132043f72033af4dad917492511da63d3df377521a3f4c49fb5afed4"
+    },
+    {
+      "batch_annotation_status": "approved",
+      "batch_conversation_review_status": "approved",
+      "batch_human_annotation_review": "approved",
+      "batch_human_transcript_review": "approved",
+      "path": "data/manifests/training-generation-batch-11.json",
+      "sha256": "2bcdbfa41c32fbc6b967c57fb728ed1e4fe131c23ff1bf2da598b015fb42a7d6"
+    },
+    {
+      "batch_annotation_status": "approved",
+      "batch_conversation_review_status": "approved",
+      "batch_human_annotation_review": "approved",
+      "batch_human_transcript_review": "approved",
+      "path": "data/manifests/training-generation-batch-12.json",
+      "sha256": "3b1216f92e2d9f80abd35f1a4f4f64feba6aa1b79594175fdefbe27fbd3a3654"
+    },
+    {
+      "batch_annotation_status": "approved",
+      "batch_conversation_review_status": "approved",
+      "batch_human_annotation_review": "approved",
+      "batch_human_transcript_review": "approved",
+      "path": "data/manifests/training-generation-batch-13.json",
+      "sha256": "0bb401c2c01a6280fd53fbf4c99f8c22613803b858dc70643236ebbd814a933c"
+    },
+    {
+      "batch_annotation_status": "approved",
+      "batch_conversation_review_status": "approved",
+      "batch_human_annotation_review": "approved",
+      "batch_human_transcript_review": "approved",
+      "path": "data/manifests/training-generation-batch-14.json",
+      "sha256": "ca17a92a478bc1cf142ec8945c855beb740dae10359d92c6e724fa682060760d"
+    },
+    {
+      "batch_annotation_status": "approved",
+      "batch_conversation_review_status": "approved",
+      "batch_human_annotation_review": "approved",
+      "batch_human_transcript_review": "approved",
+      "path": "data/manifests/training-generation-batch-15.json",
+      "sha256": "db68e0fc7ba5216862f73236029a715acb674280f6bbfe7d30225b0d9972b399"
+    },
+    {
+      "batch_annotation_status": "approved",
+      "batch_conversation_review_status": "approved",
+      "batch_human_annotation_review": "approved",
+      "batch_human_transcript_review": "approved",
+      "path": "data/manifests/training-generation-batch-16.json",
+      "sha256": "60aa339f5bb1d60f3ad7449851ed206b82381c734f1709b04300848d5b96bbf1"
+    },
+    {
+      "batch_annotation_status": "approved",
+      "batch_conversation_review_status": "approved",
+      "batch_human_annotation_review": "approved",
+      "batch_human_transcript_review": "approved",
+      "path": "data/manifests/training-generation-batch-17.json",
+      "sha256": "0c1563b6c65396de46d5dbd51107bc106734b6dd238d399001d3ef975473e8ce"
+    },
+    {
+      "batch_annotation_status": "approved",
+      "batch_conversation_review_status": "approved",
+      "batch_human_annotation_review": "approved",
+      "batch_human_transcript_review": "approved",
+      "path": "data/manifests/training-generation-batch-18.json",
+      "sha256": "b15ff02648598e003e4dd48afdfe2683d26c4100174c77fe7eb59184c76252b1"
+    },
+    {
+      "batch_annotation_status": "approved",
+      "batch_conversation_review_status": "approved",
+      "batch_human_annotation_review": "approved",
+      "batch_human_transcript_review": "approved",
+      "path": "data/manifests/training-generation-batch-19.json",
+      "sha256": "07039b47345354619e03bdbcc47622afc0017c3f02ddac1c5281feee3dc453ee"
+    }
+  ],
+  "task": {
+    "id": "repair_intake",
+    "path": "configs/tasks/repair-intake.yaml",
+    "sha256": "2bcfeac17ccd30d85c640394b930bfd9db4a4dc7b1b67f049483ab79b9284db3",
+    "version": "0.1.0"
+  },
+  "validation": {
+    "basis": "case-level review records, with batch transcript and annotation summaries also required",
+    "human_annotation_review": "approved",
+    "validation_is_not_semantic_approval": true
+  }
+}

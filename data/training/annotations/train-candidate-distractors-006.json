@@ -1,0 +1,59 @@
+{
+  "conversation_id": "train-candidate-distractors-006",
+  "task_id": "repair_intake",
+  "task_version": "0.1.0",
+  "snapshots": [
+    {
+      "snapshot_id": "train-candidate-distractors-006-s01",
+      "through_event_id": "train-candidate-distractors-006-e02",
+      "values": {
+        "appliance": "Dehumidifier",
+        "location": "Basement",
+        "active_leak": null,
+        "preferred_appointment": "Tuesday evening",
+        "quote_required": true,
+        "spending_limit": {
+          "amount": 450,
+          "currency": "USD"
+        }
+      },
+      "evidence": {
+        "appliance": [
+          {
+            "event_id": "train-candidate-distractors-006-e01",
+            "start_char": 4,
+            "end_char": 16
+          }
+        ],
+        "location": [
+          {
+            "event_id": "train-candidate-distractors-006-e01",
+            "start_char": 24,
+            "end_char": 32
+          }
+        ],
+        "preferred_appointment": [
+          {
+            "event_id": "train-candidate-distractors-006-e02",
+            "start_char": 141,
+            "end_char": 156
+          }
+        ],
+        "quote_required": [
+          {
+            "event_id": "train-candidate-distractors-006-e02",
+            "start_char": 106,
+            "end_char": 135
+          }
+        ],
+        "spending_limit": [
+          {
+            "event_id": "train-candidate-distractors-006-e02",
+            "start_char": 199,
+            "end_char": 230
+          }
+        ]
+      }
+    }
+  ]
+}

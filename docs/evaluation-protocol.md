@@ -25,6 +25,8 @@ Use the same task semantics, transcript prefixes, and candidate values where app
 - Evaluate candidate extraction recall separately from candidate selection accuracy.
 - Freeze final configurations before opening the final test set.
 
+The original ten-conversation test set was published in public PR #5 before configuration freeze. It is compromised as a blind evaluation and is suitable only as a known public regression set. Do not claim its results as held-out performance. Use a newly generated, privately held replacement set for the final frozen comparison; keep its labels and manifest outside the public repository until evaluation.
+
 Evaluate clean transcripts, ASR transcripts of the same recordings, and the complete audio pipeline separately.
 
 ## Measures
@@ -50,4 +52,4 @@ The initial targets are macro-F1 within two percentage points of Jev and coverag
 
 ## Reporting
 
-Publish selected reports only. Include model and dataset versions, configuration, environment, measurement policy, and any exclusions or retries so comparisons can be reproduced. Commit aggregate summaries rather than per-example predictions or gold labels. Preserve an untouched final test set for the frozen comparison.
+Publish selected reports only. Include model and dataset versions, configuration, environment, measurement policy, and any exclusions or retries so comparisons can be reproduced. Commit aggregate summaries rather than per-example predictions or gold labels. Preserve the replacement test privately for the frozen comparison.

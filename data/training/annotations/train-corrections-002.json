@@ -1,0 +1,77 @@
+{
+  "conversation_id": "train-corrections-002",
+  "task_id": "repair_intake",
+  "task_version": "0.1.0",
+  "snapshots": [
+    {
+      "snapshot_id": "train-corrections-002-s01",
+      "through_event_id": "train-corrections-002-e01",
+      "values": {
+        "appliance": "Dishwasher",
+        "location": "Scullery",
+        "active_leak": true,
+        "preferred_appointment": null,
+        "quote_required": null,
+        "spending_limit": null
+      },
+      "evidence": {
+        "appliance": [
+          {
+            "event_id": "train-corrections-002-e01",
+            "start_char": 4,
+            "end_char": 14
+          }
+        ],
+        "location": [
+          {
+            "event_id": "train-corrections-002-e01",
+            "start_char": 22,
+            "end_char": 30
+          }
+        ],
+        "active_leak": [
+          {
+            "event_id": "train-corrections-002-e01",
+            "start_char": 34,
+            "end_char": 72
+          }
+        ]
+      }
+    },
+    {
+      "snapshot_id": "train-corrections-002-s02",
+      "through_event_id": "train-corrections-002-e02",
+      "values": {
+        "appliance": "Dishwasher",
+        "location": "Scullery",
+        "active_leak": false,
+        "preferred_appointment": null,
+        "quote_required": null,
+        "spending_limit": null
+      },
+      "evidence": {
+        "appliance": [
+          {
+            "event_id": "train-corrections-002-e01",
+            "start_char": 4,
+            "end_char": 14
+          }
+        ],
+        "location": [
+          {
+            "event_id": "train-corrections-002-e01",
+            "start_char": 22,
+            "end_char": 30
+          }
+        ],
+        "active_leak": [
+          {
+            "event_id": "train-corrections-002-e02",
+            "start_char": 4,
+            "end_char": 52
+          }
+        ]
+      }
+    }
+  ]
+}

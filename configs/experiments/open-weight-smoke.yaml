@@ -1,0 +1,154 @@
+experiment:
+  id: repair-intake-open-weight-smoke
+  version: "0.1.0"
+  status: completed
+  purpose: mechanics_smoke_only
+  description: Verify pretrained loading, decision-head training, checkpoint save/reload, and Turnwise option-compatible inference; do not treat smoke metrics as model-quality evidence.
+  references:
+    unsloth_decision_guide: https://unsloth.ai/docs/basics/train-your-own-decision-model-with-unsloth
+    model_card: https://huggingface.co/unsloth/Qwen3.5-0.8B
+
+task:
+  path: configs/tasks/repair-intake.yaml
+  id: repair_intake
+  version: "0.1.0"
+  sha256: 2bcfeac17ccd30d85c640394b930bfd9db4a4dc7b1b67f049483ab79b9284db3
+
+dataset:
+  jsonl_path: data/training/exports/initial-training.jsonl
+  metadata_path: data/training/exports/initial-training.metadata.json
+  row_count: 8
+  split: training
+  jsonl_sha256: 58b4d8e6fc8f43dccb551a2276988ba5871eeee097dce74772d0ea0f9fedd415
+  metadata_sha256: 3fbbf9843eb766c7556c1663d2e9849dc52ccce26d1f7f3b5845a9e7c5b6c293
+  use_for_quality_metrics: false
+  final_test_access: false
+
+model:
+  repository: unsloth/Qwen3.5-0.8B
+  revision: 23c69c53358a07516b5827588b3fdb12ae78fd65
+  license: Apache-2.0
+  license_file: https://huggingface.co/unsloth/Qwen3.5-0.8B/blob/23c69c53358a07516b5827588b3fdb12ae78fd65/LICENSE
+  license_file_verified: true
+  task: decision_model
+  decision_head: newly_initialized
+
+training:
+  load_in_4bit: true
+  max_seq_length: 2048
+  lora:
+    rank: 16
+    alpha: 16
+    dropout: 0.0
+    gradient_checkpointing: unsloth
+  learning_rate: 0.0002
+  head_learning_rate: 0.0001
+  max_steps: 3
+  per_device_train_batch_size: 1
+  gradient_accumulation_steps: 1
+  warmup_steps: 0
+  seed: 3407
+  report_to: none
+
+runtime:
+  preferred_platform: google_colab
+  fallback_platform: kaggle
+  preferred_notebook: https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/Qwen3_5_%284B%29-Decision.ipynb
+  required_accelerator: nvidia_gpu
+  record_actual_gpu_and_vram: true
+  local_core_training_available: false
+  observed_preflight:
+    recorded_at: "2026-11-15"
+    platform: google_colab
+    gpu: NVIDIA Tesla T4
+    vram_gib: 14.563
+    python: "3.13"
+    torch: "2.8.0+cu128"
+    cuda_toolkit: "12.8"
+    triton: "3.4.0"
+    transformers: "5.2.0"
+    xformers: "0.0.32.post2"
+    unsloth: "2026.11.4"
+    bfloat16_supported: false
+    install_cell_completed: true
+    observed_model: unsloth/Qwen3.5-4B
+    observed_model_revision: unpinned
+    model_setup_cell_status: completed
+    pinned_pretrained_model_load_completed: true
+    model_weights_loaded: "723/723"
+    model_files_fetched: 13
+    gpu_memory_after_load_free_gib: 10.07
+    gpu_memory_total_gib: 14.563
+    observed_4b_inference_status: valid_options_on_one_training_row
+    pinned_pretrained_inference_status: valid_options_on_one_training_row
+    precision_note: "Unsloth reported fp16 unsupported for Qwen3.5 on this runtime and selected float32; verify model load and memory headroom before training."
+    torchaudio_note: "Torchaudio backend-dispatch deprecation warning observed during Unsloth patching; not an installation failure."
+  observed_pinned_model_load:
+    recorded_at: "2026-11-18"
+    repository: unsloth/Qwen3.5-0.8B
+    requested_revision: 23c69c53358a07516b5827588b3fdb12ae78fd65
+    unsloth: "2026.11.6"
+    gpu: NVIDIA Tesla T4
+    model_weights_loaded: "473/473"
+    model_files_fetched: 13
+    gpu_memory_after_load_free_gib: 13.08
+    gpu_memory_total_gib: 14.56
+    precision_note: "Unsloth reported float32 fallback; bf16 unavailable and fp16 unsupported for Qwen3.5."
+    inference_status: valid_original_options_on_one_training_row
+    dataset_build:
+      input_rows: 8
+      prepared_items: 8
+      total_decisions: 48
+      skipped: 0
+      truncated: 0
+    lora_setup:
+      status: completed
+      trainable_parameters: 38147588
+      trainable_lora_tensors: 372
+      gpu_memory_after_setup_free_gib: 13.04
+      gpu_memory_total_gib: 14.56
+    training_run:
+      recorded_at: "2026-11-19"
+      completed_steps: 3
+      epoch: 0.375
+      runtime_seconds: 137.2567
+      training_loss: 1.0472546219825745
+      step_losses: [1.191558, 1.165599, 0.784608]
+      out_of_memory_reported: false
+
+outputs:
+  checkpoint_directory: outputs/repair-intake-open-weight-smoke
+  observed_checkpoint:
+    location: "/content/drive/MyDrive/Colab Notebooks/Turnwise_Smoke/checkpoints/smoke-20261120T013234Z-bdea1afb"
+    reload_status: completed
+    reload_unsloth_version: "2026.11.7"
+    reloaded_encoder_commit: 23c69c53358a07516b5827588b3fdb12ae78fd65
+    reloaded_head_weights_match: true
+    reloaded_lora_parameters_present: true
+    reloaded_lora_weights_match: true
+    reloaded_lora_tensors_verified: 372
+    reloaded_inference_status: valid_original_options_on_one_training_row
+    decision_base_model: unsloth/Qwen3.5-0.8B
+    decision_base_revision: 23c69c53358a07516b5827588b3fdb12ae78fd65
+    adapter_base_model: unsloth/Qwen3.5-0.8B
+    adapter_revision: 23c69c53358a07516b5827588b3fdb12ae78fd65
+    loaded_encoder_commit: 23c69c53358a07516b5827588b3fdb12ae78fd65
+    sha256:
+      README.md: 4c2423cde13d2ef1775d1e90f1a3a8cd59b82b401b8915b18c198488d3c18f88
+      adapter_config.json: 2ae57ec985c32d1fc33f0245aae054dd244318f82776af8be40a3936b36da14b
+      adapter_model.safetensors: 17c8e836467af721d846d5e193d9003919f66e2cd0d145fbee0823519cfc202b
+      chat_template.jinja: ea210e5b4997b7b1d3af5ee3ad34e7677ffe38df7469e8d88089789b5a27fae5
+      joint_head.safetensors: da243c7da557222b440efc1afb5258ae0602ea225b5f8844ec3e51f682af1098
+      joint_head_config.json: 99f65ef462b1c92d9304ad1acecbbab93506efc0ba8227c46582b4264d27aa30
+      processor_config.json: 14932921ca485d458a04dafd8069fbb0a4505622a48208d19ed247115801385b
+      tokenizer.json: 87a7830d63fcf43bf241c3c5242e96e62dd3fdc29224ca26fed8ea333db72de4
+      tokenizer_config.json: 3fd8a3311e2d68d200c3f82f921ea03888a4eb5c23ae870759263d3a6731e9fb
+      unsloth_decision_config.json: 6a66a9dc7858b336b7b043babe6fac8842c94c5ea2ae3ad49c149ba4fcb5c94b
+  persist_predictions: false
+  persist_per_example_metrics: false
+  smoke_acceptance:
+    - load_pinned_pretrained_backbone
+    - produce_option_keys_available_for_a_training_row
+    - complete_three_training_steps
+    - save_and_reload_adapter_and_decision_head
+    - produce_valid_option_keys_after_reload

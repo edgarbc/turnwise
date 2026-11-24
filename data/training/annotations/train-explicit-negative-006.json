@@ -1,0 +1,49 @@
+{
+  "conversation_id": "train-explicit-negative-006",
+  "task_id": "repair_intake",
+  "task_version": "0.1.0",
+  "snapshots": [
+    {
+      "snapshot_id": "train-explicit-negative-006-s01",
+      "through_event_id": "train-explicit-negative-006-e02",
+      "values": {
+        "appliance": "Water softener",
+        "location": "Basement",
+        "active_leak": true,
+        "preferred_appointment": null,
+        "quote_required": false,
+        "spending_limit": null
+      },
+      "evidence": {
+        "appliance": [
+          {
+            "event_id": "train-explicit-negative-006-e01",
+            "start_char": 4,
+            "end_char": 18
+          }
+        ],
+        "location": [
+          {
+            "event_id": "train-explicit-negative-006-e01",
+            "start_char": 26,
+            "end_char": 34
+          }
+        ],
+        "active_leak": [
+          {
+            "event_id": "train-explicit-negative-006-e01",
+            "start_char": 38,
+            "end_char": 76
+          }
+        ],
+        "quote_required": [
+          {
+            "event_id": "train-explicit-negative-006-e02",
+            "start_char": 0,
+            "end_char": 43
+          }
+        ]
+      }
+    }
+  ]
+}

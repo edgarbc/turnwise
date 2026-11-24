@@ -1,0 +1,34 @@
+{
+  "conversation_id": "train-corrections-001",
+  "task_id": "repair_intake",
+  "task_version": "0.1.0",
+  "events": [
+    {
+      "event_id": "train-corrections-001-e01",
+      "speaker": "customer",
+      "start_ms": 0,
+      "end_ms": 7000,
+      "revision": 0,
+      "is_final": true,
+      "text": "The refrigerator is in the upstairs kitchen."
+    },
+    {
+      "event_id": "train-corrections-001-e02",
+      "speaker": "customer",
+      "start_ms": 12000,
+      "end_ms": 18000,
+      "revision": 0,
+      "is_final": true,
+      "text": "Friday morning is the best time for the technician."
+    },
+    {
+      "event_id": "train-corrections-001-e03",
+      "speaker": "customer",
+      "start_ms": 24000,
+      "end_ms": 34000,
+      "revision": 0,
+      "is_final": true,
+      "text": "Correction: the refrigerator is actually in the basement utility room, and Saturday afternoon is better than Friday morning."
+    }
+  ]
+}

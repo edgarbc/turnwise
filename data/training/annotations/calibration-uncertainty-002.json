@@ -1,0 +1,42 @@
+{
+  "conversation_id": "calibration-uncertainty-002",
+  "task_id": "repair_intake",
+  "task_version": "0.1.0",
+  "snapshots": [
+    {
+      "snapshot_id": "calibration-uncertainty-002-s01",
+      "through_event_id": "calibration-uncertainty-002-e02",
+      "values": {
+        "appliance": "Water heater",
+        "location": "Basement",
+        "active_leak": null,
+        "preferred_appointment": null,
+        "quote_required": true,
+        "spending_limit": null
+      },
+      "evidence": {
+        "appliance": [
+          {
+            "event_id": "calibration-uncertainty-002-e01",
+            "start_char": 4,
+            "end_char": 16
+          }
+        ],
+        "location": [
+          {
+            "event_id": "calibration-uncertainty-002-e01",
+            "start_char": 27,
+            "end_char": 35
+          }
+        ],
+        "quote_required": [
+          {
+            "event_id": "calibration-uncertainty-002-e02",
+            "start_char": 0,
+            "end_char": 40
+          }
+        ]
+      }
+    }
+  ]
+}

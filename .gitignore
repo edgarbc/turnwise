@@ -2,6 +2,12 @@
 __pycache__/
 *.py[cod]
 .env
+.DS_Store
+
+# Final-test materials are local-only; never commit labels or specifications.
+/data/test/
+/data/manifests/*final-test*.json
+/data/scenarios/*final-test*.yaml
 
 /runs/*
 !/runs/.gitkeep

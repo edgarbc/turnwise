@@ -1,0 +1,25 @@
+{
+  "conversation_id": "train-candidate-distractors-002",
+  "task_id": "repair_intake",
+  "task_version": "0.1.0",
+  "events": [
+    {
+      "event_id": "train-candidate-distractors-002-e01",
+      "speaker": "customer",
+      "start_ms": 0,
+      "end_ms": 7000,
+      "revision": 0,
+      "is_final": true,
+      "text": "The gas oven in the kitchen is not heating properly."
+    },
+    {
+      "event_id": "train-candidate-distractors-002-e02",
+      "speaker": "customer",
+      "start_ms": 12000,
+      "end_ms": 24000,
+      "revision": 0,
+      "is_final": true,
+      "text": "The agent offered Friday afternoon, but I cannot make that. Saturday morning is my preference. My maximum for this repair is two hundred fifty U.S. dollars."
+    }
+  ]
+}

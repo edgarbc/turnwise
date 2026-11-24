@@ -24,6 +24,8 @@ The [training approach](docs/training/approach.md) summarizes the open-weight ex
 
 The [open-weight smoke notebook](notebooks/open-weight-smoke.ipynb) runs a three-step Unsloth decision-model smoke test in Google Colab. It uses a small training-only export to check loading, training, checkpoint save/reload, and valid option keys; it is not a model-quality evaluation and must not use final-test data. See the [smoke configuration](configs/experiments/open-weight-smoke.yaml) for the recorded run and checkpoint details.
 
+The [open-weight development notebook](notebooks/open-weight-development.ipynb) trains the pinned Qwen3.5-0.8B decision model on 36 training snapshots, selects checkpoints against eight validation snapshots, then calibrates on five reserved snapshots. Its final-test stage is manually gated until the configuration is frozen and evaluates the locked test set once.
+
 The task and experimental limits matter: matching Jev on this defined task would not show equivalent performance on arbitrary tasks. See the [evaluation protocol](docs/evaluation-protocol.md) for the planned comparison and metrics.
 
 ## Project documents
@@ -234,6 +236,7 @@ turnwise/
 │   ├── evaluation-protocol.md
 │   └── project-plan.md
 ├── notebooks/
+│   ├── open-weight-development.ipynb
 │   └── open-weight-smoke.ipynb
 ├── src/turnwise/
 │   ├── app/

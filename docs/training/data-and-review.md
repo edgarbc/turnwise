@@ -70,18 +70,19 @@ Every row has exactly the six task question IDs in `gold`, and every answer is a
 
 Assign scenario families to splits before generating dialogue wording. A family groups scenarios that share the same underlying fact pattern or decision shortcut; paraphrases and close variants belong to the same family. Keep a family, conversation, every prefix, and any later transcript/audio variant derived from it in one split. The split unit is the family, with conversation membership recorded in the manifest.
 
-The working allocation is 30/5/5/10 conversations:
+The active experiment allocation is 30/5/5/10 conversations:
 
 | Split | Proposed conversations | Permitted use |
 | --- | ---: | --- |
 | Training | 30 | Gradient updates |
 | Validation | 5 | Error diagnosis and checkpoint/settings selection |
 | Calibration | 5 | Exploratory confidence and abstention calibration, separate from gradient updates |
-| Final test | 10 | One frozen comparison after configuration selection |
+| Replacement test | 10 (planned) | One frozen comparison after private creation and configuration selection |
+| **Active experiment total** | **50** | |
 
-These totals sum to the initial budget of 50 new conversations. Family assignments and the ten development specifications are recorded in [`data/scenarios/catalog.yaml`](../../data/scenarios/catalog.yaml). That catalogue reserves test-family IDs and counts but withholds test specifications and labels from development. Report conversation counts alongside prefix counts. Do not claim that prefixes are independent samples. Five-conversation validation and calibration estimates, and a ten-conversation test, are exploratory and should include uncertainty and limitations.
+The exposed original test set has ten conversations and is outside this active split total. Family assignments are recorded in [`data/scenarios/catalog.yaml`](../../data/scenarios/catalog.yaml); the replacement test must use new families and remain private. Report conversation counts alongside prefix counts. Do not claim that prefixes are independent samples. Five-conversation validation and calibration estimates, and a ten-conversation replacement test, are exploratory and should include uncertainty and limitations.
 
-Keep the existing 30-conversation pilot in a separate regression partition; it is not eligible for training, validation, calibration, or the new final test. Do not inspect final-test labels during model, threshold, or checkpoint selection. Prefer generating and fully reviewing test data after the workflow and configuration are frozen. If test examples must be created earlier, keep their labels access-controlled and unused in development.
+Keep the existing 30-conversation pilot in a separate regression partition; it is not eligible for training, validation, calibration, or the new final test. The original final-test labels were exposed in public PR #5 and are no longer suitable as a blind set. Create a replacement only after model and evaluation configuration are frozen, and keep it in access-controlled storage.
 
 ## Review and Provenance
 
@@ -94,7 +95,7 @@ Record provenance and review status at scenario, conversation, annotation/snapsh
 - annotation/task version and source-file hashes;
 - any flags, adjudication, or correction history.
 
-The first reviewed development batch tested the generator and annotation process; final-test labels are excluded from that development review loop. All 40 non-test conversations are now approved. After the data-generation and evaluation workflow is frozen, generate and fully review every final-test conversation, selected prefix label, and evidence reference before freezing its hashes.
+The first reviewed development batch tested the generator and annotation process; all 40 development conversations are approved. The original test set is publicly exposed. After the model and evaluation workflow is frozen, generate and fully review a fresh replacement test set, keeping its conversations, labels, and hashes outside the public repository.
 
 ## Export and Acceptance Checks
 
@@ -118,6 +119,6 @@ The export must be deterministic for identical inputs, task version, and exporte
 
 The working 30/5/5/10 allocation and family assignments are recorded in `data/scenarios/catalog.yaml`. All 40 development scenario specifications, transcripts, and annotations are reviewed and approved. Their batch manifests record per-case outcomes and source hashes. The candidate evidence-containment rule has been checked, and the Unsloth exporter checks row labels against confirmed scenario facts.
 
-The development dataset validates with 40 conversations and 49 snapshots; the separate, locked final-test dataset validates with ten conversations and 27 snapshots. All 50 conversations and annotations are approved, with per-case source hashes in their manifests. Keep final-test labels out of training, validation, calibration, prompt development, threshold selection, and checkpoint selection. The data quality and lock audit are recorded in [`../../reports/final-test-data-quality-20261115.md`](../../reports/final-test-data-quality-20261115.md).
+The development dataset validates with 40 conversations and 49 snapshots. The original ten-conversation test set (27 snapshots) was included in public PR #5 before configuration freeze and is compromised as a blind test. Keep it only as a known public regression set. Create a replacement final test in access-controlled storage after configuration freeze; do not use the exposed labels for model, prompt, threshold, checkpoint, or calibration selection. The original quality audit is in [`../../reports/final-test-data-quality-20261115.md`](../../reports/final-test-data-quality-20261115.md), and the exposure is documented in [`../decisions/2026-11-23-final-test-exposure.md`](../decisions/2026-11-23-final-test-exposure.md).
 
 Record settled choices in [`../decisions/`](../decisions/) and reflect machine-enforced rules in the dataset manifest, task config, exporter, and validator.

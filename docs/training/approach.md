@@ -1,6 +1,6 @@
 # Open-Weight Training Approach
 
-**Status as of 2026-11-19:** all 50 conversations are reviewed and approved. The 40 development conversations are available for development; the 10 final-test cases are locked and excluded from model selection.
+**Status as of 2026-11-23:** the 40 development conversations are reviewed and approved. The original ten-case final-test set was exposed in public PR #5 and is no longer a blind test; it must not be used for final performance claims. See the [exposure decision](../decisions/2026-11-23-final-test-exposure.md).
 
 ## Research Question
 
@@ -8,14 +8,17 @@ Turnwise is testing whether a small open-weight decision model can make bounded 
 
 ## Dataset Design
 
-The initial budget is 50 new synthetic conversations. Scenario families are assigned to splits before dialogue generation so close variants and all prefixes from a conversation stay together.
+The active experiment allocation is 50 synthetic conversations. Replacing the publicly exposed ten-case test requires a new private test set; retain the old set only as a separate regression set. Scenario families are assigned to splits before dialogue generation so close variants and all prefixes from a conversation stay together.
 
 | Split | Conversations | Status |
 | --- | ---: | --- |
 | Training | 30 | Reviewed and approved |
 | Validation | 5 | Reviewed and approved |
 | Calibration | 5 | Reviewed and approved |
-| Final test | 10 | Reviewed and locked; excluded from development |
+| Replacement test | 10 (planned) | Create privately after configuration freeze |
+| **Active experiment total** | **50** | |
+
+The ten-case original test is outside this active allocation and is only a known public regression set.
 
 The 40 available development conversations pass the dataset validator: 40 conversations and 49 annotated snapshots. The original 30-conversation Jev/OpenAI pilot remains a separate regression set; it is not part of this allocation and is not training data.
 
@@ -33,13 +36,13 @@ Question construction is shared with the Jev path, and the exporter rejects inva
 
 ## Leakage and Review Controls
 
-All prefixes from a conversation and all related examples in a scenario family remain in one split. Test specifications and labels are not used to generate or review development data, and test labels must not influence model, threshold, or checkpoint selection. The final test set is created and locked only after the data-generation and evaluation workflow is frozen.
+All prefixes from a conversation and all related examples in a scenario family remain in one split. The original test set was published before configuration freeze and is compromised. Create a replacement privately after the workflow and configuration are frozen; do not use the exposed labels for model, threshold, checkpoint, or calibration decisions.
 
 Automation checks structure, evidence spans, candidates, scenario consistency, and hashes; it does not establish semantic correctness. Human approval remains required. The small synthetic partitions support workflow exploration, not precise population estimates.
 
 ## Current State and Next Step
 
-All 50 conversations are approved and locked: 30 training, five validation, five calibration, and ten final test. The development set validates at 40 conversations/49 snapshots; the isolated test set validates at 10 conversations/27 snapshots. The freeze decisions are recorded in [`../decisions/2026-11-15-freeze-training-data-workflow.md`](../decisions/2026-11-15-freeze-training-data-workflow.md) and [`../decisions/2026-11-15-select-qwen35-08b-smoke-run.md`](../decisions/2026-11-15-select-qwen35-08b-smoke-run.md). The Qwen3.5-0.8B three-step smoke completed, including checkpoint save/reload, weight checks, and one-row option compatibility; it provides no quality result. The full development splits are exported and structurally audited as described in the [export audit](../../reports/development-export-audit-20261119.md). The locked test labels remain outside development and model selection.
+The 40 development conversations validate at 40 conversations/49 snapshots. The original ten-case test was structurally reviewed but is no longer a blind test because its labels were published; a fresh replacement remains pending. The freeze decisions are recorded in [`../decisions/2026-11-15-freeze-training-data-workflow.md`](../decisions/2026-11-15-freeze-training-data-workflow.md), [`../decisions/2026-11-15-select-qwen35-08b-smoke-run.md`](../decisions/2026-11-15-select-qwen35-08b-smoke-run.md), and [`../decisions/2026-11-23-final-test-exposure.md`](../decisions/2026-11-23-final-test-exposure.md). The Qwen3.5-0.8B three-step smoke completed but provides no quality result. Development exports are audited in the [export report](../../reports/development-export-audit-20261119.md).
 
 ## Sources of Truth
 

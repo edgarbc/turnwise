@@ -37,3 +37,7 @@ This workflow decision does not select an open-weight backbone, license, decisio
 - [Generation and review procedure](../training/generation-and-review.md)
 - [Export format](../training/export-format.md)
 - [Evaluation protocol](../evaluation-protocol.md)
+
+## Subsequent Status
+
+On 2026-11-23, the final-test annotations, transcripts, manifest, and scenario catalogue were found in public PR #5 before model and evaluation configuration were frozen. The original set is therefore compromised as a blind final test; its `locked` metadata does not restore secrecy. See [`2026-11-23-final-test-exposure.md`](2026-11-23-final-test-exposure.md). Keep it only as a known public regression set and create a fresh, access-controlled replacement after configuration freeze.
